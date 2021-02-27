@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import FaceCard from "../components/FaceCard";
+import FaceCard from "../components/Card";
 import Description from "../components/Description";
 import Skill from "../components/Skill";
 import Pic from "../images/profilePic.jpg";
