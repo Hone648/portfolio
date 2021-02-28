@@ -1,5 +1,4 @@
 import React from "react";
-import { Modal, Image, Header, Button } from "semantic-ui-react";
 
 const Menu = ({ pages, selectedPage, clickHandler, modal }) => {
   const [open, setOpen] = React.useState(false);

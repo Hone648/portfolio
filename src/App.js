@@ -12,7 +12,7 @@ import {
   Image,
   Header,
 } from "semantic-ui-react";
-import ModalPic from "./images/uglyMe.jpg";
+import ModalPic from "./images/mail.png";
 
 const App = () => {
   // Menu logic
@@ -27,7 +27,7 @@ const App = () => {
         open={open}
         trigger={<div className="item">Contact</div>}
       >
-        <Modal.Header>Contact Info</Modal.Header>
+        <Modal.Header>Contact Me</Modal.Header>
         <Modal.Content image>
           <Image size="medium" src={ModalPic} wrapped />
           <Modal.Description>

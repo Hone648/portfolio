@@ -8,7 +8,7 @@ import Pic from "../images/profilePic.jpg";
 const About = () => {
   const descriptionHeader = "Who am I?";
   const descriptionContent =
-    "I'm a full-stack developer based out of Seattle, WA. I've spent most of my life as an electronics technician working in the Aviation, Aerospace, Semiconductor, DoD, and Communications industries. As a field engineer I always worked closely with the software team in order to provide the fuctionality that the customer required. Although communication between the field and developer was good, there were often miscommunications between what the customer needed and how the developer understood the request. This disconnect could create some not-so-good additions. There was a need. A need that I could fill IF I could program! I picked up some programming here and there, but the day came that I decided it was time to take the plunge and fully immerse myself into development. It's been a great ride! My main goal is to use the troubleshooting experience gained as a field engineer to produce applications that are bug free, user friendly, and intuitive.";
+    "I'm a full-stack developer based out of Seattle, WA. I've spent most of my life as an electronics technician working in the aviation, aerospace, semiconductor, DoD, and communications industries. As a field engineer, I have always worked closely with the software team in order to provide the fuctionality that the customer required. Although communications between the field and developer were adequate, there were often miscommunications between what the customer needed and how the developer understood the request. This disconnect could create some not-so-good additions. So began my journey into development. A year and a half later and I'm bringing my own creations to life. My main focus is to write clean, bug free code that is user friendly and intuitive. Feel free to contact me if you'd like to collaborate on one of my projects or if you think I could help you with yours!";
 
   const leftSkillHeader = "Front-End";
   const middleSkillHeader = "Version Control";
@@ -80,7 +80,7 @@ const About = () => {
         </Grid.Row>
       </Grid>
 
-      <Grid columns={1} centered={true} style={{ marginTop: "20px" }}>
+      <Grid columns={1} centered={true} style={{ marginTop: "60px" }}>
         <Grid.Row verticalAlign="bottom">
           <Grid.Column textAlign="center" width={7}>
             <p>
