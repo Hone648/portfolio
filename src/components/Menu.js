@@ -1,8 +1,6 @@
 import React from "react";
 
 const Menu = ({ pages, selectedPage, clickHandler, modal }) => {
-  const [open, setOpen] = React.useState(false);
-
   const renderedList = pages.map((page) => {
     const active = page === selectedPage ? "active" : "";
     return (
