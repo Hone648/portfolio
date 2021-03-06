@@ -8,6 +8,7 @@ const Menu = ({ pages, selectedPage, clickHandler, modal }) => {
         className={`item ${active}`}
         key={page}
         onClick={() => clickHandler(page)}
+        id="page"
       >
         {page}
       </div>

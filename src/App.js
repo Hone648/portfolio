@@ -6,11 +6,13 @@ import Portfolio from "./Views/Portfolio";
 import { Router, navigate } from "@reach/router";
 import {
   Grid,
+  Column,
   Container,
   Modal,
   Button,
   Image,
   Header,
+  Icon,
 } from "semantic-ui-react";
 import ModalPic from "./images/mail.png";
 
@@ -32,7 +34,17 @@ const App = () => {
           <Image size="medium" src={ModalPic} wrapped />
           <Modal.Description>
             <Header>Find me on social media</Header>
-            <p>**This will be icons/links**</p>
+            <Grid centered={true} columns={4}>
+              <Grid.Column style={{ marginTop: "20px", padding: "10px" }}>
+                <Icon name="git" size="large" circular />
+              </Grid.Column>
+              <Grid.Column style={{ marginTop: "20px", padding: "10px" }}>
+                <Icon name="facebook" size="large" circular />
+              </Grid.Column>
+              <Grid.Column style={{ marginTop: "20px", padding: "10px" }}>
+                <Icon name="linkedin" size="large" circular />
+              </Grid.Column>
+            </Grid>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
