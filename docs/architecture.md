@@ -17,6 +17,29 @@ This portfolio should be simple, durable, evidence-first, and easy to validate. 
 - Do not use Tailwind.
 - Plan Vercel for deployment in a later slice.
 
+## Shell Composition
+
+The shared shell is composed in the root layout:
+
+- a skip link targeting `#main-content`
+- `SiteHeader`
+- semantic `main` landmark for route content
+- `SiteFooter`
+
+The root layout keeps the footer at the bottom on short pages. Header and footer appear on all routes. Layout behavior uses HTML and CSS only; there is no JavaScript-based navigation state.
+
+`PageContainer` provides a centered maximum-width layout with responsive horizontal padding and no vertical padding. Individual routes opt into the container instead of forcing every future route into the same width.
+
+Current navigation links are limited to existing destinations: `/` and the GitHub profile. Future route links should be added only when those routes exist.
+
+## Styling Boundary
+
+`app/globals.css` is limited to design tokens, reset/base rules, document-level typography, accessibility defaults, and global focus behavior. CSS Modules own component-specific styling for the header, footer, page container, button links, and route preview.
+
+The current token set covers background, surface, primary text, muted text, border, accent, accent strong/hover state, focus color, page-container width, spacing, and border radii. The visual foundation uses a light warm neutral background, dark charcoal text, muted gray secondary text, a deep-blue accent family, subtle borders, moderate radii, and system font stacks.
+
+No third-party UI or styling dependency is used.
+
 ## Excluded Runtime Architecture
 
 The mature portfolio should not include backend services, a database, authentication, a CMS, an admin dashboard, analytics, or runtime GitHub API calls unless a later approved slice changes scope.
