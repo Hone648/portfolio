@@ -1,0 +1,20 @@
+.grid {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grid > li {
+  min-width: 0;
+}
+
+.featured {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.index {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}

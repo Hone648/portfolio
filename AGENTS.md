@@ -10,6 +10,11 @@
 - Do not create dead navigation links to routes that do not exist.
 - Do not introduce Client Components for layout behavior that CSS can handle.
 - Read project facts from `content/project-metadata.ts` rather than duplicating them in components.
+- Project cards must consume a complete `Project` record.
+- Status text must come from `projectStatusLabels`.
+- Never create links to unimplemented project case-study routes.
+- Keep project limitations visible on the full project index.
+- Presentation components must not silently rewrite registry claims.
 - Preserve the approved project slug and public status-label vocabulary.
 - Update evidence and limitations together when changing a project claim.
 - Never add a public source URL for a private repository.
