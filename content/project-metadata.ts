@@ -35,11 +35,17 @@ export type RepositoryReference =
       readonly href?: never;
     };
 
-export type ProjectLink = {
-  readonly kind: "live" | "external";
-  readonly label: string;
-  readonly href: string;
-};
+export type ProjectLink =
+  | {
+      readonly kind: "case-study";
+      readonly label: string;
+      readonly href: `/projects/${ProjectSlug}`;
+    }
+  | {
+      readonly kind: "live" | "external";
+      readonly label: string;
+      readonly href: `https://${string}`;
+    };
 
 export type Project = {
   readonly slug: ProjectSlug;
@@ -109,7 +115,18 @@ export const projects = [
       visibility: "private",
       name: "newBudget",
     },
-    links: [],
+    links: [
+      {
+        kind: "case-study",
+        label: "Read case study",
+        href: "/projects/newbudget",
+      },
+      {
+        kind: "live",
+        label: "Open live application",
+        href: "https://new-budget-three.vercel.app",
+      },
+    ],
   },
   {
     slug: "unicos",

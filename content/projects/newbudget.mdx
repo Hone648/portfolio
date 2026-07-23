@@ -1,0 +1,83 @@
+## Product context and role
+
+newBudget is a month-first personal-finance application built as working software rather than a visual prototype. Its central workspace brings a selected month's income, carryover, debt obligations, bills, quick expenses, payment state, and remaining balance into one review surface. Supporting areas cover income sources, debt details, expense categories, account preferences, and first-time onboarding.
+
+The project was developed through narrow, reviewable slices. I owned the requirements, constraints, architecture decisions, evidence standards, review, validation, production operations, and final merge decisions. That ownership included deciding what the application should not claim or automate, especially where financial data and production access raise the cost of a mistake.
+
+AI tools accelerated source inspection, implementation, test preparation, and diff review within that guarded workflow. They did not replace human control of scope, production changes, evidence interpretation, or merge decisions. The result is best understood through the combination of implemented behavior, automated validation, production evidence, and documented limits.
+
+## Architecture and ownership boundary
+
+The application uses the Next.js App Router with server-rendered pages, server actions, route handlers, and a MongoDB-backed service and repository layer. Authentication uses Auth.js with Google OAuth, but the external provider identity is deliberately not the owner recorded on budget data.
+
+On sign-in, the provider account maps to a stable internal application user. That internal application-user ID is the ownership key used by income, debt, payment, statement, and other user-scoped records. Separating authentication identity from domain ownership keeps the financial model independent of one provider and gives server code one consistent authorization boundary.
+
+Server operations obtain the current internal user from authenticated session context. A client may identify the resource it wants to view or change, but a client-supplied user ID is never accepted as ownership authority. Repository and service calls combine the requested resource with the server-resolved owner before reading or mutating it.
+
+Development can use a documented fallback identity when authentication is intentionally absent. Production does not expose that convenience: it requires valid authenticated context and fails closed. This separation makes local review practical without turning a development shortcut into a production access path.
+
+## Financial-domain decisions
+
+The budgeting model starts with a month, not an unbounded transaction feed. A monthly read composes the records relevant to that workspace and keeps normalized obligation data separate from older compatible rows. When a recurring obligation should appear in a month but has no persisted monthly instance, the read path creates a deterministic preview row without writing it to the database. A mutation materializes the owned instance on demand. This preserves a useful forward-looking workspace without filling storage merely because somebody viewed a future month.
+
+The composition logic also filters legacy rows when their source identity collides with a normalized obligation. That prevents the same obligation from appearing in both representations and being counted twice.
+
+Financial amounts use integer minor units instead of floating-point currency arithmetic. APR values use integer basis points. For installment obligations, monthly snapshot calculations divide a payment into estimated interest and principal, store the ending balance, and recalculate the later snapshot chain after a payment or restoration changes an earlier month. The model applies interest first, floors an ending balance at zero, and retains explicit overpayment information.
+
+These values are labeled as estimated. A monthly APR approximation cannot reproduce every lender's daily compounding, statement timing, fees, promotional rates, or rounding rules. The application therefore presents useful planning history without claiming lender-exact accounting.
+
+## Statement-assisted reconciliation
+
+Statement reconciliation is organized as a staged review process. Imported or extracted facts are evidence, not permission to alter live financial records. User-scoped imports, structured extracts, reconciliation runs, suggested items, review decisions, and commit audit records remain distinct from debts, payments, and monthly obligation instances.
+
+The workflow separates several responsibilities:
+
+1. Reviewed statement fields are staged independently from live records.
+2. Pure comparison logic proposes differences and possible operations.
+3. The user explicitly approves, rejects, ignores, or edits review items.
+4. A commit-planning step classifies proposed operations as committable, blocked, skipped, or requiring manual review.
+5. Supported changes pass operation-specific eligibility checks again on the server before any mutation.
+
+The client submits an operation identifier, not trusted operation details. The server reloads the owned run, current decisions, relevant records, and eligibility conditions before applying a supported change. Due amounts, due dates, cycle status, and remaining balances each have different safety rules. Unsupported payment creation, interest, and fee operations remain blocked rather than being forced through a generic update path.
+
+There is intentionally no broad commit-all behavior. Confidence describes evidence quality; it never grants mutation authority. Raw PDF bytes and full extracted statement text are not retained. Selectable-text PDFs can assist candidate review, but OCR and fully autonomous ingestion are not claimed. The reviewer remains in control from field selection through any guarded apply action.
+
+## Production operations
+
+newBudget runs as a production Next.js application on Vercel with a dedicated MongoDB Atlas production environment and real Google OAuth. Production and non-production database, authentication, and secret scopes are separated, with runtime guardrails that reject unsafe hosted-environment combinations instead of guessing.
+
+The application database credential is limited to the application database rather than carrying broad administrative access. Required logical-key indexes are initialized through an explicit, idempotent command before relying on them. That command is intentional operational setup, not a comprehensive migration system.
+
+The operational baseline includes an automated Atlas backup policy and an isolated restore drill performed against a temporary non-production target. The drill validated recovery, index initialization, application startup, and read-only product paths without restoring over production.
+
+External uptime monitoring checks the public application without credentials. Sentry captures production errors through server, edge, and client integration with default personally identifiable information disabled and a shared privacy scrubber that removes identity, request payloads, credentials, connection strings, and financially sensitive fields. A manual incident-response runbook covers initial triage, alias verification, rollback, authentication errors, database boundaries, monitoring, and sanitized evidence capture. This is a practical operating baseline, not an automated on-call or paging system.
+
+## Production incident and recovery
+
+A production carryover defect revealed a gap between the shape covered by tests and the shape actually synthesized in production. The carryover chain skipped a prior month when no persisted monthly-statement document existed. Production correctly generated that month from activity records, but earlier tests had created persisted statement rows and therefore did not exercise the missing-document path.
+
+The fix added production-shaped regression coverage, synthesized prior months when activity or an opening balance justified them, and propagated the same due-basis remaining value shown by the workspace. The corrected code passed locally and deployed successfully.
+
+The next problem was operational rather than algorithmic: the canonical production alias still served an older build. Repointing during diagnosis then exposed authentication configuration issues associated with the target deployment. Recovery kept the application available through a known-working deployment while the operator corrected production-scoped authentication configuration, created a fresh clean deployment, verified the canonical alias target, and completed authenticated smoke checks.
+
+No production financial-data mutation was needed to recover. The important lesson was broader than this defect:
+
+> Verify the build actually served by the canonical production domain before changing code that has already been shown to be correct.
+
+That check now sits alongside code validation. A platform can report a successful deployment while a separate canonical alias continues to route users elsewhere, and authentication can make a direct deployment URL a misleading place to validate the final production path.
+
+## Validation and delivery
+
+Delivery uses focused feature slices with an explicit problem, decision, implementation boundary, tradeoffs, validation record, and security review. Local checks cover linting, TypeScript, builds, and the tests relevant to a change. Pull requests preserve those decisions for review instead of treating a green build as the whole engineering record.
+
+CI separates lint, type checking and pure unit tests, production builds, Mongo-backed service tests, and focused browser smoke tests. Mongo-backed jobs use an isolated local database service rather than production credentials. Browser smoke coverage protects selected first-run and budgeting workflows, but it is not described as universal end-to-end coverage.
+
+Some production behavior cannot be safely reproduced in CI. Real-provider OAuth, canonical-domain routing, backup restoration, deployment aliases, and authenticated production smoke checks require controlled manual verification. Those actions remain operator-run, and review and merge decisions remain human-controlled even when AI assists with implementation and analysis.
+
+## Tradeoffs and current boundaries
+
+This case study is strong evidence of building and operating one production application. It does not establish experience operating a large fleet, an enterprise platform, or a mature site-reliability organization.
+
+The product favors explicit review over frictionless automation when statement evidence could change financial records. Debt snapshots support planning and history, but lender-exact accounting remains outside the model. Index initialization protects the logical keys currently known to the application; it should not be mistaken for a general schema-migration framework.
+
+Operational processes also remain intentionally modest. Monitoring and a manual response runbook exist, while automated paging, an on-call rotation, recurring restore automation, and broader production orchestration do not. Those boundaries keep the public description aligned with what has actually been implemented and verified.

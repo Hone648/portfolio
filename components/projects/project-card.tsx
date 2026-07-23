@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Project } from "@/content/project-metadata";
 import { StatusBadge } from "@/components/ui/status-badge";
 import styles from "./project-card.module.css";
@@ -80,7 +81,11 @@ export function ProjectCard({
         <ul className={styles.links} aria-label={`${project.name} links`}>
           {project.links.map((link) => (
             <li key={`${link.kind}-${link.href}`}>
-              <a href={link.href}>{link.label}</a>
+              {link.kind === "case-study" ? (
+                <Link href={link.href}>{link.label}</Link>
+              ) : (
+                <a href={link.href}>{link.label}</a>
+              )}
             </li>
           ))}
         </ul>
