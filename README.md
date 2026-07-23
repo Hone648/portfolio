@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 3: homepage and projects index. The substantive homepage and `/projects` route present all three primary projects through reusable cards backed by the typed registry.
+This repository is at Slice 4: the `newBudget` case study. The homepage and `/projects` route present all three primary projects through reusable registry-backed cards, and `/projects/newbudget` publishes the first long-form case study through the reusable project route.
 
 ## Stack
 
@@ -17,14 +17,14 @@ This repository is at Slice 3: homepage and projects index. The substantive home
 - React
 - App Router
 - Small global CSS system and/or CSS Modules
-- MDX planned for project case studies
+- MDX for project case-study narrative
 - Vercel planned for deployment
 - ESLint
 - TypeScript compiler validation
 - Playwright planned for focused browser smoke testing
 - No database, authentication, content-management system, admin dashboard, runtime GitHub API dependency, Tailwind, or general-purpose UI component framework
 
-MDX, Playwright, and deployment are planned for later slices and are not installed or configured in Slice 3.
+MDX is installed and configured for project case-study narrative. Playwright and deployment remain planned for later slices.
 
 ## Local Prerequisites
 
@@ -72,4 +72,4 @@ npm run validate
 
 The portfolio is evidence-first. Skill claims should be supported by repository code, deployment evidence, operational evidence, documentation, or clearly identified project artifacts. Planned work must not be described as completed, and private or sensitive project data must remain protected.
 
-Individual project case studies, resume, accessibility hardening, CI, automated browser validation, and deployment remain future slices. Project cards consume typed metadata rather than duplicating project facts in presentation code.
+The Unicos and Home Security and Automation Lab case studies, resume, accessibility hardening, CI, automated browser validation, and deployment remain future slices. Project cards and the reusable case-study layout consume typed metadata rather than duplicating project facts in presentation code.

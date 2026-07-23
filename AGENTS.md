@@ -13,6 +13,14 @@
 - Project cards must consume a complete `Project` record.
 - Status text must come from `projectStatusLabels`.
 - Never create links to unimplemented project case-study routes.
+- Start MDX case-study narrative at `h2`; the shared case-study layout owns the single page `h1`.
+- Keep structured project facts out of MDX frontmatter and narrative when the registry already owns them.
+- Map published case studies with static MDX imports in `lib/project-case-studies.ts`.
+- Link a project card to a case study only when that route is implemented and published.
+- Update published-route availability and project-link metadata together.
+- Keep case-study prose traceable to reviewed project evidence.
+- Do not publish private URLs, secrets, user data, provider identifiers, or internal deployment details.
+- Render project limitations from the registry without rewriting them in MDX.
 - Keep project limitations visible on the full project index.
 - Presentation components must not silently rewrite registry claims.
 - Preserve the approved project slug and public status-label vocabulary.

@@ -10,8 +10,8 @@ This portfolio should be simple, durable, evidence-first, and easy to validate. 
 - Prefer a static and content-first architecture.
 - Use Server Components by default.
 - Add Client Components only when browser interaction requires them.
-- Plan dynamic project pages at `/projects/[slug]`.
-- Use TypeScript metadata for structured project data and MDX later for long-form project case studies.
+- Generate published project pages at `/projects/[slug]` from a static case-study registry.
+- Use TypeScript metadata for structured project data and MDX for long-form project case-study narrative.
 - Keep structured metadata, long-form content, and presentation concerns separate.
 - Use a small global CSS system and/or CSS Modules.
 - Do not use Tailwind.
@@ -44,13 +44,19 @@ No third-party UI or styling dependency is used.
 
 `content/project-metadata.ts` owns structured project facts, while `lib/projects.ts` provides synchronous, pure read helpers. Registry order controls default display order, and public status labels are centralized so presentation code does not duplicate them.
 
-Evidence states distinguish deployed, operational, implemented, prototyped, designed, and planned work. Limitations are first-class project data, and private repository records cannot expose source URLs. Project components must read facts from the registry rather than restating them. MDX will hold long-form case-study narrative later; it will not replace the core metadata registry.
+Evidence states distinguish deployed, operational, implemented, prototyped, designed, and planned work. Limitations are first-class project data, and private repository records cannot expose source URLs. Project components must read facts from the registry rather than restating them. MDX holds long-form case-study narrative; it does not replace the core metadata registry.
 
 ## Project Presentation
 
 The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProjects()`. The full project index preserves registry order and presents every registered limitation.
 
-`ProjectCard`, `ProjectGrid`, and `StatusBadge` are presentation-only Server Components. Cards receive complete project records, grids choose the appropriate heading level and density, and status text comes from `projectStatusLabels`. Individual `/projects/[slug]` case-study routes remain deferred, so cards do not link to unimplemented destinations.
+`ProjectCard`, `ProjectGrid`, and `StatusBadge` are presentation-only Server Components. Cards receive complete project records, grids choose the appropriate heading level and density, and status text comes from `projectStatusLabels`. The `newBudget` card links to its published case study; cards link to case studies only when the corresponding route is present in the published registry.
+
+## Case Study Content
+
+`@next/mdx` extends the Next.js configuration, and the root `mdx-components.tsx` supplies the App Router MDX component boundary. Files in `content/projects/*.mdx` contain narrative only: the shared layout owns the page heading, and structured facts remain in `content/project-metadata.ts`.
+
+`lib/project-case-studies.ts` maps published slugs to statically imported MDX components. The `/projects/[slug]` route uses that mapping for static parameters, metadata, content selection, and unknown-slug rejection; `dynamicParams = false` ensures only published slugs are generated. Project link records distinguish internal case studies from live and external destinations, and route availability must be updated with registry metadata. Additional case studies remain deferred to their approved slices.
 
 ## Excluded Runtime Architecture
 
@@ -90,6 +96,7 @@ portfolio/
 |   |-- skills.ts
 |   `-- site-content.ts
 |-- lib/
+|   |-- project-case-studies.ts
 |   |-- projects.ts
 |   |-- metadata.ts
 |   `-- validation.ts
@@ -105,6 +112,7 @@ portfolio/
 |-- .github/
 |   `-- workflows/
 |-- AGENTS.md
+|-- mdx-components.tsx
 |-- next.config.ts
 |-- playwright.config.ts
 |-- tsconfig.json
@@ -134,4 +142,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-MDX, Playwright, individual project routes, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, and contact workflows are deferred to later approved slices.
+Additional project case studies, Playwright, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, and contact workflows are deferred to later approved slices.
