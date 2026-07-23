@@ -9,6 +9,11 @@
 - Use CSS Modules for component-specific styling.
 - Do not create dead navigation links to routes that do not exist.
 - Do not introduce Client Components for layout behavior that CSS can handle.
+- Read project facts from `content/project-metadata.ts` rather than duplicating them in components.
+- Preserve the approved project slug and public status-label vocabulary.
+- Update evidence and limitations together when changing a project claim.
+- Never add a public source URL for a private repository.
+- Do not promote designed, planned, or prototyped work to operational without evidence.
 - Preserve evidence-first wording and distinguish implemented, deployed, operational, prototyped, designed, and planned work.
 - Do not expose secrets, financial records, OAuth details, private camera credentials, private RTSP URLs, home addresses, sensitive topology, or identifying camera footage.
 - Create directories only when real files in the approved slice belong in them.
