@@ -5,6 +5,10 @@
 - Do not introduce Tailwind, a UI library, database, authentication, CMS, analytics, or runtime GitHub calls without an approved slice.
 - Use Server Components by default and add Client Components only when browser interaction requires them.
 - Avoid unnecessary client-side JavaScript.
+- Use global CSS only for tokens, resets, document-level defaults, accessibility defaults, and focus behavior.
+- Use CSS Modules for component-specific styling.
+- Do not create dead navigation links to routes that do not exist.
+- Do not introduce Client Components for layout behavior that CSS can handle.
 - Preserve evidence-first wording and distinguish implemented, deployed, operational, prototyped, designed, and planned work.
 - Do not expose secrets, financial records, OAuth details, private camera credentials, private RTSP URLs, home addresses, sensitive topology, or identifying camera footage.
 - Create directories only when real files in the approved slice belong in them.
