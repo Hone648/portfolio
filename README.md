@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 2: content model and project registry. The typed registry now gives all three primary projects structured metadata, evidence states, limitations, repository visibility, and shared public status labels.
+This repository is at Slice 3: homepage and projects index. The substantive homepage and `/projects` route present all three primary projects through reusable cards backed by the typed registry.
 
 ## Stack
 
@@ -24,7 +24,7 @@ This repository is at Slice 2: content model and project registry. The typed reg
 - Playwright planned for focused browser smoke testing
 - No database, authentication, content-management system, admin dashboard, runtime GitHub API dependency, Tailwind, or general-purpose UI component framework
 
-MDX, Playwright, and deployment are planned for later slices and are not installed or configured in Slice 2.
+MDX, Playwright, and deployment are planned for later slices and are not installed or configured in Slice 3.
 
 ## Local Prerequisites
 
@@ -72,4 +72,4 @@ npm run validate
 
 The portfolio is evidence-first. Skill claims should be supported by repository code, deployment evidence, operational evidence, documentation, or clearly identified project artifacts. Planned work must not be described as completed, and private or sensitive project data must remain protected.
 
-Project pages, complete homepage presentation, case studies, resume, accessibility hardening, CI, browser validation, and deployment remain future slices. The rendered shell is intentionally unchanged in Slice 2.
+Individual project case studies, resume, accessibility hardening, CI, automated browser validation, and deployment remain future slices. Project cards consume typed metadata rather than duplicating project facts in presentation code.

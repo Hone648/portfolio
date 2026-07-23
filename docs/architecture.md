@@ -30,11 +30,11 @@ The root layout keeps the footer at the bottom on short pages. Header and footer
 
 `PageContainer` provides a centered maximum-width layout with responsive horizontal padding and no vertical padding. Individual routes opt into the container instead of forcing every future route into the same width.
 
-Current navigation links are limited to existing destinations: `/` and the GitHub profile. Future route links should be added only when those routes exist.
+Current navigation links are limited to existing destinations: `/`, `/projects`, and the GitHub profile. Future route links should be added only after their routes exist.
 
 ## Styling Boundary
 
-`app/globals.css` is limited to design tokens, reset/base rules, document-level typography, accessibility defaults, and global focus behavior. CSS Modules own component-specific styling for the header, footer, page container, button links, and route preview.
+`app/globals.css` is limited to design tokens, reset/base rules, document-level typography, accessibility defaults, and global focus behavior. CSS Modules own component-specific styling for the header, footer, page container, button links, homepage, project index, and project presentation components.
 
 The current token set covers background, surface, primary text, muted text, border, accent, accent strong/hover state, focus color, page-container width, spacing, and border radii. The visual foundation uses a light warm neutral background, dark charcoal text, muted gray secondary text, a deep-blue accent family, subtle borders, moderate radii, and system font stacks.
 
@@ -44,7 +44,13 @@ No third-party UI or styling dependency is used.
 
 `content/project-metadata.ts` owns structured project facts, while `lib/projects.ts` provides synchronous, pure read helpers. Registry order controls default display order, and public status labels are centralized so presentation code does not duplicate them.
 
-Evidence states distinguish deployed, operational, implemented, prototyped, designed, and planned work. Limitations are first-class project data, and private repository records cannot expose source URLs. Future project components must read facts from the registry rather than restating them. MDX will hold long-form case-study narrative later; it will not replace the core metadata registry.
+Evidence states distinguish deployed, operational, implemented, prototyped, designed, and planned work. Limitations are first-class project data, and private repository records cannot expose source URLs. Project components must read facts from the registry rather than restating them. MDX will hold long-form case-study narrative later; it will not replace the core metadata registry.
+
+## Project Presentation
+
+The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProjects()`. The full project index preserves registry order and presents every registered limitation.
+
+`ProjectCard`, `ProjectGrid`, and `StatusBadge` are presentation-only Server Components. Cards receive complete project records, grids choose the appropriate heading level and density, and status text comes from `projectStatusLabels`. Individual `/projects/[slug]` case-study routes remain deferred, so cards do not link to unimplemented destinations.
 
 ## Excluded Runtime Architecture
 
@@ -128,4 +134,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-MDX, Playwright, project routes, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, and contact workflows are deferred to later approved slices.
+MDX, Playwright, individual project routes, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, and contact workflows are deferred to later approved slices.
