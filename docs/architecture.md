@@ -40,6 +40,12 @@ The current token set covers background, surface, primary text, muted text, bord
 
 No third-party UI or styling dependency is used.
 
+## Project Registry
+
+`content/project-metadata.ts` owns structured project facts, while `lib/projects.ts` provides synchronous, pure read helpers. Registry order controls default display order, and public status labels are centralized so presentation code does not duplicate them.
+
+Evidence states distinguish deployed, operational, implemented, prototyped, designed, and planned work. Limitations are first-class project data, and private repository records cannot expose source URLs. Future project components must read facts from the registry rather than restating them. MDX will hold long-form case-study narrative later; it will not replace the core metadata registry.
+
 ## Excluded Runtime Architecture
 
 The mature portfolio should not include backend services, a database, authentication, a CMS, an admin dashboard, analytics, or runtime GitHub API calls unless a later approved slice changes scope.
@@ -122,4 +128,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-MDX, Playwright, project routes, project registry, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, and contact workflows are deferred to later approved slices.
+MDX, Playwright, project routes, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, and contact workflows are deferred to later approved slices.
