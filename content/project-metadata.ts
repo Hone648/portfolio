@@ -175,7 +175,13 @@ export const projects = [
       visibility: "private",
       name: "Unicos",
     },
-    links: [],
+    links: [
+      {
+        kind: "case-study",
+        label: "Read case study",
+        href: "/projects/unicos",
+      },
+    ],
   },
   {
     slug: "home-security-lab",

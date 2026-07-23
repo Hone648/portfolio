@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import NewBudgetCaseStudy from "@/content/projects/newbudget.mdx";
+import UnicosCaseStudy from "@/content/projects/unicos.mdx";
 import type { ProjectSlug } from "@/content/project-metadata";
 
 export type ProjectCaseStudy = {
@@ -11,6 +12,10 @@ const publishedProjectCaseStudies = [
   {
     slug: "newbudget",
     Content: NewBudgetCaseStudy,
+  },
+  {
+    slug: "unicos",
+    Content: UnicosCaseStudy,
   },
 ] as const satisfies readonly ProjectCaseStudy[];
 
