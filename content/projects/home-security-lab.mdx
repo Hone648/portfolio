@@ -1,0 +1,74 @@
+## Operational context
+
+The Home Security and Automation Lab is an operational systems-integration project running in a private residence. One Ubuntu Server host acts as the local Frigate and Home Assistant hub, and three cameras currently feed the system. The project joins video transport, local recording, person-object detection, automation conditions, MQTT messaging, and mobile notifications into one working loop.
+
+This is a privately operated lab, not a commercial security product or professionally monitored alarm. Its value as engineering evidence comes from integrating independently configurable services, diagnosing failures across several layers, and setting careful boundaries around what can be shown publicly. It does not establish formal availability, perfect detection, guaranteed alert delivery, or large-scale video-platform experience.
+
+I owned the system requirements, deployment decisions, configuration choices, troubleshooting, validation, privacy boundaries, and portfolio acceptance. AI assistance supported research, troubleshooting, documentation, and implementation guidance. Human review retained final control, and AI did not autonomously administer the live system.
+
+## Local containerized architecture
+
+The sanitized event path is straightforward: `camera stream -> RTSP -> Frigate -> person event -> Home Assistant conditions -> mobile notification`. Ubuntu Server supplies the host environment, while Docker keeps Frigate, Home Assistant, and Mosquitto in separate service boundaries. Frigate handles the NVR and object-detection workflow. Home Assistant coordinates the conditional automation logic, and Mosquitto supplies local MQTT publish-and-subscribe messaging.
+
+Keeping the hub local-first gives direct control over the services and the event path without turning the project into a public cloud application. Local-first does not mean that every possible dependency or operation has been proven fully offline. The public explanation stays at the architectural level because network structure, service configuration, and residential automation details are sensitive.
+
+The container boundary also helps isolate troubleshooting. A healthy host does not prove that a camera stream is available, and a running container does not prove that events reach the automation layer. Each service has its own responsibilities and failure signals, which makes validation an end-to-end systems task rather than a single process check.
+
+## Three-camera integration
+
+Three RTSP camera streams are integrated into Frigate for local recording and person-object detection. RTSP provides the video transport, while Frigate receives and processes each stream. Detection based on the `person` object class is more useful for this workflow than treating every generic motion change as equally important. It narrows the event stream before automation conditions decide whether an alert is warranted.
+
+Bringing each camera into the hub required practical work across stream availability, authentication, local networking, container access, and application configuration. A failed picture can originate at the camera, the network path, the RTSP stream, the container boundary, or the Frigate configuration. Separating those layers prevents an application symptom from being mistaken for a camera failure.
+
+The portfolio deliberately omits camera brands, positions, viewing directions, fields of view, stream addresses, retention settings, and identifying frames. The project uses object classification, not facial recognition or biometric identification, and detection quality is not represented as perfect.
+
+## Detection areas and time windows
+
+A Frigate detection is an input to the automation rather than an unconditional alert. The working event semantics are:
+
+1. Frigate produces a person-detection event.
+2. The event corresponds to a configured area or zone.
+3. The current time falls within an approved automation window.
+4. Home Assistant triggers the mobile-notification action when those conditions match.
+
+> A person detected in a configured exterior area during an overnight window can produce a mobile notification.
+
+Combining object class, area, and time makes the alert policy more selective than notifying on every motion event. A person event outside the configured context does not need the same response as one that matches the chosen area and time window. This filtering reduces irrelevant notifications, but it does not eliminate false positives or guarantee that every meaningful event will be detected.
+
+Exact zone names, camera identities, time schedules, occupancy routines, and household patterns are intentionally absent. Those values describe physical-security behavior, so publishing them would undermine the privacy boundary the system is meant to respect.
+
+## Mobile notifications
+
+When the automation conditions match, Home Assistant sends a mobile notification. That action turns a local detection event into an alert a person can review without exposing the underlying residential configuration in the portfolio. Mobile delivery is part of the operational loop and was included in end-to-end validation.
+
+The alert conditions are intentionally selective. The system is designed to surface events that match configured context rather than create a notification for every motion change or every person event. This is an automation convenience, not emergency dispatch, redundant paging, or professional monitoring. Mobile notification delivery also should not be interpreted as guaranteed or governed by a formal service level.
+
+## MQTT and event integration
+
+Mosquitto provides local MQTT publish-and-subscribe messaging between services that need an event-oriented boundary. MQTT makes it possible to reason about a producer, a broker, and one or more consumers without tightly coupling every service to the implementation of the others. Verified message flow was part of bringing the hub together and diagnosing integration failures.
+
+The case study describes MQTT at this systems level. It does not publish broker locations, topic names, payloads, credentials, or internal entity identifiers. It also does not imply that every Home Assistant automation depends on a manually authored MQTT topic. The supported claim is narrower: local MQTT messaging is operational and forms part of the integration environment.
+
+## Operational troubleshooting
+
+Validation crossed the complete path instead of stopping when individual containers reported that they were running. The work included confirming camera reachability, checking RTSP availability, reviewing service health and logs, verifying MQTT communication, confirming that Frigate person events reached the automation layer, and testing that matching conditions produced mobile notifications.
+
+This required distinguishing camera, network, host, container, and application-layer failures. A useful diagnostic sequence starts with the nearest observable boundary, verifies its input and output, and then moves to the next layer. That approach keeps a stream problem from being debugged as an automation problem and keeps a notification condition from being treated as an NVR failure.
+
+The public account remains generic. Residential addresses, network identifiers, hardware identifiers, private logs, service credentials, and exact network design are not necessary to demonstrate the troubleshooting method.
+
+## Privacy and security boundary
+
+Home-security infrastructure contains inherently sensitive information. Video can identify people and property, while camera placement, automation schedules, and network configuration can reveal how a residence is observed and when alerts are expected. Footage is therefore not portfolio content, and source configuration cannot be published casually.
+
+Public evidence is limited to sanitized operational documentation. Exact placement, schedules, topology, addresses, credentials, event payloads, and identifying images remain private. The absence of a public source repository and live link is intentional: the older repository does not represent this operational deployment, and the current configuration is unsuitable for public exposure.
+
+These boundaries reduce unnecessary disclosure; they are not a claim of a formal security audit, invulnerability, or complete hardening. The responsible portfolio choice is to explain the architecture and engineering decisions without reproducing the configuration that protects a real home.
+
+## Tradeoffs and current boundaries
+
+Local-first control comes with responsibility for updates, service health, storage, networking, and recovery. A single local hub simplifies integration and troubleshooting, but it is also a dependency for the combined detection and automation path. The project does not claim high availability, failover, or measured uptime.
+
+Person-object detection is more selective than generic motion alerts, while area and time conditions narrow the notification policy further. Those choices improve relevance without guaranteeing accuracy. Three integrated cameras demonstrate an operational residential deployment, not a commercial fleet or enterprise video infrastructure. Mobile notifications provide a useful user alert, but they are not equivalent to monitored alarm response.
+
+Private configuration also limits how much source evidence can be made public. Sanitized documentation can show the event model, service responsibilities, and troubleshooting judgment, but not the exact deployment details. An earlier ESP32 sensor direction was retired so the project could remain focused on the operational Frigate, Home Assistant, camera, and notification stack.
