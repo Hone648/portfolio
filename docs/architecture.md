@@ -50,13 +50,13 @@ Evidence states distinguish deployed, operational, implemented, prototyped, desi
 
 The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProjects()`. The full project index preserves registry order and presents every registered limitation.
 
-`ProjectCard`, `ProjectGrid`, and `StatusBadge` are presentation-only Server Components. Cards receive complete project records, grids choose the appropriate heading level and density, and status text comes from `projectStatusLabels`. The `newBudget` card links to its published case study; cards link to case studies only when the corresponding route is present in the published registry.
+`ProjectCard`, `ProjectGrid`, and `StatusBadge` are presentation-only Server Components. Cards receive complete project records, grids choose the appropriate heading level and density, and status text comes from `projectStatusLabels`. The newBudget and Unicos cards link to their published case studies; Home Security remains unpublished. Cards link to case studies only when the corresponding route is present in the published registry.
 
 ## Case Study Content
 
 `@next/mdx` extends the Next.js configuration, and the root `mdx-components.tsx` supplies the App Router MDX component boundary. Files in `content/projects/*.mdx` contain narrative only: the shared layout owns the page heading, and structured facts remain in `content/project-metadata.ts`.
 
-`lib/project-case-studies.ts` maps published slugs to statically imported MDX components. The `/projects/[slug]` route uses that mapping for static parameters, metadata, content selection, and unknown-slug rejection; `dynamicParams = false` ensures only published slugs are generated. Project link records distinguish internal case studies from live and external destinations, and route availability must be updated with registry metadata. Additional case studies remain deferred to their approved slices.
+`lib/project-case-studies.ts` maps the published `newbudget` and `unicos` slugs to statically imported MDX components in project order. The `/projects/[slug]` route uses that mapping for static parameters, metadata, content selection, and unknown-slug rejection; `dynamicParams = false` ensures only published slugs are generated. Project link records distinguish internal case studies from live and external destinations, and route availability must be updated with registry metadata. The Home Security case study remains deferred to its approved slice.
 
 ## Excluded Runtime Architecture
 
