@@ -14,7 +14,7 @@ Approved positioning:
 | --- | --- | --- |
 | newBudget | Deployed production application | Next.js and TypeScript, MongoDB Atlas, Auth.js and Google OAuth, Vercel production deployment, financial domain modeling, user ownership boundaries, automated tests and CI, uptime and error monitoring, backup and restore validation, production incident response and hotfix recovery. |
 | Unicos | Business application in active development | Django and Python, PostgreSQL, Docker Compose, repair-order workflows, role and object-level authorization, estimate, invoice, and payment workflows, transactional service boundaries, automated testing and CI, architecture and decision documentation. |
-| Home Security and Automation Lab | Operational systems-integration project | Ubuntu Server, Docker, Frigate NVR, Home Assistant, Mosquitto MQTT, RTSP cameras, local networking, camera and service troubleshooting, ESP32 sensor direction, C++ automation tooling. |
+| Home Security and Automation Lab | Operational systems-integration project | Ubuntu Server, Docker, Frigate NVR, Home Assistant, Mosquitto MQTT, three RTSP cameras, person-object detection, zone- and time-conditioned automations, mobile notifications, local networking, and service troubleshooting. |
 
 Unicos must not be described as production-deployed or production-ready. The current NVR system is not yet adequately represented by the existing `home-automation` GitHub repository, so that repository must not be implied as complete proof of the present NVR architecture.
 

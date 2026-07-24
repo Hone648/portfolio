@@ -187,7 +187,7 @@ export const projects = [
     slug: "home-security-lab",
     name: "Home Security and Automation Lab",
     summary:
-      "A local-first Ubuntu Server platform integrating containerized NVR, home automation, MQTT messaging, and networked cameras.",
+      "A local-first Ubuntu Server hub integrating three RTSP cameras with Frigate person detection, Home Assistant automations, and mobile notifications.",
     status: "operational-lab",
     featured: true,
     technologies: [
@@ -200,11 +200,11 @@ export const projects = [
     ],
     capabilities: [
       "Containerized local infrastructure",
-      "Camera and RTSP integration",
-      "MQTT messaging",
+      "Three-camera RTSP integration",
+      "Frigate person-object detection",
+      "Zone and time-conditioned automations",
+      "Mobile notification delivery",
       "Network and service troubleshooting",
-      "Sensor-system design",
-      "C++ automation tooling",
     ],
     evidence: [
       {
@@ -215,27 +215,33 @@ export const projects = [
       {
         state: "operational",
         statement:
-          "Integrates RTSP camera streams and verified MQTT publish-and-subscribe messaging.",
+          "Integrates three RTSP camera streams into Frigate for local recording and person-object detection.",
       },
       {
-        state: "prototyped",
+        state: "operational",
         statement:
-          "Includes C++ and CMake experimentation for automation and log-processing tools.",
+          "Uses configured detection areas and time windows to decide when person events should trigger mobile notifications.",
       },
       {
-        state: "designed",
+        state: "operational",
         statement:
-          "Includes a wired ESP32 door-and-window sensor architecture that has not yet been fully deployed.",
+          "Includes verified local MQTT messaging and hands-on camera, network, and container troubleshooting.",
       },
     ],
     limitations: [
-      "The full current NVR architecture is not adequately represented by the older home-automation repository.",
-      "The planned multi-camera expansion and complete wired sensor network are not finished.",
-      "Public evidence must omit credentials, private addresses, exact camera placement, sensitive topology, and identifying footage.",
+      "This is a privately operated home deployment, not a commercial security product or professionally monitored alarm system.",
+      "The older home-automation repository does not represent the current Frigate and Home Assistant deployment, so public evidence is limited to sanitized operational documentation.",
+      "Public evidence must omit credentials, private addresses, exact camera placement, exact automation schedules, sensitive topology, and identifying footage.",
     ],
     repository: {
       visibility: "none",
     },
-    links: [],
+    links: [
+      {
+        kind: "case-study",
+        label: "Read case study",
+        href: "/projects/home-security-lab",
+      },
+    ],
   },
 ] as const satisfies readonly Project[];
