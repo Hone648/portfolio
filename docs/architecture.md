@@ -70,7 +70,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile and project paths shown below exist after Slice 7. Sitemap, robots, public evidence assets, tests, CI, and supporting library entries remain target structure for later approved slices.
+The profile, career, and project paths shown below exist after Slice 7.1. Sitemap, robots, public evidence assets, tests, CI, and supporting library entries remain target structure for later approved slices.
 
 ```text
 portfolio/
