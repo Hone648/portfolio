@@ -94,7 +94,7 @@ export const siteContent = {
         ],
       },
       {
-        title: "Field Technician - SPEA",
+        title: "Field Engineer - SPEA",
         details: [
           "Diagnosed issues involving electronic test equipment.",
           "Supported restoration of equipment operation through field troubleshooting.",
