@@ -187,13 +187,14 @@ export const projects = [
     slug: "home-security-lab",
     name: "Home Security and Automation Lab",
     summary:
-      "A local-first Ubuntu Server hub integrating three RTSP cameras with Frigate person detection, Home Assistant automations, and mobile notifications.",
+      "A local-first Ubuntu Server hub integrating three RTSP cameras with Frigate AI object detection, Home Assistant automations, and mobile notifications.",
     status: "operational-lab",
     featured: true,
     technologies: [
       "Ubuntu Server",
       "Docker",
       "Frigate",
+      "Google Coral Edge TPU",
       "Home Assistant",
       "Mosquitto MQTT",
       "RTSP",
@@ -201,7 +202,7 @@ export const projects = [
     capabilities: [
       "Containerized local infrastructure",
       "Three-camera RTSP integration",
-      "Frigate person-object detection",
+      "Hardware-accelerated AI object detection",
       "Zone and time-conditioned automations",
       "Mobile notification delivery",
       "Network and service troubleshooting",
@@ -215,12 +216,12 @@ export const projects = [
       {
         state: "operational",
         statement:
-          "Integrates three RTSP camera streams into Frigate for local recording and person-object detection.",
+          "Integrates three RTSP camera streams into Frigate for local recording and Google Coral-accelerated AI object detection.",
       },
       {
         state: "operational",
         statement:
-          "Uses configured detection areas and time windows to decide when person events should trigger mobile notifications.",
+          "Uses configured detection areas and time windows to decide when detected person events should trigger mobile notifications.",
       },
       {
         state: "operational",
