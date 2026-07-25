@@ -60,9 +60,9 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 ## Profile Content and Presentation
 
-`content/site-content.ts` owns approved public profile facts, including identity, positioning, current project-focused background, education direction, certification, and contact copy. `content/skills.ts` owns typed, evidence-backed skill groups and their related project slugs. About and Resume consume the same skill source, and `SkillGroups` resolves project names and case-study links through the project registry helpers.
+`content/career-history.ts` owns the selected career entries and transferable-strength mappings. It keeps one consolidated SPEA entry that represents two separate periods of employment without publishing either period's dates. `content/site-content.ts` owns the career-transition narrative and other approved public profile copy, including identity, positioning, education direction, certification, and contact language. `content/skills.ts` remains reserved for typed, current project-evidence-backed skill groups and their related project slugs.
 
-`/about`, `/resume`, and `/contact` are static Server Component routes. Shared profile components provide the route-owned page heading and detailed or compact skill presentations without introducing a generic page-builder abstraction. Resume is an HTML-only web resume whose selected-project names, summaries, statuses, and links come from the project registry. Contact is a static `mailto:` and GitHub surface; there is no form workflow, downloadable document, Client Component, or new runtime architecture.
+`/about`, `/resume`, and `/contact` are static Server Component routes. Shared profile components provide the route-owned page heading, detailed or compact project-backed skill presentations, selected career entries, and transferable-strength mappings without introducing a generic page-builder or timeline abstraction. About presents transferable strengths linked to Resume experience anchors. Resume presents current project evidence before selected prior technical experience. Career evidence and project evidence remain distinct structured sources. Contact is a static `mailto:` and GitHub surface; there is no form workflow, downloadable document, Client Component, or new runtime architecture.
 
 ## Excluded Runtime Architecture
 
@@ -94,9 +94,15 @@ portfolio/
 |-- components/
 |   |-- layout/
 |   |-- profile/
+|   |   |-- career-entry-list.tsx
+|   |   |-- profile-page-header.tsx
+|   |   |-- profile-page.module.css
+|   |   |-- skill-groups.tsx
+|   |   `-- transferable-strengths.tsx
 |   |-- projects/
 |   `-- ui/
 |-- content/
+|   |-- career-history.ts
 |   |-- projects/
 |   |-- project-metadata.ts
 |   |-- skills.ts
@@ -148,4 +154,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Historical career reframing, employer-history presentation, remote-work positioning, freelance positioning, Playwright automation, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, Playwright automation, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

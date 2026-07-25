@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/page-container";
+import { CareerEntryList } from "@/components/profile/career-entry-list";
 import { ProfilePageHeader } from "@/components/profile/profile-page-header";
 import { SkillGroups } from "@/components/profile/skill-groups";
 import { ButtonLink } from "@/components/ui/button-link";
 import { StatusBadge } from "@/components/ui/status-badge";
+import { careerEntries } from "@/content/career-history";
 import { siteContent } from "@/content/site-content";
 import { skillGroups } from "@/content/skills";
 import { getProjects } from "@/lib/projects";
@@ -13,7 +15,7 @@ import styles from "@/components/profile/profile-page.module.css";
 export const metadata: Metadata = {
   title: "Resume | Hunter Kam",
   description:
-    "Web resume for Hunter Kam covering software projects, technical experience, education, and evidence-backed skills.",
+    "Web resume for Hunter Kam connecting current software projects with selected prior technical experience.",
 };
 
 export default function ResumePage() {
@@ -53,6 +55,16 @@ export default function ResumePage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section
+        className={styles.section}
+        aria-labelledby="selected-technical-experience"
+      >
+        <h2 id="selected-technical-experience">
+          Selected technical experience
+        </h2>
+        <CareerEntryList entries={careerEntries} />
       </section>
 
       <section

@@ -24,10 +24,21 @@
 - Keep project limitations visible on the full project index.
 - Presentation components must not silently rewrite registry claims.
 - Profile facts must come from `content/site-content.ts`.
+- Selected career history and transferable strengths must come from `content/career-history.ts`.
 - Skill claims must come from `content/skills.ts`.
 - Skills must link to reviewed evidence and cannot use percentages or proficiency rankings.
+- Preserve the verified career titles Equipment Technician, Electronics Technician, Field Engineer, and Avionics Electronics Technician.
+- Keep one consolidated SPEA career entry and state that it covers two separate, non-contiguous periods of employment.
+- Do not imply continuous SPEA employment or publish either SPEA date range until the exact chronology is verified.
+- Do not publish employment dates until chronology is separately verified.
+- Keep project-backed skills separate from transferable career strengths.
+- Historical training technologies are not current skills unless project evidence supports them.
 - Do not invent employers, job titles, dates, degrees, certifications, locations, availability, or outcomes.
 - Do not describe the full technical career as software-engineering experience.
+- Remote and freelance wording must describe current interest, not invented prior outcomes, employment, or clients.
+- Do not publish employer addresses, old phone numbers, military locations, units, ranks, deployments, service identifiers, or other unnecessary private details.
+- Do not publish the real-estate entry or humorous resume bullets in the professional portfolio.
+- Do not translate the old phrase `computer learning` into machine-learning experience.
 - Do not publish phone numbers, home addresses, family information, disability information, license numbers, or unapproved personal data.
 - Public contact details are limited to the approved email and GitHub profile.
 - Resume project names, summaries, links, and statuses must come from the project registry.

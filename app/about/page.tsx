@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { PageContainer } from "@/components/layout/page-container";
 import { ProfilePageHeader } from "@/components/profile/profile-page-header";
 import { SkillGroups } from "@/components/profile/skill-groups";
+import { TransferableStrengths } from "@/components/profile/transferable-strengths";
 import { ButtonLink } from "@/components/ui/button-link";
+import { transferableStrengths } from "@/content/career-history";
 import { siteContent } from "@/content/site-content";
 import { skillGroups } from "@/content/skills";
 import styles from "@/components/profile/profile-page.module.css";
@@ -10,7 +12,7 @@ import styles from "@/components/profile/profile-page.module.css";
 export const metadata: Metadata = {
   title: "About | Hunter Kam",
   description:
-    "Background, engineering approach, and evidence-backed technical skills for Hunter Kam.",
+    "Current software work, prior technical experience, and evidence-backed engineering strengths for Hunter Kam.",
 };
 
 export default function AboutPage() {
@@ -40,6 +42,16 @@ export default function AboutPage() {
             <li key={principle}>{principle}</li>
           ))}
         </ol>
+      </section>
+
+      <section
+        className={styles.section}
+        aria-labelledby="transferable-technical-strengths"
+      >
+        <h2 id="transferable-technical-strengths">
+          Transferable technical strengths
+        </h2>
+        <TransferableStrengths strengths={transferableStrengths} />
       </section>
 
       <section className={styles.section} aria-labelledby="skills">
