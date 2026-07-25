@@ -30,11 +30,11 @@ The root layout keeps the footer at the bottom on short pages. Header and footer
 
 `PageContainer` provides a centered maximum-width layout with responsive horizontal padding and no vertical padding. Individual routes opt into the container instead of forcing every future route into the same width.
 
-Current navigation links are limited to existing destinations: `/`, `/projects`, and the GitHub profile. Future route links should be added only after their routes exist.
+Current navigation links include `/`, `/projects`, `/about`, `/resume`, `/contact`, and the GitHub profile. Internal navigation uses Next.js links, while GitHub remains an external anchor.
 
 ## Styling Boundary
 
-`app/globals.css` is limited to design tokens, reset/base rules, document-level typography, accessibility defaults, and global focus behavior. CSS Modules own component-specific styling for the header, footer, page container, button links, homepage, project index, and project presentation components.
+`app/globals.css` is limited to design tokens, reset/base rules, document-level typography, accessibility defaults, and global focus behavior. CSS Modules own component-specific styling for the header, footer, page container, button links, homepage, project index, project presentation components, and shared profile surfaces.
 
 The current token set covers background, surface, primary text, muted text, border, accent, accent strong/hover state, focus color, page-container width, spacing, and border radii. The visual foundation uses a light warm neutral background, dark charcoal text, muted gray secondary text, a deep-blue accent family, subtle borders, moderate radii, and system font stacks.
 
@@ -58,13 +58,19 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 `lib/project-case-studies.ts` maps the published `newbudget`, `unicos`, and `home-security-lab` slugs to statically imported MDX components in project order. The `/projects/[slug]` route uses that mapping for static parameters, metadata, content selection, and unknown-slug rejection; `dynamicParams = false` ensures only published slugs are generated. Project link records distinguish internal case studies from live and external destinations, and route availability must be updated with registry metadata. Home Security uses repository visibility `none`, so its case study renders neither a repository URL nor a live-application link.
 
+## Profile Content and Presentation
+
+`content/site-content.ts` owns approved public profile facts, including identity, positioning, current project-focused background, education direction, certification, and contact copy. `content/skills.ts` owns typed, evidence-backed skill groups and their related project slugs. About and Resume consume the same skill source, and `SkillGroups` resolves project names and case-study links through the project registry helpers.
+
+`/about`, `/resume`, and `/contact` are static Server Component routes. Shared profile components provide the route-owned page heading and detailed or compact skill presentations without introducing a generic page-builder abstraction. Resume is an HTML-only web resume whose selected-project names, summaries, statuses, and links come from the project registry. Contact is a static `mailto:` and GitHub surface; there is no form workflow, downloadable document, Client Component, or new runtime architecture.
+
 ## Excluded Runtime Architecture
 
 The mature portfolio should not include backend services, a database, authentication, a CMS, an admin dashboard, analytics, or runtime GitHub API calls unless a later approved slice changes scope.
 
-## Target Mature Folder Tree
+## Current and Target Folder Tree
 
-This is the intended mature structure, not a Slice 0 creation checklist.
+The profile and project paths shown below exist after Slice 7. Sitemap, robots, public evidence assets, tests, CI, and supporting library entries remain target structure for later approved slices.
 
 ```text
 portfolio/
@@ -87,8 +93,8 @@ portfolio/
 |   `-- not-found.tsx
 |-- components/
 |   |-- layout/
+|   |-- profile/
 |   |-- projects/
-|   |-- sections/
 |   `-- ui/
 |-- content/
 |   |-- projects/
@@ -142,4 +148,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Additional project case studies, Playwright, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, and contact workflows are deferred to later approved slices.
+Historical career reframing, employer-history presentation, remote-work positioning, freelance positioning, Playwright automation, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

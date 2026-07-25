@@ -12,12 +12,18 @@
   font-size: 0.9375rem;
 }
 
-.inner a {
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.links a {
   color: var(--color-accent);
   font-weight: 650;
 }
 
-.inner a:hover {
+.links a:hover {
   color: var(--color-accent-strong);
 }
 

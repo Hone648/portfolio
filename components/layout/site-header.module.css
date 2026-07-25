@@ -56,7 +56,7 @@
   background: var(--color-surface);
 }
 
-@media (max-width: 34rem) {
+@media (max-width: 48rem) {
   .inner {
     align-items: flex-start;
     flex-direction: column;

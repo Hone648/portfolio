@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 6: the Home Security and Automation Lab case study. The homepage and `/projects` route present all three primary projects through reusable registry-backed cards, while `/projects/[slug]` statically publishes all three registered case studies.
+This repository is at Slice 7: professional profile surfaces. The site now includes `/about`, `/resume`, and `/contact` alongside the homepage, project index, and three statically published case studies.
 
 ## Stack
 
@@ -18,13 +18,14 @@ This repository is at Slice 6: the Home Security and Automation Lab case study. 
 - App Router
 - Small global CSS system and/or CSS Modules
 - MDX for project case-study narrative
+- Structured TypeScript content for profile facts and evidence-backed skills
 - Vercel planned for deployment
 - ESLint
 - TypeScript compiler validation
 - Playwright planned for focused browser smoke testing
 - No database, authentication, content-management system, admin dashboard, runtime GitHub API dependency, Tailwind, or general-purpose UI component framework
 
-MDX is installed and configured for project case-study narrative. Playwright and deployment remain planned for later slices.
+MDX is installed and configured for project case-study narrative. Skills are structured, evidence-backed content shared by About and Resume without percentage ratings or proficiency meters. The resume is HTML-only, and Contact is a static email and GitHub surface with no form or backend. Playwright and deployment remain planned for later slices.
 
 ## Local Prerequisites
 
@@ -72,4 +73,4 @@ npm run validate
 
 The portfolio is evidence-first. Skill claims should be supported by repository code, deployment evidence, operational evidence, documentation, or clearly identified project artifacts. Planned work must not be described as completed, and private or sensitive project data must remain protected.
 
-Skills, About, resume, and contact remain planned for Slice 7; accessibility hardening, CI, automated browser validation, and deployment remain later work. MDX owns case-study narrative, while project cards and the reusable case-study layout consume structured facts from the typed registry. Home Security is an operational local systems-integration case study with no public source repository or live application link, and its privacy-sensitive infrastructure evidence remains sanitized. Unicos remains a local-development application in active development; this portfolio does not claim that it is production-deployed or production-ready.
+About, Resume, Contact, and shared evidence-backed skills are implemented in Slice 7. No contact form, contact backend, downloadable resume, analytics, or deployment was added. Slice 8 remains screenshots and sanitized architecture diagrams; accessibility hardening, CI, automated browser validation, and deployment remain later work. MDX owns case-study narrative, while project cards and the reusable case-study layout consume structured facts from the typed registry. Home Security is an operational local systems-integration case study with no public source repository or live application link, and its privacy-sensitive infrastructure evidence remains sanitized. Unicos remains a local-development application in active development; this portfolio does not claim that it is production-deployed or production-ready.

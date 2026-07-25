@@ -23,6 +23,16 @@
 - Render project limitations from the registry without rewriting them in MDX.
 - Keep project limitations visible on the full project index.
 - Presentation components must not silently rewrite registry claims.
+- Profile facts must come from `content/site-content.ts`.
+- Skill claims must come from `content/skills.ts`.
+- Skills must link to reviewed evidence and cannot use percentages or proficiency rankings.
+- Do not invent employers, job titles, dates, degrees, certifications, locations, availability, or outcomes.
+- Do not describe the full technical career as software-engineering experience.
+- Do not publish phone numbers, home addresses, family information, disability information, license numbers, or unapproved personal data.
+- Public contact details are limited to the approved email and GitHub profile.
+- Resume project names, summaries, links, and statuses must come from the project registry.
+- Planned education must remain clearly labeled as planned.
+- AI-assisted delivery must be described accurately.
 - Preserve the approved project slug and public status-label vocabulary.
 - Update evidence and limitations together when changing a project claim.
 - Never add a public source URL for a private repository.
