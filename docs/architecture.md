@@ -60,7 +60,7 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 ## Profile Content and Presentation
 
-`content/site-content.ts` owns approved public profile facts, including identity, positioning, background, education direction, professional history, certification, and contact copy. `content/skills.ts` owns typed, evidence-backed skill groups and their related project slugs. About and Resume consume the same skill source, and `SkillGroups` resolves project names and case-study links through the project registry helpers.
+`content/site-content.ts` owns approved public profile facts, including identity, positioning, current project-focused background, education direction, certification, and contact copy. `content/skills.ts` owns typed, evidence-backed skill groups and their related project slugs. About and Resume consume the same skill source, and `SkillGroups` resolves project names and case-study links through the project registry helpers.
 
 `/about`, `/resume`, and `/contact` are static Server Component routes. Shared profile components provide the route-owned page heading and detailed or compact skill presentations without introducing a generic page-builder abstraction. Resume is an HTML-only web resume whose selected-project names, summaries, statuses, and links come from the project registry. Contact is a static `mailto:` and GitHub surface; there is no form workflow, downloadable document, Client Component, or new runtime architecture.
 
@@ -148,4 +148,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Playwright automation, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Historical career reframing, employer-history presentation, remote-work positioning, freelance positioning, Playwright automation, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

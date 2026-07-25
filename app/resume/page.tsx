@@ -57,25 +57,6 @@ export default function ResumePage() {
 
       <section
         className={styles.section}
-        aria-labelledby="professional-background"
-      >
-        <h2 id="professional-background">Professional background</h2>
-        <ol className={styles.entryList}>
-          {siteContent.resume.professionalBackground.map((entry) => (
-            <li className={styles.entry} key={entry.title}>
-              <h3>{entry.title}</h3>
-              <ul>
-                {entry.details.map((detail) => (
-                  <li key={detail}>{detail}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section
-        className={styles.section}
         aria-labelledby="education-and-training"
       >
         <h2 id="education-and-training">Education and training</h2>

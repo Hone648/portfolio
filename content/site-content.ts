@@ -1,8 +1,3 @@
-type ProfileEntry = {
-  readonly title: string;
-  readonly details: readonly string[];
-};
-
 type EducationEntry = {
   readonly institution: string;
   readonly detail: string;
@@ -28,7 +23,6 @@ type SiteContent = {
   readonly resume: {
     readonly lede: string;
     readonly summary: string;
-    readonly professionalBackground: readonly ProfileEntry[];
     readonly educationAndTraining: readonly EducationEntry[];
     readonly certification: string;
   };
@@ -53,10 +47,10 @@ export const siteContent = {
   },
   about: {
     lede:
-      "Software development grounded in a long technical background, careful troubleshooting, and evidence-backed delivery.",
+      "Full-stack development and systems integration presented through working projects, explicit evidence boundaries, and documented delivery practices.",
     background: [
-      "I am a Computer Science student and full-stack developer. My technical background predates my current software work and includes veteran technical service, avionics, electronics, automated test equipment, equipment support, and control systems.",
-      "My current work includes a production web application, an active-development business application, and operational local automation infrastructure. Across those projects, I combine software development, systems integration, layered troubleshooting, and documentation without presenting every earlier technical role as software development.",
+      "I am a Computer Science student and full-stack developer building a deployed web application, an active-development business application, and operational local automation infrastructure.",
+      "Across these projects, I work with application architecture, data modeling, authentication and authorization, Linux, containers, automation, testing, deployment, monitoring, and technical documentation. Each project is presented according to its current evidence and limitations.",
     ],
     howIWork: [
       "Define requirements and evidence boundaries before implementation.",
@@ -76,38 +70,7 @@ export const siteContent = {
     lede:
       "An evidence-backed web resume covering software projects, technical experience, education, and current engineering practice.",
     summary:
-      "Computer Science student and full-stack developer with more than 20 years of technical experience across avionics, electronics, automated test equipment, equipment support, and control systems. Builds production web applications, active-development business systems, and operational local automation infrastructure.",
-    professionalBackground: [
-      {
-        title: "Independent software development and systems integration",
-        details: [
-          "Builds and reviews the portfolio's three documented projects.",
-          "Owns requirements, implementation decisions, validation, evidence boundaries, and merge decisions.",
-          "Uses AI assistance as a supporting engineering tool rather than autonomous project ownership.",
-        ],
-      },
-      {
-        title: "Equipment Technician - Qorvo",
-        details: [
-          "Supported and troubleshot production equipment in a technical manufacturing environment.",
-          "Applied electronics, equipment diagnostics, and systematic fault isolation.",
-        ],
-      },
-      {
-        title: "Field Engineer - SPEA",
-        details: [
-          "Diagnosed issues involving electronic test equipment.",
-          "Supported restoration of equipment operation through field troubleshooting.",
-        ],
-      },
-      {
-        title: "Veteran technical background",
-        details: [
-          "Developed foundational experience with avionics, electronics, and control systems.",
-          "Carried technical troubleshooting and systems thinking into later field and software work.",
-        ],
-      },
-    ],
+      "Computer Science student and full-stack developer building a deployed web application, an active-development business system, and operational local automation infrastructure. Current work spans Next.js and TypeScript, Django and PostgreSQL, and Linux-based automation and systems integration.",
     educationAndTraining: [
       {
         institution: "Central Texas College",
