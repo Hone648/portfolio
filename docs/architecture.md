@@ -58,6 +58,14 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 `lib/project-case-studies.ts` maps the published `newbudget`, `unicos`, and `home-security-lab` slugs to statically imported MDX components in project order. The `/projects/[slug]` route uses that mapping for static parameters, metadata, content selection, and unknown-slug rejection; `dynamicParams = false` ensures only published slugs are generated. Project link records distinguish internal case studies from live and external destinations, and route availability must be updated with registry metadata. Home Security uses repository visibility `none`, so its case study renders neither a repository URL nor a live-application link.
 
+## Visual Evidence
+
+`content/project-visuals.ts` owns visual paths, kinds, native dimensions, titles, alternative text, captions, and evidence notes. The registry is intentionally partial during Slice 8A: only Unicos has approved visual groups, and projects without registered visuals return an empty readonly collection.
+
+`ProjectEvidenceGallery` is a presentation-only Server Component. The shared case-study layout renders it after structured project evidence and before the MDX narrative, while projects without visual records render no empty heading or section. Screenshots are served locally from `public/images/unicos`, and code-authored sanitized SVGs are served from `public/diagrams`. There is no runtime image API, external image dependency, client interaction, lightbox, or carousel.
+
+The screenshots are approved local-development captures. The SVGs are explanatory representations derived from reviewed evidence and omit private source details and unsupported production infrastructure. Visuals supplement rather than replace structured evidence, narrative, status labels, or limitations.
+
 ## Profile Content and Presentation
 
 `content/career-history.ts` owns the selected career entries and transferable-strength mappings. It keeps one consolidated SPEA entry that represents two separate periods of employment without publishing either period's dates. `content/site-content.ts` owns the career-transition narrative and other approved public profile copy, including identity, positioning, education direction, certification, and contact language. `content/skills.ts` remains reserved for typed, current project-evidence-backed skill groups and their related project slugs.
@@ -70,7 +78,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, and project paths shown below exist after Slice 7.1. Sitemap, robots, public evidence assets, tests, CI, and supporting library entries remain target structure for later approved slices.
+The profile, career, project, and Unicos visual-evidence paths shown below exist after Slice 8A. Sitemap, robots, visual evidence for the other projects, tests, CI, and supporting library entries remain target structure for later approved slices.
 
 ```text
 portfolio/
@@ -100,11 +108,13 @@ portfolio/
 |   |   |-- skill-groups.tsx
 |   |   `-- transferable-strengths.tsx
 |   |-- projects/
+|   |   `-- project-evidence-gallery.tsx
 |   `-- ui/
 |-- content/
 |   |-- career-history.ts
 |   |-- projects/
 |   |-- project-metadata.ts
+|   |-- project-visuals.ts
 |   |-- skills.ts
 |   `-- site-content.ts
 |-- lib/
@@ -114,10 +124,21 @@ portfolio/
 |   `-- validation.ts
 |-- public/
 |   |-- images/
-|   |   |-- newbudget/
-|   |   |-- unicos/
-|   |   `-- home-security-lab/
+|   |   `-- unicos/
+|   |       |-- unicos-dashboard.png
+|   |       |-- unicos-repair-orders.png
+|   |       |-- unicos-customers.png
+|   |       |-- unicos-edit-repair-order.png
+|   |       |-- unicos-communication-entry.png
+|   |       |-- unicos-add-attachment.png
+|   |       |-- unicos-estimate.png
+|   |       |-- unicos-create-invoice.png
+|   |       |-- unicos-billing.png
+|   |       |-- unicos-reports.png
+|   |       `-- unicos-admin.png
 |   |-- diagrams/
+|   |   |-- unicos-domain-service-boundaries.svg
+|   |   `-- unicos-repair-order-workflow.svg
 |   `-- documents/
 |-- tests/
 |-- docs/
@@ -134,6 +155,8 @@ portfolio/
 ```
 
 Create directories when an approved slice introduces real files that belong in them. Do not create empty directories merely to resemble the target architecture.
+
+newBudget and Home Security visual directories remain future work and must not be created empty.
 
 ## Security and Privacy
 
@@ -154,4 +177,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, Playwright automation, screenshots, diagrams, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, Playwright automation, newBudget visual evidence, Home Security sanitized visual evidence, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

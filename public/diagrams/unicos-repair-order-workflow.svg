@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Unicos repair-order workflow</title>
+  <desc id="desc">Sanitized diagram showing the repair order as the central workflow context for customer and vehicle records, status history, communications, attachments, estimates and supplements, draft invoice conversion, invoices, payments, and final-state restrictions.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b4a8f"/>
+    </marker>
+    <style>
+      text { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #20242a; }
+      .title { font-size: 44px; font-weight: 750; }
+      .subtitle { font-size: 24px; fill: #5f6875; }
+      .panel-title { font-size: 28px; font-weight: 750; }
+      .node-title { font-size: 24px; font-weight: 700; }
+      .node-copy { font-size: 21px; fill: #5f6875; }
+      .qualifier { font-size: 20px; fill: #20242a; }
+      .green { fill: #1e6b55; }
+      .blue { fill: #08396f; }
+      .amber { fill: #7a4700; }
+      .arrow { fill: none; stroke: #0b4a8f; stroke-width: 4; marker-end: url(#arrow); }
+      .branch { fill: none; stroke: #5f6875; stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1100" fill="#fbfaf8"/>
+  <text class="title" x="56" y="62">Unicos repair-order workflow</text>
+  <text class="subtitle" x="56" y="98">Lifecycle boundaries around the central repair-order record</text>
+  <rect x="1202" y="26" width="342" height="80" rx="6" fill="#fff4df" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-title amber" x="1271" y="60">Local development only</text>
+  <text class="node-title amber" x="1246" y="90">Not production deployed</text>
+
+  <rect x="84" y="148" width="230" height="90" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="node-title" x="145" y="204">Customer</text>
+  <rect x="378" y="148" width="230" height="90" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="node-title" x="452" y="204">Vehicle</text>
+  <rect x="672" y="132" width="320" height="122" rx="6" fill="#eaf3fc" stroke="#0b4a8f" stroke-width="4"/>
+  <text class="panel-title" x="748" y="188">Repair Order</text>
+  <text class="node-copy" x="716" y="224">Central workflow context</text>
+  <path class="arrow" d="M314 193 H366"/>
+  <path class="arrow" d="M608 193 H660"/>
+
+  <rect x="104" y="330" width="244" height="86" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="node-title" x="150" y="382">Status history</text>
+  <rect x="388" y="330" width="244" height="86" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="node-title" x="418" y="368">Communication</text>
+  <text class="node-title" x="456" y="397">entries</text>
+  <rect x="672" y="330" width="244" height="86" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="node-title" x="730" y="382">Attachments</text>
+  <rect x="956" y="330" width="244" height="86" rx="6" fill="#e8f5f0" stroke="#1e6b55" stroke-width="3"/>
+  <text class="node-title" x="994" y="368">Estimates and</text>
+  <text class="node-title" x="1013" y="397">supplements</text>
+  <rect x="1240" y="330" width="244" height="86" rx="6" fill="#e8f5f0" stroke="#1e6b55" stroke-width="3"/>
+  <text class="node-title" x="1272" y="368">Invoice and</text>
+  <text class="node-title" x="1308" y="397">payments</text>
+
+  <path class="branch" d="M832 254 V286 H226 V318"/>
+  <path class="branch" d="M832 254 V286 H510 V318"/>
+  <path class="branch" d="M832 254 V318"/>
+  <path class="branch" d="M832 254 V286 H1078 V318"/>
+  <path class="branch" d="M832 254 V286 H1362 V318"/>
+
+  <rect x="52" y="478" width="730" height="438" rx="8" fill="#ffffff" stroke="#1e6b55" stroke-width="3"/>
+  <text class="panel-title green" x="82" y="524">Estimate lifecycle</text>
+  <rect x="82" y="558" width="124" height="58" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-title" x="116" y="596">Draft</text>
+  <rect x="254" y="558" width="150" height="58" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-title" x="279" y="596">Submitted</text>
+  <rect x="452" y="558" width="144" height="58" rx="6" fill="#e8f5f0" stroke="#1e6b55" stroke-width="2"/>
+  <text class="node-title" x="481" y="596">Approved</text>
+  <rect x="620" y="542" width="132" height="90" rx="6" fill="#eaf3fc" stroke="#0b4a8f" stroke-width="2"/>
+  <text class="node-copy" x="644" y="573">Guarded</text>
+  <text class="node-copy" x="636" y="598">draft invoice</text>
+  <text class="node-copy" x="642" y="623">conversion</text>
+  <path class="arrow" d="M206 587 H242"/>
+  <path class="arrow" d="M404 587 H440"/>
+  <path class="arrow" d="M596 587 H608"/>
+
+  <rect x="254" y="656" width="150" height="54" rx="6" fill="#fff4df" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-title amber" x="282" y="691">Declined</text>
+  <rect x="430" y="656" width="150" height="54" rx="6" fill="#fff4df" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-title amber" x="466" y="691">Expired</text>
+  <path class="branch" d="M329 616 V644"/>
+  <path class="branch" d="M354 616 V634 H505 V644"/>
+
+  <text class="qualifier" x="82" y="754">- Draft estimates are normally editable; supplements retain separate lineage.</text>
+  <text class="qualifier" x="82" y="790">- Conversion requires approval evidence and an approved itemized estimate.</text>
+  <text class="qualifier" x="82" y="826">- Conversion copies line items to a draft invoice; issue remains separate.</text>
+  <text class="qualifier" x="82" y="862">- Conversion creates no payment or complete estimate-versioning claim.</text>
+
+  <rect x="818" y="478" width="730" height="438" rx="8" fill="#ffffff" stroke="#0b4a8f" stroke-width="3"/>
+  <text class="panel-title blue" x="848" y="524">Invoice lifecycle</text>
+  <rect x="848" y="558" width="116" height="58" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-title" x="877" y="596">Draft</text>
+  <rect x="1008" y="558" width="124" height="58" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-title" x="1034" y="596">Issued</text>
+  <rect x="1176" y="548" width="164" height="78" rx="6" fill="#eaf3fc" stroke="#0b4a8f" stroke-width="2"/>
+  <text class="node-title" x="1206" y="579">Partially</text>
+  <text class="node-title" x="1225" y="608">Paid</text>
+  <rect x="1384" y="558" width="116" height="58" rx="6" fill="#e8f5f0" stroke="#1e6b55" stroke-width="2"/>
+  <text class="node-title" x="1418" y="596">Paid</text>
+  <path class="arrow" d="M964 587 H996"/>
+  <path class="arrow" d="M1132 587 H1164"/>
+  <path class="arrow" d="M1340 587 H1372"/>
+
+  <rect x="1008" y="656" width="150" height="54" rx="6" fill="#fff4df" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-title amber" x="1051" y="691">Void</text>
+  <text class="node-copy" x="1180" y="688">Draft or issued may become void</text>
+  <path class="branch" d="M1070 616 V644"/>
+
+  <text class="qualifier" x="848" y="754">- Invoice lifecycle actions and payment recording use domain services.</text>
+  <text class="qualifier" x="848" y="790">- Payments reject non-positive values and overpayment.</text>
+  <text class="qualifier" x="848" y="826">- Payment recording locks the invoice row in a transaction.</text>
+  <text class="qualifier" x="848" y="862">- Not a payment processor or full accounting ledger.</text>
+
+  <rect x="52" y="954" width="1496" height="112" rx="8" fill="#fff4df" stroke="#9a5b00" stroke-width="3"/>
+  <text class="panel-title amber" x="82" y="995">Repair-order closure boundary</text>
+  <text class="node-copy" x="82" y="1024">A repair order cannot enter a final state while a non-void invoice</text>
+  <text class="node-copy" x="82" y="1052">still has a balance due.</text>
+  <rect x="1168" y="978" width="110" height="54" rx="6" fill="#ffffff" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-copy" x="1188" y="1012">Delivered</text>
+  <rect x="1294" y="978" width="100" height="54" rx="6" fill="#ffffff" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-copy" x="1315" y="1012">Closed</text>
+  <rect x="1410" y="978" width="110" height="54" rx="6" fill="#ffffff" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-copy" x="1425" y="1012">Canceled</text>
+</svg>
