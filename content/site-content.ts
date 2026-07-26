@@ -51,15 +51,15 @@ export const siteContent = {
     background: [
       "I am a Computer Science student and full-stack developer. Before focusing on software, I worked in avionics, industrial electronics, automated test equipment, semiconductor equipment, data acquisition, remote telemetry, and control systems.",
       "That work required systematic fault isolation across software, electronics, instrumentation, mechanical systems, networks, and operator interfaces, along with customer training, documentation, and coordination with engineers and other technical teams.",
-      "I now apply that systems perspective to a deployed web application, an active-development business application, and operational local automation infrastructure. The portfolio keeps current software evidence separate from prior technical experience while showing where the disciplines reinforce each other.",
+      "I now apply that systems perspective to a deployed web application, an active-development business application, and operational local automation infrastructure. The portfolio shows how those disciplines reinforce each other while keeping prior technical experience distinct from current software work.",
     ],
     howIWork: [
-      "Define requirements and evidence boundaries before implementation.",
+      "Define requirements, constraints, and success criteria before implementation.",
       "Deliver changes in focused, reviewable slices.",
       "Distinguish deployed, active-development, and operational work.",
       "Validate with linting, type checking, builds, tests, CI, and browser review when applicable.",
       "Troubleshoot across application, service, container, host, and network boundaries.",
-      "Document limitations and protect private operational information.",
+      "Document meaningful constraints and protect private operational information.",
       "Use AI assistance for research, planning, implementation support, review, and validation while retaining final engineering decisions.",
     ],
     currentDirection: [
@@ -70,7 +70,7 @@ export const siteContent = {
   },
   resume: {
     lede:
-      "An evidence-backed web resume connecting current software projects with selected prior technical experience.",
+      "A professional web resume connecting current software projects with selected prior technical experience.",
     summary:
       "Computer Science student and full-stack developer with a technical career spanning more than two decades across avionics, automated test equipment, semiconductor equipment, industrial data acquisition, and control systems. Current software work includes a deployed Next.js application, an active-development Django business system, and operational Linux-based automation infrastructure.",
     educationAndTraining: [
@@ -93,7 +93,7 @@ export const siteContent = {
   },
   contactPage: {
     lede:
-      "For remote software-development roles, carefully scoped freelance projects, automation, systems integration, or technical collaboration, contact Hunter by email or review the project evidence on GitHub and this portfolio.",
+      "For remote software-development roles, carefully scoped freelance projects, automation, systems integration, or technical collaboration, contact Hunter by email, explore the selected projects, or visit his GitHub profile.",
     introduction:
       "Email is the direct public contact channel for role or project discussions. GitHub provides another view of the repositories and technical work that can be shared publicly.",
     privacyNote:

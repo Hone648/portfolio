@@ -12,7 +12,7 @@ import styles from "@/components/profile/profile-page.module.css";
 export const metadata: Metadata = {
   title: "About | Hunter Kam",
   description:
-    "Current software work, prior technical experience, and evidence-backed engineering strengths for Hunter Kam.",
+    "Current software work, prior technical experience, and engineering strengths for Hunter Kam.",
 };
 
 export default function AboutPage() {

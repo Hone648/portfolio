@@ -40,7 +40,7 @@ export function SkillGroups({
               ))}
             </ul>
             <div className={styles.evidenceLinks}>
-              <p>Project evidence</p>
+              <p>Related projects</p>
               <ul>
                 {evidenceProjects.map((project) => (
                   <li key={project.slug}>

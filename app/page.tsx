@@ -20,8 +20,8 @@ export default function Home() {
           infrastructure.
         </p>
         <p className={styles.supportingCopy}>
-          This portfolio focuses on working systems, the decisions behind them,
-          and the boundaries of what each project demonstrates.
+          Explore the systems I have built, the practical problems they solve,
+          and the engineering decisions behind them.
         </p>
         <div className={styles.actions}>
           <ButtonLink href="/projects">Explore Projects</ButtonLink>
@@ -38,28 +38,30 @@ export default function Home() {
       <section className={styles.selectedWork} aria-labelledby="selected-work">
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>Evidence-aware portfolio</p>
+            <p className={styles.eyebrow}>Featured projects</p>
             <h2 id="selected-work">Selected work</h2>
           </div>
           <p>
-            Classifications reflect current evidence. Full scope boundaries and
-            limitations are documented on the Projects page.
+            A live budgeting application, a business workflow system in
+            development, and an operational home automation and security
+            environment.
           </p>
         </div>
         <ProjectGrid projects={featuredProjects} variant="featured" />
         <ButtonLink href="/projects" variant="secondary">
-          Review All Project Details
+          Explore All Projects
         </ButtonLink>
       </section>
 
       <section className={styles.approach} aria-labelledby="delivery-approach">
         <h2 id="delivery-approach">Delivery approach</h2>
         <ul>
-          <li>Ground claims in implementation and operational evidence.</li>
-          <li>Deliver guarded, reviewable changes in focused increments.</li>
+          <li>Build around real workflows and practical problems.</li>
+          <li>Deliver changes in focused, reviewable increments.</li>
+          <li>Validate behavior through tests, builds, and hands-on review.</li>
           <li>
-            Keep production, active-development, and operational-lab work
-            clearly distinguished.
+            Troubleshoot across application, service, container, host, and
+            network boundaries.
           </li>
         </ul>
       </section>

@@ -25,7 +25,7 @@ export function ProjectEvidenceGallery({
       className={styles.visualEvidence}
       aria-labelledby="visual-evidence"
     >
-      <h2 id="visual-evidence">Visual evidence</h2>
+      <h2 id="visual-evidence">Project visuals</h2>
       <ul className={styles.visualGroupList}>
         {groups.map((group) => (
           <li key={group.id}>

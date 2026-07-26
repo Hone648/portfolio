@@ -19,9 +19,9 @@ export default function ProjectsPage() {
         <p className={styles.eyebrow}>Selected work</p>
         <h1 className={styles.title}>Projects</h1>
         <p className={styles.lede}>
-          Production software, an active business application, and operational
-          local infrastructure presented with their current evidence and scope
-          boundaries.
+          Practical software and systems work spanning a live budgeting
+          application, a business workflow system in development, and an
+          operational home automation and security environment.
         </p>
       </header>
 

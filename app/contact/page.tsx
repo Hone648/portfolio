@@ -39,10 +39,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="review-the-work">
-        <h2 id="review-the-work">Review the work</h2>
+      <section className={styles.section} aria-labelledby="explore-the-work">
+        <h2 id="explore-the-work">Explore the work</h2>
         <div className={styles.actions}>
-          <ButtonLink href="/projects">View Projects</ButtonLink>
+          <ButtonLink href="/projects">Explore Projects</ButtonLink>
           <ButtonLink href="/resume" variant="secondary">
             View Resume
           </ButtonLink>
