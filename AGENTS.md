@@ -50,6 +50,25 @@
 - Do not promote designed, planned, or prototyped work to operational without evidence.
 - Preserve evidence-first wording and distinguish implemented, deployed, operational, prototyped, designed, and planned work.
 - Do not expose secrets, financial records, OAuth details, private camera credentials, private RTSP URLs, home addresses, sensitive topology, or identifying camera footage.
+- Visual metadata must come from `content/project-visuals.ts`.
+- Projects without approved visual evidence must not receive placeholder records.
+- Every visual requires an existing local asset, title, kind, dimensions, alt text, caption, and evidence note.
+- Application screenshots must be authentic captures of implemented software.
+- Do not publish mockups, reconstructed interfaces, or AI-generated application screens as evidence.
+- A screenshot demonstrates a visible interface; it does not independently prove deployment, production operation, security, correctness, or scale.
+- Unicos visuals must preserve the active-development and local-development boundary.
+- Do not describe Unicos screenshots as real-shop or production evidence.
+- Approved visible names are limited to specifically reviewed content.
+- Existing redactions must not be reversed or reconstructed.
+- Do not publish private customer names, phone numbers, email addresses, street addresses, VINs, license plates, insurance identifiers, credentials, or uploaded private documents.
+- Do not use unfinished or unreviewed Unicos working-tree changes as evidence.
+- Unicos architecture evidence must remain tied to the reviewed evidence commit.
+- Do not publish the private Unicos repository URL or private commit identifiers.
+- Django admin must be described as an emergency/development interface, not the normal operator workflow.
+- SVG diagrams must contain no scripts, external resources, embedded raster images, secrets, private identifiers, or editor metadata.
+- Diagrams cannot add unsupported services, integrations, production infrastructure, or outcomes.
+- Full-size asset links and meaningful alternative text are required.
+- Binary assets require manual review before commit.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.

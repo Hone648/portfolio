@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/page-container";
+import { ProjectEvidenceGallery } from "@/components/projects/project-evidence-gallery";
 import { ButtonLink } from "@/components/ui/button-link";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { Project } from "@/content/project-metadata";
+import { getProjectVisualGroups } from "@/content/project-visuals";
 import styles from "./case-study-layout.module.css";
 
 type CaseStudyLayoutProps = {
@@ -38,6 +40,7 @@ export function CaseStudyLayout({
   children,
 }: CaseStudyLayoutProps) {
   const liveLink = project.links.find((link) => link.kind === "live");
+  const visualGroups = getProjectVisualGroups(project.slug);
 
   return (
     <PageContainer className={styles.page}>
@@ -99,6 +102,11 @@ export function CaseStudyLayout({
             ))}
           </ul>
         </section>
+
+        <ProjectEvidenceGallery
+          projectName={project.name}
+          groups={visualGroups}
+        />
 
         <div className={styles.prose}>{children}</div>
 

@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Unicos domain and service boundaries</title>
+  <desc id="desc">Sanitized diagram of the local Docker Compose environment, browser request boundary, Django views and forms, authorization policies, domain services, models, PostgreSQL, focused HTMX enhancement, and separate development administration interface.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b4a8f"/>
+    </marker>
+    <style>
+      text { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #20242a; }
+      .title { font-size: 44px; font-weight: 750; }
+      .subtitle { font-size: 24px; fill: #5f6875; }
+      .boundary-label { font-size: 26px; font-weight: 700; fill: #08396f; }
+      .node-title { font-size: 25px; font-weight: 700; }
+      .node-copy { font-size: 21px; fill: #5f6875; }
+      .small-label { font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; fill: #08396f; }
+      .qualifier { font-size: 21px; fill: #20242a; }
+      .green { fill: #1e6b55; }
+      .amber { fill: #7a4700; }
+      .inverse { fill: #ffffff; }
+      .arrow { fill: none; stroke: #0b4a8f; stroke-width: 4; marker-end: url(#arrow); }
+      .support-line { fill: none; stroke: #1e6b55; stroke-width: 4; stroke-dasharray: 10 8; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#fbfaf8"/>
+  <text class="title" x="56" y="62">Unicos domain and service boundaries</text>
+  <text class="subtitle" x="56" y="98">Sanitized active-development architecture</text>
+  <rect x="1168" y="26" width="376" height="80" rx="6" fill="#fff4df" stroke="#9a5b00" stroke-width="2"/>
+  <text class="node-title amber" x="1223" y="60">Local development only</text>
+  <text class="node-title amber" x="1204" y="90">Not production deployed</text>
+
+  <rect x="42" y="130" width="1516" height="810" rx="8" fill="none" stroke="#0b4a8f" stroke-width="3" stroke-dasharray="12 9"/>
+  <rect x="68" y="112" width="630" height="40" fill="#fbfaf8"/>
+  <text class="boundary-label" x="78" y="141">Local Docker Compose development environment</text>
+
+  <text class="small-label" x="78" y="190">Primary shop-facing request path</text>
+
+  <rect x="78" y="214" width="178" height="116" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="node-title" x="112" y="274">Browser</text>
+  <text class="node-copy" x="104" y="306">Authenticated staff</text>
+
+  <rect x="310" y="214" width="246" height="116" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="node-title" x="336" y="258">Django views, forms,</text>
+  <text class="node-title" x="336" y="289">and templates</text>
+
+  <rect x="610" y="214" width="220" height="116" rx="6" fill="#eaf3fc" stroke="#0b4a8f" stroke-width="3"/>
+  <text class="node-title" x="642" y="246">App-level</text>
+  <text class="node-title" x="642" y="274">permission</text>
+  <text class="node-title" x="642" y="302">checks</text>
+
+  <rect x="884" y="214" width="250" height="116" rx="6" fill="#eaf3fc" stroke="#0b4a8f" stroke-width="3"/>
+  <text class="node-title" x="910" y="246">Repair-order</text>
+  <text class="node-title" x="910" y="274">scoped object</text>
+  <text class="node-title" x="910" y="302">policies</text>
+
+  <rect x="1188" y="214" width="292" height="116" rx="6" fill="#e8f5f0" stroke="#1e6b55" stroke-width="3"/>
+  <text class="node-title" x="1218" y="258">Lifecycle and</text>
+  <text class="node-title" x="1218" y="289">transactional services</text>
+
+  <path class="arrow" d="M256 272 H298"/>
+  <path class="arrow" d="M556 272 H598"/>
+  <path class="arrow" d="M830 272 H872"/>
+  <path class="arrow" d="M1134 272 H1176"/>
+
+  <rect x="310" y="372" width="318" height="166" rx="6" fill="#ffffff" stroke="#1e6b55" stroke-width="3"/>
+  <text class="node-title green" x="338" y="404">Focused HTMX</text>
+  <text class="node-title green" x="338" y="432">enhancement</text>
+  <text class="node-copy" x="338" y="466">Repair-order status only</text>
+  <text class="node-copy" x="338" y="496">Normal POST and redirect</text>
+  <text class="node-copy" x="338" y="524">fallback preserved</text>
+  <path class="support-line" d="M432 330 V372"/>
+
+  <rect x="78" y="548" width="504" height="248" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="small-label" x="108" y="586">Visible qualifications</text>
+  <circle cx="112" cy="626" r="5" fill="#0b4a8f"/>
+  <text class="qualifier" x="130" y="626">Shop-facing views are the</text>
+  <text class="qualifier" x="130" y="652">primary operator workflow</text>
+  <circle cx="112" cy="680" r="5" fill="#0b4a8f"/>
+  <text class="qualifier" x="130" y="686">Templates may hide actions, but</text>
+  <text class="qualifier" x="130" y="712">server checks remain authoritative</text>
+  <circle cx="112" cy="740" r="5" fill="#0b4a8f"/>
+  <text class="qualifier" x="130" y="746">Complete admin object-policy</text>
+  <text class="qualifier" x="130" y="772">integration is not claimed</text>
+
+  <rect x="650" y="372" width="484" height="404" rx="6" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="small-label" x="680" y="412">Application domains</text>
+  <rect x="680" y="438" width="204" height="66" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-copy" x="700" y="466">Customers and</text>
+  <text class="node-copy" x="700" y="491">vehicles</text>
+  <rect x="900" y="438" width="204" height="66" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-copy" x="920" y="466">Repair orders and</text>
+  <text class="node-copy" x="920" y="491">status history</text>
+  <rect x="680" y="520" width="204" height="66" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-copy" x="700" y="548">Estimates and</text>
+  <text class="node-copy" x="700" y="573">supplements</text>
+  <rect x="900" y="520" width="204" height="66" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-copy" x="920" y="548">Invoices and</text>
+  <text class="node-copy" x="920" y="573">payments</text>
+  <rect x="680" y="602" width="204" height="66" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-copy" x="700" y="643">Attachments</text>
+  <rect x="900" y="602" width="204" height="66" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-copy" x="920" y="630">Communication</text>
+  <text class="node-copy" x="920" y="655">entries</text>
+  <rect x="790" y="684" width="204" height="66" rx="6" fill="#fbfaf8" stroke="#d9dee7" stroke-width="2"/>
+  <text class="node-copy" x="850" y="725">Reports</text>
+  <path class="arrow" d="M1334 330 V354 H892 V360"/>
+
+  <rect x="1212" y="390" width="268" height="100" rx="6" fill="#ffffff" stroke="#0b4a8f" stroke-width="3"/>
+  <text class="node-title" x="1260" y="448">Django models</text>
+  <path class="arrow" d="M1188 272 H1160 V440 H1200"/>
+  <path class="arrow" d="M1134 574 H1180 V440 H1200"/>
+
+  <rect x="1212" y="548" width="268" height="100" rx="6" fill="#20242a" stroke="#20242a" stroke-width="3"/>
+  <text class="node-title inverse" x="1272" y="608">PostgreSQL</text>
+  <path class="arrow" d="M1346 490 V536"/>
+
+  <rect x="78" y="808" width="1402" height="108" rx="6" fill="#fff4df" stroke="#9a5b00" stroke-width="3"/>
+  <text class="node-title amber" x="106" y="844">Emergency / development administration interface</text>
+  <text class="node-copy" x="106" y="874">Aligned services protect sensitive mutations; other service-sensitive paths remain read-only.</text>
+  <text class="node-copy" x="106" y="900">Model inspection remains available; complete policy unification is not claimed.</text>
+  <path d="M1192 878 H1242" fill="none" stroke="#9a5b00" stroke-width="4" marker-end="url(#arrow)"/>
+  <text class="small-label amber" x="1260" y="886">Django models</text>
+</svg>
