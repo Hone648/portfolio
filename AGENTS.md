@@ -69,6 +69,16 @@
 - Diagrams cannot add unsupported services, integrations, production infrastructure, or outcomes.
 - Full-size asset links and meaningful alternative text are required.
 - Binary assets require manual review before commit.
+- newBudget screenshots must use synthetic financial records or records specifically approved by the project owner for public demonstration.
+- Do not publish unapproved real balances, income, transactions, debt records, payees, statements, account identifiers, or uploaded financial documents.
+- Do not publish unapproved OAuth names, avatars, email addresses, provider IDs, or application-user IDs.
+- Do not digitally reconstruct or edit an application screenshot to hide identity or financial information; recapture it safely.
+- Do not use Statement Review, statement import, or reconciliation screens as portfolio evidence.
+- Do not describe Statement Review as an implemented portfolio capability.
+- Do not claim replacement statement functionality until it exists and is separately reviewed.
+- newBudget screenshots demonstrate visible product interfaces but do not independently prove security, correctness, audited reporting, or scale.
+- Estimated debt and installment outputs must not be described as lender-exact accounting.
+- Preserve newBudget's verified deployed-production classification.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.

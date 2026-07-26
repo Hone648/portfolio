@@ -60,11 +60,11 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 ## Visual Evidence
 
-`content/project-visuals.ts` owns visual paths, kinds, native dimensions, titles, alternative text, captions, and evidence notes. The registry is intentionally partial during Slice 8A: only Unicos has approved visual groups, and projects without registered visuals return an empty readonly collection.
+`content/project-visuals.ts` owns visual paths, kinds, native dimensions, titles, alternative text, captions, and evidence notes. The registry remains partial during Slice 8B: newBudget and Unicos have approved visual groups, Home Security remains unregistered, and projects without registered visuals return an empty readonly collection.
 
-`ProjectEvidenceGallery` is a presentation-only Server Component. The shared case-study layout renders it after structured project evidence and before the MDX narrative, while projects without visual records render no empty heading or section. Screenshots are served locally from `public/images/unicos`, and code-authored sanitized SVGs are served from `public/diagrams`. There is no runtime image API, external image dependency, client interaction, lightbox, or carousel.
+`ProjectEvidenceGallery` is a presentation-only Server Component. The shared case-study layout renders it after structured project evidence and before the MDX narrative, while projects without visual records render no empty heading or section. newBudget screenshots are served locally from `public/images/newbudget`, Unicos screenshots remain under `public/images/unicos`, and code-authored Unicos SVGs remain under `public/diagrams`. Slice 8B adds no component or runtime architecture: there is no runtime image API, external image dependency, client interaction, lightbox, or carousel.
 
-The screenshots are approved local-development captures. The SVGs are explanatory representations derived from reviewed evidence and omit private source details and unsupported production infrastructure. Visuals supplement rather than replace structured evidence, narrative, status labels, or limitations.
+The newBudget screenshots are authentic owner-approved application captures using approved demonstration records. The Unicos screenshots remain approved local-development captures. The SVGs are explanatory representations derived from reviewed evidence and omit private source details and unsupported production infrastructure. Visuals supplement rather than replace structured evidence, narrative, status labels, or limitations.
 
 ## Profile Content and Presentation
 
@@ -78,7 +78,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, and Unicos visual-evidence paths shown below exist after Slice 8A. Sitemap, robots, visual evidence for the other projects, tests, CI, and supporting library entries remain target structure for later approved slices.
+The profile, career, project, newBudget visual-evidence, and Unicos visual-evidence paths shown below exist after Slice 8B. Sitemap, robots, Home Security visual evidence, tests, CI, and supporting library entries remain target structure for later approved slices.
 
 ```text
 portfolio/
@@ -124,6 +124,10 @@ portfolio/
 |   `-- validation.ts
 |-- public/
 |   |-- images/
+|   |   |-- newbudget/
+|   |   |   |-- newbudget-monthly-workspace.png
+|   |   |   |-- newbudget-expense-trends.png
+|   |   |   `-- newbudget-debt-payment-trends.png
 |   |   `-- unicos/
 |   |       |-- unicos-dashboard.png
 |   |       |-- unicos-repair-orders.png
@@ -156,7 +160,7 @@ portfolio/
 
 Create directories when an approved slice introduces real files that belong in them. Do not create empty directories merely to resemble the target architecture.
 
-newBudget and Home Security visual directories remain future work and must not be created empty.
+Home Security visual evidence remains future work and its visual directory must not be created empty.
 
 ## Security and Privacy
 
@@ -177,4 +181,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, Playwright automation, newBudget visual evidence, Home Security sanitized visual evidence, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
