@@ -24,14 +24,18 @@ function RepositoryNote({ project }: { project: Project }) {
   if (project.repository.visibility === "private") {
     return (
       <>
-        Private source repository; public evidence is presented through
-        sanitized project documentation.
+        The source repository is private. This case study covers the
+        architecture, implementation, and project details that can be shared
+        publicly.
       </>
     );
   }
 
   return (
-    <>Current system evidence is documented through sanitized project artifacts.</>
+    <>
+      Private operational system presented through a sanitized architecture and
+      project overview.
+    </>
   );
 }
 
@@ -67,7 +71,7 @@ export function CaseStudyLayout({
           <h2 id="project-overview">Project overview</h2>
           <div className={styles.overviewGrid}>
             <div>
-              <h3>Evidence access</h3>
+              <h3>Project access</h3>
               <p>
                 <RepositoryNote project={project} />
               </p>
@@ -92,7 +96,7 @@ export function CaseStudyLayout({
         </section>
 
         <section className={styles.evidence} aria-labelledby="project-evidence">
-          <h2 id="project-evidence">Project evidence</h2>
+          <h2 id="project-evidence">Engineering highlights</h2>
           <ul>
             {project.evidence.map((item) => (
               <li key={`${item.state}-${item.statement}`}>
@@ -111,7 +115,7 @@ export function CaseStudyLayout({
         <div className={styles.prose}>{children}</div>
 
         <section className={styles.limitations} aria-labelledby="limitations">
-          <h2 id="limitations">Scope and limitations</h2>
+          <h2 id="limitations">Current status</h2>
           <ul>
             {project.limitations.map((limitation) => (
               <li key={limitation}>{limitation}</li>

@@ -43,7 +43,7 @@ export const skillGroups = [
   {
     title: "Delivery and operations",
     description:
-      "Uses guarded branches, reviewable changes, automated validation, and documented production or development boundaries.",
+      "Uses focused branches, reviewable changes, automated validation, and documented operating constraints across production and active-development work.",
     items: [
       "Git",
       "GitHub",
@@ -79,11 +79,11 @@ export const skillGroups = [
   {
     title: "Engineering practice",
     description:
-      "Connects implementation work to reviewed evidence, explicit limitations, layered validation, and privacy-aware documentation.",
+      "Combines clear requirements, focused implementation, layered validation, troubleshooting, and privacy-aware documentation.",
     items: [
       "Requirements definition",
       "Implementation planning",
-      "Evidence-based claim boundaries",
+      "Constraints and success criteria",
       "Layered troubleshooting",
       "Code and diff review",
       "Validation",

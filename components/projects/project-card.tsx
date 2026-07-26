@@ -19,10 +19,15 @@ function RepositoryNote({ project }: { project: Project }) {
   }
 
   if (project.repository.visibility === "private") {
-    return <>Private source repository</>;
+    return <>Private source repository.</>;
   }
 
-  return <>{"Current system evidence is documented through sanitized project artifacts."}</>;
+  return (
+    <>
+      Private operational system presented through a sanitized architecture and
+      project overview.
+    </>
+  );
 }
 
 export function ProjectCard({
@@ -63,7 +68,7 @@ export function ProjectCard({
 
       {variant === "index" ? (
         <div className={styles.detailGroup}>
-          <p className={styles.label}>Scope and limitations</p>
+          <p className={styles.label}>Current status</p>
           <ul className={styles.limitations}>
             {project.limitations.map((limitation) => (
               <li key={limitation}>{limitation}</li>
@@ -73,7 +78,7 @@ export function ProjectCard({
       ) : null}
 
       <p className={styles.repositoryNote}>
-        <span className={styles.label}>Evidence access</span>
+        <span className={styles.label}>Project access</span>
         <RepositoryNote project={project} />
       </p>
 

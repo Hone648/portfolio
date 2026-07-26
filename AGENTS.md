@@ -26,7 +26,7 @@
 - Profile facts must come from `content/site-content.ts`.
 - Selected career history and transferable strengths must come from `content/career-history.ts`.
 - Skill claims must come from `content/skills.ts`.
-- Skills must link to reviewed evidence and cannot use percentages or proficiency rankings.
+- Skills must link to related projects and cannot use percentages or proficiency rankings.
 - Preserve the verified career titles Equipment Technician, Electronics Technician, Field Engineer, and Avionics Electronics Technician.
 - Keep one consolidated SPEA career entry and state that it covers two separate, non-contiguous periods of employment.
 - Do not imply continuous SPEA employment or publish either SPEA date range until the exact chronology is verified.
@@ -48,7 +48,9 @@
 - Update evidence and limitations together when changing a project claim.
 - Never add a public source URL for a private repository.
 - Do not promote designed, planned, or prototyped work to operational without evidence.
-- Preserve evidence-first wording and distinguish implemented, deployed, operational, prototyped, designed, and planned work.
+- Preserve evidence-backed accuracy and project-state distinctions internally, but do not make evidence, audit, proof, qualification, or limitation terminology the default public-facing voice.
+- Visitor-facing copy should lead with project purpose, engineering contribution, and practical value. Status and meaningful constraints must remain accurate but secondary.
+- Continue to distinguish implemented, deployed, operational, prototyped, designed, and planned work.
 - Do not expose secrets, financial records, OAuth details, private camera credentials, private RTSP URLs, home addresses, sensitive topology, or identifying camera footage.
 - Visual metadata must come from `content/project-visuals.ts`.
 - Projects without approved visual evidence must not receive placeholder records.
