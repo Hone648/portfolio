@@ -72,7 +72,7 @@ export const projects = [
     slug: "newbudget",
     name: "newBudget",
     summary:
-      "A deployed personal-finance application focused on month-first planning, debt tracking, and user-reviewed statement reconciliation.",
+      "A deployed personal-finance application focused on month-first planning, expense tracking, and debt and installment management.",
     status: "production",
     featured: true,
     technologies: [
@@ -86,7 +86,7 @@ export const projects = [
     capabilities: [
       "Financial domain modeling",
       "User-scoped data ownership",
-      "Statement-assisted reconciliation",
+      "Month-first budgeting and debt tracking",
       "Automated testing and CI",
       "Production monitoring and recovery",
     ],
@@ -109,7 +109,7 @@ export const projects = [
     ],
     limitations: [
       "Demonstrates production operation for one application, not broad enterprise-scale platform experience.",
-      "Statement-assisted reconciliation retains explicit review and guarded mutation boundaries rather than applying all extracted data automatically.",
+      "Debt and installment calculations support planning and history but do not claim lender-exact accounting.",
     ],
     repository: {
       visibility: "private",

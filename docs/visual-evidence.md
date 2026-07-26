@@ -6,9 +6,19 @@ Visual evidence makes implemented work reviewable while preserving each project'
 
 ## Current Scope
 
-Slice 8A covers Unicos only. The eleven screenshots are authentic, approved local-development captures rather than mockups, and their visible demonstration records were privacy reviewed. They demonstrate implemented interfaces but do not prove production operation, complete correctness, security certification, or scale. The two SVGs are sanitized explanatory diagrams authored from reviewed documentation and implementation evidence. Unicos remains an active-development application and is not production deployed. Visual evidence for newBudget and the Home Security and Automation Lab remains deferred.
+Slice 8B covers newBudget and Unicos. newBudget contributes three authentic, owner-approved application captures using approved identity presentation and demonstration financial records; no email, provider identifier, application-user identifier, uploaded statement, or unapproved account data is published. Statement Review is excluded from visual evidence and public capability claims. The existing Unicos scope and provenance remain unchanged: eleven approved local-development screenshots and two sanitized explanatory SVGs represent an active-development application that is not production deployed. Home Security visual evidence remains deferred. No visual independently proves security, correctness, audited financial accuracy, production readiness, or scale.
 
 ## Screenshot Inventory
+
+### newBudget
+
+| Public path | Title | Evidence purpose | Primary limitation or qualification |
+| --- | --- | --- | --- |
+| `/images/newbudget/newbudget-monthly-workspace.png` | Monthly budget workspace | Shows the month-first planning surface with income, carryover, obligations, payment state, quick expenses, and remaining balance. | Owner-approved demonstration account and financial records; no authentication identifiers are exposed. |
+| `/images/newbudget/newbudget-expense-trends.png` | Expense trends | Shows category totals, month and time-range controls, and historical spending trends. | Demonstrates implemented behavior, not audited reporting or financial advice. |
+| `/images/newbudget/newbudget-debt-payment-trends.png` | Debt and payment trends | Shows searchable obligations, filters, payee context, and historical payment trends. | Planning values are not lender statements, audited balances, or lender-exact accounting. |
+
+### Unicos
 
 | Public path | Title | Evidence purpose | Primary limitation or qualification |
 | --- | --- | --- | --- |
@@ -31,7 +41,7 @@ Slice 8A covers Unicos only. The eleven screenshots are authentic, approved loca
 | `/diagrams/unicos-domain-service-boundaries.svg` | Explains the local Docker Compose boundary, shop-facing request path, authorization checks, services, models, PostgreSQL, limited HTMX use, and separate admin lane. | Derived from reviewed private-repository documentation and implementation evidence. | Private source paths, credentials, environment names, hosts, ports, URLs, database names, production infrastructure, external integrations, and complete authorization claims. |
 | `/diagrams/unicos-repair-order-workflow.svg` | Explains repair-order context, related records, estimate and invoice lifecycles, guarded conversion, payment recording, and closure restrictions. | Derived from reviewed active-development services, policies, workflow documentation, and tests. | Complete transition coverage, estimate versioning, supplement-to-invoice automation, payment processing, a full accounting ledger, and production-operation claims. |
 
-## Approved Display Names
+## Unicos Approved Display Names
 
 The following names visible in the approved captures may be displayed publicly:
 
@@ -43,10 +53,13 @@ No private contact details are approved for publication. Existing redactions rem
 
 ## Provenance
 
-- The screenshots were supplied and approved by the project owner.
-- The screenshots show the local-development application using privacy-reviewed demonstration records.
-- Existing redactions were retained; the PNG pixels were not cropped, annotated, recompressed, recoloured, or reconstructed.
-- Five PNGs contain a benign Adobe XMP `iTXt` packet limited to orientation metadata; no sensitive textual metadata was found.
+- The newBudget screenshots were supplied under project-owner direction and specifically approved for public use without pixel edits.
+- The newBudget captures use owner-approved visible identity presentation and demonstration financial records; no email, OAuth provider identifier, application-user identifier, uploaded statement, or unapproved account data is included.
+- Statement-import and reconciliation screens are excluded, and the captures do not independently prove security, correctness, audited financial accuracy, or scale.
+- All three newBudget PNGs contain a benign Adobe XMP `iTXt` packet limited to TIFF orientation metadata; no sensitive textual metadata was found.
+- The Unicos screenshots were supplied and approved by the project owner and continue to show the local-development application using privacy-reviewed demonstration records.
+- Existing Unicos redactions were retained; those PNG pixels were not cropped, annotated, recompressed, recoloured, or reconstructed.
+- Five Unicos PNGs contain a benign Adobe XMP `iTXt` packet limited to orientation metadata; no sensitive textual metadata was found.
 - The diagrams were derived from reviewed private-repository documentation and implementation evidence.
 - Private repository URLs and commit identifiers are not published.
 - The diagrams are explanatory views, not complete infrastructure specifications.

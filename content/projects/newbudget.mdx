@@ -26,22 +26,6 @@ Financial amounts use integer minor units instead of floating-point currency ari
 
 These values are labeled as estimated. A monthly APR approximation cannot reproduce every lender's daily compounding, statement timing, fees, promotional rates, or rounding rules. The application therefore presents useful planning history without claiming lender-exact accounting.
 
-## Statement-assisted reconciliation
-
-Statement reconciliation is organized as a staged review process. Imported or extracted facts are evidence, not permission to alter live financial records. User-scoped imports, structured extracts, reconciliation runs, suggested items, review decisions, and commit audit records remain distinct from debts, payments, and monthly obligation instances.
-
-The workflow separates several responsibilities:
-
-1. Reviewed statement fields are staged independently from live records.
-2. Pure comparison logic proposes differences and possible operations.
-3. The user explicitly approves, rejects, ignores, or edits review items.
-4. A commit-planning step classifies proposed operations as committable, blocked, skipped, or requiring manual review.
-5. Supported changes pass operation-specific eligibility checks again on the server before any mutation.
-
-The client submits an operation identifier, not trusted operation details. The server reloads the owned run, current decisions, relevant records, and eligibility conditions before applying a supported change. Due amounts, due dates, cycle status, and remaining balances each have different safety rules. Unsupported payment creation, interest, and fee operations remain blocked rather than being forced through a generic update path.
-
-There is intentionally no broad commit-all behavior. Confidence describes evidence quality; it never grants mutation authority. Raw PDF bytes and full extracted statement text are not retained. Selectable-text PDFs can assist candidate review, but OCR and fully autonomous ingestion are not claimed. The reviewer remains in control from field selection through any guarded apply action.
-
 ## Production operations
 
 newBudget runs as a production Next.js application on Vercel with a dedicated MongoDB Atlas production environment and real Google OAuth. Production and non-production database, authentication, and secret scopes are separated, with runtime guardrails that reject unsafe hosted-environment combinations instead of guessing.
@@ -78,6 +62,6 @@ Some production behavior cannot be safely reproduced in CI. Real-provider OAuth,
 
 This case study is strong evidence of building and operating one production application. It does not establish experience operating a large fleet, an enterprise platform, or a mature site-reliability organization.
 
-The product favors explicit review over frictionless automation when statement evidence could change financial records. Debt snapshots support planning and history, but lender-exact accounting remains outside the model. Index initialization protects the logical keys currently known to the application; it should not be mistaken for a general schema-migration framework.
+Debt snapshots support planning and history, but lender-exact accounting remains outside the model. Index initialization protects the logical keys currently known to the application; it should not be mistaken for a general schema-migration framework.
 
 Operational processes also remain intentionally modest. Monitoring and a manual response runbook exist, while automated paging, an on-call rotation, recurring restore automation, and broader production orchestration do not. Those boundaries keep the public description aligned with what has actually been implemented and verified.

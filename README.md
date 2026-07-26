@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 8A: Unicos visual evidence. The Unicos case study now includes eleven approved local-development screenshots and two sanitized architecture and workflow diagrams with registry-owned metadata, accessible alternative text, visible captions, provenance notes, evidence qualifications, and responsive full-size asset access.
+This repository is at Slice 8B: newBudget visual evidence and statement-review claim correction. The deployed newBudget case study now includes three owner-approved application screenshots covering monthly planning, expense trends, and debt and payment trends. Visual metadata remains registry-owned, and each capture includes accessible alternative text, a visible caption, an evidence qualification, and responsive full-size access.
 
 ## Stack
 
@@ -27,7 +27,7 @@ This repository is at Slice 8A: Unicos visual evidence. The Unicos case study no
 
 MDX is installed and configured for project case-study narrative. Project-backed skills remain separate from transferable career strengths, and neither uses percentage ratings or proficiency meters. The HTML-only resume presents current software evidence before selected prior technical experience. Contact remains a static email and GitHub surface with no form or backend. Employment dates, a downloadable resume, Playwright automation, and deployment remain planned for later slices.
 
-Unicos remains in active development and is not production deployed or production ready. Its screenshots demonstrate implemented local-development interfaces rather than production operation, and Django admin is presented as a separate emergency/development interface. The visual gallery adds no runtime service, client interaction, or dependency. newBudget and Home Security visual evidence remain deferred, so Slice 8 is not complete. Slice 9 remains accessibility, SEO, and performance work; Slice 10 remains CI and automated browser validation.
+The newBudget screenshots use owner-approved identity presentation and demonstration financial records; they publish no email, provider identifier, application-user identifier, uploaded statement, or other unapproved account detail. Statement Review is no longer presented as a portfolio capability, and no replacement statement workflow is claimed. newBudget remains classified as a deployed production application. Unicos visual evidence remains complete for its approved scope, while Home Security visual evidence remains deferred, so Slice 8 is not complete. The shared gallery adds no runtime service, dependency, client interaction, or image API.
 
 ## Local Prerequisites
 

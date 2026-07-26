@@ -26,6 +26,63 @@ const emptyVisualGroups: readonly ProjectVisualGroup[] = [];
 export const projectVisualGroups: Partial<
   Record<ProjectSlug, readonly ProjectVisualGroup[]>
 > = {
+  newbudget: [
+    {
+      id: "monthly-planning",
+      title: "Monthly planning",
+      description:
+        "The central month-first workspace combines income, carryover, obligations, payment state, quick expenses, and remaining balance in one review surface.",
+      visuals: [
+        {
+          id: "newbudget-monthly-workspace",
+          kind: "screenshot",
+          title: "Monthly budget workspace",
+          src: "/images/newbudget/newbudget-monthly-workspace.png",
+          width: 1914,
+          height: 913,
+          alt: "newBudget monthly workspace showing income sources, carryover, monthly obligations, payment state, quick-expense entry, and remaining balance.",
+          caption:
+            "The month-first workspace combines income, carryover, recurring obligations, payment state, quick expenses, and remaining balance in one review surface.",
+          evidenceNote:
+            "Authentic application capture using an owner-approved demonstration account and demonstration financial records. The visible values are approved for publication, and the screenshot does not expose email, provider, or application-user identifiers.",
+        },
+      ],
+    },
+    {
+      id: "tracking-and-trends",
+      title: "Tracking and trends",
+      description:
+        "Supporting views aggregate expense categories and present debt and payment history across selectable time periods.",
+      visuals: [
+        {
+          id: "newbudget-expense-trends",
+          kind: "screenshot",
+          title: "Expense trends",
+          src: "/images/newbudget/newbudget-expense-trends.png",
+          width: 1915,
+          height: 913,
+          alt: "newBudget expense-tracking view showing category totals, month and time-range controls, and a chart of spending over time.",
+          caption:
+            "Expense tracking aggregates category totals and presents selectable historical spending trends.",
+          evidenceNote:
+            "Authentic application capture using owner-approved demonstration records. The chart demonstrates implemented product behavior rather than audited reporting or financial advice.",
+        },
+        {
+          id: "newbudget-debt-payment-trends",
+          kind: "screenshot",
+          title: "Debt and payment trends",
+          src: "/images/newbudget/newbudget-debt-payment-trends.png",
+          width: 1916,
+          height: 915,
+          alt: "newBudget debt-tracking view showing searchable obligations, type filters, payee and payment details, and a historical payment-trend chart.",
+          caption:
+            "Debt tracking combines obligation records, payee context, filtering, and historical payment trends.",
+          evidenceNote:
+            "Authentic application capture using owner-approved demonstration records. Estimated planning values are not lender statements, audited balances, or lender-exact accounting outputs.",
+        },
+      ],
+    },
+  ],
   unicos: [
     {
       id: "operational-overview",
