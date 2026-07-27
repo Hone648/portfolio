@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Project } from "@/content/project-metadata";
+import { ButtonLink } from "@/components/ui/button-link";
 import { StatusBadge } from "@/components/ui/status-badge";
 import styles from "./project-card.module.css";
 
@@ -9,88 +9,85 @@ type ProjectCardProps = {
   variant?: "featured" | "index";
 };
 
-function RepositoryNote({ project }: { project: Project }) {
-  if (project.repository.visibility === "public") {
-    return (
-      <a href={project.repository.href}>
-        {project.repository.name} public source repository
-      </a>
-    );
-  }
-
-  if (project.repository.visibility === "private") {
-    return <>Private source repository.</>;
-  }
-
-  return (
-    <>
-      Private operational system presented through a sanitized architecture and
-      project overview.
-    </>
-  );
-}
-
 export function ProjectCard({
   project,
   headingLevel = "h2",
   variant = "index",
 }: ProjectCardProps) {
   const Heading = headingLevel;
-  const capabilities =
-    variant === "featured" ? project.capabilities.slice(0, 3) : project.capabilities;
+  const technologies =
+    variant === "featured"
+      ? project.technologies.slice(0, 4)
+      : project.technologies;
+  const additionalTechnologyCount =
+    variant === "featured"
+      ? project.technologies.length - technologies.length
+      : 0;
 
   return (
     <article className={`${styles.card} ${styles[variant]}`}>
       <header className={styles.header}>
+        <div className={styles.context}>
+          <p className={styles.category}>{project.card.category}</p>
+          <StatusBadge status={project.status} variant="compact" />
+        </div>
         <Heading className={styles.title}>{project.name}</Heading>
-        <StatusBadge status={project.status} />
       </header>
 
-      <p className={styles.summary}>{project.summary}</p>
+      <p className={styles.description}>{project.card.description}</p>
 
       <div className={styles.detailGroup}>
-        <p className={styles.label}>Technologies</p>
-        <ul className={styles.technologies}>
-          {project.technologies.map((technology) => (
-            <li key={technology}>{technology}</li>
+        <p className={styles.label}>What I built</p>
+        <ul className={styles.highlights}>
+          {project.card.highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
           ))}
         </ul>
       </div>
 
       <div className={styles.detailGroup}>
-        <p className={styles.label}>Capabilities</p>
-        <ul className={styles.capabilities}>
-          {capabilities.map((capability) => (
-            <li key={capability}>{capability}</li>
+        <p className={styles.label}>Built with</p>
+        <ul className={styles.technologies}>
+          {technologies.map((technology) => (
+            <li key={technology}>{technology}</li>
           ))}
+          {additionalTechnologyCount > 0 ? (
+            <li aria-label={`${additionalTechnologyCount} additional technologies`}>
+              +{additionalTechnologyCount} more
+            </li>
+          ) : null}
         </ul>
+      </div>
+
+      <div className={styles.statusGroup}>
+        <p className={styles.label}>Current status</p>
+        <p className={styles.currentStatus}>{project.card.currentStatus}</p>
       </div>
 
       {variant === "index" ? (
-        <div className={styles.detailGroup}>
-          <p className={styles.label}>Current status</p>
-          <ul className={styles.limitations}>
-            {project.limitations.map((limitation) => (
-              <li key={limitation}>{limitation}</li>
-            ))}
-          </ul>
-        </div>
+        <details className={styles.scopeDetails}>
+          <summary>Current scope details</summary>
+          <div className={styles.scopeContent}>
+            <ul className={styles.limitations}>
+              {project.limitations.map((limitation) => (
+                <li key={limitation}>{limitation}</li>
+              ))}
+            </ul>
+          </div>
+        </details>
       ) : null}
-
-      <p className={styles.repositoryNote}>
-        <span className={styles.label}>Project access</span>
-        <RepositoryNote project={project} />
-      </p>
 
       {project.links.length > 0 ? (
         <ul className={styles.links} aria-label={`${project.name} links`}>
           {project.links.map((link) => (
             <li key={`${link.kind}-${link.href}`}>
-              {link.kind === "case-study" ? (
-                <Link href={link.href}>{link.label}</Link>
-              ) : (
-                <a href={link.href}>{link.label}</a>
-              )}
+              <ButtonLink
+                href={link.href}
+                variant={link.kind === "case-study" ? "primary" : "secondary"}
+                external={link.kind !== "case-study"}
+              >
+                {link.label}
+              </ButtonLink>
             </li>
           ))}
         </ul>

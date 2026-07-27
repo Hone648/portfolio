@@ -10,22 +10,36 @@
 }
 
 .header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
   gap: var(--space-3);
 }
 
+.context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+}
+
+.category {
+  color: var(--color-accent-strong);
+  font-size: 0.8125rem;
+  font-weight: 750;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
 .title {
-  flex: 1 1 12rem;
   color: var(--color-text);
   font-size: 1.375rem;
   line-height: 1.25;
 }
 
-.summary {
+.description {
   color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 .detailGroup {
@@ -62,7 +76,7 @@
   line-height: 1.35;
 }
 
-.capabilities,
+.highlights,
 .limitations {
   display: grid;
   gap: var(--space-2);
@@ -70,7 +84,7 @@
   padding-left: 1.25rem;
 }
 
-.capabilities li::marker {
+.highlights li::marker {
   color: var(--color-accent);
 }
 
@@ -78,31 +92,62 @@
   color: var(--color-text-muted);
 }
 
-.repositoryNote {
+.statusGroup {
   display: grid;
-  gap: var(--space-1);
-  margin-top: auto;
+  gap: var(--space-2);
+  border-left: 0.2rem solid var(--color-border);
+  padding-left: var(--space-3);
+}
+
+.currentStatus {
   color: var(--color-text-muted);
   font-size: 0.9375rem;
 }
 
-.links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-  padding-inline: var(--space-2);
+.scopeDetails {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.scopeDetails summary {
+  cursor: pointer;
+  padding: var(--space-3) 0;
+  color: var(--color-text);
   font-weight: 700;
+}
+
+.scopeContent {
+  padding: 0 0 var(--space-4);
+}
+
+.links {
+  align-items: stretch;
+  margin-top: auto;
+  padding-top: var(--space-1);
+}
+
+.links li {
+  display: flex;
+}
+
+.links a {
+  width: 100%;
 }
 
 .index {
   gap: var(--space-6);
 }
 
-.index .summary,
-.index .capabilities,
+.index .description,
+.index .highlights,
 .index .limitations,
-.index .repositoryNote {
+.index .currentStatus {
   max-width: 72ch;
+}
+
+.index .links a {
+  width: auto;
 }
 
 @media (max-width: 30rem) {
@@ -110,11 +155,12 @@
     padding: var(--space-5);
   }
 
-  .header {
-    flex-direction: column;
+  .links,
+  .links li {
+    width: 100%;
   }
 
-  .title {
-    flex-basis: auto;
+  .index .links a {
+    width: 100%;
   }
 }
