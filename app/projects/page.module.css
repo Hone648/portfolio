@@ -6,35 +6,57 @@
 
 .introduction {
   display: grid;
-  gap: var(--space-4);
-  max-width: 46rem;
+  grid-template-columns: minmax(8rem, 0.34fr) minmax(0, 1.66fr);
+  gap: var(--space-4) var(--space-7);
+  border-top: 0.25rem solid var(--color-text);
+  padding-top: var(--space-6);
 }
 
 .eyebrow {
   color: var(--color-accent-strong);
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    "Liberation Mono",
-    monospace;
+  font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 700;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  border-top: 1px solid var(--color-warm);
+  padding-top: var(--space-3);
   text-transform: uppercase;
+}
+
+.title,
+.lede {
+  grid-column: 2;
 }
 
 .title {
   color: var(--color-text);
-  font-size: 3.5rem;
-  line-height: 1.05;
+  font-size: 4.5rem;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 .lede {
+  max-width: 46rem;
   color: var(--color-text-muted);
   font-size: 1.125rem;
   line-height: 1.65;
+}
+
+@media (max-width: 48rem) {
+  .introduction {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .eyebrow,
+  .title,
+  .lede {
+    grid-column: 1;
+  }
+
+  .eyebrow {
+    grid-row: auto;
+  }
 }
 
 @media (max-width: 40rem) {

@@ -48,7 +48,7 @@ export function CaseStudyLayout({
 
   return (
     <PageContainer className={styles.page}>
-      <article className={styles.article}>
+      <article className={styles.article} data-project={project.slug}>
         <Link className={styles.backLink} href="/projects">
           Back to Projects
         </Link>

@@ -1,6 +1,7 @@
 .footer {
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
+  border-top: 0.25rem solid var(--color-warm);
+  color: var(--color-surface-strong);
+  background: var(--color-text);
 }
 
 .inner {
@@ -8,8 +9,12 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  padding-block: var(--space-5);
+  padding-block: var(--space-6);
   font-size: 0.9375rem;
+}
+
+.inner > p {
+  color: var(--color-surface-strong);
 }
 
 .links {
@@ -19,12 +24,20 @@
 }
 
 .links a {
-  color: var(--color-accent);
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-surface);
   font-weight: 650;
+  text-decoration-color: var(--color-warm);
 }
 
 .links a:hover {
-  color: var(--color-accent-strong);
+  color: var(--color-warm-soft);
+}
+
+.footer :focus-visible {
+  outline-color: var(--color-surface);
 }
 
 @media (max-width: 34rem) {

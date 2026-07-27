@@ -1,15 +1,35 @@
 .card {
+  --project-accent: var(--color-accent);
+  --project-accent-soft: var(--color-accent-soft);
+
+  min-width: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-top: 0.3rem solid var(--project-accent);
   padding: var(--space-6);
   background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.card[data-project="newbudget"] {
+  --project-accent: #2f6f64;
+  --project-accent-soft: #dfece8;
+}
+
+.card[data-project="unicos"] {
+  --project-accent: #98583d;
+  --project-accent-soft: #f0e2da;
+}
+
+.card[data-project="home-security-lab"] {
+  --project-accent: #59647f;
+  --project-accent-soft: #e3e5ed;
 }
 
 .header {
+  min-width: 0;
   display: grid;
   gap: var(--space-3);
 }
@@ -22,38 +42,44 @@
   gap: var(--space-2) var(--space-3);
 }
 
-.category {
-  color: var(--color-accent-strong);
-  font-size: 0.8125rem;
-  font-weight: 750;
-  line-height: 1.35;
+.category,
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
+.category {
+  color: var(--project-accent);
+}
+
 .title {
+  max-width: 18ch;
   color: var(--color-text);
-  font-size: 1.375rem;
-  line-height: 1.25;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-wrap: balance;
 }
 
 .description {
   color: var(--color-text-muted);
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .detailGroup {
+  min-width: 0;
   display: grid;
-  gap: var(--space-2);
+  align-content: start;
+  gap: var(--space-3);
 }
 
 .label {
-  display: block;
   color: var(--color-text);
-  font-size: 0.8125rem;
-  font-weight: 750;
-  line-height: 1.4;
-  text-transform: uppercase;
 }
 
 .technologies,
@@ -67,25 +93,33 @@
 }
 
 .technologies li {
-  border: 1px solid var(--color-border);
+  max-width: 100%;
+  border: 1px solid color-mix(in srgb, var(--project-accent) 30%, var(--color-border));
   border-radius: var(--radius-sm);
   padding: var(--space-1) var(--space-2);
   color: var(--color-text-muted);
-  background: var(--color-background);
-  font-size: 0.8125rem;
-  line-height: 1.35;
+  background: color-mix(in srgb, var(--project-accent-soft) 60%, var(--color-surface));
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .highlights,
 .limitations {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-3);
   margin: 0;
-  padding-left: 1.25rem;
+  padding-left: 1.2rem;
 }
 
-.highlights li::marker {
-  color: var(--color-accent);
+.highlights {
+  color: var(--color-text);
+}
+
+.highlights li::marker,
+.limitations li::marker {
+  color: var(--project-accent);
 }
 
 .limitations {
@@ -93,10 +127,13 @@
 }
 
 .statusGroup {
+  min-width: 0;
   display: grid;
+  align-content: start;
   gap: var(--space-2);
-  border-left: 0.2rem solid var(--color-border);
-  padding-left: var(--space-3);
+  border-left: 0.2rem solid var(--project-accent);
+  padding: var(--space-3) var(--space-4);
+  background: color-mix(in srgb, var(--project-accent-soft) 68%, var(--color-surface));
 }
 
 .currentStatus {
@@ -105,26 +142,37 @@
 }
 
 .scopeDetails {
-  border-top: 1px solid var(--color-border);
+  min-width: 0;
+  border-top: 1px solid var(--color-border-strong);
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text-muted);
 }
 
 .scopeDetails summary {
   cursor: pointer;
-  padding: var(--space-3) 0;
+  padding: var(--space-4) var(--space-1);
   color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
   font-weight: 700;
 }
 
+.scopeDetails[open] {
+  background: color-mix(in srgb, var(--project-accent-soft) 42%, transparent);
+}
+
+.scopeDetails[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
 .scopeContent {
-  padding: 0 0 var(--space-4);
+  padding: var(--space-4);
 }
 
 .links {
   align-items: stretch;
   margin-top: auto;
-  padding-top: var(--space-1);
+  padding-top: var(--space-2);
 }
 
 .links li {
@@ -136,10 +184,52 @@
 }
 
 .index {
-  gap: var(--space-6);
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+  grid-template-areas:
+    "header status"
+    "description technology"
+    "highlights technology"
+    "scope scope"
+    "links links";
+  gap: var(--space-6) var(--space-7);
+  border-top-width: 0.4rem;
+  padding: var(--space-7);
+  box-shadow: var(--shadow-md);
 }
 
-.index .description,
+.index .header {
+  grid-area: header;
+}
+
+.index .description {
+  grid-area: description;
+  max-width: 62ch;
+}
+
+.index .highlightsGroup {
+  grid-area: highlights;
+}
+
+.index .technologyGroup {
+  grid-area: technology;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+
+.index .statusGroup {
+  grid-area: status;
+}
+
+.index .scopeDetails {
+  grid-area: scope;
+}
+
+.index .links {
+  grid-area: links;
+  margin-top: 0;
+}
+
 .index .highlights,
 .index .limitations,
 .index .currentStatus {
@@ -150,8 +240,23 @@
   width: auto;
 }
 
+@media (max-width: 52rem) {
+  .index {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "description"
+      "highlights"
+      "technology"
+      "status"
+      "scope"
+      "links";
+  }
+}
+
 @media (max-width: 30rem) {
-  .card {
+  .card,
+  .index {
     padding: var(--space-5);
   }
 

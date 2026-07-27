@@ -36,9 +36,9 @@ Current navigation links include `/`, `/projects`, `/about`, `/resume`, `/contac
 
 `app/globals.css` is limited to design tokens, reset/base rules, document-level typography, accessibility defaults, and global focus behavior. CSS Modules own component-specific styling for the header, footer, page container, button links, homepage, project index, project presentation components, and shared profile surfaces.
 
-The current token set covers background, surface, primary text, muted text, border, accent, accent strong/hover state, focus color, page-container width, spacing, and border radii. The visual foundation uses a light warm neutral background, dark charcoal text, muted gray secondary text, a deep-blue accent family, subtle borders, moderate radii, and system font stacks.
+The technical-editorial visual direction uses warm neutral paper and surface tones, near-black ink text, muted slate supporting text, a deep steel-blue primary accent, and restrained warm accents. Expanded global tokens cover muted and strong surfaces, subtle and strong borders, soft accent fields, shadows, project-accent defaults, page width, spacing, and restrained radii.
 
-No third-party UI or styling dependency is used.
+Typography uses system-only stacks: a serif display face for major headings, a sans-serif body face, and a monospace face for metadata and labels. Project-specific teal, rust, and indigo accents provide decorative identity without representing project status. CSS Modules remain the component styling boundary; no UI library, font dependency, new Client Component, or JavaScript-driven visual runtime was added.
 
 ## Project Registry
 
@@ -48,9 +48,9 @@ Evidence states distinguish deployed, operational, implemented, prototyped, desi
 
 ## Project Presentation
 
-The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProjects()`. The full project index preserves registry order and presents every registered limitation.
+The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProjects()`. The full project index preserves registry order and keeps every registered limitation available through native disclosure.
 
-`ProjectCard`, `ProjectGrid`, and `StatusBadge` are presentation-only Server Components. Cards receive complete project records, grids choose the appropriate heading level and density, and status text comes from `projectStatusLabels`. All three project cards link to their published case-study routes.
+`ProjectCard`, `ProjectGrid`, and `StatusBadge` are presentation-only Server Components. Cards receive complete project records, grids choose the appropriate heading level and density, and full and compact status labels remain centralised in the project registry. Project-aware `data-project` attributes drive decorative accents only. Featured cards use an equal-height responsive grid, while index cards use a wider editorial layout that collapses in DOM order on smaller screens. All three cards retain their registry-owned copy, status, links, and published case-study routes.
 
 ## Case Study Content
 
@@ -62,7 +62,7 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 `content/project-visuals.ts` owns visual paths, kinds, native dimensions, titles, alternative text, captions, and evidence notes. The registry remains partial during Slice 8B: newBudget and Unicos have approved visual groups, Home Security remains unregistered, and projects without registered visuals return an empty readonly collection.
 
-`ProjectEvidenceGallery` is a presentation-only Server Component. The shared case-study layout renders it after structured project evidence and before the MDX narrative, while projects without visual records render no empty heading or section. newBudget screenshots are served locally from `public/images/newbudget`, Unicos screenshots remain under `public/images/unicos`, and code-authored Unicos SVGs remain under `public/diagrams`. Slice 8B adds no component or runtime architecture: there is no runtime image API, external image dependency, client interaction, lightbox, or carousel.
+`ProjectEvidenceGallery` is a presentation-only Server Component. The shared case-study layout renders it after structured project evidence and before the MDX narrative, while projects without visual records render no empty heading or section. newBudget screenshots are served locally from `public/images/newbudget`, Unicos screenshots remain under `public/images/unicos`, and code-authored Unicos SVGs remain under `public/diagrams`. Framing, spacing, shadows, and caption presentation may change in CSS, but the visual files, dimensions, alternative text, captions, evidence notes, and registry metadata remain unchanged. There is no runtime image API, external image dependency, client interaction, lightbox, or carousel.
 
 The newBudget screenshots are authentic owner-approved application captures using approved demonstration records. The Unicos screenshots remain approved local-development captures. The SVGs are explanatory representations derived from reviewed evidence and omit private source details and unsupported production infrastructure. Visuals supplement rather than replace structured evidence, narrative, status labels, or limitations.
 

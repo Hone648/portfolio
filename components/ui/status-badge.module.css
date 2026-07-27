@@ -5,7 +5,8 @@
   border-radius: var(--radius-sm);
   padding: var(--space-1) var(--space-2);
   color: var(--color-text-muted);
-  background: var(--color-background);
+  background: var(--color-surface-muted);
+  font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 700;
   line-height: 1.35;
@@ -18,14 +19,19 @@
 }
 
 .production {
-  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+  border-color: var(--color-accent);
   color: var(--color-accent-strong);
+  background: var(--color-accent-soft);
 }
 
 .active-development {
+  border-color: var(--color-border-strong);
   border-style: dashed;
+  background: var(--color-surface);
 }
 
 .operational-lab {
   border-left-width: 0.25rem;
+  border-left-color: var(--color-warm);
+  background: var(--color-warm-soft);
 }

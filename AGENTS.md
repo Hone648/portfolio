@@ -7,6 +7,17 @@
 - Avoid unnecessary client-side JavaScript.
 - Use global CSS only for tokens, resets, document-level defaults, accessibility defaults, and focus behavior.
 - Use CSS Modules for component-specific styling.
+- Preserve the approved technical-editorial visual direction: warm neutral surfaces, ink text, restrained steel-blue accents, display-serif major headings, sans-serif body copy, and monospace metadata.
+- Do not add UI frameworks, Tailwind, CSS-in-JS, icon packages, animation packages, font packages, or external font files without a separately approved slice.
+- Keep visual personality grounded in typography, rules, spacing, surface hierarchy, and authentic project visuals rather than decorative clutter.
+- Visual changes must not alter registry facts, status labels, repository visibility, case-study prose, profile claims, or visual metadata.
+- Project-specific colours are decorative identity accents and must not encode project status.
+- Status distinctions must retain visible text and non-colour structural cues.
+- Do not crop, recolour, filter, reconstruct, or replace approved application screenshots or diagrams during presentation work.
+- Home Security must not receive placeholder visuals or reconstructed topology.
+- Avoid unnecessary Client Components and JavaScript-driven visual behaviour.
+- Do not introduce entire-card links, nested interactive elements, hover-only information, or decorative pseudo-element text that adds visitor-facing claims or labels.
+- Redesigned surfaces must preserve keyboard focus, heading semantics, readable contrast, and narrow-screen behaviour.
 - Do not create dead navigation links to routes that do not exist.
 - Do not introduce Client Components for layout behavior that CSS can handle.
 - Read project facts from `content/project-metadata.ts` rather than duplicating them in components.
