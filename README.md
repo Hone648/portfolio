@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 9B: Project-card storytelling. Project cards now lead with each project's purpose and Hunter's engineering contribution, while compact card statuses remain tied to the unchanged full project classifications. Complete limitations remain available on the Projects page and fully visible in case studies; repository visibility and project claims are unchanged. Slice 9C, the newBudget case-study narrative, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
+This repository is at Slice 9C: newBudget case-study narrative. The newBudget story now leads with the product purpose and the month-first planning model rather than with substantiation process. The narrative explains the financial model, the internal user-ownership boundary, what operating the application in production required, and how a production carryover incident and its recovery changed release verification. Registry facts, screenshots, project status, privacy boundaries, and financial limitations remain unchanged, and the shared layout still renders the registry limitations after the narrative. Slice 9D, the Unicos case-study narrative, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
 
 ## Stack
 
