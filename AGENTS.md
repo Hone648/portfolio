@@ -22,6 +22,9 @@
 - Link a project card to a case study only when that route is implemented and published.
 - Update published-route availability and project-link metadata together.
 - Keep case-study prose traceable to reviewed project evidence.
+- Case-study narratives must lead with project purpose and engineering decisions rather than substantiation process.
+- Do not duplicate registry-owned summaries, technologies, capabilities, evidence statements, or limitations in MDX merely to restate them.
+- Production incident narratives must omit secrets, private identifiers, exact demonstration financial records, and unnecessary provider configuration details.
 - Do not publish private URLs, secrets, user data, provider identifiers, or internal deployment details.
 - Render project limitations from the registry without rewriting them in MDX.
 - Keep complete project limitations available through native progressive disclosure on the full project index and fully visible on project case studies.
@@ -47,6 +50,7 @@
 - Resume project names, summaries, links, and statuses must come from the project registry.
 - Planned education must remain clearly labeled as planned.
 - AI-assisted delivery must be described accurately.
+- AI assistance may be described accurately but must remain secondary to Hunter's decisions and work.
 - Preserve the approved project slug and public status-label vocabulary.
 - Update evidence and limitations together when changing a project claim.
 - Never add a public source URL for a private repository.
@@ -80,6 +84,8 @@
 - Do not digitally reconstruct or edit an application screenshot to hide identity or financial information; recapture it safely.
 - Do not use Statement Review, statement import, or reconciliation screens as portfolio evidence.
 - Do not describe Statement Review as an implemented portfolio capability.
+- Do not publish Statement Review, statement reconciliation, statement-import, PDF-analysis, OCR, or related experimental workflows as portfolio capabilities without separate approval, even when partial implementation exists privately.
+- The newBudget narrative may discuss the month-first model, internal ownership boundary, estimated debt snapshots, production operation, and the reviewed carryover incident.
 - Do not claim replacement statement functionality until it exists and is separately reviewed.
 - newBudget screenshots demonstrate visible product interfaces but do not independently prove security, correctness, audited reporting, or scale.
 - Estimated debt and installment outputs must not be described as lender-exact accounting.
