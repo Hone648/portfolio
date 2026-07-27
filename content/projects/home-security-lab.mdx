@@ -1,74 +1,93 @@
-## Operational context
+## Why I built a local security and automation hub
 
-The Home Security and Automation Lab is an operational systems-integration project running in a private residence. One Ubuntu Server host acts as the local Frigate and Home Assistant hub, and three cameras currently feed the system. The project joins video transport, local recording, AI object detection, automation conditions, MQTT messaging, and mobile notifications into one working loop.
+A camera that alerts on motion alerts on everything: wind moving a branch, headlights sweeping past, rain, a cat. Repeated low-value notifications make the alert stream easy to ignore — precisely the outcome I wanted to avoid.
 
-This is a privately operated lab, not a commercial security product or professionally monitored alarm. Its value as engineering evidence comes from integrating independently configurable services, diagnosing failures across several layers, and setting careful boundaries around what can be shown publicly. It does not establish formal availability, perfect detection, guaranteed alert delivery, or large-scale video-platform experience.
+The question I wanted answered was narrower: not "did something change in this frame," but "did a person appear somewhere that matters, at a time when it matters." That is what this system is built around.
 
-I owned the system requirements, deployment decisions, configuration choices, troubleshooting, validation, privacy boundaries, and portfolio acceptance. AI assistance supported research, troubleshooting, documentation, and implementation guidance. Human review retained final control, and AI did not autonomously administer the live system.
+I also wanted the answer produced locally. Video from around a home is about as sensitive as personal data gets.
 
-## Local containerized architecture
+So this became a working residential system rather than an architecture sketch. I chose and integrated the services, brought the cameras in, configured and validated the event path, worked through the failures, and decided where public explanation stops. It is operational in a private residence: useful in practice, and not a commercial security product or a professionally monitored alarm.
 
-The sanitized event path is straightforward: `camera stream -> RTSP -> Frigate -> Google Coral-accelerated object inference -> classified object event -> selected person event -> Home Assistant conditions -> mobile notification`. Ubuntu Server supplies the host environment, while Docker keeps Frigate, Home Assistant, and Mosquitto in separate service boundaries. Frigate manages the three RTSP streams, local recording, and object-event pipeline. A Google Coral Edge TPU accelerator performs the supported inference workload used to classify detected objects. Frigate can distinguish multiple configured object classes; the notification workflow described here selects the `person` class before Home Assistant applies area and time conditions. Mosquitto supplies local MQTT publish-and-subscribe messaging.
+## Designing one event path across separate systems
 
-Keeping the hub local-first gives direct control over the services and the event path without turning the project into a public cloud application. Local-first does not mean that every possible dependency or operation has been proven fully offline. The public explanation stays at the architectural level because network structure, service configuration, and residential automation details are sensitive.
+It helps to follow a single event from the camera to the phone, because no one service owns the outcome.
 
-The container boundary also helps isolate troubleshooting. A healthy host does not prove that a camera stream is available, and a running container does not prove that events reach the automation layer. Each service has its own responsibilities and failure signals, which makes validation an end-to-end systems task rather than a single process check.
+A camera produces video. RTSP carries it to the host. Frigate receives the streams, records locally, and runs object detection, with a Google Coral Edge TPU handling the accelerated inference workload — which is what makes continuous detection on a modest single host practical. When Frigate classifies an object it emits an event, and this workflow selects the `person` class from Frigate's broader output. That event goes to Home Assistant, which decides whether the configured area and time context make it worth interrupting someone. If so, Home Assistant sends the mobile notification, and the loop ends there.
 
-## Three-camera integration
+Every handoff is both a decision point and a place where things can quietly stop working. Reading the system as one path rather than a stack of installed software is what makes everything below easier to follow.
 
-Three RTSP camera streams are integrated into Frigate for local recording and AI object detection. A Google Coral Edge TPU accelerates the object-classification workload. Frigate can distinguish multiple configured object classes, while the notification workflow described in this case study uses `person` as one selected event type. RTSP provides the video transport, and selecting the relevant object class narrows the event stream before automation conditions decide whether an alert is warranted.
+## Treating detection as an input, not a decision
 
-Bringing each camera into the hub required practical work across stream availability, authentication, local networking, container access, and application configuration. A failed picture can originate at the camera, the network path, the RTSP stream, the container boundary, or the Frigate configuration. Separating those layers prevents an application symptom from being mistaken for a camera failure.
+The most useful choice I made was refusing to let detection be the alert.
 
-The portfolio deliberately omits camera brands, positions, viewing directions, fields of view, stream addresses, retention settings, and identifying frames. The project uses object classification, not facial recognition or biometric identification, and detection quality is not represented as perfect.
+Motion is the crudest signal: something in the frame changed. A classified object event is better — Frigate says this looks like a particular kind of object, and selecting the `person` class narrows further. But even a confident person event is only a candidate: it answers what Frigate saw, not whether I need to know about it.
 
-## Detection areas and time windows
+That second question belongs to Home Assistant, and it is policy rather than detection. The event has to correspond to a configured area, and the time has to fall inside an approved automation window, before the notification action runs. Where and when carry as much meaning as what — the same person in the same spot can be unremarkable at one hour and worth a look at another.
 
-A selected Frigate object event is an input to the automation rather than an unconditional alert. The working event semantics are:
+Splitting those responsibilities keeps the alerts worth reading. It does not make them correct: false positives still happen, meaningful events can still be missed, and I have not measured a detection rate. The system also does not identify anyone — it classifies object types, which is not facial recognition or biometric identification.
 
-1. Frigate produces an object-detection event classified as `person`.
-2. The selected event corresponds to a configured area or zone.
-3. The current time falls within an approved automation window.
-4. Home Assistant triggers the mobile-notification action when those conditions match.
+## Bringing three camera streams into the local hub
 
-> A person detected in a configured exterior area during an overnight window can produce a mobile notification.
+Three RTSP streams currently feed Frigate for local recording and detection. Integrating them was less about configuration syntax than about learning where things break.
 
-Combining a selected object class, area, and time makes the alert policy more selective than notifying on every motion event. A person event outside the configured context does not need the same response as one that matches the chosen area and time window, and other detected object classes do not automatically enter this notification workflow. This filtering reduces irrelevant notifications, but it does not eliminate false positives or guarantee that every meaningful event will be detected.
+A camera has to be reachable on the local network and accept authentication. Its stream has to actually be served, in a form the ingesting service can consume. The host has to reach it, and so does the container — not automatically the same statement. And Frigate has to accept the configuration describing it.
 
-Exact zone names, camera identities, time schedules, occupancy routines, and household patterns are intentionally absent. Those values describe physical-security behavior, so publishing them would undermine the privacy boundary the system is meant to respect.
+The lesson that stuck is that one visible symptom covers all of those. A blank camera tile tells you the picture is missing. It does not tell you whether the camera is offline, authentication is failing, the stream is not being served, the container cannot reach what the host can, or the configuration is being rejected before the stream is attempted. Reading that as "the camera is broken" is how you end up power-cycling hardware that was fine the whole time.
 
-## Mobile notifications
+## Using service boundaries to keep the system understandable
 
-When the automation conditions match, Home Assistant sends a mobile notification. That action turns a local detection event into an alert a person can review without exposing the underlying residential configuration in the portfolio. Mobile delivery is part of the operational loop and was included in end-to-end validation.
+Frigate, Home Assistant, and Mosquitto run as separate containerized services on one Ubuntu Server host. That separation is what makes the system debuggable by one person.
 
-The alert conditions are intentionally selective. The system is designed to surface events that match configured context rather than create a notification for every motion change or every person event. This is an automation convenience, not emergency dispatch, redundant paging, or professional monitoring. Mobile notification delivery also should not be interpreted as guaranteed or governed by a formal service level.
+Frigate ingests streams, records, and produces object events. Home Assistant evaluates conditions and takes actions. Mosquitto carries local publish-and-subscribe messaging. Because they are separate, each has its own logs and health, and I can inspect or restart one without treating the hub as a single opaque application.
 
-## MQTT and event integration
+MQTT is worth describing at that architectural level: a producer, a broker, and consumers, so an event source does not have to know who is listening. Verifying local MQTT messaging was part of bringing the hub together, and an observable message boundary helps when diagnosing integration. Broker details, topics, payloads, identifiers, and credentials stay unpublished, and not every automation here depends on a hand-authored topic — the point is that the messaging layer exists, works locally, and can be inspected on its own.
 
-Mosquitto provides local MQTT publish-and-subscribe messaging between services that need an event-oriented boundary. MQTT makes it possible to reason about a producer, a broker, and one or more consumers without tightly coupling every service to the implementation of the others. Verified message flow was part of bringing the hub together and diagnosing integration failures.
+What container separation does not give me is orchestration beyond Docker on one host: no failover, no self-healing, no distribution, no formal observability stack.
 
-The case study describes MQTT at this systems level. It does not publish broker locations, topic names, payloads, credentials, or internal entity identifiers. It also does not imply that every Home Assistant automation depends on a manually authored MQTT topic. The supported claim is narrower: local MQTT messaging is operational and forms part of the integration environment.
+## Troubleshooting the path one boundary at a time
 
-## Operational troubleshooting
+The most revealing failure mode is the boring one — the notification that never arrives.
 
-Validation crossed the complete path instead of stopping when individual containers reported that they were running. The work included confirming camera reachability, checking RTSP availability, reviewing service health and logs, verifying MQTT communication, confirming that selected Frigate object events reached the automation layer, and testing that matching conditions produced mobile notifications.
+"Container running" is a process fact, not an end-to-end result. Frigate can be running while a camera stream is dead. A stream can be visible while no object events are produced. An object event can exist while it falls outside the configured area or time policy. The automation can fire while the notification never lands. All four produce the same outcome: nothing happened, and the temptation is to start changing things — restart a service, edit a condition, reboot the host — and then have no idea which change mattered.
 
-This required distinguishing camera, network, host, container, and application-layer failures. A useful diagnostic sequence starts with the nearest observable boundary, verifies its input and output, and then moves to the next layer. That approach keeps a stream problem from being debugged as an automation problem and keeps a notification condition from being treated as an NVR failure.
+The method that replaces guessing is to walk the path in order. Start at the nearest observable input and confirm it receives what it should. Confirm it produces what the next boundary expects. Move one step downstream. Where the expected output disappears, stop: that is the layer to diagnose, and everything past it is a symptom.
 
-The public account remains generic. Residential addresses, network identifiers, hardware identifiers, private logs, service credentials, and exact network design are not necessary to demonstrate the troubleshooting method.
+For a missing alert that means checking, in order: the camera is reachable, the stream is being served, the host and then the container can get to it, Frigate is ingesting it, a selected object event is produced, local messaging is moving where it applies, Home Assistant's conditions evaluate the way I think they do, and the notification action ran and delivered.
 
-## Privacy and security boundary
+Most of the value is in the ordering. It keeps a stream problem from being debugged as an automation problem, and keeps me from editing an automation that was never reached.
 
-Home-security infrastructure contains inherently sensitive information. Video can identify people and property, while camera placement, automation schedules, and network configuration can reveal how a residence is observed and when alerts are expected. Footage is therefore not portfolio content, and source configuration cannot be published casually.
+## Operating a local system without pretending it is highly available
 
-Public evidence is limited to sanitized operational documentation. Exact placement, schedules, topology, addresses, credentials, event payloads, and identifying images remain private. The absence of a public source repository and live link is intentional: the older repository does not represent this operational deployment, and the current configuration is unsuitable for public exposure.
+Local-first is a real tradeoff, not a free win.
 
-These boundaries reduce unnecessary disclosure; they are not a claim of a formal security audit, invulnerability, or complete hardening. The responsible portfolio choice is to explain the architecture and engineering decisions without reproducing the configuration that protects a real home.
+The upside is direct ownership: recording and inference happen on hardware I control, and the event path is mine to change. The cost is that everything operational is also mine — updates, storage, networking, service health, and recovery. One host keeps integration simple, and it is also a single dependency underneath the whole detection-and-alert path.
 
-## Tradeoffs and current boundaries
+The honest summary: the system is operational and I use it, with no measured availability figure, no failover, and no validated recovery process. The mobile notification is an alert for me to look at — not professional monitoring, not redundant paging, not emergency dispatch, and not something whose delivery is promised. Running the core services locally is also not the same as proving every dependency is fully offline.
 
-Local-first control comes with responsibility for updates, service health, storage, networking, and recovery. A single local hub simplifies integration and troubleshooting, but it is also a dependency for the combined detection and automation path. The project does not claim high availability, failover, or measured uptime.
+## Keeping useful evidence from becoming a security disclosure
 
-Object-class detection is more selective than generic motion alerts. This notification workflow narrows Frigate's broader output to selected person events, while area and time conditions narrow the notification policy further. Those choices improve relevance without guaranteeing accuracy. Three integrated cameras demonstrate an operational residential deployment, not a commercial fleet or enterprise video infrastructure. Mobile notifications provide a useful user alert, but they are not equivalent to monitored alarm response.
+Almost everything that would make this case study more impressive would also make a house less safe.
 
-Private configuration also limits how much source evidence can be made public. Sanitized documentation can show the event model, service responsibilities, and troubleshooting judgment, but not the exact deployment details. An earlier ESP32 sensor direction was retired so the project could remain focused on the operational Frigate, Home Assistant, camera, and notification stack.
+Home-security infrastructure is unusually revealing. Footage shows people and property. Camera placement and coverage show how a property is watched, and where it is not. Zone names and automation windows describe when someone expects to be alerted — close to describing when anyone is home. Network layout, credentials, and messaging details describe how to interfere with it. Individually these look like ordinary technical detail; together they are a map.
+
+That is why there are no frames, clips, or configuration here, and why exact areas, schedules, addresses, identifiers, and stream details stay out of it. It is also why this project deliberately has no public repository and no live link. An older home-automation repository of mine exists, but it does not represent this deployment.
+
+What is publishable is the reasoning: the event path, the responsibilities, the policy decision, the failure boundaries. Withholding the rest is a decision about what is safe to say, not evidence that the deployment is hardened or audited.
+
+## How I built and validated the system
+
+I brought this up incrementally, because a system assembled all at once fails all at once.
+
+Each service went in with its responsibility understood and checked before the next depended on it: the host and containers, then a stream at a time into Frigate, then local MQTT messaging verified as flowing, then object events confirmed to be produced and classified, then automation conditions tested against events I could reproduce, and finally the mobile notification confirmed to arrive. Logs and service health showed what each boundary was receiving and emitting. Every configuration change was one I made and reviewed by hand.
+
+AI assistance helped with research, troubleshooting ideas, documentation, and implementation guidance. The requirements, deployment and configuration decisions, physical work, diagnosis, validation, and privacy boundaries were mine, and nothing administered the live system on its own.
+
+## What this project demonstrates
+
+This is the project where the pieces I care about stop being separate subjects.
+
+It runs across software, networking, hardware acceleration, and physical devices, and the interesting work is at the joints: one event path across independent services, detection treated as an input rather than a verdict, and alert policy placed where context lives instead of where classification happens. It taught me to think in boundaries — what each layer receives, what it emits, and which one to interrogate when the result is missing.
+
+It also taught me what a locally operated system asks of the person running it, and where public explanation has to stop when the subject is a home.
+
+What it is not is professional security work. Three cameras in a residence is an integration, not a commercial deployment. Selective notifications are useful, not certified detection. Running well is not the same as measured availability.
