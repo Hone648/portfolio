@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 9C: newBudget case-study narrative. The newBudget story now leads with the product purpose and the month-first planning model rather than with substantiation process. The narrative explains the financial model, the internal user-ownership boundary, what operating the application in production required, and how a production carryover incident and its recovery changed release verification. Registry facts, screenshots, project status, privacy boundaries, and financial limitations remain unchanged, and the shared layout still renders the registry limitations after the narrative. Slice 9D, the Unicos case-study narrative, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
+This repository is at Slice 9D: Unicos case-study narrative. The Unicos story now leads with the body-shop coordination problem and the repair-order workflow rather than with status disclaimers and architecture categories. The narrative explains lifecycle services, repair-order-scoped authorization, estimate-to-invoice conversion, transactional billing safeguards, the Django admin boundary, and active-development validation. Registry facts, screenshots, diagrams, project status, privacy constraints, and production-readiness limitations remain unchanged, and the shared layout still renders the registry limitations after the narrative. Unicos remains a local active-development application and is not described as deployed or production-ready. Slice 9E, the Home Security case-study narrative, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
 
 ## Stack
 

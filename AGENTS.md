@@ -74,6 +74,16 @@
 - Unicos architecture evidence must remain tied to the reviewed evidence commit.
 - Do not publish the private Unicos repository URL or private commit identifiers.
 - Django admin must be described as an emergency/development interface, not the normal operator workflow.
+- Django admin remains a separate interface with incomplete policy unification; do not claim full admin/domain policy unification or an audited override path.
+- The Unicos narrative must centre on repair-order workflow decisions rather than a feature inventory.
+- Preserve Unicos as an active-development local application; do not imply production deployment, production readiness, commercial use, or real-shop operation.
+- The Unicos narrative may discuss the repair-order spine, lifecycle services, repair-order-scoped authorization, estimate-to-draft-invoice conversion, transactional billing, admin-service alignment, and reviewed validation.
+- Do not describe current Unicos authorization as complete RBAC, complete object-level authorization, multi-shop tenancy, or comprehensive security.
+- Communication entries are internal history records and must not be presented as email, SMS, or external messaging integration.
+- Attachment persistence is local-development storage and must not be presented as production document infrastructure.
+- Browser printing must not be presented as generated-PDF or document-generation infrastructure.
+- Reports must remain operational snapshots rather than accounting, revenue, receivables-ageing, or mature business-intelligence infrastructure.
+- Unicos records invoices and payments but is not a payment processor or full accounting ledger.
 - SVG diagrams must contain no scripts, external resources, embedded raster images, secrets, private identifiers, or editor metadata.
 - Diagrams cannot add unsupported services, integrations, production infrastructure, or outcomes.
 - Full-size asset links and meaningful alternative text are required.
