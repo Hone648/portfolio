@@ -25,7 +25,10 @@ export function ProjectCard({
       : 0;
 
   return (
-    <article className={`${styles.card} ${styles[variant]}`}>
+    <article
+      className={`${styles.card} ${styles[variant]}`}
+      data-project={project.slug}
+    >
       <header className={styles.header}>
         <div className={styles.context}>
           <p className={styles.category}>{project.card.category}</p>
@@ -36,7 +39,7 @@ export function ProjectCard({
 
       <p className={styles.description}>{project.card.description}</p>
 
-      <div className={styles.detailGroup}>
+      <div className={`${styles.detailGroup} ${styles.highlightsGroup}`}>
         <p className={styles.label}>What I built</p>
         <ul className={styles.highlights}>
           {project.card.highlights.map((highlight) => (
@@ -45,7 +48,7 @@ export function ProjectCard({
         </ul>
       </div>
 
-      <div className={styles.detailGroup}>
+      <div className={`${styles.detailGroup} ${styles.technologyGroup}`}>
         <p className={styles.label}>Built with</p>
         <ul className={styles.technologies}>
           {technologies.map((technology) => (

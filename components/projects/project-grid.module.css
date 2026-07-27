@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-6);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -11,10 +11,10 @@
 }
 
 .featured {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 }
 
 .index {
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-6);
+  gap: var(--space-7);
 }
