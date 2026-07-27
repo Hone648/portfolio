@@ -100,6 +100,20 @@
 - newBudget screenshots demonstrate visible product interfaces but do not independently prove security, correctness, audited reporting, or scale.
 - Estimated debt and installment outputs must not be described as lender-exact accounting.
 - Preserve newBudget's verified deployed-production classification.
+- The Home Security narrative must follow the camera-to-notification event path rather than read as a hardware or container inventory.
+- Preserve Home Security as an operational private residential integration, not a commercial product, professionally monitored alarm, emergency-response system, or enterprise video platform.
+- The Home Security narrative may discuss local containerized services, three RTSP streams, Coral-accelerated object detection, selected person events, area- and time-conditioned notifications, MQTT integration, and boundary-by-boundary troubleshooting.
+- Object classification must not be described as facial recognition, biometric identification, or guaranteed intrusion detection.
+- A detected person event is an automation input, not an unconditional alert.
+- Mobile notifications must not be described as guaranteed delivery, professional monitoring, redundant paging, or emergency dispatch.
+- Local-first must not be described as fully offline, air-gapped, highly available, fault tolerant, or independently audited.
+- Do not publish addresses, private network identifiers, RTSP URLs, credentials, camera placement, viewing direction, fields of view, exact zones, exact schedules, occupancy patterns, footage, identifying frames, private logs, MQTT topics or payloads, entity IDs, device IDs, remote-access configuration, or sensitive topology.
+- MQTT may be described at the producer, broker, and consumer level without exposing deployment-specific details or implying every automation uses a manually authored topic.
+- Three cameras demonstrate an operational residential integration, not commercial fleet scale.
+- The lack of a public Home Security source repository and live link is intentional.
+- The older home-automation repository does not represent the current operational deployment.
+- Slice 8C remains postponed; do not add placeholder or reconstructed Home Security visual evidence.
+- AI assistance on Home Security must remain secondary and must not be described as autonomous administration of the live system.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.
