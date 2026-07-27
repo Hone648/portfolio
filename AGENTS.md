@@ -11,7 +11,10 @@
 - Do not introduce Client Components for layout behavior that CSS can handle.
 - Read project facts from `content/project-metadata.ts` rather than duplicating them in components.
 - Project cards must consume a complete `Project` record.
-- Status text must come from `projectStatusLabels`.
+- Card-specific copy must come from the typed project registry and must not broaden the full project record.
+- Project cards should lead with category, purpose, engineering contribution, and exploration links.
+- Compact and full status text must come from the approved central status-label mappings.
+- Project cards must not expose private source links or imply public access to private repositories.
 - Never create links to unimplemented project case-study routes.
 - Start MDX case-study narrative at `h2`; the shared case-study layout owns the single page `h1`.
 - Keep structured project facts out of MDX frontmatter and narrative when the registry already owns them.
@@ -21,7 +24,7 @@
 - Keep case-study prose traceable to reviewed project evidence.
 - Do not publish private URLs, secrets, user data, provider identifiers, or internal deployment details.
 - Render project limitations from the registry without rewriting them in MDX.
-- Keep project limitations visible on the full project index.
+- Keep complete project limitations available through native progressive disclosure on the full project index and fully visible on project case studies.
 - Presentation components must not silently rewrite registry claims.
 - Profile facts must come from `content/site-content.ts`.
 - Selected career history and transferable strengths must come from `content/career-history.ts`.

@@ -46,8 +46,8 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 8A: Unicos visual evidence | Add approved Unicos screenshots and sanitized diagrams. | Complete. Preserve active-development and privacy boundaries. |
 | Slice 8B: newBudget visual evidence | Add approved newBudget screenshots and correct the Statement Review claim. | Complete. Preserve deployed-production status and financial-data privacy. |
 | Slice 8C: Home Security visual evidence | Add sanitized visuals for the operational local system. | Postponed, not cancelled. Do not expose private topology, camera details, footage, or credentials. |
-| Slice 9A: Human-first public language reset | Lead public copy with Hunter, the work, and the engineering thinking. | Change terminology only; preserve claims, structure, status, and internal substantiation. |
-| Slice 9B: Project-card storytelling | Improve how project cards introduce purpose and practical value. | Do not broaden claims or obscure project state. |
+| Slice 9A: Human-first public language reset | Complete. Public copy leads with Hunter, the work, and the engineering thinking. | Preserve claims, structure, status, and internal substantiation. |
+| Slice 9B: Project-card storytelling | Active. Improve how project cards introduce purpose and practical value. | Do not broaden claims or obscure project state. |
 | Slice 9C: newBudget case-study narrative | Refine the newBudget story around product purpose, engineering decisions, and operations. | Preserve deployed-production facts and current financial-model limitations. |
 | Slice 9D: Unicos case-study narrative | Refine the Unicos story around business workflows and implementation decisions. | Do not imply production deployment, production readiness, or real-shop use. |
 | Slice 9E: Home Security case-study narrative | Refine the Home Security story around integration, automation, and troubleshooting. | Preserve residential privacy and non-commercial status. |
@@ -58,7 +58,7 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 12: Production deployment | Deploy the reviewed portfolio. | Do not add analytics or custom-domain decisions unless approved. |
 | Slice 13: Post-launch hardening | Improve substantiation, monitoring, and maintenance after release. | Do not rewrite prior claims without matching implementation or documentation updates. |
 
-Slice 9A is the active slice. Slice 8C remains deferred until an approved Home Security visual-evidence pass; it has not been cancelled.
+Slice 9A is complete, and Slice 9B is the active slice. Slice 8C remains deferred until an approved Home Security visual-evidence pass; it has not been cancelled.
 
 ## Branch and Review Workflow
 

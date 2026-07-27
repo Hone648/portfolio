@@ -18,6 +18,13 @@ export type ProjectEvidenceItem = {
   readonly statement: string;
 };
 
+export type ProjectCardContent = {
+  readonly category: string;
+  readonly description: string;
+  readonly highlights: readonly [string, string, string];
+  readonly currentStatus: string;
+};
+
 export type RepositoryReference =
   | {
       readonly visibility: "public";
@@ -51,6 +58,7 @@ export type Project = {
   readonly slug: ProjectSlug;
   readonly name: string;
   readonly summary: string;
+  readonly card: ProjectCardContent;
   readonly status: ProjectStatus;
   readonly featured: boolean;
   readonly technologies: readonly string[];
@@ -67,12 +75,30 @@ export const projectStatusLabels = {
   "operational-lab": "Operational systems-integration project",
 } satisfies Record<ProjectStatus, string>;
 
+export const projectStatusShortLabels = {
+  production: "Live",
+  "active-development": "In development",
+  "operational-lab": "Home lab",
+} satisfies Record<ProjectStatus, string>;
+
 export const projects = [
   {
     slug: "newbudget",
     name: "newBudget",
     summary:
       "A deployed personal-finance application focused on month-first planning, expense tracking, and debt and installment management.",
+    card: {
+      category: "Personal finance",
+      description:
+        "A live budgeting application for planning each month, tracking expenses, and managing debt and installment payments in one place.",
+      highlights: [
+        "Designed financial domain rules for budgets, debts, payments, and balance history.",
+        "Enforced user-scoped ownership through server-side application boundaries.",
+        "Operates with automated validation, monitoring, backups, and documented recovery procedures.",
+      ],
+      currentStatus:
+        "Live on Vercel as a privately operated production application.",
+    },
     status: "production",
     featured: true,
     technologies: [
@@ -118,7 +144,7 @@ export const projects = [
     links: [
       {
         kind: "case-study",
-        label: "Read case study",
+        label: "View case study",
         href: "/projects/newbudget",
       },
       {
@@ -133,6 +159,18 @@ export const projects = [
     name: "Unicos",
     summary:
       "A Django business application for body-shop repair orders, customer and vehicle records, estimates, billing, payments, and operational reporting.",
+    card: {
+      category: "Repair-shop operations",
+      description:
+        "A business application that connects customer, vehicle, repair-order, estimate, invoice, payment, and reporting workflows.",
+      highlights: [
+        "Uses the repair order as the shared workflow spine for shop activity.",
+        "Centralizes permissions and guarded lifecycle transitions.",
+        "Protects billing changes with transactional services and PostgreSQL-backed validation.",
+      ],
+      currentStatus:
+        "Implemented and actively developed locally; production infrastructure and hardening are not complete.",
+    },
     status: "active-development",
     featured: true,
     technologies: [
@@ -178,7 +216,7 @@ export const projects = [
     links: [
       {
         kind: "case-study",
-        label: "Read case study",
+        label: "View case study",
         href: "/projects/unicos",
       },
     ],
@@ -188,6 +226,18 @@ export const projects = [
     name: "Home Security and Automation Lab",
     summary:
       "A local-first Ubuntu Server hub integrating three RTSP cameras with Frigate AI object detection, Home Assistant automations, and mobile notifications.",
+    card: {
+      category: "Home infrastructure",
+      description:
+        "A local security and automation hub combining camera streams, AI object detection, home automations, and mobile alerts.",
+      highlights: [
+        "Runs Frigate, Home Assistant, and Mosquitto as containerized local services.",
+        "Uses Google Coral acceleration across three RTSP camera streams.",
+        "Applies area and time conditions before selected person events trigger mobile notifications.",
+      ],
+      currentStatus:
+        "Operational in a private residential environment; public details intentionally omit sensitive configuration.",
+    },
     status: "operational-lab",
     featured: true,
     technologies: [
@@ -240,7 +290,7 @@ export const projects = [
     links: [
       {
         kind: "case-study",
-        label: "Read case study",
+        label: "View case study",
         href: "/projects/home-security-lab",
       },
     ],

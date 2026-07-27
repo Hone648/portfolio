@@ -11,6 +11,12 @@
   line-height: 1.35;
 }
 
+.compact {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
 .production {
   border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
   color: var(--color-accent-strong);

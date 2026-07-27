@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 9A: the human-first public-language reset. Visitor-facing copy now introduces Hunter, his projects, and his engineering approach without using internal substantiation language as the site's theme. Evidence remains part of content governance, project facts remain registry-owned, and project-state distinctions remain unchanged. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
+This repository is at Slice 9B: Project-card storytelling. Project cards now lead with each project's purpose and Hunter's engineering contribution, while compact card statuses remain tied to the unchanged full project classifications. Complete limitations remain available on the Projects page and fully visible in case studies; repository visibility and project claims are unchanged. Slice 9C, the newBudget case-study narrative, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
 
 ## Stack
 
