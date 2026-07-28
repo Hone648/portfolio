@@ -165,14 +165,14 @@
   font-weight: 700;
 }
 
-.evidenceLinks {
+.relatedProjectLinks {
   display: grid;
   gap: var(--space-2);
   border-top: 1px solid var(--color-border);
   padding-top: var(--space-3);
 }
 
-.evidenceLinks > p {
+.relatedProjectLinks > p {
   color: var(--color-text-muted);
   font-size: 0.8125rem;
   font-family: var(--font-mono);
@@ -180,7 +180,7 @@
   text-transform: uppercase;
 }
 
-.evidenceLinks ul {
+.relatedProjectLinks ul {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-4);
@@ -189,7 +189,7 @@
   list-style: none;
 }
 
-.evidenceLinks a {
+.relatedProjectLinks a {
   font-weight: 700;
 }
 
@@ -208,7 +208,7 @@
 }
 
 .compact .skillItems,
-.compact .evidenceLinks {
+.compact .relatedProjectLinks {
   grid-column: 2;
 }
 
@@ -405,7 +405,7 @@
   .compact .skillGroup h3,
   .compact .skillGroup > p,
   .compact .skillItems,
-  .compact .evidenceLinks {
+  .compact .relatedProjectLinks {
     grid-column: 1;
   }
 }

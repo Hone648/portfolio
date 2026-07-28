@@ -39,7 +39,7 @@ export async function generateMetadata({
   const { project } = getCaseStudyPageData(slug);
 
   return {
-    title: `${project.name} Case Study | Hunter Kam`,
+    title: `${project.name} case study | Hunter Kam`,
     description: project.summary,
   };
 }

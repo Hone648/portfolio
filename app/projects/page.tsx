@@ -7,7 +7,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Projects | Hunter Kam",
   description:
-    "Selected production, active-development, and operational systems work by Hunter Kam.",
+    "Selected work by Hunter Kam: a deployed production application, a business application in active development, and an operational local system.",
 };
 
 export default function ProjectsPage() {

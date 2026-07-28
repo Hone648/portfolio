@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 9F: Visual personality and presentation. The site now uses a warm technical-editorial visual system with refined typography, surface hierarchy, project identity, navigation, project cards, case studies, profile pages, buttons, and status presentation. No UI library, web font, runtime dependency, or Client Component was added. Project facts, status distinctions, authentic visuals, and visitor-facing content remain unchanged; Home Security still renders no visual gallery. Slice 9G, cross-site consistency and content cleanup, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
+This repository is at Slice 9G: Cross-site consistency and content cleanup. The slice aligns action verbs, sentence casing, public terminology, profile and project link wording, route metadata phrasing, minor presentation rhythm, and stale internal profile naming across the homepage, Projects index, case studies, About, Resume, Contact, and the shared header and footer. Portfolio navigation now reads `View`, external applications and assets read `Open`, and direct email actions read `Email`. Project facts, status distinctions, case-study narratives, visual assets, and the Slice 9F visual direction remain unchanged, and no dependency or runtime architecture was added. Slice 10, accessibility, SEO, and performance, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
 
 ## Stack
 

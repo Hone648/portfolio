@@ -24,13 +24,13 @@ export default function Home() {
           and the engineering decisions behind them.
         </p>
         <div className={styles.actions}>
-          <ButtonLink href="/projects">Explore Projects</ButtonLink>
+          <ButtonLink href="/projects">View projects</ButtonLink>
           <ButtonLink
             href="https://github.com/Hone648"
             external
             variant="secondary"
           >
-            View GitHub Profile
+            View GitHub profile
           </ButtonLink>
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function Home() {
         </div>
         <ProjectGrid projects={featuredProjects} variant="featured" />
         <ButtonLink href="/projects" variant="secondary">
-          Explore All Projects
+          View all projects
         </ButtonLink>
       </section>
 

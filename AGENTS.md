@@ -125,6 +125,14 @@
 - The older home-automation repository does not represent the current operational deployment.
 - Slice 8C remains postponed; do not add placeholder or reconstructed Home Security visual evidence.
 - AI assistance on Home Security must remain secondary and must not be described as autonomous administration of the live system.
+- Use sentence case for visitor-facing buttons, navigation actions, section headings, and labels unless a proper noun, project name, organisation name, technology name, or approved status label requires otherwise.
+- Use `View` for explicit navigation actions to portfolio content, `Open` for external applications and full-size assets, and `Email` for direct email actions. Concise destination labels such as `About Hunter` are permitted where they read more naturally than an imperative action.
+- Keep case-study action wording consistent across project cards and the resume.
+- Prefer natural public prose such as `in active development` over internal identifier-style wording.
+- Keep internal status keys and discriminated-union values unchanged.
+- Cross-site cleanup must not reopen approved case-study narratives or broaden claims.
+- Do not create a generic copy registry or abstraction merely to centralise a handful of static labels.
+- Internal naming should reflect current public concepts when doing so does not erase legitimate evidence architecture.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.

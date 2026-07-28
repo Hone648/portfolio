@@ -33,7 +33,7 @@ export default function ContactPage() {
               external
               variant="secondary"
             >
-              View GitHub Profile
+              View GitHub profile
             </ButtonLink>
           </div>
         </div>
@@ -42,9 +42,9 @@ export default function ContactPage() {
       <section className={styles.section} aria-labelledby="explore-the-work">
         <h2 id="explore-the-work">Explore the work</h2>
         <div className={styles.actions}>
-          <ButtonLink href="/projects">Explore Projects</ButtonLink>
+          <ButtonLink href="/projects">View projects</ButtonLink>
           <ButtonLink href="/resume" variant="secondary">
-            View Resume
+            View resume
           </ButtonLink>
         </div>
       </section>
