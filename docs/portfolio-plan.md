@@ -52,13 +52,15 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 9D: Unicos case-study narrative | Complete. Refine the Unicos story around business workflows and implementation decisions. | Do not imply production deployment, production readiness, or real-shop use. |
 | Slice 9E: Home Security case-study narrative | Complete. Refine the Home Security story around integration, automation, and troubleshooting. | Preserve residential privacy and non-commercial status. |
 | Slice 9F: Visual personality and presentation | Complete. Improve the site's visual character and project presentation. | Do not alter factual claims, visual authenticity, or status distinctions. |
-| Slice 9G: Cross-site consistency and content cleanup | Active. Align terminology, rhythm, and presentation across the site. | Avoid narrative restructuring reserved for earlier Slice 9 work. |
-| Slice 10: Accessibility, SEO, and performance | Harden public quality signals. | Do not treat this as deployment completion. |
+| Slice 9G: Cross-site consistency and content cleanup | Complete. Align terminology, rhythm, and presentation across the site. | Avoid narrative restructuring reserved for earlier Slice 9 work. |
+| Slice 10A: Accessibility and semantic hardening | Active. Audit and harden keyboard access, semantics, accessible names, focus, reflow, contrast, and resilient native behaviour. | Do not redesign the site, change project claims, or add a browser-test framework. |
+| Slice 10B: Metadata, SEO, and shareability | Planned. Add reviewed metadata and sharing surfaces. | Do not mix metadata work with deployment completion. |
+| Slice 10C: Performance audit and targeted optimisation | Planned. Measure performance and address demonstrated bottlenecks. | Do not make speculative optimisations without measured evidence. |
 | Slice 11: CI and browser validation | Add automated validation workflows and focused browser smoke tests. | Do not add broad test frameworks without scope justification. |
 | Slice 12: Production deployment | Deploy the reviewed portfolio. | Do not add analytics or custom-domain decisions unless approved. |
 | Slice 13: Post-launch hardening | Improve substantiation, monitoring, and maintenance after release. | Do not rewrite prior claims without matching implementation or documentation updates. |
 
-Slice 9A through Slice 9F are complete, and Slice 9G is the active slice. Slices 10 through 13 remain planned. Slice 8C remains deferred until an approved Home Security visual-evidence pass; it has not been cancelled.
+Slice 9A through Slice 9G are complete, and Slice 10A is active. Slices 10B, 10C, and 11 through 13 remain planned. Slice 8C remains deferred until an approved Home Security visual-evidence pass; it has not been cancelled.
 
 ## Branch and Review Workflow
 

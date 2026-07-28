@@ -133,6 +133,14 @@
 - Cross-site cleanup must not reopen approved case-study narratives or broaden claims.
 - Do not create a generic copy registry or abstraction merely to centralise a handful of static labels.
 - Internal naming should reflect current public concepts when doing so does not erase legitimate evidence architecture.
+- Target WCAG 2.2 Level AA for public portfolio surfaces.
+- Prefer native HTML semantics over ARIA when native elements expose the required role and behaviour.
+- Repeated visible action labels may append destination context after the complete visible label in their accessible names without changing visible wording.
+- Communicate new-tab behaviour through each affected link's accessible name.
+- Do not use global overflow suppression to conceal responsive layout defects; fix overflow at the responsible component.
+- Keep focus styles visible across light, dark, and forced-colour surfaces.
+- Accessibility claims require both automated findings and manual keyboard, reflow, text-spacing, motion, and forced-colour review.
+- Do not add accessibility libraries or browser-test frameworks outside an approved validation slice.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.

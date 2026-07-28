@@ -21,7 +21,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
-        <main id="main-content" className="site-main">
+        <main id="main-content" className="site-main" tabIndex={-1}>
           {children}
         </main>
         <SiteFooter />

@@ -55,7 +55,7 @@ export function ProjectEvidenceGallery({
                           href={visual.src}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={`Open full-size ${visual.title} ${kindLabel.toLowerCase()} for ${projectName}`}
+                          aria-label={`Open full-size ${visual.title} ${kindLabel.toLowerCase()} for ${projectName} in a new tab`}
                         >
                           <Image
                             src={visual.src}
@@ -82,7 +82,7 @@ export function ProjectEvidenceGallery({
                             href={visual.src}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`Open ${visual.title} at full size in a new tab`}
+                            aria-label={`Open full-size asset: ${visual.title} in a new tab`}
                           >
                             Open full-size asset
                           </a>
