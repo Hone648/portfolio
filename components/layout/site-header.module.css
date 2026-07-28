@@ -14,6 +14,7 @@
 }
 
 .brand {
+  min-height: 2.75rem;
   display: inline-flex;
   flex-wrap: wrap;
   align-items: baseline;

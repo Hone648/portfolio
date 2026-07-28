@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-This repository is at Slice 9G: Cross-site consistency and content cleanup. The slice aligns action verbs, sentence casing, public terminology, profile and project link wording, route metadata phrasing, minor presentation rhythm, and stale internal profile naming across the homepage, Projects index, case studies, About, Resume, Contact, and the shared header and footer. Portfolio navigation now reads `View`, external applications and assets read `Open`, and direct email actions read `Email`. Project facts, status distinctions, case-study narratives, visual assets, and the Slice 9F visual direction remain unchanged, and no dependency or runtime architecture was added. Slice 10, accessibility, SEO, and performance, is the next planned slice. Slice 8C, Home Security visual evidence, is postponed rather than cancelled.
+Slice 9G is complete, and this repository is at Slice 10A: Accessibility and semantic hardening. The site's existing semantic foundation is being audited and hardened for keyboard access, focus visibility, accessible names, link purpose, responsive reflow, text spacing, reduced motion, forced colours, and WCAG 2.2 Level AA contrast and target-size expectations. Project facts, narratives, statuses, and visual assets remain unchanged unless a separately reported alt-text defect requires correction. No browser-test dependency or Client Component was added. Slice 10B, metadata, SEO, and shareability, is next. Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
 
 ## Stack
 

@@ -40,6 +40,14 @@ The technical-editorial visual direction uses warm neutral paper and surface ton
 
 Typography uses system-only stacks: a serif display face for major headings, a sans-serif body face, and a monospace face for metadata and labels. Project-specific teal, rust, and indigo accents provide decorative identity without representing project status. CSS Modules remain the component styling boundary; no UI library, font dependency, new Client Component, or JavaScript-driven visual runtime was added.
 
+## Accessibility Boundary
+
+Public routes use native landmarks and document structure: the shared header and distinctly labelled navigation landmarks surround one route-owned `main`, while articles, sections, figures, headings, lists, links, and native `details` disclosures retain their built-in semantics and keyboard behaviour. The skip link targets a programmatically focusable `#main-content` landmark so keyboard users can bypass repeated navigation without client-side focus management.
+
+Repeated project-card actions keep concise visible wording while their accessible names append destination context after the complete visible label using project metadata. Gallery links that open a full-size asset in a new tab communicate that behaviour in their accessible names. Global and dark-surface focus treatments remain visible, motion transitions respect `prefers-reduced-motion`, and responsive defects are fixed at their component boundary rather than hidden through document-level overflow suppression.
+
+Accessibility review combines manual keyboard, zoom, reflow, text-spacing, forced-colour, target-size, landmark, heading, and alternative-text checks with transient automated audits. Automated scores are findings rather than conformance claims. The site adds no client-side accessibility framework, browser-test dependency, or JavaScript accessibility runtime in Slice 10A.
+
 ## Project Registry
 
 `content/project-metadata.ts` owns structured project facts, while `lib/projects.ts` provides synchronous, pure read helpers. Registry order controls default display order, and public status labels are centralized so presentation code does not duplicate them.
@@ -189,4 +197,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, sitemap, robots, accessibility hardening, SEO, performance work, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, sitemap, robots, metadata and SEO work, performance optimisation, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

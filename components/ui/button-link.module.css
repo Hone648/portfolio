@@ -35,7 +35,7 @@
 }
 
 .secondary {
-  border-color: var(--color-border-strong);
+  border-color: var(--color-text-muted);
   background: color-mix(in srgb, var(--color-surface) 72%, transparent);
   color: var(--color-accent-strong);
 }

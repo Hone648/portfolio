@@ -82,17 +82,29 @@ export function ProjectCard({
 
       {project.links.length > 0 ? (
         <ul className={styles.links} aria-label={`${project.name} links`}>
-          {project.links.map((link) => (
-            <li key={`${link.kind}-${link.href}`}>
-              <ButtonLink
-                href={link.href}
-                variant={link.kind === "case-study" ? "primary" : "secondary"}
-                external={link.kind !== "case-study"}
-              >
-                {link.label}
-              </ButtonLink>
-            </li>
-          ))}
+          {project.links.map((link) => {
+            const accessibleLabel =
+              link.kind === "case-study"
+                ? `View case study: ${project.name}`
+                : link.kind === "live"
+                  ? `Open live application: ${project.name}`
+                  : `${link.label}: ${project.name}`;
+
+            return (
+              <li key={`${link.kind}-${link.href}`}>
+                <ButtonLink
+                  href={link.href}
+                  variant={
+                    link.kind === "case-study" ? "primary" : "secondary"
+                  }
+                  external={link.kind !== "case-study"}
+                  aria-label={accessibleLabel}
+                >
+                  {link.label}
+                </ButtonLink>
+              </li>
+            );
+          })}
         </ul>
       ) : null}
     </article>
