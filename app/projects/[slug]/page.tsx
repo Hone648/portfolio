@@ -5,6 +5,7 @@ import {
   getPublishedProjectCaseStudyBySlug,
   getPublishedProjectCaseStudySlugs,
 } from "@/lib/project-case-studies";
+import { createPageMetadata } from "@/lib/metadata";
 import { getProjectBySlug, isProjectSlug } from "@/lib/projects";
 
 type CaseStudyPageProps = {
@@ -38,10 +39,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const { project } = getCaseStudyPageData(slug);
 
-  return {
-    title: `${project.name} case study | Hunter Kam`,
+  return createPageMetadata({
+    title: `${project.name} case study`,
     description: project.summary,
-  };
+    path: `/projects/${project.slug}`,
+  });
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {

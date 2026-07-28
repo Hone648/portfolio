@@ -141,6 +141,16 @@
 - Keep focus styles visible across light, dark, and forced-colour surfaces.
 - Accessibility claims require both automated findings and manual keyboard, reflow, text-spacing, motion, and forced-colour review.
 - Do not add accessibility libraries or browser-test frameworks outside an approved validation slice.
+- Root metadata owns the site title template and shared identity; child routes provide title fragments without duplicating the site suffix.
+- Canonical and other absolute metadata URLs must come from the shared site-origin helper.
+- Never derive canonical URLs from request headers, cookies, or preview deployment hostnames.
+- Route descriptions must remain accurate, distinct, and aware of each project's public status.
+- Do not add keyword metadata.
+- Social images and icons must not expose private data or broaden project claims.
+- JSON-LD may describe only publicly supported facts and must escape `<` during serialization.
+- Sitemap entries are limited to canonical public HTML routes.
+- Robots, sitemap, metadata, and structured data do not constitute deployment completion.
+- Search verification tags require owner approval and a real provider value.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.

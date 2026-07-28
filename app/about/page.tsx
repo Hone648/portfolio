@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { PageContainer } from "@/components/layout/page-container";
+import { JsonLd } from "@/components/metadata/json-ld";
 import { ProfilePageHeader } from "@/components/profile/profile-page-header";
 import { SkillGroups } from "@/components/profile/skill-groups";
 import { TransferableStrengths } from "@/components/profile/transferable-strengths";
@@ -7,17 +7,40 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { transferableStrengths } from "@/content/career-history";
 import { siteContent } from "@/content/site-content";
 import { skillGroups } from "@/content/skills";
+import { createPageMetadata, SITE_NAME } from "@/lib/metadata";
+import { absoluteUrl } from "@/lib/site-url";
 import styles from "@/components/profile/profile-page.module.css";
 
-export const metadata: Metadata = {
-  title: "About | Hunter Kam",
-  description:
-    "Current software work, prior technical experience, and engineering strengths for Hunter Kam.",
-};
+const aboutDescription =
+  "Current software work, prior technical experience, and engineering strengths for Hunter Kam.";
+
+export const metadata = createPageMetadata({
+  title: "About",
+  description: aboutDescription,
+  path: "/about",
+});
+
+const profilePageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": absoluteUrl("/about#profile-page"),
+  url: absoluteUrl("/about"),
+  name: "About Hunter Kam",
+  description: aboutDescription,
+  mainEntity: {
+    "@type": "Person",
+    "@id": absoluteUrl("/#person"),
+    name: SITE_NAME,
+    url: absoluteUrl("/"),
+    sameAs: [siteContent.github.href],
+    description: siteContent.positioning,
+  },
+} as const;
 
 export default function AboutPage() {
   return (
     <PageContainer className={styles.page}>
+      <JsonLd data={profilePageStructuredData} />
       <ProfilePageHeader
         eyebrow="About"
         title={siteContent.name}

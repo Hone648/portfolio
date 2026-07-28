@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-Slice 9G is complete, and this repository is at Slice 10A: Accessibility and semantic hardening. The site's existing semantic foundation is being audited and hardened for keyboard access, focus visibility, accessible names, link purpose, responsive reflow, text spacing, reduced motion, forced colours, and WCAG 2.2 Level AA contrast and target-size expectations. Project facts, narratives, statuses, and visual assets remain unchanged unless a separately reported alt-text defect requires correction. No browser-test dependency or Client Component was added. Slice 10B, metadata, SEO, and shareability, is next. Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
+Slice 10A is complete, and Slice 10B: Metadata, SEO, and shareability is active. Metadata now uses a root title template, a shared route factory, and a portable site-origin contract for canonical URLs. Open Graph and Twitter cards, generated icons, sitemap and robots routes, and minimal evidence-aligned JSON-LD are being added without a dependency, Client Component, analytics, or visible project-content change. The final production `SITE_URL` remains a Slice 12 deployment responsibility. Slice 10C is next, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
 
 ## Stack
 
