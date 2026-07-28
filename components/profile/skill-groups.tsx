@@ -16,11 +16,11 @@ export function SkillGroups({
     <div className={`${styles.skillGrid} ${styles[variant]}`}>
       {groups.map((group, index) => {
         const headingId = `skill-group-${index + 1}`;
-        const evidenceProjects = group.relatedProjectSlugs.map((slug) => {
+        const relatedProjects = group.relatedProjectSlugs.map((slug) => {
           const project = getProjectBySlug(slug);
 
           if (!project) {
-            throw new Error(`Unknown evidence project slug: ${slug}`);
+            throw new Error(`Unknown related project slug: ${slug}`);
           }
 
           return project;
@@ -39,10 +39,10 @@ export function SkillGroups({
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <div className={styles.evidenceLinks}>
+            <div className={styles.relatedProjectLinks}>
               <p>Related projects</p>
               <ul>
-                {evidenceProjects.map((project) => (
+                {relatedProjects.map((project) => (
                   <li key={project.slug}>
                     <Link href={`/projects/${project.slug}`}>
                       {project.name} case study

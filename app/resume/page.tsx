@@ -50,7 +50,7 @@ export default function ResumePage() {
               <StatusBadge status={project.status} />
               <p>{project.summary}</p>
               <Link href={`/projects/${project.slug}`}>
-                Read {project.name} case study
+                View {project.name} case study
               </Link>
             </li>
           ))}
@@ -100,13 +100,13 @@ export default function ResumePage() {
             external
             variant="secondary"
           >
-            GitHub Profile
+            View GitHub profile
           </ButtonLink>
           <ButtonLink href="/projects" variant="secondary">
-            View Projects
+            View projects
           </ButtonLink>
           <ButtonLink href="/about" variant="secondary">
-            About
+            About Hunter
           </ButtonLink>
         </div>
       </section>

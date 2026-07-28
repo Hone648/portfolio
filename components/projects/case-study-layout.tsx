@@ -16,7 +16,7 @@ function RepositoryNote({ project }: { project: Project }) {
   if (project.repository.visibility === "public") {
     return (
       <a href={project.repository.href}>
-        {project.repository.name} public source repository
+        View the {project.repository.name} repository on GitHub
       </a>
     );
   }
@@ -50,7 +50,7 @@ export function CaseStudyLayout({
     <PageContainer className={styles.page}>
       <article className={styles.article} data-project={project.slug}>
         <Link className={styles.backLink} href="/projects">
-          Back to Projects
+          Back to projects
         </Link>
 
         <header className={styles.header}>

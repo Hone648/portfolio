@@ -72,6 +72,14 @@ The newBudget screenshots are authentic owner-approved application captures usin
 
 `/about`, `/resume`, and `/contact` are static Server Component routes. Shared profile components provide the route-owned page heading, detailed or compact project-backed skill presentations, selected career entries, and transferable-strength mappings without introducing a generic page-builder or timeline abstraction. About presents transferable strengths linked to Resume experience anchors. Resume presents current project evidence before selected prior technical experience. Career evidence and project evidence remain distinct structured sources. Contact is a static `mailto:` and GitHub surface; there is no form workflow, downloadable document, Client Component, or new runtime architecture.
 
+## Editorial Consistency
+
+Visitor-facing action wording follows one system. `View` introduces portfolio content on this site, including the projects index, individual case studies, the resume, the about page, and the GitHub profile. `Open` is reserved for leaving the portfolio for a running application or a full-size asset. `Email` names a direct email action. Case-study link wording stays identical between project cards and the resume.
+
+Interface copy uses sentence case for navigation, buttons, links, section headings, and small labels, except for proper nouns, project names, organisation names, technology names, and approved status labels.
+
+Internal status keys such as `production`, `active-development`, and `operational-lab` remain unchanged and stay separate from public prose, which uses natural phrasing such as `in active development`. Static interface labels stay local to the components and route files that render them; centralising a handful of strings into a copy registry adds indirection without domain value, so it is deliberately avoided. Editorial consistency work introduces no runtime architecture, dependency, or Client Component.
+
 ## Excluded Runtime Architecture
 
 The mature portfolio should not include backend services, a database, authentication, a CMS, an admin dashboard, analytics, or runtime GitHub API calls unless a later approved slice changes scope.

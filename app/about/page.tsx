@@ -67,9 +67,9 @@ export default function AboutPage() {
           ))}
         </div>
         <div className={styles.actions}>
-          <ButtonLink href="/projects">View Projects</ButtonLink>
+          <ButtonLink href="/projects">View projects</ButtonLink>
           <ButtonLink href="/resume" variant="secondary">
-            View Resume
+            View resume
           </ButtonLink>
         </div>
       </section>

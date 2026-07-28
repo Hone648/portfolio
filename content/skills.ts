@@ -28,7 +28,7 @@ export const skillGroups = [
   {
     title: "Data and backend systems",
     description:
-      "Applies project-specific data models and guarded backend boundaries across deployed financial software and an active-development business system.",
+      "Applies project-specific data models and guarded backend boundaries across deployed financial software and a business system in active development.",
     items: [
       "MongoDB Atlas",
       "PostgreSQL",
@@ -43,7 +43,7 @@ export const skillGroups = [
   {
     title: "Delivery and operations",
     description:
-      "Uses focused branches, reviewable changes, automated validation, and documented operating constraints across production and active-development work.",
+      "Uses focused branches, reviewable changes, automated validation, and documented operating constraints across production work and work in active development.",
     items: [
       "Git",
       "GitHub",
