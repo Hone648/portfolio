@@ -48,6 +48,14 @@ Repeated project-card actions keep concise visible wording while their accessibl
 
 Accessibility review combines manual keyboard, zoom, reflow, text-spacing, forced-colour, target-size, landmark, heading, and alternative-text checks with transient automated audits. Automated scores are findings rather than conformance claims. The site adds no client-side accessibility framework, browser-test dependency, or JavaScript accessibility runtime in Slice 10A.
 
+## Metadata and Indexing Boundary
+
+`lib/site-url.ts` is the only source for canonical and absolute metadata URLs. It resolves an explicit server-side `SITE_URL`, then `VERCEL_PROJECT_PRODUCTION_URL`, then the ordinary local fallback `http://localhost:3000`. Configured hostnames without a protocol receive `https://`; values are validated as HTTP or HTTPS URLs and reduced to their stable origin. Canonicals are never inferred from request headers, cookies, `VERCEL_URL`, `VERCEL_BRANCH_URL`, or other preview-host values. Slice 12 must configure and verify the final production `SITE_URL`.
+
+The root layout owns the `%s | Hunter Kam` title template, default site identity, viewport metadata, and complete root Open Graph and Twitter records. `lib/metadata.ts` composes route fragments, distinct descriptions, canonical URLs, and complete nested Open Graph and Twitter objects for static pages and generated case studies. Generated `opengraph-image`, `twitter-image`, `icon`, and `apple-icon` routes share local code-only renderers with no remote assets or font requests.
+
+`app/sitemap.ts` emits only canonical public HTML routes and derives case-study paths from the published case-study slug helper. `app/robots.ts` allows public crawling and points to the canonical sitemap and host. Root JSON-LD is limited to one `WebSite` and one `Person`; About adds one `ProfilePage` connected to the same stable Person ID. The Server Component serializer accepts static JSON-compatible data and escapes `<` before rendering. No project schema, private contact data, analytics, Search Console verification, deployment configuration, or request-host canonical inference is included. Metadata, indexing routes, and structured data do not establish deployment completion; production verification remains Slice 12 work.
+
 ## Project Registry
 
 `content/project-metadata.ts` owns structured project facts, while `lib/projects.ts` provides synchronous, pure read helpers. Registry order controls default display order, and public status labels are centralized so presentation code does not duplicate them.
@@ -94,7 +102,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, newBudget visual-evidence, and Unicos visual-evidence paths shown below exist after Slice 8B. Sitemap, robots, Home Security visual evidence, tests, CI, and supporting library entries remain target structure for later approved slices.
+The profile, career, project, visual-evidence, and metadata paths shown below exist through Slice 10B. Home Security visual evidence, tests, CI, and deployment support remain target structure for later approved slices.
 
 ```text
 portfolio/
@@ -102,6 +110,12 @@ portfolio/
 |   |-- layout.tsx
 |   |-- page.tsx
 |   |-- globals.css
+|   |-- apple-icon.tsx
+|   |-- icon.tsx
+|   |-- opengraph-image.tsx
+|   |-- robots.ts
+|   |-- sitemap.ts
+|   |-- twitter-image.tsx
 |   |-- about/
 |   |   `-- page.tsx
 |   |-- contact/
@@ -112,11 +126,10 @@ portfolio/
 |   |       `-- page.tsx
 |   |-- resume/
 |   |   `-- page.tsx
-|   |-- sitemap.ts
-|   |-- robots.ts
-|   `-- not-found.tsx
 |-- components/
 |   |-- layout/
+|   |-- metadata/
+|   |   `-- json-ld.tsx
 |   |-- profile/
 |   |   |-- career-entry-list.tsx
 |   |   |-- profile-page-header.tsx
@@ -134,10 +147,12 @@ portfolio/
 |   |-- skills.ts
 |   `-- site-content.ts
 |-- lib/
+|   |-- brand-icon.tsx
+|   |-- metadata.ts
 |   |-- project-case-studies.ts
 |   |-- projects.ts
-|   |-- metadata.ts
-|   `-- validation.ts
+|   |-- site-url.ts
+|   `-- social-image.tsx
 |-- public/
 |   |-- images/
 |   |   |-- newbudget/
@@ -197,4 +212,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, sitemap, robots, metadata and SEO work, performance optimisation, CI, deployment configuration, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, performance optimisation, CI, production-origin and deployment verification, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

@@ -1,0 +1,11 @@
+import { brandIconContentType, createBrandIcon } from "@/lib/brand-icon";
+
+export const size = {
+  width: 32,
+  height: 32,
+};
+export const contentType = brandIconContentType;
+
+export default function Icon() {
+  return createBrandIcon(size.width);
+}

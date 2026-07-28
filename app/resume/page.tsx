@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/page-container";
 import { CareerEntryList } from "@/components/profile/career-entry-list";
@@ -9,14 +8,16 @@ import { StatusBadge } from "@/components/ui/status-badge";
 import { careerEntries } from "@/content/career-history";
 import { siteContent } from "@/content/site-content";
 import { skillGroups } from "@/content/skills";
+import { createPageMetadata } from "@/lib/metadata";
 import { getProjects } from "@/lib/projects";
 import styles from "@/components/profile/profile-page.module.css";
 
-export const metadata: Metadata = {
-  title: "Resume | Hunter Kam",
+export const metadata = createPageMetadata({
+  title: "Resume",
   description:
     "Web resume for Hunter Kam connecting current software projects with selected prior technical experience.",
-};
+  path: "/resume",
+});
 
 export default function ResumePage() {
   const projects = getProjects();

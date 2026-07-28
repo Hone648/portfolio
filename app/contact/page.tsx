@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import { PageContainer } from "@/components/layout/page-container";
 import { ProfilePageHeader } from "@/components/profile/profile-page-header";
 import { ButtonLink } from "@/components/ui/button-link";
 import { siteContent } from "@/content/site-content";
+import { createPageMetadata } from "@/lib/metadata";
 import styles from "@/components/profile/profile-page.module.css";
 
-export const metadata: Metadata = {
-  title: "Contact | Hunter Kam",
+export const metadata = createPageMetadata({
+  title: "Contact",
   description:
     "Contact Hunter Kam about software development, automation, systems integration, or technical collaboration.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
