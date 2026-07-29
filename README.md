@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-Slice 10A is complete, and Slice 10B: Metadata, SEO, and shareability is active. Metadata now uses a root title template, a shared route factory, and a portable site-origin contract for canonical URLs. Open Graph and Twitter cards, generated icons, sitemap and robots routes, and minimal evidence-aligned JSON-LD are being added without a dependency, Client Component, analytics, or visible project-content change. The final production `SITE_URL` remains a Slice 12 deployment responsibility. Slice 10C is next, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
+Slices 10A and 10B are complete, and Slice 10C: Performance audit and evidence-based optimisation is active. The production build is measured through repeated local synthetic runs before any runtime change is considered. Local Lighthouse results are diagnostic lab evidence rather than production Core Web Vitals, and no optimisation is accepted without a repeatable project-owned bottleneck and comparable before-and-after results. Slice 11 is next. The final production `SITE_URL` remains a Slice 12 deployment responsibility, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
 
 ## Stack
 

@@ -56,6 +56,16 @@ The root layout owns the `%s | Hunter Kam` title template, default site identity
 
 `app/sitemap.ts` emits only canonical public HTML routes and derives case-study paths from the published case-study slug helper. `app/robots.ts` allows public crawling and points to the canonical sitemap and host. Root JSON-LD is limited to one `WebSite` and one `Person`; About adds one `ProfilePage` connected to the same stable Person ID. The Server Component serializer accepts static JSON-compatible data and escapes `<` before rendering. No project schema, private contact data, analytics, Search Console verification, deployment configuration, or request-host canonical inference is included. Metadata, indexing routes, and structured data do not establish deployment completion; production verification remains Slice 12 work.
 
+## Performance Boundary
+
+Static generation and Server Components are the default performance baseline. The site has no application-owned Client Component, browser state, analytics, third-party script, web font, or service worker. Browser JavaScript is therefore limited to the shared Next.js and React runtime emitted by the framework unless a later approved feature demonstrates a need for more.
+
+Project screenshots use `next/image` with registry-owned intrinsic dimensions, responsive `sizes`, and normal below-fold lazy loading. SVG diagrams and the reviewed `development-admin` PNG keep their existing optimisation bypasses. Performance work must preserve full-size evidence links, screenshot text, approved redactions, and diagram clarity; it must not rewrite original public assets merely to improve a synthetic score.
+
+Performance review uses a clean production build, a local production server, an explicit site origin, a documented browser and Lighthouse version, and three comparable mobile runs per representative route. Medians and ranges are recorded in `docs/performance-audit.md`. A runtime change requires a repeated, project-owned defect that crosses the documented optimisation gate and shows a repeatable benefit under the same conditions. One-off score movement, framework baseline cost, and zero-saving audits do not justify implementation work.
+
+These measurements are local synthetic lab data, not production Core Web Vitals or real-user monitoring. CDN behaviour, deployment headers, production caching, final-origin verification, field data, and post-launch monitoring remain Slice 12 or post-launch responsibilities.
+
 ## Project Registry
 
 `content/project-metadata.ts` owns structured project facts, while `lib/projects.ts` provides synchronous, pure read helpers. Registry order controls default display order, and public status labels are centralized so presentation code does not duplicate them.
@@ -102,7 +112,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, visual-evidence, and metadata paths shown below exist through Slice 10B. Home Security visual evidence, tests, CI, and deployment support remain target structure for later approved slices.
+The profile, career, project, visual-evidence, metadata, and performance-audit paths shown below exist through Slice 10C. Home Security visual evidence, tests, CI, and deployment support remain target structure for later approved slices.
 
 ```text
 portfolio/
@@ -177,6 +187,11 @@ portfolio/
 |   `-- documents/
 |-- tests/
 |-- docs/
+|   |-- architecture.md
+|   |-- content-evidence-matrix.md
+|   |-- performance-audit.md
+|   |-- portfolio-plan.md
+|   `-- visual-evidence.md
 |-- .github/
 |   `-- workflows/
 |-- AGENTS.md
@@ -212,4 +227,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, performance optimisation, CI, production-origin and deployment verification, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, CI, production-origin and deployment verification, production field-performance data, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

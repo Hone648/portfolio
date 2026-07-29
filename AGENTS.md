@@ -151,6 +151,13 @@
 - Sitemap entries are limited to canonical public HTML routes.
 - Robots, sitemap, metadata, and structured data do not constitute deployment completion.
 - Search verification tags require owner approval and a real provider value.
+- Measure production builds before proposing performance changes, and use repeated comparable runs rather than one-off Lighthouse scores.
+- Do not add speculative preloads, resource hints, dependencies, client boundaries, or configuration tuning to improve a synthetic score.
+- Do not manipulate Lighthouse conditions or remove useful, accessible content to raise a score.
+- Preserve intrinsic image dimensions, accurate responsive `sizes`, and below-fold lazy loading unless repeated measurements justify a change.
+- Protect screenshot and diagram fidelity, approved privacy redactions, and full-size evidence links during image-delivery work.
+- Treat local synthetic results as lab data, not production Core Web Vitals or real-user evidence.
+- Performance claims and runtime optimisations require named before-and-after evidence under the same documented conditions.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.
