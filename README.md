@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-Slices 10A and 10B are complete, and Slice 10C: Performance audit and evidence-based optimisation is active. The production build is measured through repeated local synthetic runs before any runtime change is considered. Local Lighthouse results are diagnostic lab evidence rather than production Core Web Vitals, and no optimisation is accepted without a repeatable project-owned bottleneck and comparable before-and-after results. Slice 11 is next. The final production `SITE_URL` remains a Slice 12 deployment responsibility, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
+Slices 10A, 10B, and 10C are complete, and Slice 10D: Case-study lightbox interaction is active. The server-rendered project gallery now uses one isolated Client Component to open a selected visual in a native modal dialog while retaining the card caption, evidence note, and direct original-asset link. The interaction adds no dependency, carousel, gallery navigation, zoom, or URL state, and its browser payload is measured against the Slice 10C production baseline. Slice 11 is next. The final production `SITE_URL` remains a Slice 12 deployment responsibility, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
 
 ## Stack
 
@@ -27,7 +27,7 @@ Slices 10A and 10B are complete, and Slice 10C: Performance audit and evidence-b
 
 MDX is installed and configured for project case-study narrative. Project-backed skills remain separate from transferable career strengths, and neither uses percentage ratings or proficiency meters. The HTML-only resume presents current software projects before selected prior technical experience. Contact remains a static email and GitHub surface with no form or backend. Employment dates, a downloadable resume, Playwright automation, and deployment remain planned for later slices.
 
-The newBudget screenshots use owner-approved identity presentation and demonstration financial records; they publish no email, provider identifier, application-user identifier, uploaded statement, or other unapproved account detail. Statement Review is not presented as a portfolio capability, and no replacement statement workflow is claimed. newBudget remains a deployed production application, Unicos remains an active-development application, and Home Security remains an operational local systems-integration project. The existing newBudget and Unicos galleries remain unchanged, and the shared gallery adds no runtime service, dependency, client interaction, or image API.
+The newBudget screenshots use owner-approved identity presentation and demonstration financial records; they publish no email, provider identifier, application-user identifier, uploaded statement, or other unapproved account detail. Statement Review is not presented as a portfolio capability, and no replacement statement workflow is claimed. newBudget remains a deployed production application, Unicos remains an active-development application, and Home Security remains an operational local systems-integration project. The approved gallery assets and registry facts remain unchanged. The shared gallery adds one project-scoped lightbox interaction but no runtime service, dependency, carousel, or image API.
 
 ## Local Prerequisites
 

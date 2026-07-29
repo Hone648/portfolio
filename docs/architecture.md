@@ -10,6 +10,7 @@ This portfolio should be simple, durable, evidence-first, and easy to validate. 
 - Prefer a static and content-first architecture.
 - Use Server Components by default.
 - Add Client Components only when browser interaction requires them.
+- Keep the case-study gallery server-rendered; its lightbox controller is the first approved application-owned Client Component.
 - Generate published project pages at `/projects/[slug]` from a static case-study registry.
 - Use TypeScript metadata for structured project data and MDX for long-form project case-study narrative.
 - Keep structured metadata, long-form content, and presentation concerns separate.
@@ -38,13 +39,13 @@ Current navigation links include `/`, `/projects`, `/about`, `/resume`, `/contac
 
 The technical-editorial visual direction uses warm neutral paper and surface tones, near-black ink text, muted slate supporting text, a deep steel-blue primary accent, and restrained warm accents. Expanded global tokens cover muted and strong surfaces, subtle and strong borders, soft accent fields, shadows, project-accent defaults, page width, spacing, and restrained radii.
 
-Typography uses system-only stacks: a serif display face for major headings, a sans-serif body face, and a monospace face for metadata and labels. Project-specific teal, rust, and indigo accents provide decorative identity without representing project status. CSS Modules remain the component styling boundary; no UI library, font dependency, new Client Component, or JavaScript-driven visual runtime was added.
+Typography uses system-only stacks: a serif display face for major headings, a sans-serif body face, and a monospace face for metadata and labels. Project-specific teal, rust, and indigo accents provide decorative identity without representing project status. CSS Modules remain the component styling boundary; Slice 10D adds one project-scoped lightbox module without a UI library, font dependency, animation runtime, or general-purpose modal layer.
 
 ## Accessibility Boundary
 
 Public routes use native landmarks and document structure: the shared header and distinctly labelled navigation landmarks surround one route-owned `main`, while articles, sections, figures, headings, lists, links, and native `details` disclosures retain their built-in semantics and keyboard behaviour. The skip link targets a programmatically focusable `#main-content` landmark so keyboard users can bypass repeated navigation without client-side focus management.
 
-Repeated project-card actions keep concise visible wording while their accessible names append destination context after the complete visible label using project metadata. Gallery links that open a full-size asset in a new tab communicate that behaviour in their accessible names. Global and dark-surface focus treatments remain visible, motion transitions respect `prefers-reduced-motion`, and responsive defects are fixed at their component boundary rather than hidden through document-level overflow suppression.
+Repeated project-card actions keep concise visible wording while their accessible names append destination context after the complete visible label using project metadata. Gallery thumbnails are native buttons whose names identify the visual. They open one native modal `<dialog>` with a labelled heading, caption description, visible Close control, selected image, and original-asset link. Native modality supplies background inertness; the controller synchronises close state, locks background scrolling only while open, and restores focus to the exact thumbnail. Global and dark-surface focus treatments remain visible, motion transitions respect `prefers-reduced-motion`, and responsive defects are fixed at their component boundary rather than hidden through document-level overflow suppression.
 
 Accessibility review combines manual keyboard, zoom, reflow, text-spacing, forced-colour, target-size, landmark, heading, and alternative-text checks with transient automated audits. Automated scores are findings rather than conformance claims. The site adds no client-side accessibility framework, browser-test dependency, or JavaScript accessibility runtime in Slice 10A.
 
@@ -58,11 +59,13 @@ The root layout owns the `%s | Hunter Kam` title template, default site identity
 
 ## Performance Boundary
 
-Static generation and Server Components are the default performance baseline. The site has no application-owned Client Component, browser state, analytics, third-party script, web font, or service worker. Browser JavaScript is therefore limited to the shared Next.js and React runtime emitted by the framework unless a later approved feature demonstrates a need for more.
+Static generation and Server Components remain the performance baseline. Slice 10D introduces one application-owned Client Component for selected-visual state, native-dialog control, focus restoration, and temporary scroll locking. It does not move the gallery, case-study route, content registry, or MDX narrative into client rendering. The site continues to have no analytics, third-party browser script, web font, or service worker.
 
 Project screenshots use `next/image` with registry-owned intrinsic dimensions, responsive `sizes`, and normal below-fold lazy loading. SVG diagrams and the reviewed `development-admin` PNG keep their existing optimisation bypasses. Performance work must preserve full-size evidence links, screenshot text, approved redactions, and diagram clarity; it must not rewrite original public assets merely to improve a synthetic score.
 
 Performance review uses a clean production build, a local production server, an explicit site origin, a documented browser and Lighthouse version, and three comparable mobile runs per representative route. Medians and ranges are recorded in `docs/performance-audit.md`. A runtime change requires a repeated, project-owned defect that crosses the documented optimisation gate and shows a repeatable benefit under the same conditions. One-off score movement, framework baseline cost, and zero-saving audits do not justify implementation work.
+
+The lightbox receives a serialisable, flattened visual list containing only its identifier, kind label, source, intrinsic dimensions, alternative text, title, caption, and optimisation-bypass flag. It renders no enlarged image while closed and only the selected enlarged image while open. Slice 10D measures the route-specific JavaScript, CSS, request count, and Lighthouse medians against the Slice 10C baseline.
 
 These measurements are local synthetic lab data, not production Core Web Vitals or real-user monitoring. CDN behaviour, deployment headers, production caching, final-origin verification, field data, and post-launch monitoring remain Slice 12 or post-launch responsibilities.
 
@@ -88,7 +91,9 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 `content/project-visuals.ts` owns visual paths, kinds, native dimensions, titles, alternative text, captions, and evidence notes. The registry remains partial during Slice 8B: newBudget and Unicos have approved visual groups, Home Security remains unregistered, and projects without registered visuals return an empty readonly collection.
 
-`ProjectEvidenceGallery` is a presentation-only Server Component. The shared case-study layout renders it after structured project evidence and before the MDX narrative, while projects without visual records render no empty heading or section. newBudget screenshots are served locally from `public/images/newbudget`, Unicos screenshots remain under `public/images/unicos`, and code-authored Unicos SVGs remain under `public/diagrams`. Framing, spacing, shadows, and caption presentation may change in CSS, but the visual files, dimensions, alternative text, captions, evidence notes, and registry metadata remain unchanged. There is no runtime image API, external image dependency, client interaction, lightbox, or carousel.
+`ProjectEvidenceGallery` remains a presentation-only Server Component. It owns the section, groups, figures, visible card captions, evidence notes, thumbnail images, and direct full-size links. Thumbnail anchors become native buttons, while `EvidenceLightbox` is a narrowly scoped Client Component that owns selected state, native-dialog synchronisation, focus restoration, backdrop handling, and temporary scroll locking. The server passes only the serialisable visual fields required by the modal; evidence notes remain exclusively in the server-rendered cards.
+
+The lightbox renders only the selected enlarged `next/image`, preserves intrinsic dimensions and the existing SVG and `development-admin` optimisation bypasses, and retains an `Open original asset` link. It includes no next/previous navigation, carousel, zoom, pan, swipe, URL state, or hidden full-size image set. newBudget screenshots remain under `public/images/newbudget`, Unicos screenshots remain under `public/images/unicos`, and code-authored Unicos SVGs remain under `public/diagrams`. The visual files, dimensions, alternative text, captions, evidence notes, and registry metadata remain unchanged; there is no runtime image API or external image dependency.
 
 The newBudget screenshots are authentic owner-approved application captures using approved demonstration records. The Unicos screenshots remain approved local-development captures. The SVGs are explanatory representations derived from reviewed evidence and omit private source details and unsupported production infrastructure. Visuals supplement rather than replace structured evidence, narrative, status labels, or limitations.
 
@@ -112,7 +117,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, visual-evidence, metadata, and performance-audit paths shown below exist through Slice 10C. Home Security visual evidence, tests, CI, and deployment support remain target structure for later approved slices.
+The profile, career, project, visual-evidence, metadata, performance-audit, and lightbox paths shown below exist through Slice 10D. Home Security visual evidence, tests, CI, and deployment support remain target structure for later approved slices.
 
 ```text
 portfolio/
@@ -147,6 +152,8 @@ portfolio/
 |   |   |-- skill-groups.tsx
 |   |   `-- transferable-strengths.tsx
 |   |-- projects/
+|   |   |-- evidence-lightbox.module.css
+|   |   |-- evidence-lightbox.tsx
 |   |   `-- project-evidence-gallery.tsx
 |   `-- ui/
 |-- content/
