@@ -45,7 +45,7 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 7: Skills, About, resume, and contact | Add professional profile surfaces. | Do not use percentage skill ratings or unsupported claims. |
 | Slice 8A: Unicos visual evidence | Add approved Unicos screenshots and sanitized diagrams. | Complete. Preserve active-development and privacy boundaries. |
 | Slice 8B: newBudget visual evidence | Add approved newBudget screenshots and correct the Statement Review claim. | Complete. Preserve deployed-production status and financial-data privacy. |
-| Slice 8C: Home Security visual evidence | Add sanitized visuals for the operational local system. | Postponed, not cancelled. Do not expose private topology, camera details, footage, or credentials. |
+| Slice 8C: Home Security visual evidence | Cancelled by owner decision. Home Security remains a text-only case study and no visual evidence is planned. | Private topology, camera details, footage, credentials, and other sensitive operational information remain prohibited. Reopening visual evidence requires a new, separately approved scope. |
 | Slice 9A: Human-first public language reset | Complete. Public copy leads with Hunter, the work, and the engineering thinking. | Preserve claims, structure, status, and internal substantiation. |
 | Slice 9B: Project-card storytelling | Complete. Improve how project cards introduce purpose and practical value. | Do not broaden claims or obscure project state. |
 | Slice 9C: newBudget case-study narrative | Complete. Refine the newBudget story around product purpose, engineering decisions, and operations. | Preserve deployed-production facts and current financial-model limitations. |
@@ -61,7 +61,7 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 12: Production deployment | Planned and next. Deploy the reviewed portfolio. | Do not add analytics or custom-domain decisions unless approved. |
 | Slice 13: Post-launch hardening | Planned. Improve substantiation, monitoring, and maintenance after release. | Do not rewrite prior claims without matching implementation or documentation updates. |
 
-Slice 9A through Slice 11 are complete. Slice 12 is planned and next, and Slice 13 remains planned. Slice 8C remains postponed until an approved Home Security visual-evidence pass; it has not been cancelled.
+Slice 8A and Slice 8B are complete, and Slice 8C is cancelled by owner decision, so Slice 8 is closed and accepted. Slice 9A through Slice 11 are complete. Slice 12 is planned and next, and Slice 13 remains planned. The Home Security and Automation Lab remains a text-only case study; do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens this decision.
 
 ## Branch and Review Workflow
 
