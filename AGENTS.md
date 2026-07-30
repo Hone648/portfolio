@@ -164,6 +164,14 @@
 - Protect screenshot and diagram fidelity, approved privacy redactions, and full-size evidence links during image-delivery work.
 - Treat local synthetic results as lab data, not production Core Web Vitals or real-user evidence.
 - Performance claims and runtime optimisations require named before-and-after evidence under the same documented conditions.
+- Browser tests must exercise user-visible behaviour and prefer semantic locators over implementation details.
+- Do not couple browser tests to CSS Module names, React or Next.js internals, brittle DOM-child indexes, or fixed sleeps.
+- Run browser tests against a production build and production server, not the development server.
+- Keep the initial browser-test matrix Chromium-only and do not add visual snapshots without separate approval.
+- Distinguish deliberately tested 404 responses from application failures, console errors, and failed resource requests.
+- Failure artifacts must contain generated diagnostics only and must not expose private data, secrets, environment files, or source-tree archives.
+- Review CI changes locally at source level, then review the real GitHub Actions run after the branch is pushed.
+- Passing browser automation does not establish accessibility conformance or weaken manual keyboard, reflow, text-spacing, motion, and forced-colour review requirements.
 - Create directories only when real files in the approved slice belong in them.
 - Run `npm run lint`, `npm run typecheck`, `npm run build`, and `git diff --check` before reporting completion.
 - Report validation results, known limitations, and test gaps accurately.
