@@ -1,18 +1,22 @@
 ## Why I built a local security and automation hub
 
-A camera that alerts on motion alerts on everything: wind moving a branch, headlights sweeping past, rain, a cat. Repeated low-value notifications make the alert stream easy to ignore — precisely the outcome I wanted to avoid.
+I wanted a smart home and a security system, but I did not want either one tied to a recurring cloud subscription. More importantly, I did not want video from my home-security cameras leaving the property just so another company's servers could store or analyze it.
+
+That made local ownership the starting requirement. I chose an open-source software stack I could run, inspect, and maintain myself instead of buying into a proprietary camera ecosystem. I worked backward from the workload, evaluating what a modest mini PC could realistically support and pairing it with a Google Coral Edge TPU so continuous object detection could run locally without requiring a much larger server.
+
+The camera path is hardwired. All three RTSP video streams stay on the local wired network; none uses Wi-Fi for video transport. Frigate records and analyzes those streams on the Ubuntu Server host, while Home Assistant applies the household rules that decide whether an event is worth turning into a notification.
+
+Once the local architecture was decided, the next problem was usefulness. A camera that alerts on motion alerts on everything: wind moving a branch, headlights sweeping past, rain, a cat. Repeated low-value notifications make the alert stream easy to ignore — precisely the outcome I wanted to avoid.
 
 The question I wanted answered was narrower: not "did something change in this frame," but "did a person appear somewhere that matters, at a time when it matters." That is what this system is built around.
 
-I also wanted the answer produced locally. Video from around a home is about as sensitive as personal data gets.
-
-So this became a working residential system rather than an architecture sketch. I chose and integrated the services, brought the cameras in, configured and validated the event path, worked through the failures, and decided where public explanation stops. It is operational in a private residence: useful in practice, and not a commercial security product or a professionally monitored alarm.
+This project was not about installing as much "smart" technology as possible. It was about building a system that was useful, private, maintainable, and mine to operate. I selected the hardware and services, brought the cameras in, configured and validated the event path, worked through the failures, and decided where public explanation stops. It is operational in a private residence: not a commercial security product or a professionally monitored alarm.
 
 ## Designing one event path across separate systems
 
 It helps to follow a single event from the camera to the phone, because no one service owns the outcome.
 
-A camera produces video. RTSP carries it to the host. Frigate receives the streams, records locally, and runs object detection, with a Google Coral Edge TPU handling the accelerated inference workload — which is what makes continuous detection on a modest single host practical. When Frigate classifies an object it emits an event, and this workflow selects the `person` class from Frigate's broader output. That event goes to Home Assistant, which decides whether the configured area and time context make it worth interrupting someone. If so, Home Assistant sends the mobile notification, and the loop ends there.
+A hardwired camera produces video and sends its RTSP stream across the local wired network to the host. Frigate receives the streams, records locally, and runs object detection, with a Google Coral Edge TPU handling the accelerated inference workload — which is what makes continuous detection on a modest single host practical. When Frigate classifies an object it emits an event, and this workflow selects the `person` class from Frigate's broader output. That event goes to Home Assistant, which decides whether the configured area and time context make it worth interrupting someone. If so, Home Assistant sends the mobile notification, and the loop ends there.
 
 Every handoff is both a decision point and a place where things can quietly stop working. Reading the system as one path rather than a stack of installed software is what makes everything below easier to follow.
 
@@ -28,7 +32,7 @@ Splitting those responsibilities keeps the alerts worth reading. It does not mak
 
 ## Bringing three camera streams into the local hub
 
-Three RTSP streams currently feed Frigate for local recording and detection. Integrating them was less about configuration syntax than about learning where things break.
+Three hardwired RTSP streams currently feed Frigate for local recording and detection. No camera video relies on Wi-Fi; the streams remain on the local wired network. Integrating them was less about configuration syntax than about learning where things break.
 
 A camera has to be reachable on the local network and accept authentication. Its stream has to actually be served, in a form the ingesting service can consume. The host has to reach it, and so does the container — not automatically the same statement. And Frigate has to accept the configuration describing it.
 
@@ -80,14 +84,14 @@ I brought this up incrementally, because a system assembled all at once fails al
 
 Each service went in with its responsibility understood and checked before the next depended on it: the host and containers, then a stream at a time into Frigate, then local MQTT messaging verified as flowing, then object events confirmed to be produced and classified, then automation conditions tested against events I could reproduce, and finally the mobile notification confirmed to arrive. Logs and service health showed what each boundary was receiving and emitting. Every configuration change was one I made and reviewed by hand.
 
-AI assistance helped with research, troubleshooting ideas, documentation, and implementation guidance. The requirements, deployment and configuration decisions, physical work, diagnosis, validation, and privacy boundaries were mine, and nothing administered the live system on its own.
-
 ## What this project demonstrates
 
 This is the project where the pieces I care about stop being separate subjects.
 
-It runs across software, networking, hardware acceleration, and physical devices, and the interesting work is at the joints: one event path across independent services, detection treated as an input rather than a verdict, and alert policy placed where context lives instead of where classification happens. It taught me to think in boundaries — what each layer receives, what it emits, and which one to interrogate when the result is missing.
+It started with a household requirement and turned into hardware and software decisions: sizing a mini PC against the workload I actually intended to run, adding Coral acceleration so local object detection stayed practical, and assembling open-source services instead of buying a proprietary ecosystem. Keeping camera transport, recording, and detection on-site was the constraint everything else had to satisfy.
 
-It also taught me what a locally operated system asks of the person running it, and where public explanation has to stop when the subject is a home.
+It runs across software, networking, hardware acceleration, and physical devices, and the interesting work is at the joints: one event path across independent services, detection treated as an input rather than a verdict, and alert policy placed where context lives instead of where classification happens. It taught me to think in boundaries — what each layer receives, what it emits, and which one to interrogate when the result is missing, across hardware, networking, containers, messaging, automation, and notification.
+
+It also taught me what self-hosting asks of the person running it — the updates, storage, service health, and recovery are all mine — and where public explanation has to stop when the subject is a home.
 
 What it is not is professional security work. Three cameras in a residence is an integration, not a commercial deployment. Selective notifications are useful, not certified detection. Running well is not the same as measured availability.

@@ -225,15 +225,15 @@ export const projects = [
     slug: "home-security-lab",
     name: "Home Security and Automation Lab",
     summary:
-      "A local-first Ubuntu Server hub integrating three RTSP cameras with Frigate AI object detection, Home Assistant automations, and mobile notifications.",
+      "A hardwired, local-first home security and automation hub that keeps three camera streams, recording, and Coral-accelerated object detection on-site.",
     card: {
       category: "Home infrastructure",
       description:
-        "A local security and automation hub combining camera streams, AI object detection, home automations, and mobile alerts.",
+        "A self-hosted security and automation system built to avoid cloud subscriptions and keep camera video on the local wired network.",
       highlights: [
-        "Runs Frigate, Home Assistant, and Mosquitto as containerized local services.",
-        "Uses Google Coral acceleration across three RTSP camera streams.",
-        "Applies area and time conditions before selected person events trigger mobile notifications.",
+        "Keeps three hardwired camera streams, recording, and object detection on-site.",
+        "Runs Frigate, Home Assistant, and Mosquitto as containerized open-source services.",
+        "Uses Coral acceleration and area and time conditions before selected person events trigger mobile notifications.",
       ],
       currentStatus:
         "Operational in a private residential environment; public details intentionally omit sensitive configuration.",
@@ -252,7 +252,7 @@ export const projects = [
     capabilities: [
       "Containerized local infrastructure",
       "Three-camera RTSP integration",
-      "Hardware-accelerated AI object detection",
+      "Hardware-accelerated object detection",
       "Zone and time-conditioned automations",
       "Mobile notification delivery",
       "Network and service troubleshooting",
@@ -266,7 +266,7 @@ export const projects = [
       {
         state: "operational",
         statement:
-          "Integrates three RTSP camera streams into Frigate for local recording and Google Coral-accelerated AI object detection.",
+          "Integrates three hardwired RTSP camera streams into Frigate for local recording and Google Coral-accelerated object detection.",
       },
       {
         state: "operational",
