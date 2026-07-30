@@ -141,6 +141,12 @@
 - Keep focus styles visible across light, dark, and forced-colour surfaces.
 - Accessibility claims require both automated findings and manual keyboard, reflow, text-spacing, motion, and forced-colour review.
 - Do not add accessibility libraries or browser-test frameworks outside an approved validation slice.
+- Keep Server Components as the default and add a Client Component only for a browser interaction that cannot remain server-rendered.
+- Use native thumbnail buttons to activate modal content and prefer native `<dialog>` semantics over a custom modal implementation.
+- Modal interactions must provide Escape and visible Close controls, restore focus to the exact activator, and preserve background scroll position.
+- Hover treatments require keyboard and touch equivalents, and caption text must remain fully opaque with readable resting contrast.
+- Keep direct full-size evidence links available outside and inside any visual lightbox.
+- Do not add a modal, focus-trap, animation, or carousel dependency without separate approval.
 - Root metadata owns the site title template and shared identity; child routes provide title fragments without duplicating the site suffix.
 - Canonical and other absolute metadata URLs must come from the shared site-origin helper.
 - Never derive canonical URLs from request headers, cookies, or preview deployment hostnames.

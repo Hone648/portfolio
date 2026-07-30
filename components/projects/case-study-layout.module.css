@@ -251,10 +251,24 @@
 }
 
 .imageFrame {
+  appearance: none;
+  width: 100%;
   display: block;
+  margin: 0;
+  border: 0;
   border-bottom: 1px solid var(--color-border-strong);
+  border-radius: 0;
   padding: var(--space-2);
+  color: inherit;
   background: var(--color-surface-strong);
+  cursor: zoom-in;
+  text-align: inherit;
+}
+
+.imageFrame:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline-offset: -4px;
 }
 
 .imageFrame img {
@@ -439,5 +453,12 @@
 
   .imageFrame {
     padding: var(--space-1);
+  }
+}
+
+@media (forced-colors: active) {
+  .imageFrame {
+    border: 1px solid ButtonText;
+    background: ButtonFace;
   }
 }

@@ -1,0 +1,212 @@
+.dialog {
+  width: min(calc(100% - 2rem), 96rem);
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  overflow: auto;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: 0;
+  color: var(--color-surface);
+  background: #10171c;
+  box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 0.35);
+}
+
+.dialog::backdrop {
+  background: rgb(10 15 19 / 0.84);
+}
+
+.panel {
+  min-width: 0;
+  display: grid;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid rgb(255 253 250 / 0.24);
+  padding: var(--space-3);
+  background: #182027;
+}
+
+.closeButton {
+  min-width: 4.75rem;
+  min-height: 2.75rem;
+  border: 1px solid rgb(255 253 250 / 0.72);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-surface);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.closeButton:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.dialog :focus-visible {
+  outline-color: #8dccff;
+}
+
+.figure {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: var(--space-4);
+}
+
+.imageStage {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 253 250 / 0.28);
+  background: #0b1014;
+}
+
+.image {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 7rem);
+  object-fit: contain;
+}
+
+.caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-height: min(72%, 24rem);
+  display: grid;
+  gap: var(--space-2);
+  overflow: auto;
+  border-top: 1px solid rgb(255 253 250 / 0.4);
+  padding: var(--space-4);
+  color: #fffdfa;
+  background: rgb(16 23 28 / 0.94);
+  line-height: 1.5;
+}
+
+.caption h2 {
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  text-wrap: wrap;
+}
+
+.caption p {
+  color: inherit;
+}
+
+.kind {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.originalLink {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  color: #fffdfa;
+  font-weight: 700;
+}
+
+.originalLink:hover {
+  color: #fffdfa;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .caption {
+    background: rgb(16 23 28 / 0.76);
+    transition: background-color 160ms ease;
+  }
+
+  .figure:hover .caption,
+  .caption:hover,
+  .caption:focus-within {
+    background: rgb(16 23 28 / 0.96);
+  }
+}
+
+@media (max-width: 40rem) {
+  .dialog {
+    width: calc(100% - 1rem);
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .toolbar,
+  .figure {
+    padding: var(--space-2);
+  }
+
+  .image {
+    max-height: calc(100dvh - 5.5rem);
+  }
+
+  .caption {
+    max-height: 78%;
+    padding: var(--space-3);
+  }
+
+  .caption h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-height: 35rem) {
+  .toolbar,
+  .figure {
+    padding: var(--space-2);
+  }
+
+  .image {
+    max-height: calc(100dvh - 5rem);
+  }
+
+  .caption {
+    max-height: 82%;
+    padding: var(--space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caption {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .dialog,
+  .toolbar,
+  .imageStage,
+  .caption {
+    border-color: CanvasText;
+    color: CanvasText;
+    background: Canvas;
+    box-shadow: none;
+  }
+
+  .dialog::backdrop {
+    background: Canvas;
+    opacity: 0.8;
+  }
+
+  .closeButton,
+  .originalLink {
+    border-color: ButtonText;
+    color: LinkText;
+    background: ButtonFace;
+  }
+}

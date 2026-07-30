@@ -1,4 +1,8 @@
 import Image from "next/image";
+import {
+  EvidenceLightbox,
+  type LightboxVisual,
+} from "@/components/projects/evidence-lightbox";
 import type { ProjectVisualGroup } from "@/content/project-visuals";
 import styles from "./case-study-layout.module.css";
 
@@ -19,6 +23,21 @@ export function ProjectEvidenceGallery({
   if (groups.length === 0) {
     return null;
   }
+
+  const lightboxVisuals: readonly LightboxVisual[] = groups.flatMap((group) =>
+    group.visuals.map((visual) => ({
+      id: visual.id,
+      kindLabel: visualKindLabels[visual.kind],
+      src: visual.src,
+      width: visual.width,
+      height: visual.height,
+      alt: visual.alt,
+      title: visual.title,
+      caption: visual.caption,
+      unoptimized:
+        visual.kind === "diagram" || visual.id === "development-admin",
+    })),
+  );
 
   return (
     <section
@@ -50,12 +69,11 @@ export function ProjectEvidenceGallery({
                       key={visual.id}
                     >
                       <figure>
-                        <a
+                        <button
+                          type="button"
                           className={styles.imageFrame}
-                          href={visual.src}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Open full-size ${visual.title} ${kindLabel.toLowerCase()} for ${projectName} in a new tab`}
+                          data-lightbox-visual-id={visual.id}
+                          aria-label={`View larger: ${visual.title} for ${projectName}`}
                         >
                           <Image
                             src={visual.src}
@@ -69,7 +87,7 @@ export function ProjectEvidenceGallery({
                             }
                             unoptimized={bypassImageOptimization}
                           />
-                        </a>
+                        </button>
                         <figcaption>
                           <p className={styles.visualKind}>{kindLabel}</p>
                           <h4>{visual.title}</h4>
@@ -96,6 +114,7 @@ export function ProjectEvidenceGallery({
           </li>
         ))}
       </ul>
+      <EvidenceLightbox visuals={lightboxVisuals} />
     </section>
   );
 }

@@ -134,3 +134,22 @@ This review does not claim accessibility conformance from Lighthouse or syntheti
 Local Lighthouse is synthetic lab evidence. It does not measure production users, network geography, CDN cache state, cold deployments, browser diversity, device diversity, long-term interaction behavior, or field Core Web Vitals. Short local runs also contain normal scheduling variation, visible in the LCP and main-thread ranges.
 
 Slice 12 must configure and verify the final production `SITE_URL`, production deployment, headers, CDN and cache behaviour, generated metadata routes, and production-origin request behavior. Post-launch work may add privacy-reviewed real-user or field data only through a separately approved analytics decision. Production performance claims require that evidence; this audit does not make them.
+
+## Slice 10D Lightbox Comparison
+
+This dated July 28, 2026 comparison preserves the historical Slice 10C audit above. It measures the first approved application-owned Client Component: the case-study visual lightbox on branch `feat/slice-10d-case-study-lightbox`, based on `7e494674c3d4ecf299e157a453a1849740ded4e8`.
+
+The before and after builds used bundled Codex Node.js `v24.14.0`, npm `11.7.0`, `SITE_URL=http://127.0.0.1:3001`, the Next.js production server on port 3001, Lighthouse `12.8.2`, and Chrome `150.0.7871.187`. Each route received three mobile performance runs, and each metric uses its independently sorted median. Raw reports remain temporary and uncommitted under `%TEMP%\portfolio-slice-10d`.
+
+| Route | Phase | Score | FCP | LCP | TBT | CLS | Transfer | Requests | JS | CSS | Images |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `/projects/newbudget` | Before | 98 | 1,057 ms | 2,375 ms | 68 ms | 0 | 213,245 B | 33 | 159,351 B | 6,526 B | 0 B |
+| `/projects/newbudget` | After | 98 | 1,057 ms | 2,352 ms | 45 ms | 0 | 215,221 B | 33 | 160,398 B | 7,290 B | 0 B |
+| `/projects/unicos` | Before | 98 | 1,056 ms | 2,358 ms | 52 ms | 0 | 218,981 B | 33 | 159,351 B | 6,526 B | 0 B |
+| `/projects/unicos` | After | 98 | 1,057 ms | 2,355 ms | 48 ms | 0 | 222,646 B | 33 | 160,398 B | 7,290 B | 0 B |
+
+The isolated interaction adds 1,047 B of transferred JavaScript and 764 B of CSS per measured case-study route. Request count, score, and CLS are unchanged. Median LCP moved by -23 ms on newBudget and -3 ms on Unicos; median TBT moved by -23 ms and -4 ms respectively. Those small favourable movements are normal synthetic variation and are not claimed as an optimisation benefit. The total route transfer increase also includes the serialised selected-visual data: 1,976 B on newBudget and 3,665 B on Unicos.
+
+The closed route still transfers zero gallery-image bytes. On desktop, opening the lightbox requested exactly one larger derivative for the selected image; no hidden enlarged images were rendered or requested. On the narrow viewport, the modal reused the already-loaded selected 640-pixel derivative and added no image request. The direct original-asset links remain separate from modal image delivery.
+
+Manual production review covered wide desktop, narrow mobile, landscape mobile, a 320-pixel short viewport, and a 640-CSS-pixel width-equivalent 200% reflow check. The native dialog retained reachable Close and original-asset controls, internal caption scrolling for constrained height, no horizontal overflow, stable background layout during scroll locking, and exact focus restoration after Close and backdrop dismissal. Screenshot text, diagram detail, existing optimisation bypasses, and approved redactions remained intact. Reduced-motion and forced-colour rules are explicit in the lightbox CSS; the available in-app browser did not expose media emulation or persistent browser zoom, so those checks combine source review with the documented width-equivalent reflow limitation rather than claiming full cross-browser assistive-technology coverage.
