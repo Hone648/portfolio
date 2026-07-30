@@ -125,7 +125,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through completed Slice 11. Home Security visual evidence and deployment support remain target structure for later approved slices.
+The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through completed Slice 11. Home Security visual evidence is intentionally excluded from the architecture; that case study remains text-only by owner decision. Deployment support remains future architecture associated with Slice 12.
 
 ```text
 portfolio/
@@ -225,7 +225,7 @@ portfolio/
 
 Create directories when an approved slice introduces real files that belong in them. Do not create empty directories merely to resemble the target architecture.
 
-Home Security visual evidence remains future work and its visual directory must not be created empty.
+Home Security has no visual-evidence directory and must not be given one; its case study remains text-only unless a later separately approved scope explicitly reopens that decision.
 
 ## Security and Privacy
 
@@ -246,4 +246,6 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, Home Security sanitized visual evidence, production-origin and deployment verification, production field-performance data, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, production-origin and deployment verification, production field-performance data, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+
+Home Security visual evidence is not deferred architecture. Slice 8C is cancelled by owner decision, and the Home Security and Automation Lab remains a text-only case study. Do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens this decision.

@@ -124,7 +124,7 @@
 - Three cameras demonstrate an operational residential integration, not commercial fleet scale.
 - The lack of a public Home Security source repository and live link is intentional.
 - The older home-automation repository does not represent the current operational deployment.
-- Slice 8C remains postponed; do not add placeholder or reconstructed Home Security visual evidence.
+- Slice 8C is cancelled by owner decision. Keep Home Security as a text-only case study and do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens that decision.
 - AI assistance on Home Security must remain secondary and must not be described as autonomous administration of the live system.
 - Use sentence case for visitor-facing buttons, navigation actions, section headings, and labels unless a proper noun, project name, organisation name, technology name, or approved status label requires otherwise.
 - Use `View` for explicit navigation actions to portfolio content, `Open` for external applications and full-size assets, and `Email` for direct email actions. Concise destination labels such as `About Hunter` are permitted where they read more naturally than an imperative action.
