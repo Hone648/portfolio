@@ -57,11 +57,11 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 10B: Metadata, SEO, and shareability | Complete. Add reviewed metadata, canonical URLs, indexing routes, structured data, icons, and sharing surfaces. | Do not mix metadata work with deployment completion. |
 | Slice 10C: Performance audit and targeted optimisation | Complete. Measure performance and address only demonstrated bottlenecks. | Do not make speculative optimisations without measured evidence. |
 | Slice 10D: Case-study lightbox interaction | Complete. Add an accessible native-dialog lightbox through one isolated Client Component. | Keep the gallery server-rendered and preserve evidence, direct asset access, and measured performance. |
-| Slice 11: CI and browser validation | Active. Add automated validation workflows and focused Chromium browser smoke tests. | Do not mark complete before owner review, a successful GitHub Actions run, and merge. |
+| Slice 11: CI and browser validation | Complete. Add automated validation workflows and focused Chromium browser smoke tests. | Preserve the Chromium-only matrix and do not treat passing automation as conformance or deployment. |
 | Slice 12: Production deployment | Planned and next. Deploy the reviewed portfolio. | Do not add analytics or custom-domain decisions unless approved. |
-| Slice 13: Post-launch hardening | Improve substantiation, monitoring, and maintenance after release. | Do not rewrite prior claims without matching implementation or documentation updates. |
+| Slice 13: Post-launch hardening | Planned. Improve substantiation, monitoring, and maintenance after release. | Do not rewrite prior claims without matching implementation or documentation updates. |
 
-Slice 9A through Slice 10D are complete, and Slice 11 is active. Slice 12 is planned and next, and Slice 13 remains planned. Slice 8C remains postponed until an approved Home Security visual-evidence pass; it has not been cancelled.
+Slice 9A through Slice 11 are complete. Slice 12 is planned and next, and Slice 13 remains planned. Slice 8C remains postponed until an approved Home Security visual-evidence pass; it has not been cancelled.
 
 ## Branch and Review Workflow
 

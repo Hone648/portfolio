@@ -69,6 +69,7 @@
 - Preserve evidence-backed accuracy and project-state distinctions internally, but do not make evidence, audit, proof, qualification, or limitation terminology the default public-facing voice.
 - Visitor-facing copy should lead with project purpose, engineering contribution, and practical value. Status and meaningful constraints must remain accurate but secondary.
 - Continue to distinguish implemented, deployed, operational, prototyped, designed, and planned work.
+- Treat `README.md` as recruiter-, developer-, and customer-facing documentation. Keep internal slice tracking, evidence governance, approval history, and defensive implementation disclaimers in `AGENTS.md` or `docs/`, not in the public README.
 - Do not expose secrets, financial records, OAuth details, private camera credentials, private RTSP URLs, home addresses, sensitive topology, or identifying camera footage.
 - Visual metadata must come from `content/project-visuals.ts`.
 - Projects without approved visual evidence must not receive placeholder records.

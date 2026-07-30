@@ -1,50 +1,51 @@
-# Portfolio
+# Hunter Kam — Developer Portfolio
 
-Hunter Kam's professional portfolio repository.
+[![CI](https://github.com/Hone648/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Hone648/portfolio/actions/workflows/ci.yml)
 
-Approved positioning:
+This repository contains the source for my professional portfolio, highlighting production web application work, business workflow engineering, and local automation systems. The site focuses on practical engineering decisions, implementation evidence, and the operational lessons behind each project.
 
-> Computer Science student and full-stack developer building production web applications, operational business systems, and local automation infrastructure.
+I am a Computer Science student and full-stack developer. The portfolio presents current software projects alongside selected prior technical experience, and it keeps those two kinds of work clearly distinct.
 
-## Status
+## Featured projects
 
-Slices 10A through 10D are complete, and Slice 11: CI and focused browser validation is active. The server-rendered project gallery uses one isolated Client Component to open a selected visual in a native modal dialog while retaining the card caption, evidence note, and direct original-asset link. Playwright now exercises focused Chromium smoke tests against a production build, and GitHub Actions defines separate static-quality and browser jobs. Slice 12 is next. The final production `SITE_URL` remains a Slice 12 deployment responsibility, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
+| Project | Focus | Status |
+| --- | --- | --- |
+| newBudget | Personal budgeting, monthly planning, and debt tracking | Deployed production application |
+| Unicos | Repair-order workflow and business-process modeling | Application in active development |
+| Home Security and Automation Lab | Local automation, event processing, and systems integration | Operational private systems-integration project |
 
-## Stack
+Each project has a case study covering its purpose, the engineering decisions behind it, and the constraints that shaped it.
+
+## Built with
 
 - Next.js
-- TypeScript
 - React
+- TypeScript
 - App Router
-- Small global CSS system and/or CSS Modules
-- MDX for project case-study narrative
-- Structured TypeScript content for profile facts, selected career history, transferable strengths, and project-backed technical skills
-- Vercel planned for deployment
+- MDX for case-study narrative
+- CSS Modules and a small global CSS system
+- Playwright
+- GitHub Actions
 - ESLint
-- TypeScript compiler validation
-- Playwright for focused Chromium browser smoke testing
-- No database, authentication, content-management system, admin dashboard, runtime GitHub API dependency, Tailwind, or general-purpose UI component framework
 
-MDX is installed and configured for project case-study narrative. Project-backed skills remain separate from transferable career strengths, and neither uses percentage ratings or proficiency meters. The HTML-only resume presents current software projects before selected prior technical experience. Contact remains a static email and GitHub surface with no form or backend. Employment dates, a downloadable resume, and deployment remain planned for later slices.
+## Local development
 
-The newBudget screenshots use owner-approved identity presentation and demonstration financial records; they publish no email, provider identifier, application-user identifier, uploaded statement, or other unapproved account detail. Statement Review is not presented as a portfolio capability, and no replacement statement workflow is claimed. newBudget remains a deployed production application, Unicos remains an active-development application, and Home Security remains an operational local systems-integration project. The approved gallery assets and registry facts remain unchanged. The shared gallery adds one project-scoped lightbox interaction but no runtime service, dependency, carousel, or image API.
+### Requirements
 
-## Local Prerequisites
-
-- Node.js 24 LTS
+- Node.js 24
 - npm
 - Git
 
-The repository records the Node major line in `.nvmrc` and constrains Node with `>=24 <25`.
+The Node major line is recorded in `.nvmrc`.
 
-## Installation
+### Install
 
 ```powershell
 npm install
 npx playwright install chromium
 ```
 
-## Development
+### Start the development server
 
 ```powershell
 npm run dev
@@ -53,35 +54,19 @@ npm run dev
 ## Validation
 
 ```powershell
-npm run lint
-npm run typecheck
-npm run build
-```
-
-Or run the combined validation command:
-
-```powershell
 npm run validate
-```
-
-Run the focused Chromium browser suite with:
-
-```powershell
 npm run test:e2e
 ```
 
-The browser command builds the application and starts the production Next.js server on the configured test origin. CI runs both the existing static validation and the Chromium smoke suite. This focused automation is not a cross-browser certification or an accessibility-conformance claim, and production deployment remains Slice 12 work.
+`npm run validate` runs ESLint, TypeScript validation, and a production build. `npm run test:e2e` builds the application, starts the production Next.js server, and runs the focused Chromium smoke suite. GitHub Actions runs both validation paths for pull requests and pushes to `main`.
 
-## Project Classifications
+This automation covers the core public routes and interactions; it is not a cross-browser certification, an accessibility-conformance claim, or an audited security review.
 
-| Project | Classification |
-| --- | --- |
-| newBudget | Deployed production application |
-| Unicos | Business application in active development |
-| Home Security and Automation Lab | Operational systems-integration project |
+## Deployment
 
-## Content Accuracy and Substantiation
+The site is validated locally and through GitHub Actions; public production deployment is not yet configured.
 
-Public claims must remain supported by implementation, deployment, operational experience, documentation, or reviewed project artifacts. The public interface should lead with the work and engineering thinking rather than the process used to substantiate each statement. Planned work must not be described as completed, and private or sensitive project data must remain protected.
+## Contact
 
-About, Resume, and Contact connect a technical career spanning more than two decades to current software work without recasting that history as software-engineering tenure. Selected career entries omit employment dates and complete chronology, project-backed skills remain separate from transferable strengths, and remote or freelance language describes current interest rather than prior software-employment outcomes or an existing client base. No contact form, contact backend, downloadable resume, analytics, or deployment was added. MDX owns case-study narrative, while project cards, the reusable case-study layout, and the partial visual registry consume structured facts without changing project status. Home Security remains an operational local systems-integration case study with privacy-sensitive evidence kept sanitized. Unicos remains a local-development application in active development and gains no production-readiness claim from its visual evidence.
+- Email: [hone648@gmail.com](mailto:hone648@gmail.com)
+- GitHub: [Hone648](https://github.com/Hone648)
