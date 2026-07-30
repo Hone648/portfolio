@@ -125,7 +125,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through active Slice 11. Home Security visual evidence and deployment support remain target structure for later approved slices.
+The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through completed Slice 11. Home Security visual evidence and deployment support remain target structure for later approved slices.
 
 ```text
 portfolio/
