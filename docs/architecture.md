@@ -69,6 +69,14 @@ The lightbox receives a serialisable, flattened visual list containing only its 
 
 These measurements are local synthetic lab data, not production Core Web Vitals or real-user monitoring. CDN behaviour, deployment headers, production caching, final-origin verification, field data, and post-launch monitoring remain Slice 12 or post-launch responsibilities.
 
+## Testing and CI Boundary
+
+Playwright is the portfolio's sole browser-test framework, with one Chromium project and no cross-browser matrix, sharding, visual snapshots, or unit-test framework. Tests use semantic, user-facing locators and exercise public-route status, landmarks, headings, metadata, responsive overflow, the skip link, indexing routes, the expected missing-route response, and the native-dialog lightbox. They do not couple behaviour to CSS Module names, React internals, Next.js internals, or arbitrary delays.
+
+`playwright.config.ts` owns the production test lifecycle through `webServer`: it runs `npm run build`, starts `next start` on `127.0.0.1:3001`, and supplies that explicit origin through `SITE_URL`. Local runs use the list and HTML reporters; CI adds GitHub annotations. Traces, screenshots, and video are retained only for failures, and generated reports remain outside version control.
+
+GitHub Actions defines separate `quality` and `browser` jobs. Both install the locked dependency graph with `npm ci`; the quality job runs `npm run validate`, while the browser job installs only Chromium and its Linux dependencies before running `npm run test:e2e` with one worker. Failure-only artifacts are limited to `playwright-report/` and `test-results/`. CI validates source and browser behaviour but does not deploy the site, establish accessibility conformance, or prove production-origin behaviour before the workflow runs remotely.
+
 ## Project Registry
 
 `content/project-metadata.ts` owns structured project facts, while `lib/projects.ts` provides synchronous, pure read helpers. Registry order controls default display order, and public status labels are centralized so presentation code does not duplicate them.
@@ -117,7 +125,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, visual-evidence, metadata, performance-audit, and lightbox paths shown below exist through Slice 10D. Home Security visual evidence, tests, CI, and deployment support remain target structure for later approved slices.
+The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through active Slice 11. Home Security visual evidence and deployment support remain target structure for later approved slices.
 
 ```text
 portfolio/
@@ -193,6 +201,9 @@ portfolio/
 |   |   `-- unicos-repair-order-workflow.svg
 |   `-- documents/
 |-- tests/
+|   `-- e2e/
+|       |-- lightbox.spec.ts
+|       `-- site-smoke.spec.ts
 |-- docs/
 |   |-- architecture.md
 |   |-- content-evidence-matrix.md
@@ -201,6 +212,7 @@ portfolio/
 |   `-- visual-evidence.md
 |-- .github/
 |   `-- workflows/
+|       `-- ci.yml
 |-- AGENTS.md
 |-- mdx-components.tsx
 |-- next.config.ts
@@ -234,4 +246,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, Playwright automation, Home Security sanitized visual evidence, CI, production-origin and deployment verification, production field-performance data, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, Home Security sanitized visual evidence, production-origin and deployment verification, production field-performance data, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.

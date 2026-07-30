@@ -8,7 +8,7 @@ Approved positioning:
 
 ## Status
 
-Slices 10A, 10B, and 10C are complete, and Slice 10D: Case-study lightbox interaction is active. The server-rendered project gallery now uses one isolated Client Component to open a selected visual in a native modal dialog while retaining the card caption, evidence note, and direct original-asset link. The interaction adds no dependency, carousel, gallery navigation, zoom, or URL state, and its browser payload is measured against the Slice 10C production baseline. Slice 11 is next. The final production `SITE_URL` remains a Slice 12 deployment responsibility, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
+Slices 10A through 10D are complete, and Slice 11: CI and focused browser validation is active. The server-rendered project gallery uses one isolated Client Component to open a selected visual in a native modal dialog while retaining the card caption, evidence note, and direct original-asset link. Playwright now exercises focused Chromium smoke tests against a production build, and GitHub Actions defines separate static-quality and browser jobs. Slice 12 is next. The final production `SITE_URL` remains a Slice 12 deployment responsibility, and Slice 8C, Home Security visual evidence, remains postponed rather than cancelled.
 
 ## Stack
 
@@ -22,10 +22,10 @@ Slices 10A, 10B, and 10C are complete, and Slice 10D: Case-study lightbox intera
 - Vercel planned for deployment
 - ESLint
 - TypeScript compiler validation
-- Playwright planned for focused browser smoke testing
+- Playwright for focused Chromium browser smoke testing
 - No database, authentication, content-management system, admin dashboard, runtime GitHub API dependency, Tailwind, or general-purpose UI component framework
 
-MDX is installed and configured for project case-study narrative. Project-backed skills remain separate from transferable career strengths, and neither uses percentage ratings or proficiency meters. The HTML-only resume presents current software projects before selected prior technical experience. Contact remains a static email and GitHub surface with no form or backend. Employment dates, a downloadable resume, Playwright automation, and deployment remain planned for later slices.
+MDX is installed and configured for project case-study narrative. Project-backed skills remain separate from transferable career strengths, and neither uses percentage ratings or proficiency meters. The HTML-only resume presents current software projects before selected prior technical experience. Contact remains a static email and GitHub surface with no form or backend. Employment dates, a downloadable resume, and deployment remain planned for later slices.
 
 The newBudget screenshots use owner-approved identity presentation and demonstration financial records; they publish no email, provider identifier, application-user identifier, uploaded statement, or other unapproved account detail. Statement Review is not presented as a portfolio capability, and no replacement statement workflow is claimed. newBudget remains a deployed production application, Unicos remains an active-development application, and Home Security remains an operational local systems-integration project. The approved gallery assets and registry facts remain unchanged. The shared gallery adds one project-scoped lightbox interaction but no runtime service, dependency, carousel, or image API.
 
@@ -41,6 +41,7 @@ The repository records the Node major line in `.nvmrc` and constrains Node with 
 
 ```powershell
 npm install
+npx playwright install chromium
 ```
 
 ## Development
@@ -62,6 +63,14 @@ Or run the combined validation command:
 ```powershell
 npm run validate
 ```
+
+Run the focused Chromium browser suite with:
+
+```powershell
+npm run test:e2e
+```
+
+The browser command builds the application and starts the production Next.js server on the configured test origin. CI runs both the existing static validation and the Chromium smoke suite. This focused automation is not a cross-browser certification or an accessibility-conformance claim, and production deployment remains Slice 12 work.
 
 ## Project Classifications
 
