@@ -64,7 +64,7 @@ This automation covers the core public routes and interactions; it is not a cros
 
 ## Deployment
 
-The site is validated locally and through GitHub Actions; public production deployment is not yet configured.
+The portfolio is deployed on Vercel at [portfolio-swart-rho-44.vercel.app](https://portfolio-swart-rho-44.vercel.app). Production builds come from `main`, and canonical URLs, `sitemap.xml`, `robots.txt`, and social metadata are generated from the configured production origin.
 
 ## Contact
 

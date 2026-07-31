@@ -16,7 +16,7 @@ This portfolio should be simple, durable, evidence-first, and easy to validate. 
 - Keep structured metadata, long-form content, and presentation concerns separate.
 - Use a small global CSS system and/or CSS Modules.
 - Do not use Tailwind.
-- Plan Vercel for deployment in a later slice.
+- Deploy on Vercel from the `main` production branch.
 
 ## Shell Composition
 
@@ -51,11 +51,11 @@ Accessibility review combines manual keyboard, zoom, reflow, text-spacing, force
 
 ## Metadata and Indexing Boundary
 
-`lib/site-url.ts` is the only source for canonical and absolute metadata URLs. It resolves an explicit server-side `SITE_URL`, then `VERCEL_PROJECT_PRODUCTION_URL`, then the ordinary local fallback `http://localhost:3000`. Configured hostnames without a protocol receive `https://`; values are validated as HTTP or HTTPS URLs and reduced to their stable origin. Canonicals are never inferred from request headers, cookies, `VERCEL_URL`, `VERCEL_BRANCH_URL`, or other preview-host values. Slice 12 must configure and verify the final production `SITE_URL`.
+`lib/site-url.ts` is the only source for canonical and absolute metadata URLs. It resolves an explicit server-side `SITE_URL`, then `VERCEL_PROJECT_PRODUCTION_URL`, then the ordinary local fallback `http://localhost:3000`. Configured hostnames without a protocol receive `https://`; values are validated as HTTP or HTTPS URLs and reduced to their stable origin. Canonicals are never inferred from request headers, cookies, `VERCEL_URL`, `VERCEL_BRANCH_URL`, or other preview-host values. `SITE_URL` is configured in the Vercel Production environment, so the stable production origin drives canonical output.
 
 The root layout owns the `%s | Hunter Kam` title template, default site identity, viewport metadata, and complete root Open Graph and Twitter records. `lib/metadata.ts` composes route fragments, distinct descriptions, canonical URLs, and complete nested Open Graph and Twitter objects for static pages and generated case studies. Generated `opengraph-image`, `twitter-image`, `icon`, and `apple-icon` routes share local code-only renderers with no remote assets or font requests.
 
-`app/sitemap.ts` emits only canonical public HTML routes and derives case-study paths from the published case-study slug helper. `app/robots.ts` allows public crawling and points to the canonical sitemap and host. Root JSON-LD is limited to one `WebSite` and one `Person`; About adds one `ProfilePage` connected to the same stable Person ID. The Server Component serializer accepts static JSON-compatible data and escapes `<` before rendering. No project schema, private contact data, analytics, Search Console verification, deployment configuration, or request-host canonical inference is included. Metadata, indexing routes, and structured data do not establish deployment completion; production verification remains Slice 12 work.
+`app/sitemap.ts` emits only canonical public HTML routes and derives case-study paths from the published case-study slug helper. `app/robots.ts` allows public crawling and points to the canonical sitemap and host. Root JSON-LD is limited to one `WebSite` and one `Person`; About adds one `ProfilePage` connected to the same stable Person ID. The Server Component serializer accepts static JSON-compatible data and escapes `<` before rendering. No project schema, private contact data, analytics, Search Console verification, deployment configuration, or request-host canonical inference is included. Slice 12 is complete: the production origin is configured, and canonical URLs, `robots.txt`, `sitemap.xml`, Open Graph and Twitter metadata, and JSON-LD resolve against it on the public deployment.
 
 ## Performance Boundary
 
@@ -67,7 +67,7 @@ Performance review uses a clean production build, a local production server, an 
 
 The lightbox receives a serialisable, flattened visual list containing only its identifier, kind label, source, intrinsic dimensions, alternative text, title, caption, and optimisation-bypass flag. It renders no enlarged image while closed and only the selected enlarged image while open. Slice 10D measures the route-specific JavaScript, CSS, request count, and Lighthouse medians against the Slice 10C baseline.
 
-These measurements are local synthetic lab data, not production Core Web Vitals or real-user monitoring. CDN behaviour, deployment headers, production caching, final-origin verification, field data, and post-launch monitoring remain Slice 12 or post-launch responsibilities.
+These measurements are local synthetic lab data, not production Core Web Vitals or real-user monitoring. The site is now deployed and the production origin is verified, but no production performance measurement has been taken: CDN behaviour, deployment headers, production caching, field data, and post-launch monitoring remain unmeasured post-launch responsibilities.
 
 ## Testing and CI Boundary
 
@@ -76,6 +76,16 @@ Playwright is the portfolio's sole browser-test framework, with one Chromium pro
 `playwright.config.ts` owns the production test lifecycle through `webServer`: it runs `npm run build`, starts `next start` on `127.0.0.1:3001`, and supplies that explicit origin through `SITE_URL`. Local runs use the list and HTML reporters; CI adds GitHub annotations. Traces, screenshots, and video are retained only for failures, and generated reports remain outside version control.
 
 GitHub Actions defines separate `quality` and `browser` jobs. Both install the locked dependency graph with `npm ci`; the quality job runs `npm run validate`, while the browser job installs only Chromium and its Linux dependencies before running `npm run test:e2e` with one worker. Failure-only artifacts are limited to `playwright-report/` and `test-results/`. CI validates source and browser behaviour but does not deploy the site, establish accessibility conformance, or prove production-origin behaviour before the workflow runs remotely.
+
+## Production Deployment
+
+The portfolio is deployed on Vercel, which builds the existing Next.js application from the `main` production branch. The deployment preserves the application's existing Next.js boundary: public pages remain statically generated, while icon, social-image, `robots.txt`, and `sitemap.xml` routes continue to be generated by the framework. No custom deployment script, adapter, or platform-specific runtime code was introduced. Vercel configuration lives in the project's dashboard settings rather than a checked-in configuration file.
+
+`SITE_URL` is set in the Vercel Production environment and is the published canonical-origin configuration. `VERCEL_PROJECT_PRODUCTION_URL` remains only an implementation fallback inside `lib/site-url.ts` for the case where `SITE_URL` is absent; it is not the documented configuration and must not be relied on as the canonical source. Preview and deployment-specific Vercel hostnames are never canonical public origins, and the resolver continues to reject `VERCEL_URL`, `VERCEL_BRANCH_URL`, request headers, and cookies as origin inputs.
+
+The public production URL is `https://portfolio-swart-rho-44.vercel.app`. HTTPS redirects correctly on the production origin. Analytics and Speed Insights remain disabled, no custom domain is configured, and no search-verification tag is configured. Deployment adds no database, backend service, authentication, CMS, admin dashboard, or runtime GitHub API call.
+
+Vercel account identifiers, project IDs, internal deployment URLs, tokens, and non-public environment-variable values stay out of this repository and its documentation. Deployment was verified against the reviewed commit by checking the public origin, HTTPS behaviour, and the canonical, indexing, and structured-data output. That verification confirms the deployment is configured and reachable; it is not exhaustive testing and establishes no availability, monitoring, or performance claim.
 
 ## Project Registry
 
@@ -125,7 +135,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through completed Slice 11. Home Security visual evidence is intentionally excluded from the architecture; that case study remains text-only by owner decision. Deployment support remains future architecture associated with Slice 12.
+The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through completed Slice 12. Home Security visual evidence is intentionally excluded from the architecture; that case study remains text-only by owner decision. Deployment adds no repository files: Vercel builds the existing Next.js application and the production origin is supplied through an environment variable rather than a checked-in configuration file.
 
 ```text
 portfolio/
@@ -246,6 +256,6 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 ## Deferred Architecture
 
-Employment-date and complete-chronology verification, production-origin and deployment verification, production field-performance data, analytics decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
+Employment-date and complete-chronology verification, production field-performance data, analytics decisions, custom-domain decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
 
 Home Security visual evidence is not deferred architecture. Slice 8C is cancelled by owner decision, and the Home Security and Automation Lab remains a text-only case study. Do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens this decision.

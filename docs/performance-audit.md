@@ -133,7 +133,7 @@ This review does not claim accessibility conformance from Lighthouse or syntheti
 
 Local Lighthouse is synthetic lab evidence. It does not measure production users, network geography, CDN cache state, cold deployments, browser diversity, device diversity, long-term interaction behavior, or field Core Web Vitals. Short local runs also contain normal scheduling variation, visible in the LCP and main-thread ranges.
 
-Slice 12 must configure and verify the final production `SITE_URL`, production deployment, headers, CDN and cache behaviour, generated metadata routes, and production-origin request behavior. Post-launch work may add privacy-reviewed real-user or field data only through a separately approved analytics decision. Production performance claims require that evidence; this audit does not make them.
+Slice 12 later configured and verified the final production `SITE_URL`, the public deployment, generated metadata routes, and production-origin request behavior. This audit still does not measure deployment headers, CDN or cache behaviour, production users, or field Core Web Vitals. Post-launch work may add privacy-reviewed real-user or field data only through a separately approved analytics decision. Production performance claims require that evidence; this audit does not make them.
 
 ## Slice 10D Lightbox Comparison
 
