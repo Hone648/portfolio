@@ -86,6 +86,23 @@ test.describe("canonical public routes", () => {
   }
 });
 
+test("the homepage exposes the Google site-verification tag", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+  const response = await page.goto("/");
+
+  expect(response?.status()).toBe(200);
+
+  const verification = page.locator('meta[name="google-site-verification"]');
+  await expect(verification).toHaveCount(1);
+  await expect(verification).toHaveAttribute(
+    "content",
+    "ccLfmUEUzj3OXo02VsjQnWWJkTWzzdwg4mnGXIk5_V4",
+  );
+  expectNoApplicationErrors();
+});
+
 test.describe("responsive public routes", () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
