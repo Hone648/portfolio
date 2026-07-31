@@ -58,10 +58,10 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 10C: Performance audit and targeted optimisation | Complete. Measure performance and address only demonstrated bottlenecks. | Do not make speculative optimisations without measured evidence. |
 | Slice 10D: Case-study lightbox interaction | Complete. Add an accessible native-dialog lightbox through one isolated Client Component. | Keep the gallery server-rendered and preserve evidence, direct asset access, and measured performance. |
 | Slice 11: CI and browser validation | Complete. Add automated validation workflows and focused Chromium browser smoke tests. | Preserve the Chromium-only matrix and do not treat passing automation as conformance or deployment. |
-| Slice 12: Production deployment | Planned and next. Deploy the reviewed portfolio. | Do not add analytics or custom-domain decisions unless approved. |
+| Slice 12: Production deployment | Complete. Deploy the reviewed portfolio to Vercel, configure the stable production origin, and verify public production behavior. | Do not add analytics or custom-domain decisions unless approved. |
 | Slice 13: Post-launch hardening | Planned. Improve substantiation, monitoring, and maintenance after release. | Do not rewrite prior claims without matching implementation or documentation updates. |
 
-Slice 8A and Slice 8B are complete, and Slice 8C is cancelled by owner decision, so Slice 8 is closed and accepted. Slice 9A through Slice 11 are complete. Slice 12 is planned and next, and Slice 13 remains planned. The Home Security and Automation Lab remains a text-only case study; do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens this decision.
+Slice 8A and Slice 8B are complete, and Slice 8C is cancelled by owner decision, so Slice 8 is closed and accepted. Slice 9A through Slice 12 are complete, so the portfolio is deployed on Vercel with a configured production origin. Slice 13 is planned and next. The Home Security and Automation Lab remains a text-only case study; do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens this decision.
 
 ## Branch and Review Workflow
 
