@@ -1,97 +1,63 @@
-## Why I built a local security and automation hub
+I wanted a home security system whose behavior I could inspect and operate myself. That made local processing, understandable service boundaries, and reviewable configuration changes more important than a polished appliance experience.
 
-I wanted a smart home and a security system, but I did not want either one tied to a recurring cloud subscription. More importantly, I did not want video from my home-security cameras leaving the property just so another company's servers could store or analyze it.
+The result is a self-hosted NVR and automation stack on an Ubuntu 24.04.3 LTS host. Docker Compose runs Frigate, Home Assistant, and Mosquitto as separate services. Frigate handles video ingest, detection, recording, and event production. Mosquitto carries event messages. Home Assistant consumes the relevant event flow and applies automation actions. Keeping those responsibilities distinct makes the system easier to reason about when one visible symptom could have several causes.
 
-That made local ownership the starting requirement. I chose an open-source software stack I could run, inspect, and maintain myself instead of buying into a proprietary camera ecosystem. I worked backward from the workload, evaluating what a modest mini PC could realistically support and pairing it with a Google Coral Edge TPU so continuous object detection could run locally without requiring a much larger server.
+The public `nvr-infrastructure` repository is now part of that operating model. It contains a sanitized representative configuration and the procedures used to review selected tracked files. It is evidence of the architecture and configuration practices described here, but it is not a verbatim copy of the private deployment and its single sanitized camera definition is not a complete camera inventory.
 
-The camera path is hardwired. All three RTSP video streams stay on the local wired network; none uses Wi-Fi for video transport. Frigate records and analyzes those streams on the Ubuntu Server host, while Home Assistant applies the household rules that decide whether an event is worth turning into a notification.
+## Following the event path instead of counting components
 
-Once the local architecture was decided, the next problem was usefulness. A camera that alerts on motion alerts on everything: wind moving a branch, headlights sweeping past, rain, a cat. Repeated low-value notifications make the alert stream easy to ignore — precisely the outcome I wanted to avoid.
+The useful way to understand the system is as a path through boundaries.
 
-The question I wanted answered was narrower: not "did something change in this frame," but "did a person appear somewhere that matters, at a time when it matters." That is what this system is built around.
+A sanitized RTSP definition supplies separate inputs for detection and recording. Frigate sends the lighter input through its detection path while retaining the higher-quality input for recording. The representative configuration tracks `person`, `car`, and `bird` objects. Its motion masks reduce or ignore motion activity in configured regions, while its configured zone provides spatial context. The reviewed configuration does not establish that zone membership is required for alerts, detections, persistent notifications, or review events.
 
-This project was not about installing as much "smart" technology as possible. It was about building a system that was useful, private, maintainable, and mine to operate. I selected the hardware and services, brought the cameras in, configured and validated the event path, worked through the failures, and decided where public explanation stops. It is operational in a private residence: not a commercial security product or a professionally monitored alarm.
+Frigate publishes events through MQTT to Mosquitto. Home Assistant listens to that event stream, and the representative person-event automation creates a persistent notification. That is deliberately a narrow claim: the reviewed automation demonstrates an event crossing the Frigate, broker, and Home Assistant boundaries. It is not a professionally monitored alarm, guaranteed delivery path, emergency response system, or claim that every private automation is published.
 
-## Designing one event path across separate systems
+This path is also the troubleshooting order. A running container does not prove that an RTSP input is healthy. A healthy input does not prove that detection events are being produced. A Frigate event does not prove that the broker and consumer observed it. A received event does not prove that the intended Home Assistant action ran. Checking each boundary in sequence prevents an upstream stream problem from being treated as an automation problem.
 
-It helps to follow a single event from the camera to the phone, because no one service owns the outcome.
+## Separating video work from event policy
 
-A hardwired camera produces video and sends its RTSP stream across the local wired network to the host. Frigate receives the streams, records locally, and runs object detection, with a Google Coral Edge TPU handling the accelerated inference workload — which is what makes continuous detection on a modest single host practical. When Frigate classifies an object it emits an event, and this workflow selects the `person` class from Frigate's broader output. That event goes to Home Assistant, which decides whether the configured area and time context make it worth interrupting someone. If so, Home Assistant sends the mobile notification, and the loop ends there.
+The reviewed Frigate configuration uses VAAPI FFmpeg acceleration through `/dev/dri`. Hardware-assisted video processing matters because decoding and preparing streams is continuous work, but the public evidence does not turn that implementation detail into a performance benchmark or a claim about the complete private hardware inventory.
 
-Every handoff is both a decision point and a place where things can quietly stop working. Reading the system as one path rather than a stack of installed software is what makes everything below easier to follow.
+Detection and retention are separate concerns. The representative configuration keeps motion-oriented recordings for a short window and retains alerts, detections, and snapshots longer for event review. That is more useful than treating every frame as equally valuable, and it still leaves storage as an operational constraint. Age-based Frigate retention exists today; a disk-threshold cleanup job does not. Monitoring filesystem use, defining safe thresholds, and designing a guarded cleanup process remain planned work.
 
-## Treating detection as an input, not a decision
+Availability status also stays honest. The stack is operational in a private residential environment, but one host is still one dependency. There is no measured availability figure, failover claim, enterprise observability stack, or assurance that local processing makes every dependency fully offline.
 
-The most useful choice I made was refusing to let detection be the alert.
+## Treating reviewed configuration as source
 
-Motion is the crudest signal: something in the frame changed. A classified object event is better — Frigate says this looks like a particular kind of object, and selecting the `person` class narrows further. But even a confident person event is only a candidate: it answers what Frigate saw, not whether I need to know about it.
+The sanitized repository tracks selected Compose, Frigate, Home Assistant, and Mosquitto configuration. Secrets, authenticated RTSP URLs, runtime data, logs, databases, recordings, and other generated state are excluded. Placeholders and environment references preserve configuration shape without publishing access material.
 
-That second question belongs to Home Assistant, and it is policy rather than detection. The event has to correspond to a configured area, and the time has to fall inside an approved automation window, before the notification action runs. Where and when carry as much meaning as what — the same person in the same spot can be unremarkable at one hour and worth a look at another.
+That separation turns configuration into something reviewable. A proposed change can be inspected as a diff, checked against the documented source boundary, and validated before it reaches the operational copy. The repository validation script checks YAML syntax, the Python validator, Bash syntax, the Docker Compose model, and Mosquitto configuration. Those checks do not prove that a private camera is reachable or that every live integration works, but they catch a useful class of configuration failures before deployment.
 
-Splitting those responsibilities keeps the alerts worth reading. It does not make them correct: false positives still happen, meaningful events can still be missed, and I have not measured a detection rate. The system also does not identify anyone — it classifies object types, which is not facial recognition or biometric identification.
+The repository is therefore stronger evidence than prose alone while remaining intentionally incomplete. It shows selected tracked configuration and operations documentation without exposing the private topology needed to reproduce the residential environment.
 
-## Bringing three camera streams into the local hub
+## Documenting how a change should reach the live stack
 
-Three hardwired RTSP streams currently feed Frigate for local recording and detection. No camera video relies on Wi-Fi; the streams remain on the local wired network. Integrating them was less about configuration syntax than about learning where things break.
+The repository includes a configuration-deployment runbook rather than automatic synchronization with the live stack. The documented procedure requires repository validation and a timestamped backup of each affected live file before replacement. It maps selected repository files to their operational copies and calls for validating the live Compose model before recreating an affected service.
 
-A camera has to be reachable on the local network and accept authentication. Its stream has to actually be served, in a form the ingesting service can consume. The host has to reach it, and so does the container — not automatically the same statement. And Frigate has to accept the configuration describing it.
+For service-specific changes, the runbook directs the operator to recreate only the affected service instead of routinely taking down the entire stack. Its post-deployment verification steps cover service state, relevant health information, recent logs, and whether the application loaded the intended configuration without introducing repeated errors.
 
-The lesson that stuck is that one visible symptom covers all of those. A blank camera tile tells you the picture is missing. It does not tell you whether the camera is offline, authentication is failing, the stream is not being served, the container cannot reach what the host can, or the configuration is being rejected before the stream is attempted. Reading that as "the camera is broken" is how you end up power-cycling hardware that was fine the whole time.
+If validation or verification fails, the documented rollback steps restore replaced files from the deployment backup, validate the restored Compose model, recreate the affected service, and repeat the checks. The repository establishes that this procedure is documented; it does not establish that deployment, backup, targeted recreation, verification, or rollback have been exercised against the live NVR stack. These steps also do not amount to full backup and recovery: comprehensive backups for application state, off-host storage, encrypted backup handling, tested restoration, and full host rebuild procedures remain planned.
 
-## Using service boundaries to keep the system understandable
+Container versioning has a similar current-versus-intended boundary. The tracked services still use floating image tags. Moving to exact upstream version tags is the documented policy direction, not a completed migration.
 
-Frigate, Home Assistant, and Mosquitto run as separate containerized services on one Ubuntu Server host. That separation is what makes the system debuggable by one person.
+## Keeping roadmap work in the future tense
 
-Frigate ingests streams, records, and produces object events. Home Assistant evaluates conditions and takes actions. Mosquitto carries local publish-and-subscribe messaging. Because they are separate, each has its own logs and health, and I can inspect or restart one without treating the hub as a single opaque application.
+Several operational improvements are documented without being presented as deployed. Full monitoring and maintenance automation remain planned. Storage safeguards beyond current retention remain future work. Security hardening, credential-rotation procedure work, and broader secret-scanning controls remain future work. The network migration is also still planned.
 
-MQTT is worth describing at that architectural level: a producer, a broker, and consumers, so an event source does not have to know who is listening. Verifying local MQTT messaging was part of bringing the hub together, and an observable message boundary helps when diagnosing integration. Broker details, topics, payloads, identifiers, and credentials stay unpublished, and not every automation here depends on a hand-authored topic — the point is that the messaging layer exists, works locally, and can be inspected on its own.
+Writing those limits next to the implemented controls matters. Repository validation tooling is implemented, while backup-before-replacement, deployment, verification, and rollback remain documented procedures without separate evidence of live execution. Full-system backup and tested recovery are not implemented. Frigate retention is present now. Disk-threshold cleanup is not. A version-pinning policy exists now. Exact image pinning is not complete.
 
-What container separation does not give me is orchestration beyond Docker on one host: no failover, no self-healing, no distribution, no formal observability stack.
+## Publishing evidence without publishing the residence
 
-## Troubleshooting the path one boundary at a time
+Home security configuration can reveal much more than an ordinary application repository. Authenticated stream URLs, credentials, addresses, device identifiers, exact camera placement, schedules, footage, logs, and network topology can expose both access paths and household patterns.
 
-The most revealing failure mode is the boring one — the notification that never arrives.
+The public repository is sanitized around that risk. It excludes secrets and runtime data, uses representative names and inputs, and documents the boundary between reviewed source and operational copies. The portfolio likewise hosts no Home Security screenshots, footage, reconstructed topology, or visual gallery. The repository is public code and documentation evidence, not portfolio visual evidence.
 
-"Container running" is a process fact, not an end-to-end result. Frigate can be running while a camera stream is dead. A stream can be visible while no object events are produced. An object event can exist while it falls outside the configured area or time policy. The automation can fire while the notification never lands. All four produce the same outcome: nothing happened, and the temptation is to start changing things — restart a service, edit a condition, reboot the host — and then have no idea which change mattered.
-
-The method that replaces guessing is to walk the path in order. Start at the nearest observable input and confirm it receives what it should. Confirm it produces what the next boundary expects. Move one step downstream. Where the expected output disappears, stop: that is the layer to diagnose, and everything past it is a symptom.
-
-For a missing alert that means checking, in order: the camera is reachable, the stream is being served, the host and then the container can get to it, Frigate is ingesting it, a selected object event is produced, local messaging is moving where it applies, Home Assistant's conditions evaluate the way I think they do, and the notification action ran and delivered.
-
-Most of the value is in the ordering. It keeps a stream problem from being debugged as an automation problem, and keeps me from editing an automation that was never reached.
-
-## Operating a local system without pretending it is highly available
-
-Local-first is a real tradeoff, not a free win.
-
-The upside is direct ownership: recording and inference happen on hardware I control, and the event path is mine to change. The cost is that everything operational is also mine — updates, storage, networking, service health, and recovery. One host keeps integration simple, and it is also a single dependency underneath the whole detection-and-alert path.
-
-The honest summary: the system is operational and I use it, with no measured availability figure, no failover, and no validated recovery process. The mobile notification is an alert for me to look at — not professional monitoring, not redundant paging, not emergency dispatch, and not something whose delivery is promised. Running the core services locally is also not the same as proving every dependency is fully offline.
-
-## Keeping useful evidence from becoming a security disclosure
-
-Almost everything that would make this case study more impressive would also make a house less safe.
-
-Home-security infrastructure is unusually revealing. Footage shows people and property. Camera placement and coverage show how a property is watched, and where it is not. Zone names and automation windows describe when someone expects to be alerted — close to describing when anyone is home. Network layout, credentials, and messaging details describe how to interfere with it. Individually these look like ordinary technical detail; together they are a map.
-
-That is why there are no frames, clips, or configuration here, and why exact areas, schedules, addresses, identifiers, and stream details stay out of it. It is also why this project deliberately has no public repository and no live link. An older home-automation repository of mine exists, but it does not represent this deployment.
-
-What is publishable is the reasoning: the event path, the responsibilities, the policy decision, the failure boundaries. Withholding the rest is a decision about what is safe to say, not evidence that the deployment is hardened or audited.
-
-## How I built and validated the system
-
-I brought this up incrementally, because a system assembled all at once fails all at once.
-
-Each service went in with its responsibility understood and checked before the next depended on it: the host and containers, then a stream at a time into Frigate, then local MQTT messaging verified as flowing, then object events confirmed to be produced and classified, then automation conditions tested against events I could reproduce, and finally the mobile notification confirmed to arrive. Logs and service health showed what each boundary was receiving and emitting. Every configuration change was one I made and reviewed by hand.
+That boundary makes the project reviewable without suggesting that publication equals a security audit. The system remains a private residential integration, not a commercial security product or enterprise video platform.
 
 ## What this project demonstrates
 
-This is the project where the pieces I care about stop being separate subjects.
+The strongest lesson is not that several containers can run together. It is that a useful operational system needs legible boundaries and disciplined change handling.
 
-It started with a household requirement and turned into hardware and software decisions: sizing a mini PC against the workload I actually intended to run, adding Coral acceleration so local object detection stayed practical, and assembling open-source services instead of buying a proprietary ecosystem. Keeping camera transport, recording, and detection on-site was the constraint everything else had to satisfy.
+The event path connects RTSP processing, VAAPI-assisted video work, Frigate object events, MQTT delivery, and Home Assistant automation. The documented change path connects reviewed source, multi-format validation, live-file backups, targeted service recreation, verification, and rollback. Both paths are useful because each defines an observable boundary, while only the event path and repository validation have reviewed operational or implemented evidence here.
 
-It runs across software, networking, hardware acceleration, and physical devices, and the interesting work is at the joints: one event path across independent services, detection treated as an input rather than a verdict, and alert policy placed where context lives instead of where classification happens. It taught me to think in boundaries — what each layer receives, what it emits, and which one to interrogate when the result is missing, across hardware, networking, containers, messaging, automation, and notification.
-
-It also taught me what self-hosting asks of the person running it — the updates, storage, service health, and recovery are all mine — and where public explanation has to stop when the subject is a home.
-
-What it is not is professional security work. Three cameras in a residence is an integration, not a commercial deployment. Selective notifications are useful, not certified detection. Running well is not the same as measured availability.
+The project also shows the value of saying what evidence does not prove. A representative configuration is not a private deployment inventory. A documented configuration-rollback procedure is neither evidence of an exercised live rollback nor complete disaster recovery. Event retention is not a storage safety system. An operational home lab is not a highly available platform. Keeping those distinctions visible is part of operating the system responsibly.

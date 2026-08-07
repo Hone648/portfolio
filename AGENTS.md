@@ -112,19 +112,19 @@
 - newBudget screenshots demonstrate visible product interfaces but do not independently prove security, correctness, audited reporting, or scale.
 - Estimated debt and installment outputs must not be described as lender-exact accounting.
 - Preserve newBudget's verified deployed-production classification.
-- The Home Security narrative must follow the camera-to-notification event path rather than read as a hardware or container inventory.
+- The Home Security narrative must follow the event path and reviewed configuration lifecycle rather than read as a hardware or container inventory.
 - Preserve Home Security as an operational private residential integration, not a commercial product, professionally monitored alarm, emergency-response system, or enterprise video platform.
-- The Home Security narrative may discuss local containerized services, three RTSP streams, Coral-accelerated object detection, selected person events, area- and time-conditioned notifications, MQTT integration, and boundary-by-boundary troubleshooting.
+- The Home Security narrative may discuss the Ubuntu 24.04.3 LTS host, Docker Compose, Frigate, Home Assistant, Mosquitto, sanitized RTSP detect and record inputs, VAAPI video acceleration, representative object tracking, MQTT integration, persistent notifications, implemented repository validation, and documented deployment, verification, and rollback procedures.
+- The public `nvr-infrastructure` repository is a sanitized representative configuration and reviewed source for selected tracked files. Do not describe it as a verbatim copy or complete inventory of the private deployment.
 - Object classification must not be described as facial recognition, biometric identification, or guaranteed intrusion detection.
-- A detected person event is an automation input, not an unconditional alert.
-- Mobile notifications must not be described as guaranteed delivery, professional monitoring, redundant paging, or emergency dispatch.
+- A detected person event is an automation input, not guaranteed intrusion detection or an emergency alert.
 - Local-first must not be described as fully offline, air-gapped, highly available, fault tolerant, or independently audited.
 - Do not publish addresses, private network identifiers, RTSP URLs, credentials, camera placement, viewing direction, fields of view, exact zones, exact schedules, occupancy patterns, footage, identifying frames, private logs, MQTT topics or payloads, entity IDs, device IDs, remote-access configuration, or sensitive topology.
 - MQTT may be described at the producer, broker, and consumer level without exposing deployment-specific details or implying every automation uses a manually authored topic.
-- Three cameras demonstrate an operational residential integration, not commercial fleet scale.
-- The lack of a public Home Security source repository and live link is intentional.
-- The older home-automation repository does not represent the current operational deployment.
-- Slice 8C is cancelled by owner decision. Keep Home Security as a text-only case study and do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens that decision.
+- Repository validation tooling is implemented. Backup-before-replacement, repository-to-live deployment, targeted service recreation, post-deployment verification, and configuration rollback are documented procedures; do not imply they have been exercised against the live NVR stack without separate evidence.
+- Full backup and recovery, monitoring, storage safeguards, network migration, and security hardening remain planned or future work. Disk-threshold cleanup is not deployed, and exact image pinning remains policy direction rather than completed state.
+- Slice 8C is cancelled by owner decision. Keep Home Security excluded from the portfolio-hosted visual gallery and do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens that decision.
+- The public `nvr-infrastructure` repository is code and documentation evidence, not portfolio visual evidence.
 - AI assistance on Home Security must remain secondary and must not be described as autonomous administration of the live system.
 - Use sentence case for visitor-facing buttons, navigation actions, section headings, and labels unless a proper noun, project name, organisation name, technology name, or approved status label requires otherwise.
 - Use `View` for explicit navigation actions to portfolio content, `Open` for external applications and full-size assets, and `Email` for direct email actions. Concise destination labels such as `About Hunter` are permitted where they read more naturally than an imperative action.

@@ -18,9 +18,9 @@ Approved positioning:
 | --- | --- | --- |
 | newBudget | Deployed production application | Next.js and TypeScript, MongoDB Atlas, Auth.js and Google OAuth, Vercel production deployment, financial domain modeling, user ownership boundaries, automated tests and CI, uptime and error monitoring, backup and restore validation, production incident response and hotfix recovery. |
 | Unicos | Business application in active development | Django and Python, PostgreSQL, Docker Compose, repair-order workflows, role and object-level authorization, estimate, invoice, and payment workflows, transactional service boundaries, automated testing and CI, architecture and decision documentation. |
-| Home Security and Automation Lab | Operational systems-integration project | Ubuntu Server, Docker, Frigate NVR, Google Coral Edge TPU acceleration, Home Assistant, Mosquitto MQTT, three RTSP cameras, AI object detection across multiple object classes, person-class automation triggers, zone- and time-conditioned automations, mobile notifications, local networking, and service troubleshooting. |
+| Home Security and Automation Lab | Operational systems-integration project | Ubuntu 24.04.3 LTS, Docker Compose, Frigate NVR, VAAPI acceleration, Home Assistant, Mosquitto MQTT, sanitized RTSP detect and record configuration, event-oriented retention, representative object tracking and persistent-notification automation, implemented repository validation, and documented repository-to-live deployment, service recreation, verification, and rollback procedures. |
 
-Unicos must not be described as production-deployed or production-ready. The current NVR system is not yet adequately represented by the existing `home-automation` GitHub repository, so that repository must not be implied as complete proof of the present NVR architecture.
+Unicos must not be described as production-deployed or production-ready. Home Security uses the public `nvr-infrastructure` repository as reviewed evidence for selected sanitized configuration and procedures; it must not be presented as a verbatim private-deployment copy or complete camera inventory.
 
 ## Milestones
 
@@ -45,7 +45,7 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 7: Skills, About, resume, and contact | Add professional profile surfaces. | Do not use percentage skill ratings or unsupported claims. |
 | Slice 8A: Unicos visual evidence | Add approved Unicos screenshots and sanitized diagrams. | Complete. Preserve active-development and privacy boundaries. |
 | Slice 8B: newBudget visual evidence | Add approved newBudget screenshots and correct the Statement Review claim. | Complete. Preserve deployed-production status and financial-data privacy. |
-| Slice 8C: Home Security visual evidence | Cancelled by owner decision. Home Security remains a text-only case study and no visual evidence is planned. | Private topology, camera details, footage, credentials, and other sensitive operational information remain prohibited. Reopening visual evidence requires a new, separately approved scope. |
+| Slice 8C: Home Security visual evidence | Cancelled by owner decision. Home Security remains excluded from the portfolio-hosted visual gallery. | Private topology, camera details, footage, credentials, and other sensitive operational information remain prohibited. Reopening visual evidence requires a new, separately approved scope. |
 | Slice 9A: Human-first public language reset | Complete. Public copy leads with Hunter, the work, and the engineering thinking. | Preserve claims, structure, status, and internal substantiation. |
 | Slice 9B: Project-card storytelling | Complete. Improve how project cards introduce purpose and practical value. | Do not broaden claims or obscure project state. |
 | Slice 9C: newBudget case-study narrative | Complete. Refine the newBudget story around product purpose, engineering decisions, and operations. | Preserve deployed-production facts and current financial-model limitations. |
@@ -59,9 +59,9 @@ Unicos must not be described as production-deployed or production-ready. The cur
 | Slice 10D: Case-study lightbox interaction | Complete. Add an accessible native-dialog lightbox through one isolated Client Component. | Keep the gallery server-rendered and preserve evidence, direct asset access, and measured performance. |
 | Slice 11: CI and browser validation | Complete. Add automated validation workflows and focused Chromium browser smoke tests. | Preserve the Chromium-only matrix and do not treat passing automation as conformance or deployment. |
 | Slice 12: Production deployment | Complete. Deploy the reviewed portfolio to Vercel, configure the stable production origin, and verify public production behavior. | Do not add analytics or custom-domain decisions unless approved. |
-| Slice 13: Post-launch hardening | Planned. Improve substantiation, monitoring, and maintenance after release. | Do not rewrite prior claims without matching implementation or documentation updates. |
+| Slice 13: Home Security public-repository alignment | Approved and in progress. Align the case study and portfolio evidence model to the sanitized public `nvr-infrastructure` repository. | Do not close out the slice, expose residential details, treat representative configuration as a complete inventory, or promote planned NVR work to implemented status. |
 
-Slice 8A and Slice 8B are complete, and Slice 8C is cancelled by owner decision, so Slice 8 is closed and accepted. Slice 9A through Slice 12 are complete, so the portfolio is deployed on Vercel with a configured production origin. Slice 13 is planned and next. The Home Security and Automation Lab remains a text-only case study; do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens this decision.
+Slice 8A and Slice 8B are complete, and Slice 8C is cancelled by owner decision, so Slice 8 is closed and accepted. Slice 9A through Slice 12 are complete, so the portfolio is deployed on Vercel with a configured production origin. Slice 13 is approved and in progress; it is not complete. Home Security remains excluded from the portfolio-hosted visual gallery, while the public sanitized repository provides code and documentation evidence. Do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens that decision.
 
 ## Branch and Review Workflow
 

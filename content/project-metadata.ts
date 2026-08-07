@@ -225,73 +225,86 @@ export const projects = [
     slug: "home-security-lab",
     name: "Home Security and Automation Lab",
     summary:
-      "A hardwired, local-first home security and automation hub that keeps three camera streams, recording, and Coral-accelerated object detection on-site.",
+      "A local, self-hosted NVR and automation stack with reviewed configuration, event-driven integration, and documented change procedures.",
     card: {
       category: "Home infrastructure",
       description:
-        "A self-hosted security and automation system built to avoid cloud subscriptions and keep camera video on the local wired network.",
+        "A self-hosted security and automation system built around inspectable services, local event processing, and privacy-aware operations.",
       highlights: [
-        "Keeps three hardwired camera streams, recording, and object detection on-site.",
-        "Runs Frigate, Home Assistant, and Mosquitto as containerized open-source services.",
-        "Uses Coral acceleration and area and time conditions before selected person events trigger mobile notifications.",
+        "Runs Frigate, Home Assistant, and Mosquitto as a Docker Compose stack on Ubuntu.",
+        "Uses VAAPI-accelerated RTSP processing and MQTT-driven Home Assistant automation.",
+        "Validates reviewed configuration and documents repository-to-live deployment, verification, and rollback steps.",
       ],
       currentStatus:
-        "Operational in a private residential environment; public details intentionally omit sensitive configuration.",
+        "Operational in a private residential environment; a sanitized public repository represents selected reviewed configuration and procedures.",
     },
     status: "operational-lab",
     featured: true,
     technologies: [
       "Ubuntu Server",
       "Docker",
+      "Docker Compose",
       "Frigate",
-      "Google Coral Edge TPU",
+      "VAAPI",
       "Home Assistant",
       "Mosquitto MQTT",
       "RTSP",
     ],
     capabilities: [
       "Containerized local infrastructure",
-      "Three-camera RTSP integration",
-      "Hardware-accelerated object detection",
-      "Zone and time-conditioned automations",
-      "Mobile notification delivery",
-      "Network and service troubleshooting",
+      "RTSP detect and record processing",
+      "VAAPI video acceleration",
+      "MQTT event integration",
+      "Configuration validation and deployment runbooks",
+      "Documented service verification and rollback",
     ],
     evidence: [
       {
         state: "operational",
         statement:
-          "Runs Home Assistant, Frigate, and Mosquitto as containerized services on an Ubuntu Server host.",
+          "Runs Home Assistant, Frigate, and Mosquitto as a Docker Compose stack on an Ubuntu 24.04.3 LTS host.",
       },
       {
         state: "operational",
         statement:
-          "Integrates three hardwired RTSP camera streams into Frigate for local recording and Google Coral-accelerated object detection.",
+          "Uses separate sanitized RTSP detect and record inputs, VAAPI FFmpeg acceleration through /dev/dri, and event-oriented recording and snapshot retention.",
       },
       {
         state: "operational",
         statement:
-          "Uses configured detection areas and time windows to decide when detected person events should trigger mobile notifications.",
+          "Publishes representative Frigate events through Mosquitto so a person event can create a Home Assistant persistent notification.",
       },
       {
         state: "operational",
         statement:
-          "Includes verified local MQTT messaging and hands-on camera, network, and container troubleshooting.",
+          "Provides repository tooling that validates YAML, Python, Bash, Docker Compose, and Mosquitto configuration.",
+      },
+      {
+        state: "designed",
+        statement:
+          "Documents pre-deployment validation, timestamped live-file backups, targeted service recreation, post-deployment verification, and configuration rollback without claiming those steps have been exercised live.",
       },
     ],
     limitations: [
       "This is a privately operated home deployment, not a commercial security product or professionally monitored alarm system.",
-      "The older home-automation repository does not represent the current Frigate and Home Assistant deployment, so public evidence is limited to sanitized operational documentation.",
-      "Public evidence must omit credentials, private addresses, exact camera placement, exact automation schedules, sensitive topology, and identifying footage.",
+      "The public repository is a sanitized representative configuration, not a complete inventory or verbatim copy of the private deployment.",
+      "Full backup and recovery, monitoring, storage safeguards, network migration, and security hardening remain planned; no disk-threshold cleanup is deployed and image tags still float.",
     ],
     repository: {
-      visibility: "none",
+      visibility: "public",
+      name: "nvr-infrastructure",
+      href: "https://github.com/Hone648/nvr-infrastructure",
     },
     links: [
       {
         kind: "case-study",
         label: "View case study",
         href: "/projects/home-security-lab",
+      },
+      {
+        kind: "external",
+        label: "Open NVR infrastructure source",
+        href: "https://github.com/Hone648/nvr-infrastructure",
       },
     ],
   },
