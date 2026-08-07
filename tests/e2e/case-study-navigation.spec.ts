@@ -7,17 +7,17 @@ const caseStudies = [
   {
     path: "/projects/newbudget",
     projectName: "newBudget",
-    repositoryAction: "Open newBudget on GitHub",
-    repositoryNote: "View the newBudget repository on GitHub",
+    repositoryAction: "Open newBudget on GitHub in a new tab",
+    repositoryNote: "View the newBudget repository on GitHub in a new tab",
     repositoryUrl: "https://github.com/Hone648/newBudget",
-    liveAction: "Open live application",
+    liveAction: "Open live application in a new tab",
     liveUrl: "https://new-budget-three.vercel.app",
   },
   {
     path: "/projects/unicos",
     projectName: "Unicos",
-    repositoryAction: "Open unicos on GitHub",
-    repositoryNote: "View the unicos repository on GitHub",
+    repositoryAction: "Open unicos on GitHub in a new tab",
+    repositoryNote: "View the unicos repository on GitHub in a new tab",
     repositoryUrl: "https://github.com/Hone648/unicos",
     liveAction: null,
     liveUrl: null,
@@ -25,8 +25,8 @@ const caseStudies = [
   {
     path: "/projects/home-security-lab",
     projectName: "Home Security and Automation Lab",
-    repositoryAction: "Open nvr-infrastructure on GitHub",
-    repositoryNote: "View the nvr-infrastructure repository on GitHub",
+    repositoryAction: "Open nvr-infrastructure on GitHub in a new tab",
+    repositoryNote: "View the nvr-infrastructure repository on GitHub in a new tab",
     repositoryUrl: "https://github.com/Hone648/nvr-infrastructure",
     liveAction: null,
     liveUrl: null,
@@ -69,7 +69,7 @@ for (const caseStudy of caseStudies) {
     await expect(repositoryNote).toHaveAttribute("href", caseStudy.repositoryUrl);
 
     const liveAction = page.getByRole("link", {
-      name: "Open live application",
+      name: "Open live application in a new tab",
       exact: true,
     });
 
@@ -135,7 +135,7 @@ test("the back-to-top control is keyboard operable and leaves navigation reachab
   await expect(
     page
       .getByRole("navigation", { name: "Primary navigation" })
-      .getByRole("link", { name: "GitHub", exact: true }),
+      .getByRole("link", { name: "GitHub in a new tab", exact: true }),
   ).toBeFocused();
 
   expectNoApplicationErrors();

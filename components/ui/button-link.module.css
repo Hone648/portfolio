@@ -1,7 +1,9 @@
 .buttonLink {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.45em;
   min-height: 2.75rem;
   max-width: 100%;
   border: 1px solid transparent;
@@ -45,6 +47,15 @@
   background: var(--color-accent-soft);
   color: var(--color-accent-strong);
   transform: translateY(-1px);
+}
+
+/* Marks a conventional external destination that opens in a supporting tab. */
+.supportingTabMark {
+  flex: none;
+  width: 0.65em;
+  height: 0.65em;
+  max-width: none;
+  opacity: 0.85;
 }
 
 @media (prefers-reduced-motion: reduce) {

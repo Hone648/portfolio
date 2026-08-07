@@ -94,7 +94,7 @@ test("Home Security exposes the public NVR infrastructure source", async ({
 
   await page.goto("/projects/home-security-lab");
   const caseStudyRepositoryLink = page.getByRole("link", {
-    name: "View the nvr-infrastructure repository on GitHub",
+    name: "View the nvr-infrastructure repository on GitHub in a new tab",
     exact: true,
   });
   await expect(caseStudyRepositoryLink).toBeVisible();
@@ -102,7 +102,7 @@ test("Home Security exposes the public NVR infrastructure source", async ({
 
   await page.goto("/projects");
   const projectSourceLink = page.getByRole("link", {
-    name: "Open NVR infrastructure source: Home Security and Automation Lab",
+    name: "Open NVR infrastructure source: Home Security and Automation Lab in a new tab",
     exact: true,
   });
   await expect(projectSourceLink).toBeVisible();

@@ -3,6 +3,7 @@ import { PageContainer } from "@/components/layout/page-container";
 import { CaseStudyBackToTop } from "@/components/projects/case-study-back-to-top";
 import { ProjectEvidenceGallery } from "@/components/projects/project-evidence-gallery";
 import { ButtonLink } from "@/components/ui/button-link";
+import { ExternalLink } from "@/components/ui/external-link";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { Project } from "@/content/project-metadata";
 import { getProjectVisualGroups } from "@/content/project-visuals";
@@ -18,9 +19,9 @@ type CaseStudyLayoutProps = {
 function RepositoryNote({ project }: { project: Project }) {
   if (project.repository.visibility === "public") {
     return (
-      <a href={project.repository.href}>
+      <ExternalLink href={project.repository.href}>
         View the {project.repository.name} repository on GitHub
-      </a>
+      </ExternalLink>
     );
   }
 
