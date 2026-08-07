@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ExternalLink } from "@/components/ui/external-link";
 import { siteContent } from "@/content/site-content";
 import { PageContainer } from "./page-container";
 import styles from "./site-header.module.css";
@@ -17,7 +18,7 @@ export function SiteHeader() {
           <Link href="/about">About</Link>
           <Link href="/resume">Resume</Link>
           <Link href="/contact">Contact</Link>
-          <a href={siteContent.github.href}>GitHub</a>
+          <ExternalLink href={siteContent.github.href}>GitHub</ExternalLink>
         </nav>
       </PageContainer>
     </header>
