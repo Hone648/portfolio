@@ -138,8 +138,9 @@ export const projects = [
       "Debt and installment calculations support planning and history but do not claim lender-exact accounting.",
     ],
     repository: {
-      visibility: "private",
+      visibility: "public",
       name: "newBudget",
+      href: "https://github.com/Hone648/newBudget",
     },
     links: [
       {
@@ -210,8 +211,9 @@ export const projects = [
       "Production infrastructure, monitoring, backup and restore operations, and broader hardening remain incomplete.",
     ],
     repository: {
-      visibility: "private",
-      name: "Unicos",
+      visibility: "public",
+      name: "unicos",
+      href: "https://github.com/Hone648/unicos",
     },
     links: [
       {

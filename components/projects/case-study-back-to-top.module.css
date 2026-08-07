@@ -1,0 +1,108 @@
+/*
+ * The rail is a zero-height last grid item in the case-study article. Sticky
+ * positioning keeps the control in the article's right gutter while the reader
+ * is inside the case study, then releases it at the end of the article, where
+ * the control hangs into the page's bottom padding instead of covering the
+ * closing content or the site footer and its navigation. The negative margin
+ * cancels the article grid gap the empty rail would otherwise introduce.
+ */
+.rail {
+  --control-height: 2.75rem;
+
+  position: sticky;
+  bottom: calc(var(--space-5) + var(--control-height));
+  z-index: 5;
+  justify-self: end;
+  height: 0;
+  margin-top: calc(var(--space-8) * -1);
+}
+
+.control {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: var(--control-height);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: 1px solid var(--color-border-strong);
+  border-left: 0.25rem solid var(--project-accent);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem var(--space-4) 0.7rem var(--space-3);
+  color: var(--color-text);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.35rem);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 0s linear 180ms;
+}
+
+/*
+ * `visibility` keeps the resting state out of the tab order and the
+ * accessibility tree without scripted ARIA state.
+ */
+.control[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 0s;
+}
+
+.control:hover {
+  border-color: var(--project-accent);
+  color: var(--color-accent-strong);
+  background: color-mix(in srgb, var(--project-accent-soft) 55%, var(--color-surface));
+}
+
+/*
+ * The control is absolutely positioned inside a zero-width rail, so the global
+ * `svg { max-width: 100% }` default would resolve to zero here.
+ */
+.icon {
+  flex: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  max-width: none;
+  color: var(--project-accent);
+}
+
+@media (max-width: 40rem) {
+  .rail {
+    bottom: calc(var(--space-4) + var(--control-height));
+    margin-top: calc(var(--space-7) * -1);
+  }
+
+  .control {
+    padding-inline: var(--space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control,
+  .control[data-visible="true"] {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .control {
+    border: 1px solid ButtonText;
+    background: ButtonFace;
+  }
+}

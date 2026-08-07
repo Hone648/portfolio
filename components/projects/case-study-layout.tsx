@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { PageContainer } from "@/components/layout/page-container";
+import { CaseStudyBackToTop } from "@/components/projects/case-study-back-to-top";
 import { ProjectEvidenceGallery } from "@/components/projects/project-evidence-gallery";
 import { ButtonLink } from "@/components/ui/button-link";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { Project } from "@/content/project-metadata";
 import { getProjectVisualGroups } from "@/content/project-visuals";
 import styles from "./case-study-layout.module.css";
+
+const caseStudyTopId = "case-study-top";
 
 type CaseStudyLayoutProps = {
   project: Project;
@@ -44,6 +47,8 @@ export function CaseStudyLayout({
   children,
 }: CaseStudyLayoutProps) {
   const liveLink = project.links.find((link) => link.kind === "live");
+  const publicRepository =
+    project.repository.visibility === "public" ? project.repository : null;
   const visualGroups = getProjectVisualGroups(project.slug);
 
   return (
@@ -53,17 +58,30 @@ export function CaseStudyLayout({
           Back to projects
         </Link>
 
-        <header className={styles.header}>
+        <header className={styles.header} id={caseStudyTopId} tabIndex={-1}>
           <p className={styles.eyebrow}>Case study</p>
           <div className={styles.titleRow}>
             <h1>{project.name}</h1>
             <StatusBadge status={project.status} />
           </div>
           <p className={styles.summary}>{project.summary}</p>
-          {liveLink ? (
-            <ButtonLink href={liveLink.href} external>
-              {liveLink.label}
-            </ButtonLink>
+          {liveLink || publicRepository ? (
+            <div className={styles.actions}>
+              {liveLink ? (
+                <ButtonLink href={liveLink.href} external>
+                  {liveLink.label}
+                </ButtonLink>
+              ) : null}
+              {publicRepository ? (
+                <ButtonLink
+                  href={publicRepository.href}
+                  variant="secondary"
+                  external
+                >
+                  Open {publicRepository.name} on GitHub
+                </ButtonLink>
+              ) : null}
+            </div>
           ) : null}
         </header>
 
@@ -122,6 +140,8 @@ export function CaseStudyLayout({
             ))}
           </ul>
         </section>
+
+        <CaseStudyBackToTop targetId={caseStudyTopId} />
       </article>
     </PageContainer>
   );
