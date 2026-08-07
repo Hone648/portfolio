@@ -16,6 +16,8 @@ I am a Computer Science student and full-stack developer. The portfolio presents
 
 Each project has a case study covering its purpose, the engineering decisions behind it, and the constraints that shaped it.
 
+The Home Security case study is supported by the public, sanitized [nvr-infrastructure](https://github.com/Hone648/nvr-infrastructure) configuration and operations repository. It represents selected reviewed source, not a complete inventory or verbatim copy of the private residential deployment.
+
 ## Built with
 
 - Next.js

@@ -86,6 +86,30 @@ test.describe("canonical public routes", () => {
   }
 });
 
+test("Home Security exposes the public NVR infrastructure source", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+  const repositoryUrl = "https://github.com/Hone648/nvr-infrastructure";
+
+  await page.goto("/projects/home-security-lab");
+  const caseStudyRepositoryLink = page.getByRole("link", {
+    name: "View the nvr-infrastructure repository on GitHub",
+    exact: true,
+  });
+  await expect(caseStudyRepositoryLink).toBeVisible();
+  await expect(caseStudyRepositoryLink).toHaveAttribute("href", repositoryUrl);
+
+  await page.goto("/projects");
+  const projectSourceLink = page.getByRole("link", {
+    name: "Open NVR infrastructure source: Home Security and Automation Lab",
+    exact: true,
+  });
+  await expect(projectSourceLink).toBeVisible();
+  await expect(projectSourceLink).toHaveAttribute("href", repositoryUrl);
+  expectNoApplicationErrors();
+});
+
 test("the homepage exposes the Google site-verification tag", async ({
   page,
 }) => {

@@ -103,7 +103,7 @@ The homepage consumes `getFeaturedProjects()`, and `/projects` consumes `getProj
 
 `@next/mdx` extends the Next.js configuration, and the root `mdx-components.tsx` supplies the App Router MDX component boundary. Files in `content/projects/*.mdx` contain narrative only: the shared layout owns the page heading, and structured facts remain in `content/project-metadata.ts`.
 
-`lib/project-case-studies.ts` maps the published `newbudget`, `unicos`, and `home-security-lab` slugs to statically imported MDX components in project order. The `/projects/[slug]` route uses that mapping for static parameters, metadata, content selection, and unknown-slug rejection; `dynamicParams = false` ensures only published slugs are generated. Project link records distinguish internal case studies from live and external destinations, and route availability must be updated with registry metadata. Home Security uses repository visibility `none`, so its case study renders neither a repository URL nor a live-application link.
+`lib/project-case-studies.ts` maps the published `newbudget`, `unicos`, and `home-security-lab` slugs to statically imported MDX components in project order. The `/projects/[slug]` route uses that mapping for static parameters, metadata, content selection, and unknown-slug rejection; `dynamicParams = false` ensures only published slugs are generated. Project link records distinguish internal case studies from live and external destinations, and route availability must be updated with registry metadata. Home Security uses public repository metadata for `nvr-infrastructure`, so the case study exposes the reviewed source link while project cards may also present it as an external destination.
 
 ## Visual Evidence
 
@@ -135,7 +135,7 @@ The mature portfolio should not include backend services, a database, authentica
 
 ## Current and Target Folder Tree
 
-The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through completed Slice 12. Home Security visual evidence is intentionally excluded from the architecture; that case study remains text-only by owner decision. Deployment adds no repository files: Vercel builds the existing Next.js application and the production origin is supplied through an environment variable rather than a checked-in configuration file.
+The profile, career, project, visual-evidence, metadata, performance-audit, lightbox, test, and CI paths shown below exist through completed Slice 12. Home Security remains excluded from the portfolio-hosted visual gallery by owner decision; its public sanitized repository is separate code and documentation evidence. Deployment adds no repository files: Vercel builds the existing Next.js application and the production origin is supplied through an environment variable rather than a checked-in configuration file.
 
 ```text
 portfolio/
@@ -235,11 +235,11 @@ portfolio/
 
 Create directories when an approved slice introduces real files that belong in them. Do not create empty directories merely to resemble the target architecture.
 
-Home Security has no visual-evidence directory and must not be given one; its case study remains text-only unless a later separately approved scope explicitly reopens that decision.
+Home Security has no visual-evidence directory and must not be given one unless a later separately approved scope explicitly reopens that decision. The public `nvr-infrastructure` source link does not change the portfolio visual-evidence boundary.
 
 ## Security and Privacy
 
-Never expose secrets, financial records, OAuth details, private camera credentials, private RTSP URLs, home addresses, sensitive topology, or identifying camera footage. Private repositories require sanitized screenshots, diagrams, selected excerpts, and case-study evidence rather than unsupported source links.
+Never expose secrets, financial records, OAuth details, private camera credentials, authenticated RTSP URLs, home addresses, sensitive topology, occupancy information, or identifying camera footage. Public infrastructure repositories must still use sanitized representative configuration and exclude runtime data and access material.
 
 ## Evidence and Honesty Rules
 
@@ -258,4 +258,4 @@ Never expose secrets, financial records, OAuth details, private camera credentia
 
 Employment-date and complete-chronology verification, production field-performance data, analytics decisions, custom-domain decisions, contact-form workflows, and downloadable resume artifacts are deferred to later approved slices.
 
-Home Security visual evidence is not deferred architecture. Slice 8C is cancelled by owner decision, and the Home Security and Automation Lab remains a text-only case study. Do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visual evidence unless a later separately approved scope explicitly reopens this decision.
+Home Security visual evidence is not deferred architecture. Slice 8C is cancelled by owner decision, and the Home Security and Automation Lab remains excluded from the portfolio-hosted visual gallery. Its public repository is code and documentation evidence, not visual evidence. Do not add placeholder, reconstructed, operationally sensitive, or privacy-risking visuals unless a later separately approved scope explicitly reopens this decision.

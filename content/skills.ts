@@ -43,7 +43,7 @@ export const skillGroups = [
   {
     title: "Delivery and operations",
     description:
-      "Uses focused branches, reviewable changes, automated validation, and documented operating constraints across production work and work in active development.",
+      "Uses focused branches, reviewable changes, automated validation, and documented deployment, verification, rollback, and operating constraints across production software, active-development work, and self-hosted infrastructure documentation.",
     items: [
       "Git",
       "GitHub",
@@ -53,26 +53,30 @@ export const skillGroups = [
       "Vercel deployment",
       "Monitoring",
       "Backup and restore validation",
+      "Deployment and rollback runbooks",
       "Incident diagnosis",
       "Technical documentation",
     ],
-    relatedProjectSlugs: ["newbudget", "unicos"],
+    relatedProjectSlugs: ["newbudget", "unicos", "home-security-lab"],
   },
   {
     title: "Linux, automation, and systems integration",
     description:
-      "Operates a local three-camera automation hub where Frigate detects multiple configured object classes with Coral acceleration for supported inference; selected person events enter area- and time-conditioned Home Assistant automations, while other classes do not automatically generate notifications.",
+      "Operates a local Docker Compose NVR stack where Frigate uses VAAPI-accelerated RTSP processing and publishes events through Mosquitto for Home Assistant automation, with reviewed configuration, implemented validation tooling, and documented deployment and rollback procedures.",
     items: [
       "Ubuntu Server",
       "Docker",
+      "Docker Compose",
       "Frigate",
-      "Google Coral Edge TPU",
+      "VAAPI video acceleration",
       "Home Assistant",
       "Mosquitto MQTT",
       "RTSP",
       "Local networking",
       "Container and service troubleshooting",
       "Event-driven automation",
+      "Configuration validation",
+      "Deployment and rollback runbooks",
     ],
     relatedProjectSlugs: ["home-security-lab"],
   },
