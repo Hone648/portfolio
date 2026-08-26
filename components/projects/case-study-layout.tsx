@@ -7,12 +7,14 @@ import { ExternalLink } from "@/components/ui/external-link";
 import { StatusBadge } from "@/components/ui/status-badge";
 import type { Project } from "@/content/project-metadata";
 import { getProjectVisualGroups } from "@/content/project-visuals";
+import type { CaseStudyPresentationMode } from "@/lib/project-case-studies";
 import styles from "./case-study-layout.module.css";
 
 const caseStudyTopId = "case-study-top";
 
 type CaseStudyLayoutProps = {
   project: Project;
+  presentationMode: CaseStudyPresentationMode;
   children: React.ReactNode;
 };
 
@@ -45,12 +47,58 @@ function RepositoryNote({ project }: { project: Project }) {
 
 export function CaseStudyLayout({
   project,
+  presentationMode,
   children,
 }: CaseStudyLayoutProps) {
   const liveLink = project.links.find((link) => link.kind === "live");
   const publicRepository =
     project.repository.visibility === "public" ? project.repository : null;
   const visualGroups = getProjectVisualGroups(project.slug);
+  const isVisualWalkthrough = presentationMode === "visual-walkthrough";
+
+  const projectOverview = (
+    <section className={styles.overview} aria-labelledby="project-overview">
+      <h2 id="project-overview">Project overview</h2>
+      <div className={styles.overviewGrid}>
+        <div>
+          <h3>Project access</h3>
+          <p>
+            <RepositoryNote project={project} />
+          </p>
+        </div>
+        <div>
+          <h3>Technologies</h3>
+          <ul className={styles.technologyList}>
+            {project.technologies.map((technology) => (
+              <li key={technology}>{technology}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>Capabilities</h3>
+          <ul>
+            {project.capabilities.map((capability) => (
+              <li key={capability}>{capability}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+
+  const engineeringHighlights = (
+    <section className={styles.evidence} aria-labelledby="project-evidence">
+      <h2 id="project-evidence">Engineering highlights</h2>
+      <ul>
+        {project.evidence.map((item) => (
+          <li key={`${item.state}-${item.statement}`}>
+            <span>{item.state}</span>
+            <p>{item.statement}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 
   return (
     <PageContainer className={styles.page}>
@@ -86,52 +134,23 @@ export function CaseStudyLayout({
           ) : null}
         </header>
 
-        <section className={styles.overview} aria-labelledby="project-overview">
-          <h2 id="project-overview">Project overview</h2>
-          <div className={styles.overviewGrid}>
-            <div>
-              <h3>Project access</h3>
-              <p>
-                <RepositoryNote project={project} />
-              </p>
-            </div>
-            <div>
-              <h3>Technologies</h3>
-              <ul className={styles.technologyList}>
-                {project.technologies.map((technology) => (
-                  <li key={technology}>{technology}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3>Capabilities</h3>
-              <ul>
-                {project.capabilities.map((capability) => (
-                  <li key={capability}>{capability}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.evidence} aria-labelledby="project-evidence">
-          <h2 id="project-evidence">Engineering highlights</h2>
-          <ul>
-            {project.evidence.map((item) => (
-              <li key={`${item.state}-${item.statement}`}>
-                <span>{item.state}</span>
-                <p>{item.statement}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <ProjectEvidenceGallery
-          projectName={project.name}
-          groups={visualGroups}
-        />
-
-        <div className={styles.prose}>{children}</div>
+        {isVisualWalkthrough ? (
+          <>
+            <div className={styles.visualWalkthrough}>{children}</div>
+            {projectOverview}
+            {engineeringHighlights}
+          </>
+        ) : (
+          <>
+            {projectOverview}
+            {engineeringHighlights}
+            <ProjectEvidenceGallery
+              projectName={project.name}
+              groups={visualGroups}
+            />
+            <div className={styles.prose}>{children}</div>
+          </>
+        )}
 
         <section className={styles.limitations} aria-labelledby="limitations">
           <h2 id="limitations">Current status</h2>

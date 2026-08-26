@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">newBudget month-first planning model</title>
+  <desc id="desc">A selected month composes income, carryover, recurring items, quick expenses, and payment state into the visible planning result. Only a future recurring item without a monthly instance enters the deterministic preview path before user action persists an owned monthly record.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="16" markerHeight="16" refX="12" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2 L14 8 L2 14 Z" fill="#2f6f64" />
+    </marker>
+    <marker id="branch-arrow" markerWidth="16" markerHeight="16" refX="12" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2 L14 8 L2 14 Z" fill="#7a5a24" />
+    </marker>
+    <style>
+      text {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .label {
+        fill: #17201d;
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .small {
+        fill: #43514d;
+        font-size: 23px;
+      }
+      .eyebrow {
+        fill: #2f6f64;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+      .box {
+        fill: #fbf8f1;
+        stroke: #b7c8c1;
+        stroke-width: 4;
+      }
+      .primary {
+        fill: #dfece8;
+        stroke: #2f6f64;
+        stroke-width: 5;
+      }
+      .result {
+        fill: #f4e9d8;
+        stroke: #987448;
+        stroke-width: 5;
+      }
+      .branch {
+        fill: #fff7e7;
+        stroke: #987448;
+        stroke-width: 4;
+      }
+      .line {
+        fill: none;
+        stroke: #2f6f64;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        marker-end: url(#arrow);
+      }
+      .compose-line {
+        fill: none;
+        stroke: #81928c;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        marker-end: url(#arrow);
+      }
+      .branch-line {
+        fill: none;
+        stroke: #987448;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 10 14;
+        marker-end: url(#branch-arrow);
+      }
+    </style>
+  </defs>
+
+  <rect width="1600" height="980" fill="#f6f1e8" />
+
+  <text x="100" y="88" class="eyebrow">MONTH-FIRST PLANNING MODEL</text>
+  <text x="100" y="140" class="label">A selected month composes the planning workspace</text>
+  <text x="100" y="182" class="small">Normal month inputs feed the visible result; only future recurring items use the preview path.</text>
+
+  <rect x="570" y="224" width="460" height="108" rx="20" class="primary" />
+  <text x="800" y="274" text-anchor="middle" class="label">Selected month</text>
+  <text x="800" y="309" text-anchor="middle" class="small">planning boundary and read context</text>
+
+  <path d="M800 332 V378" class="line" />
+  <path d="M800 378 H190 V430" class="line" />
+  <path d="M800 378 H495 V430" class="line" />
+  <path d="M800 378 V430" class="line" />
+  <path d="M800 378 H1105 V430" class="line" />
+  <path d="M800 378 H1410 V430" class="line" />
+
+  <rect x="60" y="430" width="260" height="100" rx="18" class="box" />
+  <text x="190" y="475" text-anchor="middle" class="label">Income</text>
+  <text x="190" y="508" text-anchor="middle" class="small">current records</text>
+
+  <rect x="365" y="430" width="260" height="100" rx="18" class="box" />
+  <text x="495" y="475" text-anchor="middle" class="label">Carryover</text>
+  <text x="495" y="508" text-anchor="middle" class="small">prior result</text>
+
+  <rect x="670" y="430" width="260" height="100" rx="18" class="box" />
+  <text x="800" y="475" text-anchor="middle" class="label">Recurring</text>
+  <text x="800" y="508" text-anchor="middle" class="small">monthly obligations</text>
+
+  <rect x="975" y="430" width="260" height="100" rx="18" class="box" />
+  <text x="1105" y="475" text-anchor="middle" class="label">Quick expenses</text>
+  <text x="1105" y="508" text-anchor="middle" class="small">day-to-day spending</text>
+
+  <rect x="1280" y="430" width="260" height="100" rx="18" class="box" />
+  <text x="1410" y="475" text-anchor="middle" class="label">Payment state</text>
+  <text x="1410" y="508" text-anchor="middle" class="small">related month state</text>
+
+  <path d="M190 530 V610 H560" class="compose-line" />
+  <path d="M495 530 V610 H650" class="compose-line" />
+  <path d="M800 530 V610" class="compose-line" />
+  <path d="M1105 530 V610 H950" class="compose-line" />
+  <path d="M1410 530 V610 H1040" class="compose-line" />
+
+  <rect x="550" y="610" width="500" height="122" rx="22" class="result" />
+  <text x="800" y="662" text-anchor="middle" class="label">Visible planning result</text>
+  <text x="800" y="699" text-anchor="middle" class="small">composed workspace with remaining balance</text>
+
+  <path d="M800 530 V558 H360 V778 H520" class="branch-line" />
+
+  <rect x="520" y="752" width="560" height="84" rx="18" class="branch" />
+  <text x="800" y="786" text-anchor="middle" class="label">Future recurring item</text>
+  <text x="800" y="818" text-anchor="middle" class="small">no monthly instance exists yet</text>
+
+  <path d="M1080 794 H1195" class="branch-line" />
+
+  <rect x="1195" y="752" width="340" height="84" rx="18" class="branch" />
+  <text x="1365" y="786" text-anchor="middle" class="label">Preview on read</text>
+  <text x="1365" y="818" text-anchor="middle" class="small">no row written for looking ahead</text>
+
+  <path d="M1365 836 V880" class="branch-line" />
+
+  <rect x="1195" y="880" width="340" height="70" rx="18" class="branch" />
+  <text x="1365" y="923" text-anchor="middle" class="label">User acts</text>
+
+  <path d="M1195 915 H1080" class="branch-line" />
+
+  <rect x="520" y="880" width="560" height="70" rx="18" class="primary" />
+  <text x="800" y="923" text-anchor="middle" class="label">Persist owned monthly record</text>
+</svg>

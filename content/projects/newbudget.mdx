@@ -1,77 +1,56 @@
-## Why I built newBudget
+import { InlineProjectVisualGroup } from "@/components/projects/inline-project-visual-group";
 
-My own finances were spread across too many places at once. Income landed in one record, recurring obligations lived somewhere else, debt payments were tracked by whoever I owed, and day-to-day spending only showed up after the fact in a bank view. Every one of those places was accurate on its own, and none of them answered the question I actually cared about: what does this month look like?
+## The problem
 
-That question has a few parts. How much money is available. What is due. What has already been paid. What is still outstanding. And what should carry into next month, so the next month does not start from a guess. Answering it by hand meant reassembling the same picture from the same scattered sources every few weeks.
+newBudget exists because monthly financial planning was fragmented across too many places at once. Income lived in one view, recurring obligations somewhere else, debt payments with whoever was owed, and day-to-day spending usually appeared only after the bank had already recorded it.
 
-newBudget is the application I built to answer it in one place. It is working software rather than a design exercise: it is deployed, privately operated, and built to bring monthly planning into one place.
+Each source could be accurate on its own, but none of them answered the practical question I needed every few weeks: what does this month look like?
 
-I defined the product direction, made the architecture and financial-domain decisions, reviewed and validated the changes, operated the production environment, and kept final control over scope and release decisions.
+The product starts from that question. A month needs to show what is available, what is due, what has already been paid, what remains outstanding, and what should carry into the next month. I built newBudget as a privately operated production application so those pieces could be planned and reviewed together instead of reassembled by hand.
 
-## Making the month the center of the product
+<InlineProjectVisualGroup projectSlug="newbudget" groupId="monthly-planning" />
 
-Most budgeting tools open onto an endless transaction feed and leave you to work out what a given month meant. newBudget opens onto a month. Choosing a month is the first thing you do, and everything after that is scoped to it.
+## Three engineering decisions
 
-The selected month becomes a workspace that pulls together the records you need in order to plan and review it: income for the month, the carryover from the previous month, recurring obligations, bills, quick expenses, what has been marked paid, and what remains. Those records live in different collections, but the point of the product is that you never have to assemble them yourself.
+Three engineering decisions shaped how newBudget handles planning, financial consistency, and ownership.
 
-Forward planning created an interesting design problem. A recurring obligation should be visible in next month and the month after, because that is exactly the kind of thing you plan around. But browsing ahead should not litter the database with records for months that have not happened yet.
+<ol aria-label="High-signal engineering decisions">
+  <li>
+    <strong>The month is the workspace</strong>
+    <p>The selected month is the organizing context for income, carryover, recurring obligations, bills and expenses, payment state, and remaining balance. Future recurring obligations can be previewed deterministically on the read path without immediately creating persisted monthly rows; a real owned record is written only when the user takes an action that requires one.</p>
+  </li>
+  <li>
+    <strong>Money is modeled for consistency</strong>
+    <p>Currency uses integer minor units instead of floating-point arithmetic, and rates use integer basis-point semantics where applicable. Installment history is represented through ordered monthly snapshots so later estimated balances can be recalculated when earlier payment history changes. The result is a consistent planning model, not creditor-exact accounting or financial advice.</p>
+  </li>
+  <li>
+    <strong>Ownership is resolved on the server</strong>
+    <p>Google/Auth.js establishes authenticated identity, but the domain records a stable internal application-user owner. The browser can request a resource; it cannot nominate authoritative ownership. Server-side access combines the requested resource with the authenticated internal owner, and production fails closed without valid authenticated context.</p>
+  </li>
+</ol>
 
-I resolved that by letting the read path build the row rather than store it. When a recurring obligation belongs in a month but has no saved monthly instance, the workspace generates a deterministic preview of it — the same inputs always produce the same row. A real, owned record is written only when you do something that requires one, such as marking that obligation paid or adjusting its amount for that month. Looking ahead does not write a record; acting on what you see is what persists it.
+## Month-first planning model
 
-The workspace also has to defend a simpler promise: each obligation should appear once. As the obligation model was normalized, older rows could point at the same underlying obligation as a normalized one. The composition step filters those colliding legacy rows out, so a single obligation cannot show up twice and quietly inflate what the month says you owe.
+The diagram below shows the core workflow at a high level. The selected month is the boundary that composes current financial inputs into the visible planning result, while future recurring items remain deterministic previews until the user does something that should persist a monthly record.
 
-## Modeling money without pretending to be a lender
+<InlineProjectVisualGroup projectSlug="newbudget" groupId="month-first-model" />
 
-newBudget does not calculate money with floating-point decimals. Amounts are stored and calculated as whole numbers of minor units — cents rather than dollars — because floating-point arithmetic on currency accumulates small errors in exactly the place a budgeting tool cannot afford them. Interest rates follow the same rule and are stored as integer basis points rather than fractional percentages.
+## Supporting product views
 
-Debt is modeled as a chain of monthly snapshots. For an installment obligation, each month records the estimated payment split into interest and principal along with the balance that month ended at, which gives a readable history of how a debt has come down rather than a single current number. Because the chain is ordered, editing or restoring an earlier payment recalculates every snapshot after it instead of leaving the history inconsistent with itself. A balance floors at zero rather than going negative, and when a payment exceeds what is left, the overpayment stays visible instead of being silently absorbed.
+The month-first workspace is the center of the product, but planning also needs longer-running context. The supporting views aggregate spending by category and show debt and payment history across selectable periods, so the monthly view is not disconnected from trends over time.
 
-These numbers are planning estimates, and the product presents them that way. A monthly rate approximation cannot reproduce a particular creditor's daily compounding, statement timing, fees, promotional terms, or rounding conventions. What the model gives you is a consistent basis for planning ahead and a reliable record of what you have paid — not a substitute for the account statements themselves.
+Those outputs are intentionally framed as planning information. They demonstrate implemented product behavior, not audited reporting, lender statements, or lender-exact balance accounting.
 
-## Keeping financial records inside the right ownership boundary
+<InlineProjectVisualGroup projectSlug="newbudget" groupId="tracking-and-trends" />
 
-Signing in with Google establishes who is at the keyboard. I deliberately did not make that identity the owner of the financial data.
+## Production lesson
 
-On first sign-in, the provider account maps to a stable internal application user, and that internal user ID is the owner recorded on income, debt, payment, and monthly records. Keeping the domain owner separate from the sign-in provider means the financial model does not depend on one identity provider, and it gives server code a single consistent thing to check.
+The strongest operational lesson came from a carryover defect in production. A later month brought forward the wrong amount because the code walked back through prior months as though a persisted monthly-statement document existed. Many real production months are synthesized from underlying activity instead, so the original tests covered a convenient shape rather than the shape production often used.
 
-Ownership is resolved on the server, from authenticated session context. A client can say which resource it wants, but it cannot nominate who owns that resource — a user ID arriving from the browser is never treated as authority. Service and repository calls combine the requested resource with the server-resolved owner before touching anything.
+The fix added the missing production-shaped case: synthesize eligible prior months from their underlying activity when no persisted statement exists, and carry forward the same due-basis remaining value the workspace displayed. The stored financial records did not need to be edited; the problem was in derivation.
 
-Local review can use a documented fallback identity when authentication is intentionally absent. Production does not: without valid authenticated context it fails closed, so a development convenience never becomes a production access path.
-
-## Operating the application after deployment
-
-Deploying the application was the beginning of the work rather than the end of it.
-
-Production runs on its own database environment with its own authentication configuration, kept separate from anything used for development, and the application's database credential is scoped to the application database rather than carrying broad administrative reach. The indexes the application depends on are created by an explicit, idempotent initialization step, so they are something I established rather than assumed.
-
-Backups run on a policy, and I verified recovery rather than trusting it. I restored into an isolated non-production target, initialized indexes, started the application against the restored data, and read through the product paths — without restoring over production. That drill turned a backup setting into something I have actually seen work.
-
-External uptime monitoring checks the public application without credentials. Error monitoring runs with personal data disabled by default, behind a scrubber that strips identity, request payloads, credentials, connection strings, and financially sensitive fields before anything leaves the application. Incident response is written down — triage, checking what production is really serving, rolling back, authentication failures, and capturing sanitized evidence — and it is deliberately a manual runbook for one operator, not a paging rotation. After a release, I sign in to production and walk the authenticated paths myself.
-
-## The incident that changed how I verify releases
-
-A later month showed the wrong carryover. The amount brought forward did not match what the previous month had actually finished with, which undermines the one thing the product is supposed to get right.
-
-The cause was in how carryover was derived. Walking back to the prior month, the code skipped that month when it had no persisted monthly-statement document. In production, many months never persist such a document — they are synthesized from the underlying activity instead. My existing tests had created persisted statements, so they exercised a shape that production frequently does not produce. The tests passed and the product was still wrong.
-
-The fix synthesized eligible prior months from their underlying activity when no persisted document existed, and propagated the same due-basis remaining value the workspace already displays, so the number carried forward is the number the user saw. I added regression coverage in the production-shaped case that the original tests had missed.
-
-Then the interesting part. The fix passed validation, deployed successfully, and the production URL still showed the pre-fix carryover behavior. The tempting move was to keep editing code that I had good reason to believe was correct. Instead I checked what the canonical production domain was actually serving, and it was not the expected commit — the alias was still resolving to an older build. The application code was right; the public URL was not serving it.
-
-Repointing the alias then surfaced production authentication configuration problems, which broke signed-in routes. I kept a known-working deployment serving production while I worked, corrected the production authentication configuration, generated a clean deployment, verified that the canonical alias resolved to it, completed authenticated route checks, and confirmed the corrected carryover in the product. No production financial record was edited to recover; the stored data had been fine, and the failures were in derivation and in routing.
+The release still was not finished. The fix passed validation and deployed successfully, but the canonical production URL continued serving the older behavior because its alias still resolved to a previous build. Correcting the alias surfaced production authentication configuration issues, so I kept a known-working deployment available while generating and verifying the clean deployment.
 
 > A green build and a successful deployment do not prove that the canonical production domain is serving that build.
 
-Verifying the exact build behind the production domain is now part of how I finish a release, alongside the code validation that was never the weak point.
-
-## How I delivered and reviewed the work
-
-I built newBudget in focused, reviewable slices. Each one started with an explicit problem statement and a bounded scope, ended with tests and a build, and went through diff review and a pull request before merging. Production actions and merge decisions stayed mine rather than becoming automatic consequences of a green pipeline.
-
-AI assistance was part of that workflow. It helped with reading unfamiliar source, drafting implementation, preparing tests, and reviewing diffs. Requirements, architecture, interpretation of results, production actions, acceptance, and merges remained my decisions.
-
-## What this project demonstrates
-
-newBudget started as a personal workflow and became a deployed application I operate. Building it meant modeling financial rules that resist shortcuts, enforcing ownership on the server rather than trusting the client, and writing automated validation around database-backed behavior rather than isolated functions.
-
-Operating it taught me the rest. I have deployed a real application, monitored it, verified its backups, and worked a production defect from the wrong number on a screen through application logic, deployment routing, and authentication configuration to a verified fix — and I changed how I release software because of what that incident showed me.
+Verifying the exact build behind the canonical production domain is now part of the release process, alongside code validation, authenticated route checks, and product-path review.

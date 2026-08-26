@@ -4,23 +4,29 @@ import UnicosCaseStudy from "@/content/projects/unicos.mdx";
 import HomeSecurityLabCaseStudy from "@/content/projects/home-security-lab.mdx";
 import type { ProjectSlug } from "@/content/project-metadata";
 
+export type CaseStudyPresentationMode = "legacy" | "visual-walkthrough";
+
 export type ProjectCaseStudy = {
   readonly slug: ProjectSlug;
   readonly Content: ComponentType;
+  readonly presentationMode: CaseStudyPresentationMode;
 };
 
 const publishedProjectCaseStudies = [
   {
     slug: "newbudget",
     Content: NewBudgetCaseStudy,
+    presentationMode: "visual-walkthrough",
   },
   {
     slug: "unicos",
     Content: UnicosCaseStudy,
+    presentationMode: "legacy",
   },
   {
     slug: "home-security-lab",
     Content: HomeSecurityLabCaseStudy,
+    presentationMode: "legacy",
   },
 ] as const satisfies readonly ProjectCaseStudy[];
 
