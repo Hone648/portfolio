@@ -21,12 +21,12 @@ const publishedProjectCaseStudies = [
   {
     slug: "unicos",
     Content: UnicosCaseStudy,
-    presentationMode: "legacy",
+    presentationMode: "visual-walkthrough",
   },
   {
     slug: "home-security-lab",
     Content: HomeSecurityLabCaseStudy,
-    presentationMode: "legacy",
+    presentationMode: "visual-walkthrough",
   },
 ] as const satisfies readonly ProjectCaseStudy[];
 
