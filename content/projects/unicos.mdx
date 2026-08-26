@@ -1,95 +1,58 @@
-## Why I built Unicos
+import { InlineProjectVisualGroup } from "@/components/projects/inline-project-visual-group";
 
-I started Unicos after seeing how a friend who owns a body shop managed interconnected work through paper records.
+## The problem
 
-A single job in that kind of shop pulls together more than it first appears: a customer and a vehicle, the work being performed and where it stands, an estimate and then supplements when the damage turns out worse than the first look suggested, who approved that additional work and when, photos and documents, a history of who was called about what, and eventually an invoice, payments against it, and a decision about whether the job is finished.
+A body-shop job ties together more than a customer and a vehicle. It has a repair order, approvals, estimates and supplements, communication history, attachments, an invoice, payments, and a closure state. When those records live on paper, the relationships live in memory. The risky failures are business decisions made with missing context: closing work that still has a balance due, or billing work that was never approved.
 
-On paper, each of those lives on its own sheet and the connections live in somebody's memory. The failure mode is rarely a lost document — it is closing out a job that still has money owed on it, or invoicing work nobody approved.
+Unicos is implemented local-development software for keeping those decisions connected. It runs through Docker Compose against PostgreSQL, and it remains in active development rather than production operation.
 
-Unicos is my attempt to keep those decisions connected. It is implemented working software rather than a design exercise, in active local development: it runs through Docker Compose against PostgreSQL, and production hosting is still ahead of it.
+The screens below show the current operating shape: a dashboard for shop-level work, a repair-order queue for active jobs, and a customer workspace that keeps people, vehicles, and jobs close together. The point is not a decorative interface pass. It is a way to make the job record visible enough that the next business decision can be made from the same context as the last one.
 
-I defined the requirements and workflow constraints, made the architecture and domain decisions, reviewed and validated the changes, and kept final control over scope and merges.
+<InlineProjectVisualGroup projectSlug="unicos" groupId="operational-overview" />
 
-## Making the repair order the shared context
+## Three engineering decisions
 
-The design decision everything else follows from is that the repair order is the record the rest of the system hangs on.
+<ol aria-label="High-signal engineering decisions">
+  <li>
+    <strong>The repair order is the shared context</strong>
+    <p>The repair order is the center of the model. A customer and vehicle establish who the work is for and what it is being done to; the repair order carries the job state, assignment, and lifecycle history. Estimates, supplements, communications, attachments, invoices, and payments then inherit context from the job instead of forming separate piles that must be reconciled by memory. Repair-order, estimate, and invoice numbers are generated on yearly application sequences rather than typed freely, reducing duplicate-number risk.</p>
+  </li>
+  <li>
+    <strong>Rules and permissions follow the work</strong>
+    <p>Lifecycle rules sit below the page layer so the same business checks apply when aligned callers attempt the same transition. A repair order cannot enter a final state while a non-void invoice still has a balance due. Estimates become read-only after submission in the ordinary workflow, and approval requires source and contact evidence. For technician-only users, repair-order access is limited to assigned jobs and related workflows inherit that job scope. Role checks and object-level job scope are implemented in the shop-facing flow, but this is not complete RBAC or a finished authorization system.</p>
+  </li>
+  <li>
+    <strong>Billing stays explicit and transactional</strong>
+    <p>Approval, conversion, issue, and payment are separate events. An approved estimate can become a draft invoice only when it has line items, approval evidence, no prior conversion, and a repair order without an invoice. Conversion copies line items inside a transaction and keeps the source estimate linked. Payment recording locks the invoice row, rechecks the remaining balance, and rejects overpayment rather than trusting a stale read. Unicos records invoices and payments at the application level; it is not a payment processor or an accounting ledger.</p>
+  </li>
+</ol>
 
-A customer and a vehicle establish who the work is for and what it is being done to, and the application validates that a vehicle belongs to the customer it is attached to. The repair order then establishes the job itself, carrying the workflow status, the assigned staff member, and the history of how that status has moved.
+## Sanitized architecture
 
-Everything downstream takes its context from there: estimates and supplements, communication entries recording internal history rather than outbound messaging, attachments, the invoice, and the payments recorded against it. That is what makes it possible to ask one coherent question — what is the state of this job — instead of assembling the answer from separate piles.
+The architecture is organized around a domain layer that owns workflow and billing rules, with presentation code calling through services instead of duplicating transition logic. The public diagrams are sanitized explanatory views derived from reviewed implementation evidence; they are not production infrastructure maps and do not expose private source details.
 
-Repair-order, estimate, and invoice numbers are generated by the application on yearly sequences rather than typed in by staff, which is what keeps two people from creating the same document number on a busy afternoon.
+Those diagrams also show the boundary I care about most: UI pages can request an action, but they should not be the place where money and closure rules become true. The service layer is where the application checks whether a repair order can move, whether an estimate can be converted, and whether an invoice can accept another payment.
 
-## Turning status changes into business rules
+<InlineProjectVisualGroup projectSlug="unicos" groupId="sanitized-architecture" />
 
-A workflow status is easy to mistake for a label. It is really a set of claims about what is now allowed.
+## Repair-order workflow
 
-The clearest example in Unicos is closing a job. A repair order cannot move into a final state while a non-void invoice still has a balance due. In shop terms: you do not get to call the work finished while the customer still owes for it.
+The repair-order workspace shows the job as a connected operating record. Communication entries are internal history, not outbound messaging. Attachments use local-development storage and metadata. Estimate screens show the approval path and supplement lineage, but they do not prove insurance-system integration or complete estimate versioning.
 
-The tempting place to implement that is the page — grey out the button when there is a balance. It is not enough: a hidden button governs only the path that renders it, and any other route into the same transition, including an administrative one, is unaffected. So the rule lives in a centralized lifecycle service that checks it before applying any transition, and every aligned caller inherits it. A successful transition records status history, so how a job reached its current state stays answerable.
+The billing flow intentionally keeps the stages apart. Creating an invoice from an approved estimate does not issue it, and issuing an invoice does not record a payment. That separation keeps correction possible: an issued invoice can be voided without erasing the approval decision that justified the work.
 
-Estimates follow the same shape. A draft may be submitted; a submitted estimate may be approved, declined, or expired. Once an estimate leaves draft it becomes read-only in the ordinary workflow, because an estimate that can be quietly edited after submission is not a record of what was agreed. Approval is not just a status value either — the transition requires an approval source and contact before the server records the timestamp. Someone approved this, and the application insists on knowing who.
+<InlineProjectVisualGroup projectSlug="unicos" groupId="repair-order-workflows" />
 
-## Letting permissions follow the work
+## Supporting operations
 
-Authorization runs on two layers. The first is role-level: does this person get to reach this area or perform this kind of action at all? Authentication uses a custom staff user model, and named shop roles feed a centralized permission matrix that shop-facing views enforce on the server.
+Billing, reporting, and administration are included because operational software needs more than the happy path. The invoice queue makes payment state visible. Reports are operational snapshots with selected CSV exports, not an accounting ledger or analytics platform. Django admin is available for development, trusted inspection, and emergency correction; it is not the normal shop workflow and it is not fully unified with the shop-facing authorization boundary.
 
-The second is object-level: even granted that, can they act on *this particular job*? A technician is the concrete case. A technician-only user can view the repair orders assigned to them and not unrelated work — and because estimates and billing take their scope from the repair order, that restriction follows into those workflows rather than leaving a separate unguarded door.
+<InlineProjectVisualGroup projectSlug="unicos" groupId="billing-reporting-administration" />
 
-Django's `is_staff` flag is deliberately not treated as a shop-facing permission either; a user with no shop role has no application access beyond logging in.
+## Active development boundary
 
-This is real object-level authorization and it is not finished. Customer and vehicle object policies are incomplete, reporting lacks complete per-object scoping, admin authorization is not unified with the shop-facing policy helpers, and multi-shop tenancy is not implemented. It should not be called complete RBAC or complete object-level authorization, because it is neither yet.
-
-## Moving an approved estimate into billing
-
-The path from quoted work to money owed is where this application earns its keep, and what matters most is what it refuses to collapse.
-
-An estimate starts as a draft, and its line items establish both the work and the total. Submission freezes ordinary editing; approval records where the approval came from and who gave it. Only then is an estimate eligible to become billing: it must be approved, carry that approval evidence, contain line items, not have been converted already, and belong to a repair order that does not already have an invoice.
-
-Conversion creates a **draft** invoice, copies the estimate's line items across, and preserves the link back to the source estimate — all inside one database transaction, so a half-converted state is not reachable.
-
-What conversion deliberately does not do is issue the invoice or record a payment. Approval is not billing, conversion is not issue, and issue is not payment — separate decisions made by different people at different times. Flattening them into one "complete billing" action would erase which ones actually happened, and make correction harder: while the stages stay distinct, an issued invoice can be voided without unwinding the approval that justified it.
-
-A supplement is modeled as an estimate with a parent estimate from the same repair order, giving additional work its own line items and lifecycle — lineage, not a complete estimate-versioning system. Each repair order currently allows one invoice, which keeps billing rules comprehensible at the cost of supplement merging.
-
-## Protecting billing changes at the database boundary
-
-Billing mutations go through services that hold the rules: invoice issue and void, payment recording, and invoice line-item changes. Those services reject billing changes against a void invoice or a repair order already in a final state, require positive payment amounts, refuse overpayment, and keep the invoice's payment status synchronized with the payments actually recorded.
-
-Most of that is ordinary validation. Payment recording needed something stronger.
-
-Consider two payment requests arriving at nearly the same moment against one invoice. Both read the outstanding balance, both conclude their payment fits, and both write. The invoice is now overpaid, and every individual check passed on the way in — because each request validated against a balance that was accurate when read and stale by the time it was used.
-
-The fix is to stop letting them read that number independently. Payment recording opens a transaction, locks the invoice row with `select_for_update()`, and only then rechecks eligibility and the remaining balance before saving. The second request waits, re-reads the balance after the first commits, and correctly rejects. Estimate conversion uses the same transaction-and-lock shape against the equivalent duplicate-conversion risk.
-
-Unicos records invoices and payments at the application level; it is not a payment processor or an accounting ledger.
-
-## Keeping the administration interface from bypassing the application
-
-Django admin is useful for trusted inspection and for correcting data during development. It is not the operator workflow, and the problem it creates is specific: an administrative interface writes directly to models, so it can walk straight around the services holding every rule described above — the closure rule included.
-
-The high-risk paths now either call the same domain services or are read-only: repair-order status, estimate status, invoice issue and void, payment creation, and invoice line items. Attachment upload metadata is protected from ordinary admin mutation.
-
-That narrows accidental bypass; it does not unify the two. There is no complete admin object-policy integration, no audited override path, and some metadata remains directly editable — a separate trusted interface with acknowledged limits, not a second way to operate the application.
-
-## How I delivered and validated the work
-
-Development runs in narrow slices: an explicit problem, a bounded implementation, tests and migration checks, diff review, a pull request, and human-controlled acceptance.
-
-Validation combines Ruff lint and formatting checks, Django system checks, migration-consistency verification, applying migrations, and running the test suite against PostgreSQL, then building the Docker image, starting the Compose environment, and checking the `/healthz/` endpoint — which confirms the local or CI process responds and is not monitoring. Manual browser review covers what automated checks read poorly: whether the right actions are available in a given workflow state. None of it establishes universal test coverage.
-
-AI assistance was part of the workflow, helping with source inspection, implementation, test preparation, and diff review. Requirements, architecture, domain interpretation, acceptance, and merge decisions stayed mine.
-
-## What active development means
-
-Unicos runs locally through Docker Compose and remains in active development. Getting it to production is its own body of work, not a deployment step: hardened serving and settings, HTTPS and deployment configuration, a real design for media rather than local file storage, backup and restore operations, monitoring, and a stricter admin boundary.
-
-Attachment storage is local development persistence, estimate and invoice output goes through browser printing, and reports are read-only filtered snapshots with selected CSV exports — adequate for the current stage, not production infrastructure.
+Unicos runs locally with Docker Compose and PostgreSQL. Production hosting remains future work, including hardened settings, HTTPS, storage design, backup and restore, monitoring, and operational support. Attachment storage is local development persistence, estimate and invoice output goes through browser printing rather than generated PDFs, and there is no multi-shop tenancy, complete authorization model, production storage plan, backup regime, monitoring system, or real-shop operation claim.
 
 ## What this project demonstrates
 
-Unicos is where I learned to take a business process that lives in someone's head and give it a shape a database can defend.
-
-Building it meant choosing a central workflow record and making everything else derive context from it; putting lifecycle rules in services below the presentation layer, where every caller inherits them; combining role permissions with object-level scope so access follows the job; and keeping approval, conversion, issue, and payment as separate decisions rather than one convenient button. It meant reaching for transactions and row locks where concurrent requests could corrupt a balance, and going back to align an administrative interface that could bypass all of it.
-
-It also meant staying clear about the line between a workflow implemented in depth and an application ready to be hosted and depended on. Unicos sits on the first side of that line, and I would rather say so than blur it.
+Unicos shows how I turn a messy business workflow into application boundaries a database and service layer can defend. The important work is not just rendering repair-order screens; it is deciding where context lives, which transitions must be refused, where concurrency can corrupt money state, and how public evidence can show an active system without pretending it is finished infrastructure.

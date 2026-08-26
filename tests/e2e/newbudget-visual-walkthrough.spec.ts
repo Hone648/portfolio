@@ -1,7 +1,23 @@
 import { expect, test } from "@playwright/test";
 import { collectApplicationErrors } from "./application-errors";
 
-test("newBudget renders the visual walkthrough reference experience", async ({
+const unicosVisualTitles = [
+  "Workflow dashboard",
+  "Repair-order queue",
+  "Customer workspace",
+  "Repair-order detail workspace",
+  "Communication entry workflow",
+  "Attachment upload workflow",
+  "Estimate creation workflow",
+  "Invoice creation workflow",
+  "Invoice queue",
+  "Operational reports",
+  "Development administration console",
+  "Domain and service boundaries",
+  "Repair-order workflow and lifecycle boundaries",
+] as const;
+
+test("newBudget renders the published evidence-led case study", async ({
   page,
 }) => {
   const expectNoApplicationErrors = collectApplicationErrors(page);
@@ -122,34 +138,161 @@ test("newBudget renders the visual walkthrough reference experience", async ({
   expectNoApplicationErrors();
 });
 
-test("legacy case studies keep their existing presentation boundaries", async ({
+test("Unicos renders existing evidence inline without a legacy gallery", async ({
   page,
 }) => {
   const expectNoApplicationErrors = collectApplicationErrors(page);
 
   await page.goto("/projects/unicos");
+
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Unicos", exact: true }),
+  ).toHaveCount(1);
+  await expect(
+    page.getByText("Business application in active development", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", {
+      name: "Open unicos on GitHub in a new tab",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "https://github.com/Hone648/unicos");
+  await expect(
+    page.getByRole("link", {
+      name: "Open live application in a new tab",
+      exact: true,
+    }),
+  ).toHaveCount(0);
+
+  for (const heading of [
+    "The problem",
+    "Three engineering decisions",
+    "Sanitized architecture",
+    "Repair-order workflow",
+    "Supporting operations",
+    "Active development boundary",
+    "What this project demonstrates",
+    "Current status",
+  ] as const) {
+    await expect(
+      page.getByRole("heading", { level: 2, name: heading, exact: true }),
+    ).toBeVisible();
+  }
+
+  const decisions = page.getByRole("list", {
+    name: "High-signal engineering decisions",
+    exact: true,
+  });
+  await expect(decisions.getByRole("listitem")).toHaveCount(3);
+  await expect(
+    decisions.getByText("The repair order is the shared context"),
+  ).toBeVisible();
+  await expect(decisions.getByText("Rules and permissions follow the work"))
+    .toBeVisible();
+  await expect(
+    decisions.getByText("Billing stays explicit and transactional"),
+  ).toBeVisible();
+
   await expect(
     page.getByRole("heading", {
       level: 2,
       name: "Project visuals",
       exact: true,
     }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(
-    page.getByRole("button", {
-      name: "View larger: Workflow dashboard for Unicos",
+    page.getByRole("button", { name: /View larger: .* for Unicos/ }),
+  ).toHaveCount(13);
+
+  for (const visualTitle of unicosVisualTitles) {
+    await expect(
+      page.getByRole("button", {
+        name: `View larger: ${visualTitle} for Unicos`,
+        exact: true,
+      }),
+    ).toHaveCount(1);
+    await expect(
+      page.getByRole("link", {
+        name: `Open full-size asset: ${visualTitle} in a new tab`,
+        exact: true,
+      }),
+    ).toHaveCount(1);
+  }
+
+  await expect(
+    page.getByText("not production-deployed", { exact: false }),
+  ).toBeVisible();
+
+  expectNoApplicationErrors();
+});
+
+test("Home Security uses the visual case-study shell without visual evidence", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+
+  await page.goto("/projects/home-security-lab");
+
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Home Security and Automation Lab",
       exact: true,
     }),
   ).toHaveCount(1);
   await expect(
-    page.getByRole("heading", {
-      level: 2,
-      name: "The problem",
+    page.getByText("Operational systems-integration project", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", {
+      name: "Open nvr-infrastructure on GitHub in a new tab",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "https://github.com/Hone648/nvr-infrastructure");
+  await expect(
+    page.getByRole("link", {
+      name: "Open live application in a new tab",
       exact: true,
     }),
   ).toHaveCount(0);
 
-  await page.goto("/projects/home-security-lab");
+  for (const heading of [
+    "The problem",
+    "Three engineering decisions",
+    "Privacy boundary",
+    "What this project demonstrates",
+    "Current status",
+  ] as const) {
+    await expect(
+      page.getByRole("heading", { level: 2, name: heading, exact: true }),
+    ).toBeVisible();
+  }
+
+  const decisions = page.getByRole("list", {
+    name: "High-signal engineering decisions",
+    exact: true,
+  });
+  await expect(decisions.getByRole("listitem")).toHaveCount(3);
+  await expect(
+    decisions.getByText("Troubleshoot the event path, not the containers"),
+  ).toBeVisible();
+  await expect(decisions.getByText("Reviewed configuration is source"))
+    .toBeVisible();
+  await expect(
+    decisions.getByText(
+      "Documented procedures stay distinct from exercised operations",
+    ),
+  ).toBeVisible();
+
+  await expect(
+    page.getByText(
+      /documented procedures without separate evidence that they have been exercised against the live stack/i,
+    ),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", {
       level: 2,
@@ -161,55 +304,69 @@ test("legacy case studies keep their existing presentation boundaries", async ({
     page.getByRole("button", { name: /View larger:/ }),
   ).toHaveCount(0);
   await expect(
-    page.getByRole("heading", {
-      level: 1,
-      name: "Home Security and Automation Lab",
-      exact: true,
-    }),
-  ).toBeVisible();
+    page.getByRole("link", { name: /Open full-size asset:/ }),
+  ).toHaveCount(0);
 
   expectNoApplicationErrors();
 });
 
-test.describe("narrow newBudget walkthrough", () => {
+test.describe("narrow visual case studies", () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
-  test("keeps visuals and current status within the viewport", async ({
-    page,
-  }) => {
-    const expectNoApplicationErrors = collectApplicationErrors(page);
-
-    await page.goto("/projects/newbudget");
-
-    await expect(
-      page.getByRole("heading", {
-        level: 2,
-        name: "Month-first planning model",
-        exact: true,
-      }),
-    ).toBeVisible();
-
-    const hasHorizontalOverflow = await page.evaluate(
-      () =>
-        document.documentElement.scrollWidth >
-        document.documentElement.clientWidth,
-    );
-    expect(hasHorizontalOverflow).toBe(false);
-
-    await page
-      .getByRole("heading", {
-        level: 2,
-        name: "Current status",
-        exact: true,
-      })
-      .scrollIntoViewIfNeeded();
-    await expect(
-      page.getByText(
+  for (const caseStudy of [
+    {
+      path: "/projects/newbudget",
+      heading: "Month-first planning model",
+      statusLimit:
         "Debt and installment calculations support planning and history but do not claim lender-exact accounting.",
-        { exact: true },
-      ),
-    ).toBeVisible();
+    },
+    {
+      path: "/projects/unicos",
+      heading: "Sanitized architecture",
+      statusLimit:
+        "Production infrastructure, monitoring, backup and restore operations, and broader hardening remain incomplete.",
+    },
+    {
+      path: "/projects/home-security-lab",
+      heading: "Privacy boundary",
+      statusLimit:
+        "This is a privately operated home deployment, not a commercial security product or professionally monitored alarm system.",
+    },
+  ] as const) {
+    test(`${caseStudy.path} keeps the case study within the viewport`, async ({
+      page,
+    }) => {
+      const expectNoApplicationErrors = collectApplicationErrors(page);
 
-    expectNoApplicationErrors();
-  });
+      await page.goto(caseStudy.path);
+
+      await expect(
+        page.getByRole("heading", {
+          level: 2,
+          name: caseStudy.heading,
+          exact: true,
+        }),
+      ).toBeVisible();
+
+      const hasHorizontalOverflow = await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth >
+          document.documentElement.clientWidth,
+      );
+      expect(hasHorizontalOverflow).toBe(false);
+
+      await page
+        .getByRole("heading", {
+          level: 2,
+          name: "Current status",
+          exact: true,
+        })
+        .scrollIntoViewIfNeeded();
+      await expect(
+        page.getByText(caseStudy.statusLimit, { exact: true }),
+      ).toBeVisible();
+
+      expectNoApplicationErrors();
+    });
+  }
 });
