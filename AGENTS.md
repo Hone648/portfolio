@@ -66,8 +66,21 @@
 - Update evidence and limitations together when changing a project claim.
 - Never add a public source URL for a private repository.
 - Do not promote designed, planned, or prototyped work to operational without evidence.
+- Forkfolio is a private-source commercial project. Never publish its private repository URL, private commit identifiers, secrets, real customer or restaurant private data, or private deployment details.
+- Until separately evidenced after its production/deployment work, Forkfolio must remain classified as active development and must not be described as production deployed or production ready.
+- Forkfolio external ordering and reservation links must not be described as native ordering, payment, delivery, or reservation processing.
+- LinkedIn content work is not part of the portfolio roadmap.
 - Preserve evidence-backed accuracy and project-state distinctions internally, but do not make evidence, audit, proof, qualification, or limitation terminology the default public-facing voice.
 - Visitor-facing copy should lead with project purpose, engineering contribution, and practical value. Status and meaningful constraints must remain accurate but secondary.
+- Public case studies are recruiter-oriented visual walkthroughs, not exhaustive technical reports.
+- Case studies must lead with project purpose, the practical problem, and Hunter's engineering contribution.
+- Prefer high-signal architecture/workflow diagrams and authentic screenshots when they communicate faster than prose.
+- Diagrams must explain real reviewed architecture or workflows; decorative diagrams must not imply unsupported systems, services, deployment, scale, or outcomes.
+- Keep top-level engineering decisions intentionally small and high-signal rather than presenting feature inventories.
+- Preserve evidence, limitations, status, privacy, and implementation-state distinctions even when a narrative is shortened.
+- Secondary detail may use progressive disclosure, but critical project purpose, engineering contribution, status, and meaningful constraints must remain understandable without interaction.
+- Diagrams require meaningful alt text and accessible prose context.
+- Do not replace authentic application evidence with reconstructed or AI-generated screens.
 - Continue to distinguish implemented, deployed, operational, prototyped, designed, and planned work.
 - Treat `README.md` as recruiter-, developer-, and customer-facing documentation. Keep internal slice tracking, evidence governance, approval history, and defensive implementation disclaimers in `AGENTS.md` or `docs/`, not in the public README.
 - Do not expose secrets, financial records, OAuth details, private camera credentials, private RTSP URLs, home addresses, sensitive topology, or identifying camera footage.
