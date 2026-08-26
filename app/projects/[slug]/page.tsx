@@ -49,10 +49,10 @@ export async function generateMetadata({
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
   const { project, caseStudy } = getCaseStudyPageData(slug);
-  const { Content } = caseStudy;
+  const { Content, presentationMode } = caseStudy;
 
   return (
-    <CaseStudyLayout project={project}>
+    <CaseStudyLayout project={project} presentationMode={presentationMode}>
       <Content />
     </CaseStudyLayout>
   );

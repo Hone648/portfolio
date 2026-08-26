@@ -82,6 +82,27 @@ export const projectVisualGroups: Partial<
         },
       ],
     },
+    {
+      id: "month-first-model",
+      title: "Month-first planning model",
+      description:
+        "The selected month composes current financial inputs, previews future recurring obligations without unnecessary writes, and persists a monthly record only when an action requires it.",
+      visuals: [
+        {
+          id: "newbudget-month-first-planning",
+          kind: "diagram",
+          title: "Month-first planning model",
+          src: "/diagrams/newbudget-month-first-planning.svg",
+          width: 1600,
+          height: 980,
+          alt: "Diagram showing a selected month composing income, carryover, recurring items, quick expenses, payment state, and remaining balance, with future recurring items previewed deterministically until user action persists a monthly record.",
+          caption:
+            "A selected month is the planning boundary: current inputs are composed into the visible workspace, while future recurring items can be previewed without creating monthly records until the user acts.",
+          evidenceNote:
+            "Code-authored explanatory diagram derived from reviewed newBudget implementation and narrative evidence. It is not a complete production architecture map and omits deployment topology, private identifiers, provider details, and real financial values.",
+        },
+      ],
+    },
   ],
   unicos: [
     {
@@ -292,4 +313,11 @@ export function getProjectVisualGroups(
   slug: ProjectSlug,
 ): readonly ProjectVisualGroup[] {
   return projectVisualGroups[slug] ?? emptyVisualGroups;
+}
+
+export function getProjectVisualGroupById(
+  slug: ProjectSlug,
+  groupId: ProjectVisualGroup["id"],
+): ProjectVisualGroup | undefined {
+  return getProjectVisualGroups(slug).find((group) => group.id === groupId);
 }

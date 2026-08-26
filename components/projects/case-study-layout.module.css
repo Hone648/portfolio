@@ -393,6 +393,94 @@
   font-weight: 700;
 }
 
+.visualWalkthrough {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-7);
+}
+
+.visualWalkthrough > h2 {
+  max-width: 18ch;
+  border-left: 0.2rem solid var(--project-accent);
+  padding-left: var(--space-4);
+  color: var(--color-text);
+  font-size: 2.25rem;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.visualWalkthrough > p,
+.visualWalkthrough > blockquote,
+.visualWalkthrough > ol {
+  max-width: 72ch;
+}
+
+.visualWalkthrough > p {
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.visualWalkthrough > ol {
+  counter-reset: decision;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visualWalkthrough > ol > li {
+  counter-increment: decision;
+  min-width: 0;
+  display: grid;
+  gap: var(--space-3);
+  border-top: 0.2rem solid var(--project-accent);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.visualWalkthrough > ol > li::before {
+  content: counter(decision, decimal-leading-zero);
+  color: var(--project-accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.visualWalkthrough > ol strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+.visualWalkthrough > ol p,
+.visualWalkthrough > ol li {
+  color: var(--color-text-muted);
+}
+
+.visualWalkthrough > blockquote {
+  margin: 0;
+  border-left: 0.25rem solid var(--project-accent);
+  padding: var(--space-4) var(--space-5);
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--project-accent-soft) 58%, transparent);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+.inlineVisualEvidence {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
 .limitations {
   max-width: 70ch;
   border-top-color: var(--project-accent);
@@ -403,6 +491,7 @@
 @media (max-width: 52rem) {
   .overviewGrid,
   .evidence > ul,
+  .visualWalkthrough > ol,
   .visualGrid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -451,6 +540,11 @@
 
   .summary {
     font-size: 1.125rem;
+  }
+
+  .visualWalkthrough > h2 {
+    max-width: 100%;
+    font-size: 1.85rem;
   }
 
   .visualCard figcaption,
