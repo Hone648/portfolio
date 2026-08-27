@@ -30,6 +30,11 @@ const publicRoutes = [
     title: "Home Security and Automation Lab case study | Hunter Kam",
   },
   {
+    path: "/projects/forkfolio",
+    heading: "Forkfolio",
+    title: "Forkfolio case study | Hunter Kam",
+  },
+  {
     path: "/about",
     heading: "Hunter Kam",
     title: "About | Hunter Kam",
@@ -47,9 +52,15 @@ const publicRoutes = [
 ] as const;
 
 const responsiveRoutes = publicRoutes.filter(({ path }) =>
-  ["/", "/projects", "/projects/newbudget", "/about", "/resume", "/contact"].includes(
-    path,
-  ),
+  [
+    "/",
+    "/projects",
+    "/projects/newbudget",
+    "/projects/forkfolio",
+    "/about",
+    "/resume",
+    "/contact",
+  ].includes(path),
 );
 
 test.describe("canonical public routes", () => {

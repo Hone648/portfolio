@@ -1,0 +1,44 @@
+## The problem
+
+Restaurant websites look simple from the outside, but the content behind them changes at different speeds. A restaurant profile may stay stable for months. Hours can change for a holiday. Menus need sections, items, prices, and availability. Announcements, specials, events, branding, and external ordering or reservation destinations each have their own timing and review needs.
+
+Forkfolio is an active-development, private-source restaurant website platform for keeping that operational content manageable without treating the public website as a direct window into mutable working rows. The useful problem is not just editing restaurant content. It is keeping one restaurant's state isolated from another, giving staff role-aware management access, allowing changes to be previewed and reviewed, and publishing a coherent released state that the public site can serve safely.
+
+That makes Forkfolio a boundary-design project as much as a content-management project. The platform has to let restaurant teams change practical website content while preserving a clear line between editable tenant-owned state and the version that has actually been approved for public presentation.
+
+## Three engineering decisions
+
+<ol aria-label="High-signal engineering decisions">
+  <li>
+    <strong>Tenant ownership is explicit</strong>
+    <p>Tenant ownership is the application boundary for restaurant-facing data and management access. Wagtail Site routing can help a public request find the right site, but it is not treated as the authorization boundary for management behavior. Restaurant profiles, locations, hours, menus, links, promotions, media, and branding stay associated with tenant-owned state, and ownership failures should fail closed rather than silently crossing tenant boundaries. The role model is intentionally described as role-aware management, not as a complete external security audit or perfect RBAC system.</p>
+  </li>
+  <li>
+    <strong>Published state is released, not read live</strong>
+    <p>Editable state can be previewed, submitted, reviewed, approved, and then published as an immutable release. Public rendering reads released state rather than directly reading mutable current restaurant rows. Later edits move toward a future release, so historical released state is not rewritten just because operations continue changing. The publication model also supports release history, restoration and reactivation, and scheduled-publication application logic, while production scheduler infrastructure remains future work.</p>
+  </li>
+  <li>
+    <strong>Wagtail and Django have separate responsibilities</strong>
+    <p>Wagtail carries page, revision, media, and implemented editorial-workflow responsibilities. Custom Django domains carry tenant ownership and authorization, restaurant profiles, locations and hours, menus, external links, announcements, specials, events, branding, and publication-domain logic. PostgreSQL is the shared relational system of record. That separation keeps the page and editorial system from becoming the business-domain model, while still letting the public site be composed from reviewed restaurant content.</p>
+  </li>
+</ol>
+
+## How the product fits together
+
+Forkfolio organizes the restaurant website around practical operating domains: profile content, locations, weekly hours, special hours, temporary closures, structured menus, announcements, specials, events, controlled media, branding, and external destinations for ordering or reservations.
+
+Those domains feed preview and controlled publication rather than flowing straight to the public surface. A restaurant team can work on current content, review it in context, and publish a coherent release when the state is ready. That release-backed approach makes the public site depend on a deliberate snapshot instead of whatever editable rows happen to look like mid-change.
+
+Ordering and reservation destinations are outbound links. Forkfolio does not natively process orders, payments, delivery, or reservation inventory. That distinction matters because linking to an outside service is a website-content capability; handling transactions or inventory would be a different product boundary with different evidence and operational requirements.
+
+## Active development boundary
+
+Forkfolio remains in active development. It is not presented as production deployed, production ready, or operating for live customers.
+
+The current public claim does not include hardened production runtime, production reverse proxy behavior, TLS automation, custom-domain operation, production PostgreSQL service, production backups or tested restore, production object storage, production monitoring or logging, production deployment pipeline, production rollback, or production scheduler infrastructure. Those concerns remain future production work until separately implemented, verified, and approved for public use.
+
+## What this project demonstrates
+
+Forkfolio demonstrates how I design around multi-tenant application boundaries, structured business-domain content, role-aware management, and publication workflows where editable state is not the same thing as public state.
+
+The engineering value is in the separation: tenant ownership stays explicit, restaurant content is modeled as business-domain state, Wagtail handles page and editorial responsibilities, and public serving is organized around immutable releases. That gives the project a clear shape even before production deployment work is complete: restaurant teams need flexible editing, but the public website should reflect a coherent reviewed snapshot.
