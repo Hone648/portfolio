@@ -1,4 +1,8 @@
-export type ProjectSlug = "newbudget" | "unicos" | "home-security-lab";
+export type ProjectSlug =
+  | "newbudget"
+  | "unicos"
+  | "home-security-lab"
+  | "forkfolio";
 
 export type ProjectStatus =
   | "production"
@@ -307,6 +311,68 @@ export const projects = [
         kind: "external",
         label: "Open NVR infrastructure source",
         href: "https://github.com/Hone648/nvr-infrastructure",
+      },
+    ],
+  },
+  {
+    slug: "forkfolio",
+    name: "Forkfolio",
+    summary:
+      "A private-source restaurant website platform for tenant-aware content management, controlled preview, and immutable release-backed publication.",
+    card: {
+      category: "Restaurant web platform",
+      description:
+        "A private-source platform for managing restaurant website content and publishing reviewed state through immutable releases.",
+      highlights: [
+        "Keeps tenant ownership explicit across management and public content.",
+        "Separates editable preview from immutable release-backed public serving.",
+        "Combines structured restaurant domains with role-aware publishing workflows.",
+      ],
+      currentStatus:
+        "Implemented in active development; production deployment and live-customer operation remain future work.",
+    },
+    status: "active-development",
+    featured: false,
+    technologies: ["Django", "Wagtail", "PostgreSQL"],
+    capabilities: [
+      "Tenant ownership and role-aware management",
+      "Structured restaurant content management",
+      "Preview and publication workflow",
+      "Immutable release-backed public serving",
+      "Controlled media and branding",
+      "External ordering and reservation links",
+    ],
+    evidence: [
+      {
+        state: "implemented",
+        statement:
+          "Uses explicit Tenant ownership and role-aware management boundaries for restaurant-facing data and operations.",
+      },
+      {
+        state: "implemented",
+        statement:
+          "Models restaurant profiles, locations and hours, menus, announcements, specials, events, external links, media, and branding as structured tenant-owned content.",
+      },
+      {
+        state: "implemented",
+        statement:
+          "Separates editable preview from immutable release-backed public rendering with submission, review, approval, scheduling, history, and reactivation workflows.",
+      },
+    ],
+    limitations: [
+      "Forkfolio is in active development and is not production-deployed or presented as operating for live customers.",
+      "Ordering and reservation capabilities are outbound links only; Forkfolio does not natively process orders, payments, delivery, or reservation inventory.",
+      "Production runtime, domains/TLS, database durability, object storage, monitoring, backup/restore, deployment, and rollback remain designed/future until separately implemented and verified.",
+    ],
+    repository: {
+      visibility: "private",
+      name: "Forkfolio",
+    },
+    links: [
+      {
+        kind: "case-study",
+        label: "View case study",
+        href: "/projects/forkfolio",
       },
     ],
   },

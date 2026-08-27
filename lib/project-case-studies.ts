@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import NewBudgetCaseStudy from "@/content/projects/newbudget.mdx";
 import UnicosCaseStudy from "@/content/projects/unicos.mdx";
 import HomeSecurityLabCaseStudy from "@/content/projects/home-security-lab.mdx";
+import ForkfolioCaseStudy from "@/content/projects/forkfolio.mdx";
 import type { ProjectSlug } from "@/content/project-metadata";
 
 export type CaseStudyPresentationMode = "legacy" | "visual-walkthrough";
@@ -26,6 +27,11 @@ const publishedProjectCaseStudies = [
   {
     slug: "home-security-lab",
     Content: HomeSecurityLabCaseStudy,
+    presentationMode: "visual-walkthrough",
+  },
+  {
+    slug: "forkfolio",
+    Content: ForkfolioCaseStudy,
     presentationMode: "visual-walkthrough",
   },
 ] as const satisfies readonly ProjectCaseStudy[];

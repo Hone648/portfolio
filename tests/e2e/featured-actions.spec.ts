@@ -283,6 +283,7 @@ test("every user-facing route obeys the outbound-link policy", async ({
     "/projects/newbudget",
     "/projects/unicos",
     "/projects/home-security-lab",
+    "/projects/forkfolio",
     "/about",
     "/resume",
     "/contact",
