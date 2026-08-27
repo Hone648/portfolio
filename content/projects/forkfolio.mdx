@@ -1,3 +1,5 @@
+import { InlineProjectVisualGroup } from "@/components/projects/inline-project-visual-group";
+
 ## The problem
 
 Restaurant websites look simple from the outside, but the content behind them changes at different speeds. A restaurant profile may stay stable for months. Hours can change for a holiday. Menus need sections, items, prices, and availability. Announcements, specials, events, branding, and external ordering or reservation destinations each have their own timing and review needs.
@@ -5,6 +7,8 @@ Restaurant websites look simple from the outside, but the content behind them ch
 Forkfolio is an active-development, private-source restaurant website platform for keeping that operational content manageable without treating the public website as a direct window into mutable working rows. The useful problem is not just editing restaurant content. It is keeping one restaurant's state isolated from another, giving staff role-aware management access, allowing changes to be previewed and reviewed, and publishing a coherent released state that the public site can serve safely.
 
 That makes Forkfolio a boundary-design project as much as a content-management project. The platform has to let restaurant teams change practical website content while preserving a clear line between editable tenant-owned state and the version that has actually been approved for public presentation.
+
+<InlineProjectVisualGroup projectSlug="forkfolio" groupId="operator-workspace" />
 
 ## Three engineering decisions
 
@@ -23,6 +27,8 @@ That makes Forkfolio a boundary-design project as much as a content-management p
   </li>
 </ol>
 
+<InlineProjectVisualGroup projectSlug="forkfolio" groupId="structured-operations" />
+
 ## How the product fits together
 
 Forkfolio organizes the restaurant website around practical operating domains: profile content, locations, weekly hours, special hours, temporary closures, structured menus, announcements, specials, events, controlled media, branding, and external destinations for ordering or reservations.
@@ -30,6 +36,8 @@ Forkfolio organizes the restaurant website around practical operating domains: p
 Those domains feed preview and controlled publication rather than flowing straight to the public surface. A restaurant team can work on current content, review it in context, and publish a coherent release when the state is ready. That release-backed approach makes the public site depend on a deliberate snapshot instead of whatever editable rows happen to look like mid-change.
 
 Ordering and reservation destinations are outbound links. Forkfolio does not natively process orders, payments, delivery, or reservation inventory. That distinction matters because linking to an outside service is a website-content capability; handling transactions or inventory would be a different product boundary with different evidence and operational requirements.
+
+<InlineProjectVisualGroup projectSlug="forkfolio" groupId="release-and-publication" />
 
 ## Active development boundary
 

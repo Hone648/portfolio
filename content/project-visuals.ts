@@ -307,6 +307,97 @@ export const projectVisualGroups: Partial<
       ],
     },
   ],
+  forkfolio: [
+    {
+      id: "operator-workspace",
+      title: "Operator workspace",
+      description:
+        "The tenant-facing management surface presents the selected restaurant workspace, role context, and navigation for structured content operations.",
+      visuals: [
+        {
+          id: "forkfolio-management-dashboard",
+          kind: "screenshot",
+          title: "Tenant management dashboard",
+          src: "/images/forkfolio/forkfolio-management-dashboard.png",
+          width: 1600,
+          height: 900,
+          alt: "Forkfolio management dashboard for the fictional Ember & Vine showroom showing the selected workspace, website-manager role, signed-in user, and navigation to restaurant, locations, menus, links, promotions, branding, publication, media, and team areas.",
+          caption:
+            "The dashboard shows the tenant-facing management shell, selected restaurant workspace, role context, and operational navigation.",
+          evidenceNote:
+            "Authentic local-development capture using the fictional Ember & Vine showroom. It demonstrates the tenant-facing management surface and does not represent production deployment or live-customer operation.",
+        },
+      ],
+    },
+    {
+      id: "structured-operations",
+      title: "Structured operations",
+      description:
+        "Restaurant operations are modeled as editable domain records for hours, menus, item availability, and prices rather than freeform page text.",
+      visuals: [
+        {
+          id: "forkfolio-operating-hours",
+          kind: "screenshot",
+          title: "Operating hours workspace",
+          src: "/images/forkfolio/forkfolio-operating-hours.png",
+          width: 1600,
+          height: 1000,
+          alt: "Forkfolio operating-hours workspace for the fictional Ember & Vine showroom showing the date-rule checker, regular weekly schedule, split Saturday service, and special-hours section.",
+          caption:
+            "The hours workspace separates date inspection, weekly schedule periods, split service windows, and special-hours context.",
+          evidenceNote:
+            "Authentic local-development capture using fictional showroom records. It demonstrates implemented operating-hours management and date-aware behavior, not a real restaurant schedule.",
+        },
+        {
+          id: "forkfolio-menu-management",
+          kind: "screenshot",
+          title: "Structured menu management",
+          src: "/images/forkfolio/forkfolio-menu-management.png",
+          width: 1600,
+          height: 900,
+          alt: "Forkfolio menu item workspace for the fictional Ember & Vine showroom showing Hearth Bread details, availability, Dinner currency context, and an ordered fixed-price row.",
+          caption:
+            "The menu workspace keeps item details, availability, menu currency context, and prices as structured restaurant records.",
+          evidenceNote:
+            "Authentic local-development capture using fictional showroom menu records. It demonstrates structured menu management and does not represent a live restaurant or ordering system.",
+        },
+      ],
+    },
+    {
+      id: "release-and-publication",
+      title: "Release and publication",
+      description:
+        "Editable restaurant content moves through application-level publication and is served publicly from a deliberate release-backed state.",
+      visuals: [
+        {
+          id: "forkfolio-publication-history",
+          kind: "screenshot",
+          title: "Publication and release history",
+          src: "/images/forkfolio/forkfolio-publication-history.png",
+          width: 1600,
+          height: 900,
+          alt: "Forkfolio publication dashboard for the fictional Ember & Vine showroom showing a submit-current-state action, an empty submissions table, and a release-history row with preview and reactivate actions.",
+          caption:
+            "The publication dashboard exposes current submission state and a release-history workspace for reviewed public-site snapshots.",
+          evidenceNote:
+            "Authentic local-development capture using the fictional showroom. It demonstrates application-level publication and release-history behavior, not production deployment, infrastructure rollback, backup/restore, or production scheduler operation.",
+        },
+        {
+          id: "forkfolio-public-site",
+          kind: "screenshot",
+          title: "Released public restaurant page",
+          src: "/images/forkfolio/forkfolio-public-site.png",
+          width: 500,
+          height: 1000,
+          alt: "Release-backed Forkfolio public restaurant page for the fictional Ember & Vine showroom showing branded restaurant identity, restaurant description, logo, and hero imagery.",
+          caption:
+            "The released public page renders the fictional restaurant brand, description, logo, and visual presentation from published showroom content.",
+          evidenceNote:
+            "Authentic local-development capture of release-backed public rendering for the fictional Ember & Vine showroom. It demonstrates implemented public-site presentation and does not represent a production-hosted or live-customer site.",
+        },
+      ],
+    },
+  ],
 };
 
 export function getProjectVisualGroups(
