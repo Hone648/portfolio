@@ -4,6 +4,34 @@ import { collectApplicationErrors } from "./application-errors";
 const privateRepositoryText =
   "The source repository is private. This case study covers the architecture, implementation, and project details that can be shared publicly.";
 
+const forkfolioVisuals = [
+  {
+    title: "Tenant management dashboard",
+    asset: "/images/forkfolio/forkfolio-management-dashboard.png",
+    alt: /management dashboard for the fictional Ember & Vine showroom/i,
+  },
+  {
+    title: "Operating hours workspace",
+    asset: "/images/forkfolio/forkfolio-operating-hours.png",
+    alt: /operating-hours workspace for the fictional Ember & Vine showroom/i,
+  },
+  {
+    title: "Structured menu management",
+    asset: "/images/forkfolio/forkfolio-menu-management.png",
+    alt: /menu item workspace for the fictional Ember & Vine showroom/i,
+  },
+  {
+    title: "Publication and release history",
+    asset: "/images/forkfolio/forkfolio-publication-history.png",
+    alt: /publication dashboard for the fictional Ember & Vine showroom/i,
+  },
+  {
+    title: "Released public restaurant page",
+    asset: "/images/forkfolio/forkfolio-public-site.png",
+    alt: /release-backed Forkfolio public restaurant page/i,
+  },
+] as const;
+
 test("Forkfolio renders as a private-source active-development case study", async ({
   page,
 }) => {
@@ -112,7 +140,7 @@ test("Forkfolio keeps status, production, and transaction boundaries visible", a
   expectNoApplicationErrors();
 });
 
-test("Forkfolio ships without visual evidence in Slice 16D", async ({
+test("Forkfolio renders five authentic screenshot evidence assets", async ({
   page,
 }) => {
   const expectNoApplicationErrors = collectApplicationErrors(page);
@@ -126,11 +154,29 @@ test("Forkfolio ships without visual evidence in Slice 16D", async ({
     }),
   ).toHaveCount(0);
   await expect(
-    page.getByRole("button", { name: /View larger:/ }),
-  ).toHaveCount(0);
+    page.getByRole("button", { name: /View larger: .* for Forkfolio/ }),
+  ).toHaveCount(5);
   await expect(
-    page.getByRole("link", { name: /Open full-size asset:/ }),
-  ).toHaveCount(0);
+    page.getByRole("link", { name: /Open full-size asset: .* in a new tab/ }),
+  ).toHaveCount(5);
+
+  for (const visual of forkfolioVisuals) {
+    await expect(
+      page.getByRole("button", {
+        name: `View larger: ${visual.title} for Forkfolio`,
+        exact: true,
+      }),
+    ).toHaveCount(1);
+    await expect(
+      page.getByRole("img", { name: visual.alt }),
+    ).toHaveCount(1);
+    const fullSizeLink = page.getByRole("link", {
+      name: `Open full-size asset: ${visual.title} in a new tab`,
+      exact: true,
+    });
+    await expect(fullSizeLink).toHaveCount(1);
+    await expect(fullSizeLink).toHaveAttribute("href", visual.asset);
+  }
 
   expectNoApplicationErrors();
 });
@@ -217,6 +263,16 @@ test.describe("narrow viewport", () => {
         document.documentElement.clientWidth,
     );
     expect(hasHorizontalOverflow).toBe(false);
+
+    const visualButtonsFitViewport = await page
+      .getByRole("button", { name: /View larger: .* for Forkfolio/ })
+      .evaluateAll((buttons) =>
+        buttons.every((button) => {
+          const rect = button.getBoundingClientRect();
+          return rect.left >= 0 && rect.right <= document.documentElement.clientWidth;
+        }),
+      );
+    expect(visualButtonsFitViewport).toBe(true);
 
     expectNoApplicationErrors();
   });
