@@ -69,6 +69,12 @@
 - Forkfolio is a private-source commercial project. Never publish its private repository URL, private commit identifiers, secrets, real customer or restaurant private data, or private deployment details.
 - Until separately evidenced after its production/deployment work, Forkfolio must remain classified as active development and must not be described as production deployed or production ready.
 - Forkfolio external ordering and reservation links must not be described as native ordering, payment, delivery, or reservation processing.
+- Forkfolio public facts must remain traceable to the reviewed evidence contract in `docs/forkfolio-evidence-contract.md`; update that contract before adding new public claims.
+- Forkfolio tenant, management, and publication claims must distinguish tenant-owned business state, Wagtail site routing, authorized preview, immutable public releases, and designed future production work.
+- Accepted Forkfolio production ADRs and runbooks are design evidence, not operational evidence. Do not claim custom domains, TLS automation, hardened production runtime, production database durability, object storage, monitoring, deployment pipeline, rollback, backup, restore, or live-customer operation until separately implemented, verified, and approved.
+- Forkfolio demo showroom material is development/demo support using synthetic or explicitly approved data. Future screenshots must be authentic captures from safe demonstration data, not AI-generated, reconstructed, or digitally redacted application screens.
+- Forkfolio diagrams must use only high-level allowed abstractions and must omit private source structure, private infrastructure, provider identifiers, tenant/customer identifiers, secrets, and deployment details.
+- Forkfolio status promotion requires a separate reviewed production evidence slice and owner approval.
 - LinkedIn content work is not part of the portfolio roadmap.
 - Preserve evidence-backed accuracy and project-state distinctions internally, but do not make evidence, audit, proof, qualification, or limitation terminology the default public-facing voice.
 - Visitor-facing copy should lead with project purpose, engineering contribution, and practical value. Status and meaningful constraints must remain accurate but secondary.
