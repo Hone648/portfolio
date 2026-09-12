@@ -2,6 +2,8 @@ import { expect, test } from "@playwright/test";
 import { collectApplicationErrors } from "./application-errors";
 
 const testOrigin = "http://127.0.0.1:3001";
+const approvedSupportingPosition =
+  "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting.";
 
 const publicRoutes = [
   {
@@ -143,8 +145,6 @@ test("the homepage leads with the Software and Systems Engineering identity", as
 }) => {
   const expectNoApplicationErrors = collectApplicationErrors(page);
   const response = await page.goto("/");
-  const approvedSupportingPosition =
-    "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting.";
 
   expect(response?.status()).toBe(200);
   await expect(
@@ -206,6 +206,129 @@ test("the homepage leads with the Software and Systems Engineering identity", as
   await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
     "content",
     "Hunter Kam | Software & Systems Engineering",
+  );
+
+  expectNoApplicationErrors();
+});
+
+test("the about page presents a cumulative software and systems narrative", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+  const response = await page.goto("/about");
+
+  expect(response?.status()).toBe(200);
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Hunter Kam",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByText(approvedSupportingPosition)).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 2, name: "Background", exact: true }),
+  ).toBeVisible();
+
+  const transferableStrengths = page.getByRole("heading", {
+    level: 2,
+    name: "Transferable technical strengths",
+    exact: true,
+  });
+  const howIWork = page.getByRole("heading", {
+    level: 2,
+    name: "How I work",
+    exact: true,
+  });
+  await expect(transferableStrengths).toBeVisible();
+  await expect(howIWork).toBeVisible();
+  await expect(
+    page.getByText(
+      "I am interested in engineering roles where software, systems integration, automation, infrastructure, verification, and complex technical problem-solving intersect.",
+    ),
+  ).toBeVisible();
+  await expect(page.getByText("Before focusing on software")).toHaveCount(0);
+  await expect(page.getByText("remote software development roles")).toHaveCount(
+    0,
+  );
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    "Software and systems engineering, technical experience, and engineering strengths for Hunter Kam.",
+  );
+
+  const technicalStrengthsBeforeHowIWork = await page.evaluate(() => {
+    const strengths = document.querySelector(
+      "#transferable-technical-strengths",
+    );
+    const work = document.querySelector("#how-i-work");
+
+    return Boolean(
+      strengths &&
+        work &&
+        (strengths.compareDocumentPosition(work) &
+          Node.DOCUMENT_POSITION_FOLLOWING),
+    );
+  });
+  expect(technicalStrengthsBeforeHowIWork).toBe(true);
+
+  const personDescription = await page.evaluate(() => {
+    for (const script of document.querySelectorAll(
+      'script[type="application/ld+json"]',
+    )) {
+      const parsed = JSON.parse(script.textContent ?? "{}");
+
+      if (parsed["@type"] === "ProfilePage") {
+        return parsed.mainEntity?.description;
+      }
+    }
+
+    return null;
+  });
+  expect(personDescription).toBe(approvedSupportingPosition);
+
+  expectNoApplicationErrors();
+});
+
+test("the contact page uses broad software and systems opportunity language", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+  const response = await page.goto("/contact");
+
+  expect(response?.status()).toBe(200);
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Contact Hunter",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(
+      "For software and systems engineering opportunities, systems integration, automation, infrastructure, or technical collaboration, contact Hunter by email.",
+    ),
+  ).toBeVisible();
+  await expect(page.getByText("remote software development roles")).toHaveCount(
+    0,
+  );
+  await expect(
+    page.getByRole("link", { name: "Email Hunter", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", {
+      name: "View GitHub profile in a new tab",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "View projects", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "View resume", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    "Contact Hunter Kam about software and systems engineering, systems integration, automation, infrastructure, or technical collaboration.",
   );
 
   expectNoApplicationErrors();
