@@ -6,6 +6,7 @@ type EducationEntry = {
 type SiteContent = {
   readonly name: string;
   readonly positioning: string;
+  readonly portfolioIdentity: string;
   readonly github: {
     readonly href: `https://${string}`;
     readonly label: string;
@@ -19,6 +20,15 @@ type SiteContent = {
     readonly background: readonly string[];
     readonly howIWork: readonly string[];
     readonly currentDirection: readonly string[];
+  };
+  readonly home: {
+    readonly supportingPosition: string;
+    readonly supportingCopy: string;
+    readonly engineeringRange: readonly {
+      readonly title: string;
+      readonly description: string;
+    }[];
+    readonly technicalFoundation: string;
   };
   readonly resume: {
     readonly lede: string;
@@ -37,6 +47,7 @@ export const siteContent = {
   name: "Hunter Kam",
   positioning:
     "Computer Science student and full-stack developer building production web applications, operational business systems, and local automation infrastructure.",
+  portfolioIdentity: "Software & Systems Engineering",
   github: {
     href: "https://github.com/Hone648",
     label: "GitHub profile",
@@ -67,6 +78,31 @@ export const siteContent = {
       "I completed a programming bootcamp and continued building projects afterward. My current technical focus includes full-stack development, backend systems, databases, Linux, automation, and systems integration.",
       "I am interested in remote software development roles and carefully scoped freelance projects where independent troubleshooting, clear communication, and disciplined delivery are valuable.",
     ],
+  },
+  home: {
+    supportingPosition:
+      "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting.",
+    supportingCopy:
+      "Current software work builds on prior technical systems experience, connecting application development, systems integration, automation, and hands-on troubleshooting.",
+    engineeringRange: [
+      {
+        title: "Software Engineering",
+        description:
+          "Application development, backend systems, databases, authentication and authorization, testing, CI, deployment, monitoring, production operations, and application architecture.",
+      },
+      {
+        title: "Systems Integration & Automation",
+        description:
+          "Linux, containers, networking, MQTT, RTSP, automation, infrastructure, telemetry, hardware/software interfaces, and troubleshooting across service and system boundaries.",
+      },
+      {
+        title: "Technical Systems Experience",
+        description:
+          "Avionics, automated electronic test systems, semiconductor equipment, instrumentation, communications, installations, upgrades, troubleshooting, equipment support, and technical coordination.",
+      },
+    ],
+    technicalFoundation:
+      "More than two decades of technical work across avionics, automated test, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting inform the way I approach current software and systems work.",
   },
   resume: {
     lede:

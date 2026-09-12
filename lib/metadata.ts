@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { absoluteUrl, type SitePath } from "@/lib/site-url";
 
 export const SITE_NAME = "Hunter Kam";
-export const ROOT_TITLE = `${SITE_NAME} | Full-stack developer portfolio`;
+export const ROOT_TITLE = `${SITE_NAME} | Software & Systems Engineering`;
 export const TITLE_TEMPLATE = `%s | ${SITE_NAME}`;
 const SOCIAL_IMAGE_ALT =
-  "Hunter Kam full-stack developer portfolio social card";
+  "Hunter Kam Software & Systems Engineering portfolio social card";
 
 type PageMetadataInput = {
   readonly title: string;

@@ -7,12 +7,12 @@ export const socialImageSize = {
 
 export const socialImageContentType = "image/png";
 export const socialImageAlt =
-  "Hunter Kam full-stack developer portfolio social card";
+  "Hunter Kam Software & Systems Engineering portfolio social card";
 
 const projectContexts = [
-  "Production web application",
-  "Business system in active development",
-  "Local automation infrastructure",
+  "Software Engineering",
+  "Systems Integration",
+  "Technical Systems Experience",
 ] as const;
 
 export function createSocialImage(): ImageResponse {
@@ -83,12 +83,12 @@ export function createSocialImage(): ImageResponse {
             style={{
               color: "#34434d",
               display: "flex",
-              fontSize: 30,
+              fontSize: 34,
               lineHeight: 1.25,
               marginTop: 22,
             }}
           >
-            Computer Science student and full-stack developer
+            Software &amp; Systems Engineering
           </div>
         </div>
 
