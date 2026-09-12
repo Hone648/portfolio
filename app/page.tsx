@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { PageContainer } from "@/components/layout/page-container";
 import { ProjectGrid } from "@/components/projects/project-grid";
 import { ButtonLink } from "@/components/ui/button-link";
+import { siteContent } from "@/content/site-content";
 import { getFeaturedProjects } from "@/lib/projects";
 import styles from "./page.module.css";
 
@@ -14,17 +16,16 @@ export default function Home() {
         <h1 className={styles.title} id="home-title">
           Hunter Kam
         </h1>
-        <p className={styles.positioning}>
-          Computer Science student and full-stack developer building production
-          web applications, operational business systems, and local automation
-          infrastructure.
-        </p>
+        <p className={styles.identity}>{siteContent.portfolioIdentity}</p>
+        <p className={styles.positioning}>{siteContent.home.supportingPosition}</p>
         <p className={styles.supportingCopy}>
-          Explore the systems I have built, the practical problems they solve,
-          and the engineering decisions behind them.
+          {siteContent.home.supportingCopy}
         </p>
         <div className={styles.actions}>
-          <ButtonLink href="/projects">View projects</ButtonLink>
+          <ButtonLink href="/projects">View engineering work</ButtonLink>
+          <ButtonLink href="/resume" variant="secondary">
+            View resume
+          </ButtonLink>
           <ButtonLink
             href="https://github.com/Hone648"
             external
@@ -33,6 +34,31 @@ export default function Home() {
             View GitHub profile
           </ButtonLink>
         </div>
+      </section>
+
+      <section
+        className={styles.engineeringRange}
+        aria-labelledby="engineering-range"
+      >
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className={styles.eyebrow}>Evidence pillars</p>
+            <h2 id="engineering-range">Engineering range</h2>
+          </div>
+          <p>
+            Software, systems integration, automation, and prior technical
+            systems work are presented as complementary strengths with distinct
+            evidence boundaries.
+          </p>
+        </div>
+        <ul className={styles.rangeGrid}>
+          {siteContent.home.engineeringRange.map((pillar) => (
+            <li className={styles.rangeItem} key={pillar.title}>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.description}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className={styles.selectedWork} aria-labelledby="selected-work">
@@ -44,13 +70,32 @@ export default function Home() {
           <p>
             A live budgeting application, a business workflow system in
             development, and an operational home automation and security
-            environment.
+            environment. <Link href="/projects">View projects</Link>
           </p>
         </div>
         <ProjectGrid projects={featuredProjects} variant="featured" />
         <ButtonLink href="/projects" variant="secondary">
           View all projects
         </ButtonLink>
+      </section>
+
+      <section
+        className={styles.technicalFoundation}
+        aria-labelledby="technical-foundation"
+      >
+        <div>
+          <p className={styles.eyebrow}>Experience signal</p>
+          <h2 id="technical-foundation">Technical foundation</h2>
+        </div>
+        <div className={styles.foundationCopy}>
+          <p>{siteContent.home.technicalFoundation}</p>
+          <ButtonLink
+            href="/resume#selected-technical-experience"
+            variant="secondary"
+          >
+            View technical experience
+          </ButtonLink>
+        </div>
       </section>
 
       <section className={styles.approach} aria-labelledby="delivery-approach">

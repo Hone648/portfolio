@@ -7,7 +7,7 @@ const publicRoutes = [
   {
     path: "/",
     heading: "Hunter Kam",
-    title: "Hunter Kam | Full-stack developer portfolio",
+    title: "Hunter Kam | Software & Systems Engineering",
   },
   {
     path: "/projects",
@@ -135,6 +135,79 @@ test("the homepage exposes the Google site-verification tag", async ({
     "content",
     "ccLfmUEUzj3OXo02VsjQnWWJkTWzzdwg4mnGXIk5_V4",
   );
+  expectNoApplicationErrors();
+});
+
+test("the homepage leads with the Software and Systems Engineering identity", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+  const response = await page.goto("/");
+  const approvedSupportingPosition =
+    "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting.";
+
+  expect(response?.status()).toBe(200);
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Hunter Kam",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Software & Systems Engineering")).toBeVisible();
+  await expect(page.getByText(approvedSupportingPosition)).toBeVisible();
+
+  const engineeringRange = page
+    .getByRole("heading", {
+      level: 2,
+      name: "Engineering range",
+      exact: true,
+    })
+    .locator("xpath=ancestor::section");
+  await expect(engineeringRange).toBeVisible();
+  await expect(
+    engineeringRange.getByRole("heading", {
+      level: 3,
+      name: "Software Engineering",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    engineeringRange.getByRole("heading", {
+      level: 3,
+      name: "Systems Integration & Automation",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    engineeringRange.getByRole("heading", {
+      level: 3,
+      name: "Technical Systems Experience",
+      exact: true,
+    }),
+  ).toBeVisible();
+
+  await expect(
+    page.getByRole("link", { name: "View engineering work", exact: true }),
+  ).toHaveAttribute("href", "/projects");
+  await expect(
+    page.getByRole("link", { name: "View resume", exact: true }),
+  ).toHaveAttribute("href", "/resume");
+  await expect(
+    page.getByRole("link", {
+      name: "View technical experience",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "/resume#selected-technical-experience");
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    "content",
+    "Hunter Kam | Software & Systems Engineering",
+  );
+  await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
+    "content",
+    "Hunter Kam | Software & Systems Engineering",
+  );
+
   expectNoApplicationErrors();
 });
 

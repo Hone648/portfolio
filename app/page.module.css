@@ -23,7 +23,7 @@
 
 .introduction > .eyebrow {
   grid-column: 1;
-  grid-row: 1 / span 4;
+  grid-row: 1 / span 5;
   border-top: 1px solid var(--color-warm);
   padding-top: var(--space-3);
 }
@@ -40,15 +40,26 @@
   letter-spacing: 0;
 }
 
+.identity {
+  width: fit-content;
+  border-block: 1px solid var(--color-border-strong);
+  padding-block: var(--space-2);
+  color: var(--color-accent-strong);
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
 .positioning {
-  max-width: 42rem;
+  max-width: 51rem;
   color: var(--color-text);
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   line-height: 1.55;
 }
 
 .supportingCopy {
-  max-width: 40rem;
+  max-width: 43rem;
   color: var(--color-text-muted);
 }
 
@@ -58,7 +69,9 @@
   gap: var(--space-3);
 }
 
+.engineeringRange,
 .selectedWork,
+.technicalFoundation,
 .approach {
   display: grid;
   gap: var(--space-6);
@@ -79,6 +92,7 @@
 }
 
 .sectionHeading h2,
+.technicalFoundation h2,
 .approach h2 {
   color: var(--color-text);
   font-size: 2.4rem;
@@ -90,6 +104,59 @@
 }
 
 .selectedWork > a {
+  justify-self: start;
+}
+
+.rangeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rangeItem {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  border-top: 0.25rem solid var(--color-accent);
+  padding: var(--space-4) 0 0;
+}
+
+.rangeItem h3 {
+  color: var(--color-text);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.rangeItem p {
+  color: var(--color-text-muted);
+}
+
+.technicalFoundation {
+  grid-template-columns: minmax(12rem, 0.6fr) minmax(0, 1.4fr);
+  align-items: start;
+}
+
+.technicalFoundation > div:first-child {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.foundationCopy {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 48rem;
+}
+
+.foundationCopy p {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.foundationCopy a {
   justify-self: start;
 }
 
@@ -130,6 +197,7 @@
 @media (max-width: 48rem) {
   .introduction,
   .sectionHeading,
+  .technicalFoundation,
   .approach {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -153,6 +221,7 @@
     font-size: 1.125rem;
   }
 
+  .rangeGrid,
   .approach ul {
     grid-template-columns: minmax(0, 1fr);
   }
