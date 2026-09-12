@@ -8,7 +8,7 @@ import styles from "@/components/profile/profile-page.module.css";
 export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact Hunter Kam about software development, automation, systems integration, or technical collaboration.",
+    "Contact Hunter Kam about software and systems engineering, systems integration, automation, infrastructure, or technical collaboration.",
   path: "/contact",
 });
 

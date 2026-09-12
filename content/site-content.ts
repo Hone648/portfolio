@@ -46,7 +46,7 @@ type SiteContent = {
 export const siteContent = {
   name: "Hunter Kam",
   positioning:
-    "Computer Science student and full-stack developer building production web applications, operational business systems, and local automation infrastructure.",
+    "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting.",
   portfolioIdentity: "Software & Systems Engineering",
   github: {
     href: "https://github.com/Hone648",
@@ -58,11 +58,11 @@ export const siteContent = {
   },
   about: {
     lede:
-      "Full-stack development informed by a technical career spanning more than two decades in troubleshooting, systems integration, field support, and technical operations.",
+      "Software and systems engineering informed by more than two decades of hands-on technical experience across avionics, automated test, semiconductor equipment, telemetry, controls, troubleshooting, and systems integration.",
     background: [
-      "I am a Computer Science student and full-stack developer. Before focusing on software, I worked in avionics, industrial electronics, automated test equipment, semiconductor equipment, data acquisition, remote telemetry, and control systems.",
-      "That work required systematic fault isolation across software, electronics, instrumentation, mechanical systems, networks, and operator interfaces, along with customer training, documentation, and coordination with engineers and other technical teams.",
-      "I now apply that systems perspective to a deployed web application, a business application in active development, and operational local automation infrastructure. The portfolio shows how those disciplines reinforce each other while keeping prior technical experience distinct from current software work.",
+      "I am a Computer Science student whose current software development builds on a broader technical systems career across avionics, industrial electronics, automated test equipment, semiconductor equipment, data acquisition, remote telemetry, controls, troubleshooting, systems integration, and technical operations.",
+      "That work developed systematic fault isolation and systems thinking across software, electronics, instrumentation, mechanical systems, networks, operator interfaces, and related system boundaries, along with customer training, documentation, and coordination with engineers and technical teams.",
+      "I now apply that systems perspective to project-backed software applications and operational automation infrastructure. Current software work and prior technical experience reinforce each other while remaining distinct: project-backed software skills are separate from historical and transferable technical strengths.",
     ],
     howIWork: [
       "Define requirements, constraints, and success criteria before implementation.",
@@ -76,7 +76,7 @@ export const siteContent = {
     currentDirection: [
       "I am completing Computer Science coursework through Central Texas College. My planned academic path is transfer to Texas A&M University-Central Texas for a B.S. in Computer Science.",
       "I completed a programming bootcamp and continued building projects afterward. My current technical focus includes full-stack development, backend systems, databases, Linux, automation, and systems integration.",
-      "I am interested in remote software development roles and carefully scoped freelance projects where independent troubleshooting, clear communication, and disciplined delivery are valuable.",
+      "I am interested in engineering roles where software, systems integration, automation, infrastructure, verification, and complex technical problem-solving intersect.",
     ],
   },
   home: {
@@ -129,9 +129,9 @@ export const siteContent = {
   },
   contactPage: {
     lede:
-      "For remote software development roles, carefully scoped freelance projects, automation, systems integration, or technical collaboration, contact Hunter by email.",
+      "For software and systems engineering opportunities, systems integration, automation, infrastructure, or technical collaboration, contact Hunter by email.",
     introduction:
-      "Email is the direct public contact channel for role or project discussions. GitHub provides another view of the repositories and technical work that can be shared publicly.",
+      "Email is the direct public contact channel for role, project, or technical collaboration discussions. GitHub provides another view of the repositories and technical work that can be shared publicly.",
     privacyNote:
       "This portfolio does not use a public contact form or collect contact details through a site backend.",
   },

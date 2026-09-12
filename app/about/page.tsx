@@ -12,7 +12,7 @@ import { absoluteUrl } from "@/lib/site-url";
 import styles from "@/components/profile/profile-page.module.css";
 
 const aboutDescription =
-  "Current software work, prior technical experience, and engineering strengths for Hunter Kam.";
+  "Software and systems engineering, technical experience, and engineering strengths for Hunter Kam.";
 
 export const metadata = createPageMetadata({
   title: "About",
@@ -58,15 +58,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="how-i-work">
-        <h2 id="how-i-work">How I work</h2>
-        <ol className={styles.principles}>
-          {siteContent.about.howIWork.map((principle) => (
-            <li key={principle}>{principle}</li>
-          ))}
-        </ol>
-      </section>
-
       <section
         className={styles.section}
         aria-labelledby="transferable-technical-strengths"
@@ -75,6 +66,15 @@ export default function AboutPage() {
           Transferable technical strengths
         </h2>
         <TransferableStrengths strengths={transferableStrengths} />
+      </section>
+
+      <section className={styles.section} aria-labelledby="how-i-work">
+        <h2 id="how-i-work">How I work</h2>
+        <ol className={styles.principles}>
+          {siteContent.about.howIWork.map((principle) => (
+            <li key={principle}>{principle}</li>
+          ))}
+        </ol>
       </section>
 
       <section className={styles.section} aria-labelledby="skills">
