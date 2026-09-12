@@ -44,6 +44,8 @@
 - Selected career history and transferable strengths must come from `content/career-history.ts`.
 - Skill claims must come from `content/skills.ts`.
 - Skills must link to related projects and cannot use percentages or proficiency rankings.
+- The approved portfolio/domain positioning is `Software & Systems Engineering`. This is not itself a verified employment title.
+- Do not invent or imply unverified formal titles such as Software Engineer, Systems Engineer, Senior Engineer, Principal Engineer, Staff Engineer, Solutions Architect, or Systems Architect unless separately supported and approved. This does not prohibit the verified SPEA title Field Engineer.
 - Preserve the verified career titles Equipment Technician, Electronics Technician, Field Engineer, Avionics Technician, and Avionics Electronics Technician.
 - Keep one consolidated SPEA career entry and state that it covers two separate, non-contiguous periods of employment.
 - Do not imply continuous SPEA employment or publish either SPEA date range until the exact chronology is verified.
@@ -52,7 +54,12 @@
 - Historical training technologies are not current skills unless project evidence supports them.
 - Do not invent employers, job titles, dates, degrees, certifications, locations, availability, or outcomes.
 - Do not describe the full technical career as software-engineering experience.
+- The broader technical career may support systems, integration, automation, and troubleshooting positioning, but must not be rewritten as decades of software engineering.
+- Preserve the separation between current project-backed skills, transferable career strengths, and historical technical experience.
+- Portfolio copy may describe a broad engineering domain while career entries continue to use verified titles and evidence.
 - Remote and freelance wording must describe current interest, not invented prior outcomes, employment, or clients.
+- Public positioning should not make remote work the primary identity or headline. Do not invent or overemphasize remote, location, or travel preferences without separate approval.
+- Do not introduce compensation targets into public portfolio content.
 - Do not publish employer addresses, old phone numbers, military locations, units, ranks, deployments, service identifiers, or other unnecessary private details.
 - Do not publish Advantage Aircraft Services client/customer names, aircraft registration/tail numbers, or unnecessary aircraft identifiers.
 - Do not publish the real-estate entry or humorous resume bullets in the professional portfolio.
