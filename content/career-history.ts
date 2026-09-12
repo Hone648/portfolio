@@ -1,4 +1,9 @@
-export type CareerEntryId = "qorvo" | "cretic-forbes" | "spea" | "navy";
+export type CareerEntryId =
+  | "qorvo"
+  | "cretic-forbes"
+  | "spea"
+  | "advantage-aircraft"
+  | "navy";
 
 export type CareerEntry = {
   readonly id: CareerEntryId;
@@ -51,6 +56,18 @@ export const careerEntries = [
     ],
   },
   {
+    id: "advantage-aircraft",
+    role: "Avionics Technician",
+    organization: "Advantage Aircraft Services Inc.",
+    summary:
+      "Worked in a two-person avionics shop supporting shared-use corporate jets, partnering directly with the owner to handle avionics work across installation, troubleshooting, repair, and equipment changes.",
+    highlights: [
+      "Performed avionics installations, repairs, troubleshooting, equipment upgrades, and system updates.",
+      "Supported medium-sized corporate aircraft used for business and international travel.",
+      "Shared responsibility with the shop owner for the avionics workload rather than working within a larger specialized avionics department.",
+    ],
+  },
+  {
     id: "navy",
     role: "Avionics Electronics Technician",
     organization: "U.S. Navy",
@@ -69,7 +86,13 @@ export const transferableStrengths = [
     title: "Systems troubleshooting",
     description:
       "Isolated faults across software, electronics, instrumentation, mechanical equipment, networks, and control interfaces.",
-    relatedCareerEntryIds: ["qorvo", "cretic-forbes", "spea", "navy"],
+    relatedCareerEntryIds: [
+      "qorvo",
+      "cretic-forbes",
+      "spea",
+      "advantage-aircraft",
+      "navy",
+    ],
   },
   {
     title: "Software, hardware, and data interfaces",
