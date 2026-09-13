@@ -193,8 +193,11 @@ test("the homepage leads with the Software and Systems Engineering identity", as
   await expect(
     page.getByRole("link", { name: "View resume", exact: true }),
   ).toHaveAttribute("href", "/resume");
+  const technicalFoundation = page.getByRole("region", {
+    name: "Technical foundation",
+  });
   await expect(
-    page.getByRole("link", {
+    technicalFoundation.getByRole("link", {
       name: "View technical experience",
       exact: true,
     }),
@@ -207,6 +210,110 @@ test("the homepage leads with the Software and Systems Engineering identity", as
     "content",
     "Hunter Kam | Software & Systems Engineering",
   );
+
+  expectNoApplicationErrors();
+});
+
+test("the homepage balances current project and career engineering evidence", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+  const response = await page.goto("/");
+
+  expect(response?.status()).toBe(200);
+
+  const selectedEvidence = page.getByRole("region", {
+    name: "Selected engineering evidence",
+  });
+  await expect(selectedEvidence).toHaveCount(1);
+  await expect(selectedEvidence).toBeVisible();
+  await expect(
+    page.getByRole("region", { name: "Selected work" }),
+  ).toHaveCount(0);
+
+  const evidenceBlocks = selectedEvidence.getByRole("article");
+  await expect(evidenceBlocks).toHaveCount(4);
+  await expect(
+    selectedEvidence.getByRole("heading", {
+      level: 3,
+      name: "Software Engineering",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    selectedEvidence.getByRole("heading", {
+      level: 3,
+      name: "Systems Integration & Automation",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    selectedEvidence.getByRole("heading", {
+      level: 3,
+      name: "Automated Test & Integration",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    selectedEvidence.getByRole("heading", {
+      level: 3,
+      name: "Avionics & Electronic Systems",
+      exact: true,
+    }),
+  ).toBeVisible();
+
+  await expect(
+    selectedEvidence.getByText("CURRENT PROJECT EVIDENCE"),
+  ).toHaveCount(2);
+  await expect(selectedEvidence.getByText("CAREER EVIDENCE")).toHaveCount(2);
+  await expect(
+    selectedEvidence.getByText("newBudget", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    selectedEvidence.getByText("Home Security and Automation Lab", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    selectedEvidence.getByText("SPEA — Field Engineer", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    selectedEvidence.getByText("Avionics systems experience", { exact: true }),
+  ).toBeVisible();
+
+  await expect(
+    selectedEvidence.getByRole("link", {
+      name: "View newBudget case study",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "/projects/newbudget");
+  await expect(
+    selectedEvidence.getByRole("link", {
+      name: "View systems case study",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "/projects/home-security-lab");
+  const careerEvidenceLinks = selectedEvidence.getByRole("link", {
+    name: "View technical experience",
+    exact: true,
+  });
+  await expect(careerEvidenceLinks).toHaveCount(2);
+  await expect(careerEvidenceLinks.nth(0)).toHaveAttribute(
+    "href",
+    "/resume#selected-technical-experience",
+  );
+  await expect(careerEvidenceLinks.nth(1)).toHaveAttribute(
+    "href",
+    "/resume#selected-technical-experience",
+  );
+  await expect(
+    selectedEvidence.getByRole("link", {
+      name: "View all projects",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "/projects");
+  await expect(selectedEvidence.getByText("Unicos")).toHaveCount(0);
+  await expect(page.getByText("Unicos", { exact: true })).toHaveCount(0);
 
   expectNoApplicationErrors();
 });

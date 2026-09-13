@@ -211,21 +211,21 @@ test("Forkfolio appears on the project index without source or live actions", as
   expectNoApplicationErrors();
 });
 
-test("Forkfolio is deferred from homepage featured projects", async ({
+test("Forkfolio is deferred from homepage selected engineering evidence", async ({
   page,
 }) => {
   const expectNoApplicationErrors = collectApplicationErrors(page);
   await page.goto("/");
 
-  const featuredRegion = page.getByRole("region", {
-    name: "Selected work",
+  const selectedEvidence = page.getByRole("region", {
+    name: "Selected engineering evidence",
   });
-  await expect(featuredRegion).toBeVisible();
+  await expect(selectedEvidence).toBeVisible();
   await expect(
-    featuredRegion.getByRole("heading", { name: "Forkfolio" }),
+    selectedEvidence.getByRole("heading", { name: "Forkfolio" }),
   ).toHaveCount(0);
   await expect(
-    featuredRegion.getByRole("link", { name: /Forkfolio/ }),
+    selectedEvidence.getByRole("link", { name: /Forkfolio/ }),
   ).toHaveCount(0);
 
   expectNoApplicationErrors();

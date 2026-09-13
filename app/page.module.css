@@ -70,7 +70,7 @@
 }
 
 .engineeringRange,
-.selectedWork,
+.selectedEvidence,
 .technicalFoundation,
 .approach {
   display: grid;
@@ -103,7 +103,65 @@
   color: var(--color-text-muted);
 }
 
-.selectedWork > a {
+.selectedEvidence > a {
+  justify-self: start;
+}
+
+.evidenceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.evidenceBlock {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  border-top: 0.25rem solid var(--color-text);
+  padding-top: var(--space-4);
+}
+
+.evidenceBlock h3 {
+  color: var(--color-text);
+  font-size: 1.55rem;
+  line-height: 1.15;
+}
+
+.evidenceType,
+.evidenceSource {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.evidenceType {
+  color: var(--color-accent-strong);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.evidenceSource {
+  color: var(--color-warm);
+  font-size: 0.875rem;
+}
+
+.evidenceSummary {
+  color: var(--color-text-muted);
+}
+
+.evidenceBlock ul {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--color-text-muted);
+}
+
+.evidenceBlock li::marker {
+  color: var(--color-accent-strong);
+}
+
+.evidenceBlock a {
   justify-self: start;
 }
 
@@ -222,6 +280,7 @@
   }
 
   .rangeGrid,
+  .evidenceGrid,
   .approach ul {
     grid-template-columns: minmax(0, 1fr);
   }
