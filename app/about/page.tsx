@@ -77,8 +77,13 @@ export default function AboutPage() {
         </ol>
       </section>
 
-      <section className={styles.section} aria-labelledby="skills">
-        <h2 id="skills">Skills</h2>
+      <section
+        className={styles.section}
+        aria-labelledby="current-project-backed-skills"
+      >
+        <h2 id="current-project-backed-skills">
+          Current project-backed skills
+        </h2>
         <SkillGroups groups={skillGroups} />
       </section>
 

@@ -72,8 +72,13 @@ export default function ResumePage() {
         </ul>
       </section>
 
-      <section className={styles.section} aria-labelledby="technical-skills">
-        <h2 id="technical-skills">Technical skills</h2>
+      <section
+        className={styles.section}
+        aria-labelledby="current-project-backed-skills"
+      >
+        <h2 id="current-project-backed-skills">
+          Current project-backed skills
+        </h2>
         <SkillGroups groups={skillGroups} variant="compact" />
       </section>
 
