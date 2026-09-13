@@ -106,9 +106,9 @@ export const siteContent = {
   },
   resume: {
     lede:
-      "A professional web resume connecting current software projects with selected prior technical experience.",
+      "An experience-forward resume connecting current software and systems work with more than two decades of technical experience.",
     summary:
-      "Computer Science student and full-stack developer with a technical career spanning more than two decades across avionics, automated test equipment, semiconductor equipment, industrial data acquisition, and control systems. Current software work includes a deployed Next.js application, a Django business system in active development, and operational Linux-based automation infrastructure.",
+      "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. Current project-backed work spans production application development, backend systems, Linux infrastructure, automation, and systems integration.",
     educationAndTraining: [
       {
         institution: "Central Texas College",
