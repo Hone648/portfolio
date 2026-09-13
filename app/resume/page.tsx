@@ -3,9 +3,10 @@ import { PageContainer } from "@/components/layout/page-container";
 import { CareerEntryList } from "@/components/profile/career-entry-list";
 import { ProfilePageHeader } from "@/components/profile/profile-page-header";
 import { SkillGroups } from "@/components/profile/skill-groups";
+import { TransferableStrengths } from "@/components/profile/transferable-strengths";
 import { ButtonLink } from "@/components/ui/button-link";
 import { StatusBadge } from "@/components/ui/status-badge";
-import { careerEntries } from "@/content/career-history";
+import { careerEntries, transferableStrengths } from "@/content/career-history";
 import { siteContent } from "@/content/site-content";
 import { skillGroups } from "@/content/skills";
 import { createPageMetadata } from "@/lib/metadata";
@@ -15,7 +16,7 @@ import styles from "@/components/profile/profile-page.module.css";
 export const metadata = createPageMetadata({
   title: "Resume",
   description:
-    "Web resume for Hunter Kam connecting current software projects with selected prior technical experience.",
+    "Resume for Hunter Kam connecting current software and systems engineering work with more than two decades of technical experience.",
   path: "/resume",
 });
 
@@ -25,7 +26,7 @@ export default function ResumePage() {
   return (
     <PageContainer className={styles.page}>
       <ProfilePageHeader
-        eyebrow="Web resume"
+        eyebrow={siteContent.portfolioIdentity}
         title="Resume"
         lede={siteContent.resume.lede}
       />
@@ -37,9 +38,22 @@ export default function ResumePage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="technical-skills">
-        <h2 id="technical-skills">Technical skills</h2>
-        <SkillGroups groups={skillGroups} variant="compact" />
+      <section
+        className={styles.section}
+        aria-labelledby="engineering-strengths"
+      >
+        <h2 id="engineering-strengths">Engineering strengths</h2>
+        <TransferableStrengths strengths={transferableStrengths} />
+      </section>
+
+      <section
+        className={styles.section}
+        aria-labelledby="selected-technical-experience"
+      >
+        <h2 id="selected-technical-experience">
+          Selected technical experience
+        </h2>
+        <CareerEntryList entries={careerEntries} />
       </section>
 
       <section className={styles.section} aria-labelledby="selected-projects">
@@ -58,14 +72,9 @@ export default function ResumePage() {
         </ul>
       </section>
 
-      <section
-        className={styles.section}
-        aria-labelledby="selected-technical-experience"
-      >
-        <h2 id="selected-technical-experience">
-          Selected technical experience
-        </h2>
-        <CareerEntryList entries={careerEntries} />
+      <section className={styles.section} aria-labelledby="technical-skills">
+        <h2 id="technical-skills">Technical skills</h2>
+        <SkillGroups groups={skillGroups} variant="compact" />
       </section>
 
       <section

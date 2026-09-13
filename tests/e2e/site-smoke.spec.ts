@@ -4,6 +4,10 @@ import { collectApplicationErrors } from "./application-errors";
 const testOrigin = "http://127.0.0.1:3001";
 const approvedSupportingPosition =
   "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting.";
+const approvedResumeLede =
+  "An experience-forward resume connecting current software and systems work with more than two decades of technical experience.";
+const approvedResumeSummary =
+  "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. Current project-backed work spans production application development, backend systems, Linux infrastructure, automation, and systems integration.";
 
 const publicRoutes = [
   {
@@ -392,6 +396,171 @@ test("the about page presents a cumulative software and systems narrative", asyn
     return null;
   });
   expect(personDescription).toBe(approvedSupportingPosition);
+
+  expectNoApplicationErrors();
+});
+
+test("the resume presents experience-forward software and systems positioning", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+  const response = await page.goto("/resume");
+
+  expect(response?.status()).toBe(200);
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Resume", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText("Software & Systems Engineering")).toBeVisible();
+  await expect(page.getByText(approvedResumeLede)).toBeVisible();
+  await expect(page.getByText(approvedResumeSummary)).toBeVisible();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    "Resume for Hunter Kam connecting current software and systems engineering work with more than two decades of technical experience.",
+  );
+
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Engineering strengths",
+      exact: true,
+    }),
+  ).toBeVisible();
+  for (const strength of [
+    "Systems troubleshooting",
+    "Software, hardware, and data interfaces",
+    "Customer and technical-team communication",
+    "Measurement and operational discipline",
+  ]) {
+    await expect(
+      page.getByRole("heading", { level: 3, name: strength, exact: true }),
+    ).toBeVisible();
+  }
+
+  const experience = page.getByRole("region", {
+    name: "Selected technical experience",
+  });
+  await expect(experience).toBeVisible();
+  for (const entry of [
+    { role: "Equipment Technician", organization: "Qorvo" },
+    {
+      role: "Electronics Technician",
+      organization: "Cretic Energy Services / Forbes Energy Services",
+    },
+    { role: "Field Engineer", organization: "SPEA" },
+    {
+      role: "Avionics Technician",
+      organization: "Advantage Aircraft Services Inc.",
+    },
+    {
+      role: "Avionics Electronics Technician",
+      organization: "U.S. Navy",
+    },
+  ]) {
+    await expect(
+      experience.getByRole("heading", {
+        level: 3,
+        name: entry.role,
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      experience.getByText(entry.organization, { exact: true }),
+    ).toBeVisible();
+  }
+
+  const projects = page.getByRole("region", { name: "Selected projects" });
+  await expect(projects).toBeVisible();
+  for (const project of [
+    "newBudget",
+    "Unicos",
+    "Home Security and Automation Lab",
+    "Forkfolio",
+  ]) {
+    await expect(
+      projects.getByRole("heading", {
+        level: 3,
+        name: project,
+        exact: true,
+      }),
+    ).toBeVisible();
+  }
+
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Technical skills",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Education and training",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Central Texas College")).toBeVisible();
+  await expect(
+    page.getByText("Texas A&M University-Central Texas"),
+  ).toBeVisible();
+  await expect(page.getByText("Coding Dojo")).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Certification",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("FCC license with radar endorsement.", { exact: true }),
+  ).toBeVisible();
+
+  const contactLinks = page.getByRole("region", { name: "Contact links" });
+  await expect(contactLinks).toBeVisible();
+  for (const link of [
+    "Email Hunter",
+    "View GitHub profile in a new tab",
+    "View projects",
+    "About Hunter",
+  ]) {
+    await expect(
+      contactLinks.getByRole("link", { name: link, exact: true }),
+    ).toBeVisible();
+  }
+
+  const sectionOrder = await page.evaluate(() => {
+    const ids = [
+      "engineering-strengths",
+      "selected-technical-experience",
+      "selected-projects",
+      "technical-skills",
+      "education-and-training",
+      "certification",
+      "resume-contact",
+    ];
+    return ids.slice(0, -1).every((id, index) => {
+      const nextId = ids[index + 1];
+      const current = document.getElementById(id);
+      const next = nextId ? document.getElementById(nextId) : null;
+
+      return Boolean(
+        current &&
+          next &&
+          (current.compareDocumentPosition(next) &
+            Node.DOCUMENT_POSITION_FOLLOWING),
+      );
+    });
+  });
+  expect(sectionOrder).toBe(true);
+
+  await expect(
+    page.getByText(
+      "A professional web resume connecting current software projects with selected prior technical experience.",
+    ),
+  ).toHaveCount(0);
+  await expect(
+    page.getByText("Computer Science student and full-stack developer"),
+  ).toHaveCount(0);
 
   expectNoApplicationErrors();
 });
