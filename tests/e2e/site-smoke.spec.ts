@@ -8,6 +8,13 @@ const approvedResumeLede =
   "An experience-forward resume connecting current software and systems work with more than two decades of technical experience.";
 const approvedResumeSummary =
   "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. Current project-backed work spans production application development, backend systems, Linux infrastructure, automation, and systems integration.";
+const sharedSkillGroupHeadings = [
+  "Application development",
+  "Backend and data systems",
+  "Software delivery and operations",
+  "Systems integration and automation",
+  "Engineering workflow and validation",
+] as const;
 
 const publicRoutes = [
   {
@@ -354,10 +361,37 @@ test("the about page presents a cumulative software and systems narrative", asyn
   await expect(transferableStrengths).toBeVisible();
   await expect(howIWork).toBeVisible();
   await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Current project-backed skills",
+      exact: true,
+    }),
+  ).toBeVisible();
+  for (const skillGroup of sharedSkillGroupHeadings) {
+    await expect(
+      page.getByRole("heading", {
+        level: 3,
+        name: skillGroup,
+        exact: true,
+      }),
+    ).toBeVisible();
+  }
+  await expect(
+    page.getByText(
+      "I completed a programming bootcamp and continued building projects afterward. My current technical focus includes application development, backend systems, databases, Linux, automation, and systems integration.",
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(
     page.getByText(
       "I am interested in engineering roles where software, systems integration, automation, infrastructure, verification, and complex technical problem-solving intersect.",
     ),
   ).toBeVisible();
+  await expect(
+    page.getByText(
+      "My current technical focus includes full-stack development, backend systems, databases, Linux, automation, and systems integration.",
+    ),
+  ).toHaveCount(0);
   await expect(page.getByText("Before focusing on software")).toHaveCount(0);
   await expect(page.getByText("remote software development roles")).toHaveCount(
     0,
@@ -488,10 +522,19 @@ test("the resume presents experience-forward software and systems positioning", 
   await expect(
     page.getByRole("heading", {
       level: 2,
-      name: "Technical skills",
+      name: "Current project-backed skills",
       exact: true,
     }),
   ).toBeVisible();
+  for (const skillGroup of sharedSkillGroupHeadings) {
+    await expect(
+      page.getByRole("heading", {
+        level: 3,
+        name: skillGroup,
+        exact: true,
+      }),
+    ).toBeVisible();
+  }
   await expect(
     page.getByRole("heading", {
       level: 2,
@@ -533,7 +576,7 @@ test("the resume presents experience-forward software and systems positioning", 
       "engineering-strengths",
       "selected-technical-experience",
       "selected-projects",
-      "technical-skills",
+      "current-project-backed-skills",
       "education-and-training",
       "certification",
       "resume-contact",
@@ -560,6 +603,13 @@ test("the resume presents experience-forward software and systems positioning", 
   ).toHaveCount(0);
   await expect(
     page.getByText("Computer Science student and full-stack developer"),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Technical skills",
+      exact: true,
+    }),
   ).toHaveCount(0);
 
   expectNoApplicationErrors();

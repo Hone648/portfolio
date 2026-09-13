@@ -9,7 +9,7 @@ export type SkillGroup = {
 
 export const skillGroups = [
   {
-    title: "Full-stack applications",
+    title: "Application development",
     description:
       "Builds and operates a deployed Next.js budgeting application and is building a Django repair-order business application.",
     items: [
@@ -26,7 +26,7 @@ export const skillGroups = [
     relatedProjectSlugs: ["newbudget", "unicos"],
   },
   {
-    title: "Data and backend systems",
+    title: "Backend and data systems",
     description:
       "Applies project-specific data models and guarded backend boundaries across deployed financial software and a business system in active development.",
     items: [
@@ -41,7 +41,7 @@ export const skillGroups = [
     relatedProjectSlugs: ["newbudget", "unicos"],
   },
   {
-    title: "Delivery and operations",
+    title: "Software delivery and operations",
     description:
       "Uses focused branches, reviewable changes, automated validation, and documented deployment, verification, rollback, and operating constraints across production software, active-development work, and self-hosted infrastructure documentation.",
     items: [
@@ -60,7 +60,7 @@ export const skillGroups = [
     relatedProjectSlugs: ["newbudget", "unicos", "home-security-lab"],
   },
   {
-    title: "Linux, automation, and systems integration",
+    title: "Systems integration and automation",
     description:
       "Operates a local Docker Compose NVR stack where Frigate uses VAAPI-accelerated RTSP processing and publishes events through Mosquitto for Home Assistant automation, with reviewed configuration, implemented validation tooling, and documented deployment and rollback procedures.",
     items: [
@@ -81,7 +81,7 @@ export const skillGroups = [
     relatedProjectSlugs: ["home-security-lab"],
   },
   {
-    title: "Engineering practice",
+    title: "Engineering workflow and validation",
     description:
       "Combines clear requirements, focused implementation, layered validation, troubleshooting, and privacy-aware documentation.",
     items: [

@@ -1,12 +1,12 @@
-# Hunter Kam — Developer Portfolio
+# Hunter Kam — Software & Systems Engineering
 
 [![CI](https://github.com/Hone648/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Hone648/portfolio/actions/workflows/ci.yml)
 
 This repository contains the source for my professional portfolio, highlighting production web application work, business workflow engineering, and local automation systems. The site focuses on practical engineering decisions, implementation evidence, and the operational lessons behind each project.
 
-I am a Computer Science student and full-stack developer. The portfolio presents current software projects alongside selected prior technical experience, and it keeps those two kinds of work clearly distinct.
+I am a Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. The portfolio keeps current project-backed software and systems skills distinct from historical and transferable technical experience.
 
-## Featured projects
+## Selected project evidence
 
 | Project | Focus | Status |
 | --- | --- | --- |

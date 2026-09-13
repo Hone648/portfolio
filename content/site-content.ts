@@ -75,7 +75,7 @@ export const siteContent = {
     ],
     currentDirection: [
       "I am completing Computer Science coursework through Central Texas College. My planned academic path is transfer to Texas A&M University-Central Texas for a B.S. in Computer Science.",
-      "I completed a programming bootcamp and continued building projects afterward. My current technical focus includes full-stack development, backend systems, databases, Linux, automation, and systems integration.",
+      "I completed a programming bootcamp and continued building projects afterward. My current technical focus includes application development, backend systems, databases, Linux, automation, and systems integration.",
       "I am interested in engineering roles where software, systems integration, automation, infrastructure, verification, and complex technical problem-solving intersect.",
     ],
   },
