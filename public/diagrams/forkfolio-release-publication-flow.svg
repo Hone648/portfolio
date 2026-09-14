@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Forkfolio editable state and immutable publication</title>
+  <desc id="desc">Public-safe workflow diagram showing editable tenant-owned state moving through preview, submission, review and approval, optional application-level scheduling, publishing, immutable Release N, and public restaurant website serving. Later edits create new editable state for a future Release N+1 without mutating Release N, and production scheduler infrastructure remains future work.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b4a8f"/>
+    </marker>
+    <marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e6b55"/>
+    </marker>
+    <style>
+      text { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #20242a; }
+      .title { font-size: 43px; font-weight: 750; }
+      .subtitle { font-size: 24px; fill: #5f6875; }
+      .section { font-size: 24px; font-weight: 750; fill: #08396f; }
+      .node-title { font-size: 23px; font-weight: 740; }
+      .node-copy { font-size: 20px; fill: #5f6875; }
+      .small { font-size: 18px; fill: #5f6875; }
+      .qualifier { font-size: 21px; font-weight: 720; fill: #7a4700; }
+      .green { fill: #1e6b55; }
+      .inverse { fill: #ffffff; }
+      .arrow { fill: none; stroke: #0b4a8f; stroke-width: 4; marker-end: url(#arrow); }
+      .green-arrow { fill: none; stroke: #1e6b55; stroke-width: 4; marker-end: url(#green-arrow); }
+      .future-arrow { fill: none; stroke: #1e6b55; stroke-width: 4; stroke-dasharray: 12 10; marker-end: url(#green-arrow); }
+      .card { fill: #ffffff; stroke: #d9dee7; stroke-width: 3; }
+      .primary { fill: #eaf3fc; stroke: #0b4a8f; stroke-width: 3; }
+      .release { fill: #e8f5f0; stroke: #1e6b55; stroke-width: 4; }
+      .public { fill: #20242a; stroke: #20242a; stroke-width: 3; }
+      .amber-card { fill: #fff4df; stroke: #9a5b00; stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1100" fill="#fbfaf8"/>
+  <text class="title" x="56" y="64">Forkfolio editable state and immutable publication</text>
+  <text class="subtitle" x="56" y="102">Public-safe workflow view</text>
+
+  <rect x="1110" y="32" width="434" height="86" rx="8" class="amber-card"/>
+  <text class="qualifier" x="1140" y="68">Application workflow abstraction</text>
+  <text class="small" x="1140" y="98">Not hosting, rollback, or backup architecture</text>
+
+  <text class="section" x="78" y="170">Primary publication path</text>
+
+  <rect x="70" y="198" width="230" height="118" rx="8" class="primary"/>
+  <text class="node-title" x="103" y="232">Editable</text>
+  <text class="node-title" x="103" y="260">tenant-owned</text>
+  <text class="node-title" x="103" y="288">state</text>
+
+  <rect x="350" y="198" width="166" height="118" rx="8" class="card"/>
+  <text class="node-title" x="394" y="252">Preview</text>
+  <text class="node-copy" x="379" y="282">Current state</text>
+
+  <rect x="566" y="198" width="166" height="118" rx="8" class="card"/>
+  <text class="node-title" x="616" y="252">Submit</text>
+  <text class="node-copy" x="602" y="282">Review request</text>
+
+  <rect x="782" y="198" width="210" height="118" rx="8" class="card"/>
+  <text class="node-title" x="820" y="238">Review /</text>
+  <text class="node-title" x="820" y="266">approval</text>
+  <text class="node-copy" x="820" y="294">Human decision point</text>
+
+  <rect x="1042" y="198" width="246" height="118" rx="8" class="amber-card"/>
+  <text class="node-title" x="1074" y="238">Optional</text>
+  <text class="node-title" x="1074" y="266">application-level</text>
+  <text class="node-title" x="1074" y="294">scheduling</text>
+
+  <rect x="1338" y="198" width="178" height="118" rx="8" class="card"/>
+  <text class="node-title" x="1384" y="252">Publish</text>
+  <text class="node-copy" x="1372" y="282">Release action</text>
+
+  <path class="arrow" d="M300 257 H338"/>
+  <path class="arrow" d="M516 257 H554"/>
+  <path class="arrow" d="M732 257 H770"/>
+  <path class="arrow" d="M992 257 H1030"/>
+  <path class="arrow" d="M1288 257 H1326"/>
+
+  <rect x="514" y="416" width="250" height="132" rx="8" class="release"/>
+  <text class="node-title green" x="578" y="466">Immutable</text>
+  <text class="node-title green" x="579" y="496">Release N</text>
+  <text class="node-copy" x="553" y="526">Approved snapshot</text>
+
+  <rect x="862" y="416" width="304" height="132" rx="8" class="public"/>
+  <text class="node-title inverse" x="900" y="468">Public restaurant</text>
+  <text class="node-title inverse" x="958" y="498">website</text>
+  <text class="node-copy inverse" x="906" y="528">Reads released state</text>
+
+  <path class="green-arrow" d="M1427 316 V366 H639 V404"/>
+  <path class="green-arrow" d="M764 482 H850"/>
+
+  <rect x="70" y="640" width="1446" height="154" rx="10" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="section" x="104" y="684">Further edits become the next release path</text>
+  <rect x="104" y="714" width="260" height="52" rx="8" class="primary"/>
+  <text class="node-title" x="157" y="749">Further edits</text>
+  <rect x="442" y="714" width="286" height="52" rx="8" class="primary"/>
+  <text class="node-title" x="480" y="749">New editable state</text>
+  <rect x="806" y="714" width="300" height="52" rx="8" class="release"/>
+  <text class="node-title green" x="861" y="749">Future Release N+1</text>
+  <text class="node-copy" x="1180" y="748">Later edits do not mutate Release N.</text>
+  <path class="future-arrow" d="M364 740 H430"/>
+  <path class="future-arrow" d="M728 740 H794"/>
+
+  <rect x="70" y="846" width="684" height="158" rx="8" class="amber-card"/>
+  <text class="qualifier" x="104" y="890">Public serving reads released state</text>
+  <text class="node-copy" x="104" y="924">Preview and current editable state remain distinct</text>
+  <text class="node-copy" x="104" y="954">from what the public website serves.</text>
+
+  <rect x="834" y="846" width="682" height="158" rx="8" class="amber-card"/>
+  <text class="qualifier" x="868" y="890">Production scheduler infrastructure remains future work</text>
+  <text class="node-copy" x="868" y="924">Scheduling is shown as an application-level concept,</text>
+  <text class="node-copy" x="868" y="954">not as deployed production infrastructure.</text>
+</svg>

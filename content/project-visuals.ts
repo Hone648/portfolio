@@ -364,6 +364,40 @@ export const projectVisualGroups: Partial<
       ],
     },
     {
+      id: "architecture-and-publication",
+      title: "Architecture and publication boundaries",
+      description:
+        "Code-authored diagrams explain the tenant authorization boundary and the separation between editable restaurant state and immutable release-backed public serving without exposing private source structure or unimplemented production infrastructure.",
+      visuals: [
+        {
+          id: "forkfolio-tenant-authorization-boundary",
+          kind: "diagram",
+          title: "Tenant ownership and authorization boundary",
+          src: "/diagrams/forkfolio-tenant-authorization-boundary.svg",
+          width: 1600,
+          height: 1000,
+          alt: "Forkfolio diagram showing restaurant staff using the tenant management UI, membership and role context, the tenant authorization boundary, tenant-owned content domains, and the Wagtail, custom Django, and PostgreSQL responsibility split, with Wagtail Site routing explicitly not used as the management authorization boundary.",
+          caption:
+            "Tenant ownership and role context gate restaurant-facing management access before tenant-owned content domains are reached; Wagtail and custom Django responsibilities remain distinct over a shared PostgreSQL system of record.",
+          evidenceNote:
+            "Code-authored explanatory diagram derived from the reviewed Forkfolio evidence contract and previously reviewed implementation evidence. It omits private source structure, private identifiers, deployment topology, provider details, and unimplemented production infrastructure.",
+        },
+        {
+          id: "forkfolio-release-publication-flow",
+          kind: "diagram",
+          title: "Editable state and immutable publication",
+          src: "/diagrams/forkfolio-release-publication-flow.svg",
+          width: 1600,
+          height: 1100,
+          alt: "Forkfolio workflow diagram showing editable tenant-owned state moving through preview, submission, review and approval, optional application-level scheduling, immutable Release N, public serving, and later edits proceeding toward Release N+1 without mutating Release N.",
+          caption:
+            "Editable tenant-owned state moves through preview and approval into an immutable release for public serving, while later edits proceed independently toward a future release.",
+          evidenceNote:
+            "Code-authored workflow diagram derived from the reviewed Forkfolio evidence contract and previously reviewed implementation evidence. Application-level scheduling is represented conceptually; production scheduler infrastructure and production deployment topology remain future work and are intentionally omitted.",
+        },
+      ],
+    },
+    {
       id: "release-and-publication",
       title: "Release and publication",
       description:
