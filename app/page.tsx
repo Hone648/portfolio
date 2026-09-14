@@ -65,7 +65,7 @@ function buildEngineeringEvidence(): readonly EvidenceBlock[] {
     {
       category: "Software Engineering",
       sourceName: newBudget.name,
-      sourceLabel: "CURRENT PROJECT EVIDENCE",
+      sourceLabel: "PROJECT",
       summary: newBudget.summary,
       proof: [
         requireHighlight(newBudget.card.highlights, 0, "newBudget"),
@@ -79,7 +79,7 @@ function buildEngineeringEvidence(): readonly EvidenceBlock[] {
     {
       category: "Systems Integration & Automation",
       sourceName: homeSecurity.name,
-      sourceLabel: "CURRENT PROJECT EVIDENCE",
+      sourceLabel: "PROJECT",
       summary: homeSecurity.summary,
       proof: [
         requireHighlight(homeSecurity.card.highlights, 0, "homeSecurity"),
@@ -93,7 +93,7 @@ function buildEngineeringEvidence(): readonly EvidenceBlock[] {
     {
       category: "Automated Test & Integration",
       sourceName: `${spea.organization} — ${spea.role}`,
-      sourceLabel: "CAREER EVIDENCE",
+      sourceLabel: "TECHNICAL EXPERIENCE",
       summary: spea.summary,
       proof: spea.highlights,
       ctaLabel: "View technical experience",
@@ -102,7 +102,7 @@ function buildEngineeringEvidence(): readonly EvidenceBlock[] {
     {
       category: "Avionics & Electronic Systems",
       sourceName: "Avionics systems experience",
-      sourceLabel: "CAREER EVIDENCE",
+      sourceLabel: "TECHNICAL EXPERIENCE",
       summary: `${advantageAircraft.summary} ${navy.summary}`,
       proof: [
         requireHighlight(
@@ -161,13 +161,12 @@ export default function Home() {
       >
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>Evidence pillars</p>
+            <p className={styles.eyebrow}>What I work on</p>
             <h2 id="engineering-range">Engineering range</h2>
           </div>
           <p>
             Software, systems integration, automation, and prior technical
-            systems work are presented as complementary strengths with distinct
-            evidence boundaries.
+            systems work are complementary strengths that reinforce each other.
           </p>
         </div>
         <ul className={styles.rangeGrid}>
@@ -186,14 +185,14 @@ export default function Home() {
       >
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>Selected evidence</p>
+            <p className={styles.eyebrow}>Selected work</p>
             <h2 id="selected-engineering-evidence">
-              Selected engineering evidence
+              Selected work and experience
             </h2>
           </div>
           <p>
-            Four examples balance active project work with verified career
-            history. <Link href="/projects">View projects</Link>
+            Four examples spanning active project work and prior technical
+            experience. <Link href="/projects">View projects</Link>
           </p>
         </div>
         <div className={styles.evidenceGrid}>
@@ -215,7 +214,7 @@ export default function Home() {
           ))}
         </div>
         <p>
-          <strong>Additional current software evidence:</strong>{" "}
+          <strong>Additional software project:</strong>{" "}
           <Link href="/projects/forkfolio">Forkfolio</Link> — tenant-aware
           application boundaries and immutable release-backed publication.
         </p>
@@ -229,7 +228,7 @@ export default function Home() {
         aria-labelledby="technical-foundation"
       >
         <div>
-          <p className={styles.eyebrow}>Experience signal</p>
+          <p className={styles.eyebrow}>Background</p>
           <h2 id="technical-foundation">Technical foundation</h2>
         </div>
         <div className={styles.foundationCopy}>

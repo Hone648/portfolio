@@ -7,7 +7,7 @@ const approvedSupportingPosition =
 const approvedResumeLede =
   "An experience-forward resume connecting current software and systems work with more than two decades of technical experience.";
 const approvedResumeSummary =
-  "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. Current project-backed work spans production application development, backend systems, Linux infrastructure, automation, and systems integration.";
+  "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. Current software and systems work spans production application development, backend systems, Linux infrastructure, automation, and systems integration.";
 const sharedSkillGroupHeadings = [
   "Application development",
   "Backend and data systems",
@@ -279,12 +279,12 @@ test("the homepage balances current project and career engineering evidence", as
   expect(response?.status()).toBe(200);
 
   const selectedEvidence = page.getByRole("region", {
-    name: "Selected engineering evidence",
+    name: "Selected work and experience",
   });
   await expect(selectedEvidence).toHaveCount(1);
   await expect(selectedEvidence).toBeVisible();
   await expect(
-    page.getByRole("region", { name: "Selected work" }),
+    page.getByRole("region", { name: "Selected work", exact: true }),
   ).toHaveCount(0);
 
   const evidenceBlocks = selectedEvidence.getByRole("article");
@@ -319,9 +319,9 @@ test("the homepage balances current project and career engineering evidence", as
   ).toBeVisible();
 
   await expect(
-    selectedEvidence.getByText("CURRENT PROJECT EVIDENCE"),
+    selectedEvidence.getByText("PROJECT", { exact: true }),
   ).toHaveCount(2);
-  await expect(selectedEvidence.getByText("CAREER EVIDENCE")).toHaveCount(2);
+  await expect(selectedEvidence.getByText("TECHNICAL EXPERIENCE", { exact: true })).toHaveCount(2);
   await expect(
     selectedEvidence.getByText("newBudget", { exact: true }),
   ).toBeVisible();
@@ -369,7 +369,7 @@ test("the homepage balances current project and career engineering evidence", as
     }),
   ).toHaveAttribute("href", "/projects");
   await expect(
-    selectedEvidence.getByText("Additional current software evidence:", {
+    selectedEvidence.getByText("Additional software project:", {
       exact: true,
     }),
   ).toBeVisible();
@@ -411,7 +411,7 @@ test("the about page presents a cumulative software and systems narrative", asyn
 
   const transferableStrengths = page.getByRole("heading", {
     level: 2,
-    name: "Transferable technical strengths",
+    name: "Technical strengths",
     exact: true,
   });
   const howIWork = page.getByRole("heading", {
@@ -424,7 +424,7 @@ test("the about page presents a cumulative software and systems narrative", asyn
   await expect(
     page.getByRole("heading", {
       level: 2,
-      name: "Current project-backed skills",
+      name: "Current technical skills",
       exact: true,
     }),
   ).toBeVisible();
@@ -465,7 +465,7 @@ test("the about page presents a cumulative software and systems narrative", asyn
 
   const technicalStrengthsBeforeHowIWork = await page.evaluate(() => {
     const strengths = document.querySelector(
-      "#transferable-technical-strengths",
+      "#technical-strengths",
     );
     const work = document.querySelector("#how-i-work");
 
@@ -585,7 +585,7 @@ test("the resume presents experience-forward software and systems positioning", 
   await expect(
     page.getByRole("heading", {
       level: 2,
-      name: "Current project-backed skills",
+      name: "Current technical skills",
       exact: true,
     }),
   ).toBeVisible();
@@ -640,7 +640,7 @@ test("the resume presents experience-forward software and systems positioning", 
       "engineering-strengths",
       "selected-technical-experience",
       "selected-projects",
-      "current-project-backed-skills",
+      "current-technical-skills",
       "education-and-training",
       "certification",
       "resume-contact",

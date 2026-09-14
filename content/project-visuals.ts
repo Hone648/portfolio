@@ -274,9 +274,9 @@ export const projectVisualGroups: Partial<
     },
     {
       id: "sanitized-architecture",
-      title: "Sanitized architecture",
+      title: "Application architecture",
       description:
-        "Code-authored diagrams derived from reviewed Unicos documentation and implementation evidence without exposing private source details or implying production deployment.",
+        "Code-authored diagrams showing how the Unicos domain layer, services, and repair-order workflow fit together.",
       visuals: [
         {
           id: "domain-service-boundaries",
@@ -285,7 +285,7 @@ export const projectVisualGroups: Partial<
           src: "/diagrams/unicos-domain-service-boundaries.svg",
           width: 1600,
           height: 1000,
-          alt: "Sanitized Unicos architecture diagram showing the local Docker Compose boundary, browser requests, Django views and forms, authorization checks, domain services, models, PostgreSQL, focused HTMX enhancement, and separate development administration interface.",
+          alt: "Unicos architecture diagram showing the local Docker Compose boundary, browser requests, Django views and forms, authorization checks, domain services, models, PostgreSQL, focused HTMX enhancement, and separate development administration interface.",
           caption:
             "The server-rendered application keeps shop-facing requests close to permission checks, repair-order-scoped policies, lifecycle and billing services, models, and PostgreSQL while treating Django admin as a separate emergency and development interface.",
           evidenceNote:
@@ -298,7 +298,7 @@ export const projectVisualGroups: Partial<
           src: "/diagrams/unicos-repair-order-workflow.svg",
           width: 1600,
           height: 1100,
-          alt: "Sanitized Unicos workflow diagram showing customer and vehicle context, the central repair order, status history, communications, attachments, estimate and supplement lifecycles, guarded draft-invoice conversion, invoices, payments, and final-state restrictions.",
+          alt: "Unicos workflow diagram showing customer and vehicle context, the central repair order, status history, communications, attachments, estimate and supplement lifecycles, guarded draft-invoice conversion, invoices, payments, and final-state restrictions.",
           caption:
             "Repair orders provide the central workflow context while explicit services guard estimate transitions, invoice conversion, billing actions, payment recording, and final repair-order states.",
           evidenceNote:
@@ -367,7 +367,7 @@ export const projectVisualGroups: Partial<
       id: "architecture-and-publication",
       title: "Architecture and publication boundaries",
       description:
-        "Code-authored diagrams explain the tenant authorization boundary and the separation between editable restaurant state and immutable release-backed public serving without exposing private source structure or unimplemented production infrastructure.",
+        "Code-authored diagrams explain the tenant authorization boundary and the separation between editable restaurant state and immutable release-backed public serving.",
       visuals: [
         {
           id: "forkfolio-tenant-authorization-boundary",

@@ -86,9 +86,6 @@ export function ProjectVisualGroupList({
                           <p className={styles.visualKind}>{kindLabel}</p>
                           <h4>{visual.title}</h4>
                           <p>{visual.caption}</p>
-                          <p className={styles.evidenceNote}>
-                            {visual.evidenceNote}
-                          </p>
                           <a
                             className={styles.fullSizeLink}
                             href={visual.src}

@@ -123,7 +123,7 @@ test("newBudget renders the published evidence-led case study", async ({
   ).toBeVisible();
   await expect(
     page.getByText(
-      "Debt and installment calculations support planning and history but do not claim lender-exact accounting.",
+      "Debt and installment calculations are planning and history tools, not lender-exact accounting or financial advice.",
       { exact: true },
     ),
   ).toBeVisible();
@@ -169,10 +169,10 @@ test("Unicos renders existing evidence inline without a legacy gallery", async (
   for (const heading of [
     "The problem",
     "Three engineering decisions",
-    "Sanitized architecture",
+    "Application architecture",
     "Repair-order workflow",
     "Supporting operations",
-    "Active development boundary",
+    "Current development status",
     "What this project demonstrates",
     "Current status",
   ] as const) {
@@ -222,7 +222,7 @@ test("Unicos renders existing evidence inline without a legacy gallery", async (
   }
 
   await expect(
-    page.getByText("not production-deployed", { exact: false }),
+    page.getByText("not yet production deployed", { exact: false }).first(),
   ).toBeVisible();
 
   expectNoApplicationErrors();
@@ -263,7 +263,7 @@ test("Home Security uses the visual case-study shell without visual evidence", a
   for (const heading of [
     "The problem",
     "Three engineering decisions",
-    "Privacy boundary",
+    "Why this project has no screenshots",
     "What this project demonstrates",
     "Current status",
   ] as const) {
@@ -290,7 +290,7 @@ test("Home Security uses the visual case-study shell without visual evidence", a
 
   await expect(
     page.getByText(
-      /documented procedures without separate evidence that they have been exercised against the live stack/i,
+      /written procedures rather than steps I have had to run during a live incident/i,
     ),
   ).toBeVisible();
   await expect(
@@ -318,17 +318,17 @@ test.describe("narrow visual case studies", () => {
       path: "/projects/newbudget",
       heading: "Month-first planning model",
       statusLimit:
-        "Debt and installment calculations support planning and history but do not claim lender-exact accounting.",
+        "Debt and installment calculations are planning and history tools, not lender-exact accounting or financial advice.",
     },
     {
       path: "/projects/unicos",
-      heading: "Sanitized architecture",
+      heading: "Application architecture",
       statusLimit:
-        "Production infrastructure, monitoring, backup and restore operations, and broader hardening remain incomplete.",
+        "It records invoice and payment workflow state but is not a payment processor or a full accounting ledger.",
     },
     {
       path: "/projects/home-security-lab",
-      heading: "Privacy boundary",
+      heading: "Why this project has no screenshots",
       statusLimit:
         "This is a privately operated home deployment, not a commercial security product or professionally monitored alarm system.",
     },

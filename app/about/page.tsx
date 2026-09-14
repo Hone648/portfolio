@@ -60,11 +60,9 @@ export default function AboutPage() {
 
       <section
         className={styles.section}
-        aria-labelledby="transferable-technical-strengths"
+        aria-labelledby="technical-strengths"
       >
-        <h2 id="transferable-technical-strengths">
-          Transferable technical strengths
-        </h2>
+        <h2 id="technical-strengths">Technical strengths</h2>
         <TransferableStrengths strengths={transferableStrengths} />
       </section>
 
@@ -79,11 +77,9 @@ export default function AboutPage() {
 
       <section
         className={styles.section}
-        aria-labelledby="current-project-backed-skills"
+        aria-labelledby="current-technical-skills"
       >
-        <h2 id="current-project-backed-skills">
-          Current project-backed skills
-        </h2>
+        <h2 id="current-technical-skills">Current technical skills</h2>
         <SkillGroups groups={skillGroups} />
       </section>
 

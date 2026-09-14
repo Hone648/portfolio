@@ -2,11 +2,11 @@
 
 I wanted a home security stack whose behavior I could inspect and operate myself. That made local processing, understandable boundaries, and reviewable configuration more important than a polished appliance abstraction.
 
-The operational system runs in a private residential environment on an Ubuntu 24.04.3 LTS host with Docker Compose, Frigate, Home Assistant, and Mosquitto. The public `nvr-infrastructure` repository contains sanitized representative documentation and configuration; it is evidence of the architecture and operating practices, not a verbatim private deployment.
+The operational system runs in a private residential environment on an Ubuntu 24.04.3 LTS host with Docker Compose, Frigate, Home Assistant, and Mosquitto. The public `nvr-infrastructure` repository contains representative documentation and configuration with private residential details removed, so it shows the architecture and operating practices rather than mirroring the live deployment.
 
-This is an operational systems-integration project. It is not a commercial security product, professionally monitored alarm, emergency-response system, enterprise video platform, highly available service, fully offline system, air-gapped environment, or guaranteed intrusion-detection claim.
+This is an operational systems-integration project running in a private residence. It is not a commercial security product or a professionally monitored alarm system.
 
-The engineering value is not that several containers run together. It is that the stack has an inspectable event path, a reviewed source boundary, and documented operating procedures that are kept separate from claims about what has actually been exercised on the private system.
+The engineering value is not that several containers run together. It is that the stack has an inspectable event path, a public repository that can be reviewed, and documented operating procedures for changing it safely.
 
 That keeps troubleshooting tied to observable boundaries rather than service names or dashboard health alone.
 
@@ -15,7 +15,7 @@ That keeps troubleshooting tied to observable boundaries rather than service nam
 <ol aria-label="High-signal engineering decisions">
   <li>
     <strong>Troubleshoot the event path, not the containers</strong>
-    <p>The useful abstraction is the event path: sanitized RTSP inputs feed Frigate video processing and detection events, MQTT carries the event through Mosquitto, Home Assistant consumes it, and a representative persistent-notification action proves the boundary in public source. A running container alone does not prove that every upstream input, broker handoff, consumer rule, or action is healthy.</p>
+    <p>The useful abstraction is the event path: sanitized RTSP inputs feed Frigate video processing and detection events, MQTT carries the event through Mosquitto, Home Assistant consumes it, and a representative persistent-notification action demonstrates the handoff in public source. A running container alone tells you nothing about whether every upstream input, broker handoff, consumer rule, or action is healthy.</p>
   </li>
   <li>
     <strong>Reviewed configuration is source</strong>
@@ -23,20 +23,20 @@ That keeps troubleshooting tied to observable boundaries rather than service nam
   </li>
   <li>
     <strong>Documented procedures stay distinct from exercised operations</strong>
-    <p>Implemented or reviewed evidence includes repository validation tooling, the current Frigate age- and event-oriented retention setup, and the private stack's operational event path. Backup-before-replacement, repository-to-live deployment, targeted service recreation, post-deployment verification, and configuration rollback are documented procedures without separate evidence that they have been exercised against the live stack. Full backup and tested recovery, monitoring and maintenance automation, disk-threshold cleanup, security hardening, and network rework remain planned. An exact image-pinning policy exists, but exact pinning remains incomplete.</p>
+    <p>Repository validation tooling, the current Frigate age- and event-oriented retention setup, and the private stack's operational event path are all in place. Backup-before-replacement, repository-to-live deployment, targeted service recreation, post-deployment verification, and configuration rollback are written procedures rather than steps I have had to run during a live incident.</p>
   </li>
 </ol>
 
-## Privacy boundary
+## Why this project has no screenshots
 
-There is no portfolio-hosted visual gallery for this project because residential security evidence can reveal access paths and household patterns even when it looks harmless. The public evidence is sanitized source and documentation. It does not publish footage, camera views, private identifiers, credentials, schedules, access material, recordings, or internal network layout.
+There is no visual gallery for this project because residential security imagery can reveal access paths and household patterns even when it looks harmless. Nothing here publishes footage, camera views, private identifiers, credentials, schedules, access material, recordings, or internal network layout.
 
-That boundary lets the project remain reviewable without turning publication into a security audit. The public repository demonstrates selected configuration shape, validation practice, and operating discipline while keeping the private deployment private.
+What I can share instead is the source. The public repository shows the configuration shape, validation tooling, and operating procedures with private residential details removed, which is enough to review how the system is built without exposing how it is deployed.
 
-For a residential security system, screenshots can expose more operational detail than they prove. Sanitized source provides a safer evidence boundary: enough to review configuration shape and operating discipline without publishing sensitive context.
+For a residential system, screenshots would give away more operational detail than they would usefully demonstrate. The repository is the better artifact.
 
 ## What this project demonstrates
 
-The project shows practical systems integration: Frigate handles video and detection work, Mosquitto carries events, and Home Assistant consumes the relevant flow for automation. It also shows the difference between running services and operating a system. A useful stack needs source review, validation, documented change handling, honest privacy limits, and clear language about what evidence proves.
+The project shows practical systems integration: Frigate handles video and detection work, Mosquitto carries events, and Home Assistant consumes the relevant flow for automation. It also shows the difference between running services and operating a system. A useful stack needs reviewable source, validation, documented change handling, and honest privacy limits.
 
-The strongest claim here is disciplined operational clarity. The stack works in a private residential context, the public repository supports review of selected sanitized configuration, and the roadmap items stay in the future tense until they have separate evidence.
+What this project reflects is disciplined operational clarity. The stack runs in a private residential context, and the public repository documents its configuration and operating practices with private residential details removed.
