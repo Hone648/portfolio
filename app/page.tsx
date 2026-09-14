@@ -214,6 +214,11 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <p>
+          <strong>Additional current software evidence:</strong>{" "}
+          <Link href="/projects/forkfolio">Forkfolio</Link> — tenant-aware
+          application boundaries and immutable release-backed publication.
+        </p>
         <ButtonLink href="/projects" variant="secondary">
           View all projects
         </ButtonLink>

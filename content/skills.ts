@@ -11,24 +11,27 @@ export const skillGroups = [
   {
     title: "Application development",
     description:
-      "Builds and operates a deployed Next.js budgeting application and is building a Django repair-order business application.",
+      "Builds and operates a deployed Next.js budgeting application while developing Django applications for structured business workflows, tenant-aware content management, and release-backed publication.",
     items: [
       "TypeScript",
       "React",
       "Next.js",
       "Python",
       "Django",
+      "Wagtail",
       "Application architecture",
       "Domain modeling",
       "Authentication and authorization",
       "Server-rendered web interfaces",
+      "Multi-tenant application boundaries",
+      "Release-backed publication workflows",
     ],
-    relatedProjectSlugs: ["newbudget", "unicos"],
+    relatedProjectSlugs: ["newbudget", "forkfolio", "unicos"],
   },
   {
     title: "Backend and data systems",
     description:
-      "Applies project-specific data models and guarded backend boundaries across deployed financial software and a business system in active development.",
+      "Applies project-specific data models and guarded backend boundaries across deployed financial software, active-development business applications, and tenant-aware publication workflows.",
     items: [
       "MongoDB Atlas",
       "PostgreSQL",
@@ -36,9 +39,11 @@ export const skillGroups = [
       "Financial data modeling",
       "Operational workflow modeling",
       "User ownership boundaries",
+      "Tenant ownership boundaries",
       "Role and object-level authorization",
+      "Release-backed state modeling",
     ],
-    relatedProjectSlugs: ["newbudget", "unicos"],
+    relatedProjectSlugs: ["newbudget", "forkfolio", "unicos"],
   },
   {
     title: "Software delivery and operations",

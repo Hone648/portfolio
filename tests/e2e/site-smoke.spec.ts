@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { collectApplicationErrors } from "./application-errors";
 
 const testOrigin = "http://127.0.0.1:3001";
@@ -15,6 +15,37 @@ const sharedSkillGroupHeadings = [
   "Systems integration and automation",
   "Engineering workflow and validation",
 ] as const;
+const approvedProjectOrder = [
+  "newBudget",
+  "Forkfolio",
+  "Home Security and Automation Lab",
+  "Unicos",
+] as const;
+
+async function expectApprovedForkfolioSkillRelationships(page: Page) {
+  for (const groupName of [
+    "Application development",
+    "Backend and data systems",
+  ] as const) {
+    const group = page.getByRole("region", { name: groupName, exact: true });
+    await expect(group.getByRole("link", {
+      name: "Forkfolio case study",
+      exact: true,
+    })).toHaveAttribute("href", "/projects/forkfolio");
+  }
+
+  for (const groupName of [
+    "Software delivery and operations",
+    "Systems integration and automation",
+    "Engineering workflow and validation",
+  ] as const) {
+    const group = page.getByRole("region", { name: groupName, exact: true });
+    await expect(group.getByRole("link", {
+      name: "Forkfolio case study",
+      exact: true,
+    })).toHaveCount(0);
+  }
+}
 
 const publicRoutes = [
   {
@@ -131,6 +162,20 @@ test("Home Security exposes the public NVR infrastructure source", async ({
   });
   await expect(projectSourceLink).toBeVisible();
   await expect(projectSourceLink).toHaveAttribute("href", repositoryUrl);
+  expectNoApplicationErrors();
+});
+
+test("the project index follows the approved project hierarchy", async ({
+  page,
+}) => {
+  const expectNoApplicationErrors = collectApplicationErrors(page);
+
+  await page.goto("/projects");
+
+  const projectHeadings = await page.getByRole("article").evaluateAll((cards) =>
+    cards.map((card) => card.querySelector("h2")?.textContent?.trim() ?? ""),
+  );
+  expect(projectHeadings).toEqual([...approvedProjectOrder]);
   expectNoApplicationErrors();
 });
 
@@ -323,6 +368,22 @@ test("the homepage balances current project and career engineering evidence", as
       exact: true,
     }),
   ).toHaveAttribute("href", "/projects");
+  await expect(
+    selectedEvidence.getByText("Additional current software evidence:", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  const forkfolioSupplement = selectedEvidence.getByRole("link", {
+    name: "Forkfolio",
+    exact: true,
+  });
+  await expect(forkfolioSupplement).toHaveAttribute("href", "/projects/forkfolio");
+  await expect(
+    selectedEvidence.getByText(
+      /tenant-aware application boundaries and immutable release-backed publication/i,
+    ),
+  ).toBeVisible();
+  await expect(evidenceBlocks.filter({ hasText: "Forkfolio" })).toHaveCount(0);
   await expect(selectedEvidence.getByText("Unicos")).toHaveCount(0);
   await expect(page.getByText("Unicos", { exact: true })).toHaveCount(0);
 
@@ -400,6 +461,7 @@ test("the about page presents a cumulative software and systems narrative", asyn
     "content",
     "Software and systems engineering, technical experience, and engineering strengths for Hunter Kam.",
   );
+  await expectApprovedForkfolioSkillRelationships(page);
 
   const technicalStrengthsBeforeHowIWork = await page.evaluate(() => {
     const strengths = document.querySelector(
@@ -504,12 +566,13 @@ test("the resume presents experience-forward software and systems positioning", 
 
   const projects = page.getByRole("region", { name: "Selected projects" });
   await expect(projects).toBeVisible();
-  for (const project of [
-    "newBudget",
-    "Unicos",
-    "Home Security and Automation Lab",
-    "Forkfolio",
-  ]) {
+  const projectHeadings = await projects
+    .getByRole("heading", { level: 3 })
+    .evaluateAll((headings) =>
+      headings.map((heading) => heading.textContent?.trim() ?? ""),
+    );
+  expect(projectHeadings).toEqual([...approvedProjectOrder]);
+  for (const project of approvedProjectOrder) {
     await expect(
       projects.getByRole("heading", {
         level: 3,
@@ -535,6 +598,7 @@ test("the resume presents experience-forward software and systems positioning", 
       }),
     ).toBeVisible();
   }
+  await expectApprovedForkfolioSkillRelationships(page);
   await expect(
     page.getByRole("heading", {
       level: 2,

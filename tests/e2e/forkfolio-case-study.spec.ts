@@ -230,7 +230,7 @@ test("Forkfolio appears on the project index without source or live actions", as
   expectNoApplicationErrors();
 });
 
-test("Forkfolio is deferred from homepage selected engineering evidence", async ({
+test("Forkfolio appears as supplemental homepage software evidence without replacing the balanced evidence set", async ({
   page,
 }) => {
   const expectNoApplicationErrors = collectApplicationErrors(page);
@@ -240,12 +240,24 @@ test("Forkfolio is deferred from homepage selected engineering evidence", async 
     name: "Selected engineering evidence",
   });
   await expect(selectedEvidence).toBeVisible();
+  const primaryEvidence = selectedEvidence.getByRole("article");
+  await expect(primaryEvidence).toHaveCount(4);
   await expect(
     selectedEvidence.getByRole("heading", { name: "Forkfolio" }),
   ).toHaveCount(0);
+  await expect(primaryEvidence.filter({ hasText: "Forkfolio" })).toHaveCount(0);
   await expect(
-    selectedEvidence.getByRole("link", { name: /Forkfolio/ }),
-  ).toHaveCount(0);
+    selectedEvidence.getByText("Additional current software evidence:", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  const forkfolioLink = selectedEvidence.getByRole("link", {
+    name: "Forkfolio",
+    exact: true,
+  });
+  await expect(forkfolioLink).toHaveCount(1);
+  await expect(forkfolioLink).toHaveAttribute("href", "/projects/forkfolio");
+  await expect(primaryEvidence.filter({ hasText: "Unicos" })).toHaveCount(0);
 
   expectNoApplicationErrors();
 });
