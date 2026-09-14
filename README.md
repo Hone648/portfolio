@@ -11,12 +11,15 @@ I am a Computer Science student combining modern software development with more 
 | Project | Focus | Status |
 | --- | --- | --- |
 | newBudget | Personal budgeting, monthly planning, and debt tracking | Deployed production application |
-| Unicos | Repair-order workflow and business-process modeling | Application in active development |
+| Forkfolio | Tenant-aware restaurant content and release-backed publication | Private-source application in active development |
 | Home Security and Automation Lab | Local automation, event processing, and systems integration | Operational private systems-integration project |
+| Unicos | Repair-order workflow and business-process modeling | Application in active development |
 
 Each project has a case study covering its purpose, the engineering decisions behind it, and the constraints that shaped it.
 
 The Home Security case study is supported by the public, sanitized [nvr-infrastructure](https://github.com/Hone648/nvr-infrastructure) configuration and operations repository. It represents selected reviewed source, not a complete inventory or verbatim copy of the private residential deployment.
+
+Forkfolio is a private-source project. Its public case study presents only approved project facts, authentic demonstration screenshots, and public-safe architecture/workflow evidence; no public source repository or live-customer/production claim is implied.
 
 ## Built with
 

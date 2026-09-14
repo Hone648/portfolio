@@ -160,70 +160,64 @@ export const projects = [
     ],
   },
   {
-    slug: "unicos",
-    name: "Unicos",
+    slug: "forkfolio",
+    name: "Forkfolio",
     summary:
-      "A Django business application for body-shop repair orders, customer and vehicle records, estimates, billing, payments, and operational reporting.",
+      "A private-source restaurant website platform for tenant-aware content management, controlled preview, and immutable release-backed publication.",
     card: {
-      category: "Repair-shop operations",
+      category: "Restaurant web platform",
       description:
-        "A business application that connects customer, vehicle, repair-order, estimate, invoice, payment, and reporting workflows.",
+        "A private-source platform for managing restaurant website content and publishing reviewed state through immutable releases.",
       highlights: [
-        "Uses the repair order as the shared workflow spine for shop activity.",
-        "Centralizes permissions and guarded lifecycle transitions.",
-        "Protects billing changes with transactional services and PostgreSQL-backed validation.",
+        "Keeps tenant ownership explicit across management and public content.",
+        "Separates editable preview from immutable release-backed public serving.",
+        "Combines structured restaurant domains with role-aware publishing workflows.",
       ],
       currentStatus:
-        "Implemented and actively developed locally; production infrastructure and hardening are not complete.",
+        "Implemented in active development; production deployment and live-customer operation remain future work.",
     },
     status: "active-development",
     featured: true,
-    technologies: [
-      "Django",
-      "Python",
-      "PostgreSQL",
-      "HTMX",
-      "Bootstrap",
-      "Docker Compose",
-    ],
+    technologies: ["Django", "Wagtail", "PostgreSQL"],
     capabilities: [
-      "Repair-order lifecycle modeling",
-      "Role and object-level authorization",
-      "Estimate and billing workflows",
-      "Transactional service boundaries",
-      "Automated testing and CI",
+      "Tenant ownership and role-aware management",
+      "Structured restaurant content management",
+      "Preview and publication workflow",
+      "Immutable release-backed public serving",
+      "Controlled media and branding",
+      "External ordering and reservation links",
     ],
     evidence: [
       {
         state: "implemented",
         statement:
-          "Models customers, vehicles, repair orders, estimates, invoices, payments, status history, and operational communication records.",
+          "Uses explicit Tenant ownership and role-aware management boundaries for restaurant-facing data and operations.",
       },
       {
         state: "implemented",
         statement:
-          "Uses centralized authorization policies and transactional billing services for guarded business operations.",
+          "Models restaurant profiles, locations and hours, menus, announcements, specials, events, external links, media, and branding as structured tenant-owned content.",
       },
       {
         state: "implemented",
         statement:
-          "Includes automated validation for Django behavior, PostgreSQL-backed tests, migrations, Docker builds, and Compose smoke checks.",
+          "Separates editable preview from immutable release-backed public rendering with submission, review, approval, scheduling, history, and reactivation workflows.",
       },
     ],
     limitations: [
-      "The application is in active development and is not production-deployed.",
-      "Production infrastructure, monitoring, backup and restore operations, and broader hardening remain incomplete.",
+      "Forkfolio is in active development and is not production-deployed or presented as operating for live customers.",
+      "Ordering and reservation capabilities are outbound links only; Forkfolio does not natively process orders, payments, delivery, or reservation inventory.",
+      "Production runtime, domains/TLS, database durability, object storage, monitoring, backup/restore, deployment, and rollback remain designed/future until separately implemented and verified.",
     ],
     repository: {
-      visibility: "public",
-      name: "unicos",
-      href: "https://github.com/Hone648/unicos",
+      visibility: "private",
+      name: "Forkfolio",
     },
     links: [
       {
         kind: "case-study",
         label: "View case study",
-        href: "/projects/unicos",
+        href: "/projects/forkfolio",
       },
     ],
   },
@@ -315,64 +309,70 @@ export const projects = [
     ],
   },
   {
-    slug: "forkfolio",
-    name: "Forkfolio",
+    slug: "unicos",
+    name: "Unicos",
     summary:
-      "A private-source restaurant website platform for tenant-aware content management, controlled preview, and immutable release-backed publication.",
+      "A Django business application for body-shop repair orders, customer and vehicle records, estimates, billing, payments, and operational reporting.",
     card: {
-      category: "Restaurant web platform",
+      category: "Repair-shop operations",
       description:
-        "A private-source platform for managing restaurant website content and publishing reviewed state through immutable releases.",
+        "A business application that connects customer, vehicle, repair-order, estimate, invoice, payment, and reporting workflows.",
       highlights: [
-        "Keeps tenant ownership explicit across management and public content.",
-        "Separates editable preview from immutable release-backed public serving.",
-        "Combines structured restaurant domains with role-aware publishing workflows.",
+        "Uses the repair order as the shared workflow spine for shop activity.",
+        "Centralizes permissions and guarded lifecycle transitions.",
+        "Protects billing changes with transactional services and PostgreSQL-backed validation.",
       ],
       currentStatus:
-        "Implemented in active development; production deployment and live-customer operation remain future work.",
+        "Implemented and actively developed locally; production infrastructure and hardening are not complete.",
     },
     status: "active-development",
     featured: false,
-    technologies: ["Django", "Wagtail", "PostgreSQL"],
+    technologies: [
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "HTMX",
+      "Bootstrap",
+      "Docker Compose",
+    ],
     capabilities: [
-      "Tenant ownership and role-aware management",
-      "Structured restaurant content management",
-      "Preview and publication workflow",
-      "Immutable release-backed public serving",
-      "Controlled media and branding",
-      "External ordering and reservation links",
+      "Repair-order lifecycle modeling",
+      "Role and object-level authorization",
+      "Estimate and billing workflows",
+      "Transactional service boundaries",
+      "Automated testing and CI",
     ],
     evidence: [
       {
         state: "implemented",
         statement:
-          "Uses explicit Tenant ownership and role-aware management boundaries for restaurant-facing data and operations.",
+          "Models customers, vehicles, repair orders, estimates, invoices, payments, status history, and operational communication records.",
       },
       {
         state: "implemented",
         statement:
-          "Models restaurant profiles, locations and hours, menus, announcements, specials, events, external links, media, and branding as structured tenant-owned content.",
+          "Uses centralized authorization policies and transactional billing services for guarded business operations.",
       },
       {
         state: "implemented",
         statement:
-          "Separates editable preview from immutable release-backed public rendering with submission, review, approval, scheduling, history, and reactivation workflows.",
+          "Includes automated validation for Django behavior, PostgreSQL-backed tests, migrations, Docker builds, and Compose smoke checks.",
       },
     ],
     limitations: [
-      "Forkfolio is in active development and is not production-deployed or presented as operating for live customers.",
-      "Ordering and reservation capabilities are outbound links only; Forkfolio does not natively process orders, payments, delivery, or reservation inventory.",
-      "Production runtime, domains/TLS, database durability, object storage, monitoring, backup/restore, deployment, and rollback remain designed/future until separately implemented and verified.",
+      "The application is in active development and is not production-deployed.",
+      "Production infrastructure, monitoring, backup and restore operations, and broader hardening remain incomplete.",
     ],
     repository: {
-      visibility: "private",
-      name: "Forkfolio",
+      visibility: "public",
+      name: "unicos",
+      href: "https://github.com/Hone648/unicos",
     },
     links: [
       {
         kind: "case-study",
         label: "View case study",
-        href: "/projects/forkfolio",
+        href: "/projects/unicos",
       },
     ],
   },
