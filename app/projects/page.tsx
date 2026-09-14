@@ -7,7 +7,7 @@ import styles from "./page.module.css";
 export const metadata = createPageMetadata({
   title: "Projects",
   description:
-    "Selected work by Hunter Kam across deployed web applications, active-development business platforms, and operational local systems.",
+    "Selected work by Hunter Kam across deployed web applications, business applications in active development, and operational local systems.",
   path: "/projects",
 });
 
@@ -21,7 +21,8 @@ export default function ProjectsPage() {
         <h1 className={styles.title}>Projects</h1>
         <p className={styles.lede}>
           Practical software and systems work spanning production applications,
-          active-development business platforms, and operational infrastructure.
+          business applications in active development, and operational
+          infrastructure.
         </p>
       </header>
 

@@ -21,7 +21,7 @@ Three engineering decisions shaped how newBudget handles planning, financial con
   </li>
   <li>
     <strong>Money is modeled for consistency</strong>
-    <p>Currency uses integer minor units instead of floating-point arithmetic, and rates use integer basis-point semantics where applicable. Installment history is represented through ordered monthly snapshots so later estimated balances can be recalculated when earlier payment history changes. The result is a consistent planning model, not creditor-exact accounting or financial advice.</p>
+    <p>Currency uses integer minor units instead of floating-point arithmetic, and rates use integer basis-point semantics where applicable. Installment history is represented through ordered monthly snapshots so later estimated balances can be recalculated when earlier payment history changes. The result is a consistent planning model rather than lender-exact accounting or financial advice.</p>
   </li>
   <li>
     <strong>Ownership is resolved on the server</strong>
@@ -39,7 +39,7 @@ The diagram below shows the core workflow at a high level. The selected month is
 
 The month-first workspace is the center of the product, but planning also needs longer-running context. The supporting views aggregate spending by category and show debt and payment history across selectable periods, so the monthly view is not disconnected from trends over time.
 
-Those outputs are intentionally framed as planning information. They demonstrate implemented product behavior, not audited reporting, lender statements, or lender-exact balance accounting.
+Those outputs are planning information drawn from the user’s own records, not audited reporting or lender statements.
 
 <InlineProjectVisualGroup projectSlug="newbudget" groupId="tracking-and-trends" />
 

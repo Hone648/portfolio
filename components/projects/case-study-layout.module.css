@@ -192,14 +192,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-.evidence li > span {
-  color: var(--project-accent);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: capitalize;
-}
-
 .evidence li p,
 .limitations li {
   color: var(--color-text-muted);
@@ -300,13 +292,6 @@
 
 .visualCard figcaption > p:not(.visualKind) {
   color: var(--color-text-muted);
-}
-
-.evidenceNote {
-  border-top: 1px solid var(--color-border);
-  border-left: 0.2rem solid var(--project-accent);
-  padding: var(--space-3) 0 0 var(--space-3);
-  font-size: 0.9375rem;
 }
 
 .fullSizeLink {

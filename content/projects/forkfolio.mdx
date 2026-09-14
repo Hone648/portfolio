@@ -15,7 +15,7 @@ That makes Forkfolio a boundary-design project as much as a content-management p
 <ol aria-label="High-signal engineering decisions">
   <li>
     <strong>Tenant ownership is explicit</strong>
-    <p>Tenant ownership is the application boundary for restaurant-facing data and management access. Wagtail Site routing can help a public request find the right site, but it is not treated as the authorization boundary for management behavior. Restaurant profiles, locations, hours, menus, links, promotions, media, and branding stay associated with tenant-owned state, and ownership failures should fail closed rather than silently crossing tenant boundaries. The role model is intentionally described as role-aware management, not as a complete external security audit or perfect RBAC system.</p>
+    <p>Tenant ownership is the application boundary for restaurant-facing data and management access. Wagtail Site routing can help a public request find the right site, but it is not treated as the authorization boundary for management behavior. Restaurant profiles, locations, hours, menus, links, promotions, media, and branding stay associated with tenant-owned state, and ownership failures should fail closed rather than silently crossing tenant boundaries. The role model provides role-aware management rather than a complete RBAC implementation.</p>
   </li>
   <li>
     <strong>Published state is released, not read live</strong>
@@ -37,15 +37,15 @@ Forkfolio organizes the restaurant website around practical operating domains: p
 
 Those domains feed preview and controlled publication rather than flowing straight to the public surface. A restaurant team can work on current content, review it in context, and publish a coherent release when the state is ready. That release-backed approach makes the public site depend on a deliberate snapshot instead of whatever editable rows happen to look like mid-change.
 
-Ordering and reservation destinations are outbound links. Forkfolio does not natively process orders, payments, delivery, or reservation inventory. That distinction matters because linking to an outside service is a website-content capability; handling transactions or inventory would be a different product boundary with different evidence and operational requirements.
+Ordering and reservation destinations are outbound links. Forkfolio does not natively process orders, payments, delivery, or reservation inventory. That distinction matters because linking to an outside service is a website-content capability, while handling transactions or inventory would be a different product with different operational requirements.
 
 <InlineProjectVisualGroup projectSlug="forkfolio" groupId="release-and-publication" />
 
-## Active development boundary
+## Current development status
 
-Forkfolio remains in active development. It is not presented as production deployed, production ready, or operating for live customers.
+Forkfolio is in active development. The application runs locally against PostgreSQL; it has not been deployed to a production environment and no restaurant is using it to serve a live website yet.
 
-The current public claim does not include hardened production runtime, production reverse proxy behavior, TLS automation, custom-domain operation, production PostgreSQL service, production backups or tested restore, production object storage, production monitoring or logging, production deployment pipeline, production rollback, or production scheduler infrastructure. Those concerns remain future production work until separately implemented, verified, and approved for public use.
+The application architecture and publication workflow described here are implemented; production deployment is still ahead of the project.
 
 ## What this project demonstrates
 

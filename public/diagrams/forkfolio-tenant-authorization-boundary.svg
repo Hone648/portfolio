@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
   <title id="title">Forkfolio tenant ownership and authorization boundary</title>
-  <desc id="desc">Public-safe application boundary diagram showing restaurant staff entering the tenant management UI, membership and role context, the tenant authorization boundary, tenant-owned restaurant domains, and the high-level responsibility split between custom Django, Wagtail, and PostgreSQL. The diagram states that Wagtail Site routing is not the management authorization boundary.</desc>
+  <desc id="desc">Application boundary diagram showing restaurant staff entering the tenant management UI, membership and role context, the tenant authorization boundary, tenant-owned restaurant domains, and the high-level responsibility split between custom Django, Wagtail, and PostgreSQL. The diagram states that Wagtail Site routing is not the management authorization boundary.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b4a8f"/>
@@ -27,7 +27,7 @@
 
   <rect width="1600" height="1000" fill="#fbfaf8"/>
   <text class="title" x="56" y="64">Forkfolio tenant authorization boundary</text>
-  <text class="subtitle" x="56" y="102">Public-safe application boundary view</text>
+  <text class="subtitle" x="56" y="102">Application boundary view</text>
 
   <rect x="1130" y="32" width="414" height="86" rx="8" class="amber-card"/>
   <text class="qualifier" x="1160" y="68">Application abstraction only</text>

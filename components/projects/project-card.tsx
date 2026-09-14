@@ -129,7 +129,7 @@ export function ProjectCard({
 
       {variant === "index" ? (
         <details className={styles.scopeDetails}>
-          <summary>Current scope details</summary>
+          <summary>Project notes</summary>
           <div className={styles.scopeContent}>
             <ul className={styles.limitations}>
               {project.limitations.map((limitation) => (

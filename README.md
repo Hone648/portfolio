@@ -2,11 +2,11 @@
 
 [![CI](https://github.com/Hone648/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Hone648/portfolio/actions/workflows/ci.yml)
 
-This repository contains the source for my professional portfolio, highlighting production web application work, business workflow engineering, and local automation systems. The site focuses on practical engineering decisions, implementation evidence, and the operational lessons behind each project.
+This repository contains the source for my professional portfolio, covering production web application work, business workflow engineering, and local automation systems. Each project write-up focuses on the engineering decisions behind it and the operational lessons that came out of building it.
 
-I am a Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. The portfolio keeps current project-backed software and systems skills distinct from historical and transferable technical experience.
+I am a Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting.
 
-## Selected project evidence
+## Selected projects
 
 | Project | Focus | Status |
 | --- | --- | --- |
@@ -17,9 +17,9 @@ I am a Computer Science student combining modern software development with more 
 
 Each project has a case study covering its purpose, the engineering decisions behind it, and the constraints that shaped it.
 
-The Home Security case study is supported by the public, sanitized [nvr-infrastructure](https://github.com/Hone648/nvr-infrastructure) configuration and operations repository. It represents selected reviewed source, not a complete inventory or verbatim copy of the private residential deployment.
+The Home Security case study is supported by the public [nvr-infrastructure](https://github.com/Hone648/nvr-infrastructure) configuration and operations repository, which shares representative configuration with private residential details removed.
 
-Forkfolio is a private-source project. Its public case study presents only approved project facts, authentic demonstration screenshots, and public-safe architecture/workflow evidence; no public source repository or live-customer/production claim is implied.
+Forkfolio source code is private. Its case study covers the architecture, implementation, and screenshots I can share publicly; the project is in active development and is not yet production deployed.
 
 ## Built with
 
@@ -64,8 +64,6 @@ npm run test:e2e
 ```
 
 `npm run validate` runs ESLint, TypeScript validation, and a production build. `npm run test:e2e` builds the application, starts the production Next.js server, and runs the focused Chromium smoke suite. GitHub Actions runs both validation paths for pull requests and pushes to `main`.
-
-This automation covers the core public routes and interactions; it is not a cross-browser certification, an accessibility-conformance claim, or an audited security review.
 
 ## Deployment
 

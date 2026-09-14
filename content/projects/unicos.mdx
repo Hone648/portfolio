@@ -19,7 +19,7 @@ The screens below show the current operating shape: a dashboard for shop-level w
   </li>
   <li>
     <strong>Rules and permissions follow the work</strong>
-    <p>Lifecycle rules sit below the page layer so the same business checks apply when aligned callers attempt the same transition. A repair order cannot enter a final state while a non-void invoice still has a balance due. Estimates become read-only after submission in the ordinary workflow, and approval requires source and contact evidence. For technician-only users, repair-order access is limited to assigned jobs and related workflows inherit that job scope. Role checks and object-level job scope are implemented in the shop-facing flow, but this is not complete RBAC or a finished authorization system.</p>
+    <p>Lifecycle rules sit below the page layer so the same business checks apply when aligned callers attempt the same transition. A repair order cannot enter a final state while a non-void invoice still has a balance due. Estimates become read-only after submission in the ordinary workflow, and approval requires source and contact evidence. For technician-only users, repair-order access is limited to assigned jobs and related workflows inherit that job scope. Role checks and object-level job scope are implemented across the shop-facing flow; admin policy integration remains incomplete.</p>
   </li>
   <li>
     <strong>Billing stays explicit and transactional</strong>
@@ -27,9 +27,9 @@ The screens below show the current operating shape: a dashboard for shop-level w
   </li>
 </ol>
 
-## Sanitized architecture
+## Application architecture
 
-The architecture is organized around a domain layer that owns workflow and billing rules, with presentation code calling through services instead of duplicating transition logic. The public diagrams are sanitized explanatory views derived from reviewed implementation evidence; they are not production infrastructure maps and do not expose private source details.
+The architecture is organized around a domain layer that owns workflow and billing rules, with presentation code calling through services instead of duplicating transition logic. The public diagrams are explanatory views of the application structure rather than deployment topology.
 
 Those diagrams also show the boundary I care about most: UI pages can request an action, but they should not be the place where money and closure rules become true. The service layer is where the application checks whether a repair order can move, whether an estimate can be converted, and whether an invoice can accept another payment.
 
@@ -37,7 +37,7 @@ Those diagrams also show the boundary I care about most: UI pages can request an
 
 ## Repair-order workflow
 
-The repair-order workspace shows the job as a connected operating record. Communication entries are internal history, not outbound messaging. Attachments use local-development storage and metadata. Estimate screens show the approval path and supplement lineage, but they do not prove insurance-system integration or complete estimate versioning.
+The repair-order workspace shows the job as a connected operating record. Communication entries are internal history, not outbound messaging. Attachments use local-development storage and metadata. Estimate screens show the approval path and supplement lineage; there is no insurance-system integration, and estimate versioning remains limited.
 
 The billing flow intentionally keeps the stages apart. Creating an invoice from an approved estimate does not issue it, and issuing an invoice does not record a payment. That separation keeps correction possible: an issued invoice can be voided without erasing the approval decision that justified the work.
 
@@ -49,10 +49,12 @@ Billing, reporting, and administration are included because operational software
 
 <InlineProjectVisualGroup projectSlug="unicos" groupId="billing-reporting-administration" />
 
-## Active development boundary
+## Current development status
 
-Unicos runs locally with Docker Compose and PostgreSQL. Production hosting remains future work, including hardened settings, HTTPS, storage design, backup and restore, monitoring, and operational support. Attachment storage is local development persistence, estimate and invoice output goes through browser printing rather than generated PDFs, and there is no multi-shop tenancy, complete authorization model, production storage plan, backup regime, monitoring system, or real-shop operation claim.
+Unicos runs locally with Docker Compose and PostgreSQL. It is in active development and is not yet production deployed.
+
+Attachment storage uses local development persistence, and estimate and invoice output goes through browser printing rather than generated PDFs. Multi-shop tenancy and production hosting remain future work.
 
 ## What this project demonstrates
 
-Unicos shows how I turn a messy business workflow into application boundaries a database and service layer can defend. The important work is not just rendering repair-order screens; it is deciding where context lives, which transitions must be refused, where concurrency can corrupt money state, and how public evidence can show an active system without pretending it is finished infrastructure.
+Unicos shows how I turn a messy business workflow into application boundaries a database and service layer can defend. The important work is not just rendering repair-order screens; it is deciding where context lives, which transitions must be refused, and where concurrency can corrupt money state.

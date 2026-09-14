@@ -62,7 +62,7 @@ export const siteContent = {
     background: [
       "I am a Computer Science student whose current software development builds on a broader technical systems career across avionics, industrial electronics, automated test equipment, semiconductor equipment, data acquisition, remote telemetry, controls, troubleshooting, systems integration, and technical operations.",
       "That work developed systematic fault isolation and systems thinking across software, electronics, instrumentation, mechanical systems, networks, operator interfaces, and related system boundaries, along with customer training, documentation, and coordination with engineers and technical teams.",
-      "I now apply that systems perspective to project-backed software applications and operational automation infrastructure. Current software work and prior technical experience reinforce each other while remaining distinct: project-backed software skills are separate from historical and transferable technical strengths.",
+      "I now apply that systems perspective to building software applications and operational automation infrastructure. The habits that matter most carry over directly: isolating faults methodically, understanding how a system behaves under real conditions, and designing around the constraints that actually exist.",
     ],
     howIWork: [
       "Define requirements, constraints, and success criteria before implementation.",
@@ -71,7 +71,6 @@ export const siteContent = {
       "Validate with linting, type checking, builds, tests, CI, and browser review when applicable.",
       "Troubleshoot across application, service, container, host, and network boundaries.",
       "Document meaningful constraints and protect private operational information.",
-      "Use AI assistance for research, planning, implementation support, review, and validation while retaining final engineering decisions.",
     ],
     currentDirection: [
       "I am completing Computer Science coursework through Central Texas College. My planned academic path is transfer to Texas A&M University-Central Texas for a B.S. in Computer Science.",
@@ -108,7 +107,7 @@ export const siteContent = {
     lede:
       "An experience-forward resume connecting current software and systems work with more than two decades of technical experience.",
     summary:
-      "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. Current project-backed work spans production application development, backend systems, Linux infrastructure, automation, and systems integration.",
+      "Computer Science student combining modern software development with more than two decades of technical experience across avionics, automated test systems, semiconductor equipment, industrial telemetry, controls, and systems troubleshooting. Current software and systems work spans production application development, backend systems, Linux infrastructure, automation, and systems integration.",
     educationAndTraining: [
       {
         institution: "Central Texas College",

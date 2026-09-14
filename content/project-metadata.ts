@@ -138,8 +138,7 @@ export const projects = [
       },
     ],
     limitations: [
-      "Demonstrates production operation for one application, not broad enterprise-scale platform experience.",
-      "Debt and installment calculations support planning and history but do not claim lender-exact accounting.",
+      "Debt and installment calculations are planning and history tools, not lender-exact accounting or financial advice.",
     ],
     repository: {
       visibility: "public",
@@ -205,9 +204,8 @@ export const projects = [
       },
     ],
     limitations: [
-      "Forkfolio is in active development and is not production-deployed or presented as operating for live customers.",
+      "Forkfolio is in active development. It is not yet production deployed and is not operating for live customers.",
       "Ordering and reservation capabilities are outbound links only; Forkfolio does not natively process orders, payments, delivery, or reservation inventory.",
-      "Production runtime, domains/TLS, database durability, object storage, monitoring, backup/restore, deployment, and rollback remain designed/future until separately implemented and verified.",
     ],
     repository: {
       visibility: "private",
@@ -236,7 +234,7 @@ export const projects = [
         "Validates reviewed configuration and documents repository-to-live deployment, verification, and rollback steps.",
       ],
       currentStatus:
-        "Operational in a private residential environment; a sanitized public repository represents selected reviewed configuration and procedures.",
+        "Operational in a private residential environment; the public repository shares representative configuration and procedures with private details removed.",
     },
     status: "operational-lab",
     featured: true,
@@ -282,13 +280,12 @@ export const projects = [
       {
         state: "designed",
         statement:
-          "Documents pre-deployment validation, timestamped live-file backups, targeted service recreation, post-deployment verification, and configuration rollback without claiming those steps have been exercised live.",
+          "Documents pre-deployment validation, timestamped live-file backups, targeted service recreation, post-deployment verification, and configuration rollback as written procedures rather than steps exercised during a live incident.",
       },
     ],
     limitations: [
       "This is a privately operated home deployment, not a commercial security product or professionally monitored alarm system.",
-      "The public repository is a sanitized representative configuration, not a complete inventory or verbatim copy of the private deployment.",
-      "Full backup and recovery, monitoring, storage safeguards, network migration, and security hardening remain planned; no disk-threshold cleanup is deployed and image tags still float.",
+      "The public repository is a sanitized representative configuration with private residential details removed, not a verbatim copy of the live deployment.",
     ],
     repository: {
       visibility: "public",
@@ -360,8 +357,8 @@ export const projects = [
       },
     ],
     limitations: [
-      "The application is in active development and is not production-deployed.",
-      "Production infrastructure, monitoring, backup and restore operations, and broader hardening remain incomplete.",
+      "The application is in active development and is not yet production deployed.",
+      "It records invoice and payment workflow state but is not a payment processor or a full accounting ledger.",
     ],
     repository: {
       visibility: "public",

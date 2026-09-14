@@ -26,7 +26,7 @@ export function InlineProjectVisualGroup({
   return (
     <section
       className={styles.inlineVisualEvidence}
-      aria-label={`${group.title} visual evidence`}
+      aria-label={`${group.title} visuals`}
     >
       <ProjectVisualGroupList
         projectName={project.name}

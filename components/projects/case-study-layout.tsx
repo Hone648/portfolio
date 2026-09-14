@@ -30,16 +30,15 @@ function RepositoryNote({ project }: { project: Project }) {
   if (project.repository.visibility === "private") {
     return (
       <>
-        The source repository is private. This case study covers the
-        architecture, implementation, and project details that can be shared
-        publicly.
+        Source code is private; this case study covers the architecture and
+        implementation details I can share publicly.
       </>
     );
   }
 
   return (
     <>
-      Private operational system presented through a sanitized architecture and
+      Private operational system, described here through its architecture and
       project overview.
     </>
   );
@@ -92,7 +91,6 @@ export function CaseStudyLayout({
       <ul>
         {project.evidence.map((item) => (
           <li key={`${item.state}-${item.statement}`}>
-            <span>{item.state}</span>
             <p>{item.statement}</p>
           </li>
         ))}

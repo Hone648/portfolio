@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
   <title id="title">Unicos repair-order workflow</title>
-  <desc id="desc">Sanitized diagram showing the repair order as the central workflow context for customer and vehicle records, status history, communications, attachments, estimates and supplements, draft invoice conversion, invoices, payments, and final-state restrictions.</desc>
+  <desc id="desc">Diagram showing the repair order as the central workflow context for customer and vehicle records, status history, communications, attachments, estimates and supplements, draft invoice conversion, invoices, payments, and final-state restrictions.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b4a8f"/>
@@ -84,7 +84,7 @@
   <text class="qualifier" x="82" y="754">- Draft estimates are normally editable; supplements retain separate lineage.</text>
   <text class="qualifier" x="82" y="790">- Conversion requires approval evidence and an approved itemized estimate.</text>
   <text class="qualifier" x="82" y="826">- Conversion copies line items to a draft invoice; issue remains separate.</text>
-  <text class="qualifier" x="82" y="862">- Conversion creates no payment or complete estimate-versioning claim.</text>
+  <text class="qualifier" x="82" y="862">- Conversion creates no payment; estimate versioning remains limited.</text>
 
   <rect x="818" y="478" width="730" height="438" rx="8" fill="#ffffff" stroke="#0b4a8f" stroke-width="3"/>
   <text class="panel-title blue" x="848" y="524">Invoice lifecycle</text>

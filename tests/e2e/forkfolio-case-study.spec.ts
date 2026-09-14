@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { collectApplicationErrors } from "./application-errors";
 
 const privateRepositoryText =
-  "The source repository is private. This case study covers the architecture, implementation, and project details that can be shared publicly.";
+  "Source code is private; this case study covers the architecture and implementation details I can share publicly.";
 
 const forkfolioVisuals = [
   {
@@ -111,11 +111,12 @@ test("Forkfolio keeps status, production, and transaction boundaries visible", a
   const expectNoApplicationErrors = collectApplicationErrors(page);
   await page.goto("/projects/forkfolio");
 
-  await expect(page.getByText(/remains in active development/i)).toBeVisible();
-  await expect(page.getByText(/not presented as production deployed/i))
-    .toBeVisible();
+  await expect(page.getByText(/is in active development/i).first()).toBeVisible();
   await expect(
-    page.getByText(/Those concerns remain future production work/i),
+    page.getByText(/not been deployed to a production environment/i),
+  ).toBeVisible();
+  await expect(
+    page.getByText(/production deployment is still ahead of the project/i),
   ).toBeVisible();
   await expect(
     page.getByText(/Ordering and reservation destinations are outbound links/i),
@@ -237,7 +238,7 @@ test("Forkfolio appears as supplemental homepage software evidence without repla
   await page.goto("/");
 
   const selectedEvidence = page.getByRole("region", {
-    name: "Selected engineering evidence",
+    name: "Selected work and experience",
   });
   await expect(selectedEvidence).toBeVisible();
   const primaryEvidence = selectedEvidence.getByRole("article");
@@ -247,7 +248,7 @@ test("Forkfolio appears as supplemental homepage software evidence without repla
   ).toHaveCount(0);
   await expect(primaryEvidence.filter({ hasText: "Forkfolio" })).toHaveCount(0);
   await expect(
-    selectedEvidence.getByText("Additional current software evidence:", {
+    selectedEvidence.getByText("Additional software project:", {
       exact: true,
     }),
   ).toBeVisible();
@@ -283,9 +284,9 @@ test.describe("narrow viewport", () => {
       .scrollIntoViewIfNeeded();
     await expect(
       page.getByText(
-        "Forkfolio is in active development and is not production-deployed or presented as operating for live customers.",
+        "Forkfolio is in active development. It is not yet production deployed and is not operating for live customers.",
         { exact: true },
-      ),
+      ).first(),
     ).toBeVisible();
 
     const hasHorizontalOverflow = await page.evaluate(
