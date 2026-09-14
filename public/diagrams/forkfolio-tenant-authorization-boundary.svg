@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Forkfolio tenant ownership and authorization boundary</title>
+  <desc id="desc">Public-safe application boundary diagram showing restaurant staff entering the tenant management UI, membership and role context, the tenant authorization boundary, tenant-owned restaurant domains, and the high-level responsibility split between custom Django, Wagtail, and PostgreSQL. The diagram states that Wagtail Site routing is not the management authorization boundary.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b4a8f"/>
+    </marker>
+    <style>
+      text { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #20242a; }
+      .title { font-size: 43px; font-weight: 750; }
+      .subtitle { font-size: 24px; fill: #5f6875; }
+      .section { font-size: 25px; font-weight: 750; fill: #08396f; }
+      .node-title { font-size: 24px; font-weight: 740; }
+      .node-copy { font-size: 20px; fill: #5f6875; }
+      .small { font-size: 18px; fill: #5f6875; }
+      .qualifier { font-size: 22px; font-weight: 720; fill: #7a4700; }
+      .green { fill: #1e6b55; }
+      .inverse { fill: #ffffff; }
+      .arrow { fill: none; stroke: #0b4a8f; stroke-width: 4; marker-end: url(#arrow); }
+      .boundary { fill: #eaf3fc; stroke: #0b4a8f; stroke-width: 4; }
+      .domain { fill: #e8f5f0; stroke: #1e6b55; stroke-width: 3; }
+      .card { fill: #ffffff; stroke: #d9dee7; stroke-width: 3; }
+      .amber-card { fill: #fff4df; stroke: #9a5b00; stroke-width: 3; }
+      .dark { fill: #20242a; stroke: #20242a; stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#fbfaf8"/>
+  <text class="title" x="56" y="64">Forkfolio tenant authorization boundary</text>
+  <text class="subtitle" x="56" y="102">Public-safe application boundary view</text>
+
+  <rect x="1130" y="32" width="414" height="86" rx="8" class="amber-card"/>
+  <text class="qualifier" x="1160" y="68">Application abstraction only</text>
+  <text class="small" x="1160" y="98">Not production deployment topology</text>
+
+  <text class="section" x="80" y="174">Management access path</text>
+
+  <rect x="74" y="205" width="220" height="106" rx="8" class="card"/>
+  <text class="node-title" x="111" y="252">Restaurant staff</text>
+  <text class="node-copy" x="111" y="282">Authorized operator</text>
+
+  <rect x="348" y="205" width="238" height="106" rx="8" class="card"/>
+  <text class="node-title" x="384" y="246">Tenant</text>
+  <text class="node-title" x="384" y="276">management UI</text>
+
+  <rect x="640" y="205" width="252" height="106" rx="8" class="card"/>
+  <text class="node-title" x="675" y="246">Membership and</text>
+  <text class="node-title" x="675" y="276">role context</text>
+
+  <rect x="946" y="194" width="286" height="128" rx="8" class="boundary"/>
+  <text class="node-title" x="990" y="241">Tenant authorization</text>
+  <text class="node-title" x="1036" y="271">boundary</text>
+  <text class="node-copy" x="1000" y="300">Fail closed across tenants</text>
+
+  <rect x="1286" y="205" width="238" height="106" rx="8" class="domain"/>
+  <text class="node-title green" x="1330" y="246">Tenant-owned</text>
+  <text class="node-title green" x="1344" y="276">domains</text>
+
+  <path class="arrow" d="M294 258 H336"/>
+  <path class="arrow" d="M586 258 H628"/>
+  <path class="arrow" d="M892 258 H934"/>
+  <path class="arrow" d="M1232 258 H1274"/>
+
+  <rect x="72" y="360" width="1454" height="214" rx="10" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="section" x="104" y="404">Tenant-owned restaurant domains</text>
+  <rect x="104" y="432" width="230" height="74" rx="8" class="domain"/>
+  <text class="node-title green" x="177" y="477">Profile</text>
+  <rect x="372" y="432" width="230" height="74" rx="8" class="domain"/>
+  <text class="node-title green" x="423" y="461">Locations /</text>
+  <text class="node-title green" x="449" y="489">hours</text>
+  <rect x="640" y="432" width="230" height="74" rx="8" class="domain"/>
+  <text class="node-title green" x="714" y="477">Menus</text>
+  <rect x="908" y="432" width="254" height="74" rx="8" class="domain"/>
+  <text class="node-title green" x="937" y="461">Promotions /</text>
+  <text class="node-title green" x="962" y="489">external links</text>
+  <rect x="1200" y="432" width="294" height="74" rx="8" class="domain"/>
+  <text class="node-title green" x="1246" y="461">Media / branding</text>
+  <text class="node-copy" x="104" y="544">These are restaurant-facing content domains, not separate deployed services.</text>
+
+  <rect x="72" y="620" width="1454" height="254" rx="10" fill="#ffffff" stroke="#d9dee7" stroke-width="3"/>
+  <text class="section" x="104" y="664">Responsibility separation</text>
+
+  <rect x="104" y="700" width="390" height="118" rx="8" class="card"/>
+  <text class="node-title" x="134" y="735">Custom Django</text>
+  <text class="node-copy" x="134" y="766">Tenant ownership and authorization</text>
+  <text class="node-copy" x="134" y="794">Restaurant domains and publication logic</text>
+
+  <rect x="604" y="700" width="340" height="118" rx="8" class="card"/>
+  <text class="node-title" x="634" y="735">Wagtail</text>
+  <text class="node-copy" x="634" y="766">Pages, revisions, media, and</text>
+  <text class="node-copy" x="634" y="794">editorial workflow responsibilities</text>
+
+  <rect x="1054" y="700" width="390" height="118" rx="8" class="dark"/>
+  <text class="node-title inverse" x="1084" y="752">PostgreSQL</text>
+  <text class="node-copy inverse" x="1084" y="786">Shared relational system of record</text>
+
+  <rect x="72" y="906" width="1454" height="58" rx="8" class="amber-card"/>
+  <text class="qualifier" x="104" y="943">Wagtail Site routing is not the management authorization boundary.</text>
+</svg>

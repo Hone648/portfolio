@@ -30,6 +30,16 @@ const forkfolioVisuals = [
     asset: "/images/forkfolio/forkfolio-public-site.png",
     alt: /release-backed Forkfolio public restaurant page/i,
   },
+  {
+    title: "Tenant ownership and authorization boundary",
+    asset: "/diagrams/forkfolio-tenant-authorization-boundary.svg",
+    alt: /restaurant staff using the tenant management UI, membership and role context, the tenant authorization boundary/i,
+  },
+  {
+    title: "Editable state and immutable publication",
+    asset: "/diagrams/forkfolio-release-publication-flow.svg",
+    alt: /editable tenant-owned state moving through preview, submission, review and approval/i,
+  },
 ] as const;
 
 test("Forkfolio renders as a private-source active-development case study", async ({
@@ -140,7 +150,7 @@ test("Forkfolio keeps status, production, and transaction boundaries visible", a
   expectNoApplicationErrors();
 });
 
-test("Forkfolio renders five authentic screenshot evidence assets", async ({
+test("Forkfolio renders screenshot and diagram evidence assets", async ({
   page,
 }) => {
   const expectNoApplicationErrors = collectApplicationErrors(page);
@@ -155,10 +165,19 @@ test("Forkfolio renders five authentic screenshot evidence assets", async ({
   ).toHaveCount(0);
   await expect(
     page.getByRole("button", { name: /View larger: .* for Forkfolio/ }),
-  ).toHaveCount(5);
+  ).toHaveCount(7);
   await expect(
     page.getByRole("link", { name: /Open full-size asset: .* in a new tab/ }),
-  ).toHaveCount(5);
+  ).toHaveCount(7);
+  await expect(
+    page.getByRole("heading", {
+      level: 3,
+      name: "Architecture and publication boundaries",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Architecture diagram", { exact: true }))
+    .toHaveCount(2);
 
   for (const visual of forkfolioVisuals) {
     await expect(
